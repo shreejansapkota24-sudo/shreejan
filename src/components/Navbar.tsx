@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Menu, X, LogIn, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -13,6 +15,7 @@ const navLinks = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, signOut } = useAuth();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
@@ -33,6 +36,25 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
+            
+            {user ? (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => signOut()}
+                className="gap-2"
+              >
+                <LogOut className="w-4 h-4" />
+                Logout
+              </Button>
+            ) : (
+              <Link to="/auth">
+                <Button variant="default" size="sm" className="gap-2">
+                  <LogIn className="w-4 h-4" />
+                  Login
+                </Button>
+              </Link>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -60,6 +82,28 @@ const Navbar = () => {
                   {link.name}
                 </a>
               ))}
+              
+              {user ? (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    signOut();
+                    setIsOpen(false);
+                  }}
+                  className="gap-2 w-fit"
+                >
+                  <LogOut className="w-4 h-4" />
+                  Logout
+                </Button>
+              ) : (
+                <Link to="/auth" onClick={() => setIsOpen(false)}>
+                  <Button variant="default" size="sm" className="gap-2">
+                    <LogIn className="w-4 h-4" />
+                    Login
+                  </Button>
+                </Link>
+              )}
             </div>
           </div>
         )}
