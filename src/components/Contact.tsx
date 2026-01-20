@@ -3,11 +3,11 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 
 const socialLinks = [
-  { name: "GitHub", icon: Github, href: "https://github.com/shreejansapkota", color: "hover:bg-gray-800 hover:text-white" },
-  { name: "LinkedIn", icon: Linkedin, href: "https://linkedin.com/in/shreejansapkota", color: "hover:bg-blue-600 hover:text-white" },
-  { name: "Facebook", icon: Facebook, href: "https://facebook.com/shreejansapkota", color: "hover:bg-blue-500 hover:text-white" },
-  { name: "Instagram", icon: Instagram, href: "https://instagram.com/shreejansapkota", color: "hover:bg-pink-500 hover:text-white" },
-  { name: "X (Twitter)", icon: Twitter, href: "https://twitter.com/shreejansapkota", color: "hover:bg-gray-900 hover:text-white" },
+  { name: "GitHub", icon: Github, href: "https://github.com/shreejansapkota24-sudo", color: "hover:bg-gray-800 hover:text-white" },
+  { name: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/in/shreejan-sapkota-0449b023b/", color: "hover:bg-blue-600 hover:text-white" },
+  { name: "Facebook", icon: Facebook, href: "https://www.facebook.com/shreejan.sapkota.319", color: "hover:bg-blue-500 hover:text-white" },
+  { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/sapkota.shreejan/", color: "hover:bg-pink-500 hover:text-white" },
+  { name: "X (Twitter)", icon: Twitter, href: "https://x.com/shreejansapkot4", color: "hover:bg-gray-900 hover:text-white" },
 ];
 
 const Contact = () => {
