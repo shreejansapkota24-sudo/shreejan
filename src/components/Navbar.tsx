@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Menu, X, LogIn, LogOut } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X, LogIn, LogOut, Pill } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -16,6 +16,8 @@ const navLinks = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, signOut } = useAuth();
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
@@ -27,7 +29,7 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
+            {isHomePage && navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
@@ -36,6 +38,13 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
+            
+            <Link to="/matrix">
+              <Button variant="ghost" size="sm" className="gap-2 text-muted-foreground hover:text-primary">
+                <Pill className="w-4 h-4" />
+                Matrix
+              </Button>
+            </Link>
             
             {user ? (
               <Button
@@ -72,7 +81,7 @@ const Navbar = () => {
         {isOpen && (
           <div className="md:hidden pt-4 pb-2 animate-fade-in">
             <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
+              {isHomePage && navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
@@ -82,6 +91,13 @@ const Navbar = () => {
                   {link.name}
                 </a>
               ))}
+              
+              <Link to="/matrix" onClick={() => setIsOpen(false)}>
+                <Button variant="ghost" size="sm" className="gap-2 text-muted-foreground hover:text-primary w-fit">
+                  <Pill className="w-4 h-4" />
+                  Matrix
+                </Button>
+              </Link>
               
               {user ? (
                 <Button
