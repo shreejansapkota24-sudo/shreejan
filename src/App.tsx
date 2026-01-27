@@ -8,6 +8,13 @@ import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Matrix from "./pages/Matrix";
 import NotFound from "./pages/NotFound";
+import {
+  CyberGuardDashboard,
+  URLScanner,
+  FileScanner,
+  ThreatLogs,
+  About as CyberGuardAbout,
+} from "./pages/cyberguard";
 
 const queryClient = new QueryClient();
 
@@ -19,10 +26,16 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/auth" element={<Auth />} />
-          <Route path="/matrix" element={<Matrix />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="/" element={<Index />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/matrix" element={<Matrix />} />
+            {/* CyberGuard Routes */}
+            <Route path="/cyberguard" element={<CyberGuardDashboard />} />
+            <Route path="/cyberguard/url-scanner" element={<URLScanner />} />
+            <Route path="/cyberguard/file-scanner" element={<FileScanner />} />
+            <Route path="/cyberguard/threat-logs" element={<ThreatLogs />} />
+            <Route path="/cyberguard/about" element={<CyberGuardAbout />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
