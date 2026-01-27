@@ -1,25 +1,25 @@
-import { FolderOpen, Clock, Sparkles, Code2, BookOpen, Rocket } from "lucide-react";
+import { FolderOpen, Shield, ExternalLink, Github, Link2, FileSearch, ScrollText } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
-const placeholderProjects = [
+const projects = [
   {
-    icon: Code2,
-    title: "Algorithm Projects",
-    description: "Data structures & algorithms practice",
-    color: "from-blue-500/20 to-blue-500/5",
-  },
-  {
-    icon: BookOpen,
-    title: "Coursework",
-    description: "Academic programming assignments",
-    color: "from-green-500/20 to-green-500/5",
-  },
-  {
-    icon: Rocket,
-    title: "Personal Projects",
-    description: "Side projects & experiments",
-    color: "from-purple-500/20 to-purple-500/5",
+    title: "CyberGuard",
+    description: "A professional cybersecurity toolkit featuring URL phishing detection, file malware scanning with SHA-256 hash analysis, real-time threat logging, and SOC-style dashboard.",
+    image: null,
+    icon: Shield,
+    tags: ["React", "TypeScript", "Tailwind", "Zustand", "Web Crypto API"],
+    features: [
+      { icon: Link2, label: "URL Scanner" },
+      { icon: FileSearch, label: "File Scanner" },
+      { icon: ScrollText, label: "Threat Logs" },
+    ],
+    liveUrl: "/cyberguard",
+    isInternal: true,
+    color: "from-emerald-500/20 to-primary/20",
   },
 ];
 
@@ -71,82 +71,107 @@ const Portfolio = () => {
             My Work
           </motion.span>
           <h2 className="text-3xl md:text-5xl font-bold text-foreground">Portfolio</h2>
-        </motion.div>
-
-        {/* Coming Soon Notice */}
-        <motion.div
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-        >
-          <motion.div
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-primary/20 to-primary/10 text-primary rounded-full mb-4 border border-primary/20"
-            animate={{
-              boxShadow: [
-                "0 0 0 0 hsl(var(--primary) / 0)",
-                "0 0 0 10px hsl(var(--primary) / 0.1)",
-                "0 0 0 0 hsl(var(--primary) / 0)",
-              ],
-            }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <Clock className="w-4 h-4" />
-            <span className="text-sm font-medium">Academic & Practice Projects Coming Soon</span>
-          </motion.div>
-          <p className="text-muted-foreground max-w-lg mx-auto">
-            Currently building my portfolio through coursework, coding exercises,
-            and hands-on practice projects. Stay tuned for updates!
+          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
+            Explore my projects showcasing skills in web development, cybersecurity, and modern UI/UX design.
           </p>
         </motion.div>
 
-        {/* Placeholder Project Cards */}
+        {/* Projects Grid */}
         <motion.div
-          className="grid md:grid-cols-3 gap-6"
+          className="grid gap-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {placeholderProjects.map((project, index) => (
+          {projects.map((project) => (
             <motion.div key={project.title} variants={cardVariants}>
-              <Card className="group bg-background border-2 border-dashed border-muted hover:border-primary/40 transition-all duration-500 overflow-hidden">
-                <CardContent className="p-8 flex flex-col items-center justify-center min-h-[250px] relative">
-                  {/* Gradient background */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+              <Card className="group bg-background border border-border hover:border-primary/50 transition-all duration-500 overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {/* Project Preview */}
+                    <div className={`relative min-h-[300px] bg-gradient-to-br ${project.color} flex items-center justify-center p-8`}>
+                      <motion.div
+                        className="relative z-10 p-6 bg-card/80 backdrop-blur-sm rounded-2xl border border-border shadow-xl"
+                        whileHover={{ scale: 1.05, rotate: 2 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <project.icon className="w-16 h-16 text-primary mx-auto" />
+                      </motion.div>
+                      
+                      {/* Feature Icons */}
+                      <div className="absolute bottom-4 left-4 right-4 flex justify-center gap-3">
+                        {project.features.map((feature, index) => (
+                          <motion.div
+                            key={feature.label}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.3 + index * 0.1 }}
+                            className="flex items-center gap-1.5 px-3 py-1.5 bg-card/90 backdrop-blur-sm rounded-full text-xs font-medium text-foreground border border-border"
+                          >
+                            <feature.icon className="w-3.5 h-3.5 text-primary" />
+                            {feature.label}
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
 
-                  <motion.div
-                    className="relative z-10 p-5 bg-muted rounded-2xl mb-5 group-hover:bg-primary/10 transition-colors duration-300"
-                    whileHover={{ rotate: [0, -5, 5, 0], scale: 1.1 }}
-                    transition={{ duration: 0.4 }}
-                  >
-                    <project.icon className="w-10 h-10 text-muted-foreground group-hover:text-primary transition-colors duration-300" />
-                  </motion.div>
+                    {/* Project Details */}
+                    <div className="p-8 flex flex-col justify-center">
+                      <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+                        {project.title}
+                      </h3>
+                      
+                      <p className="text-muted-foreground mb-6 leading-relaxed">
+                        {project.description}
+                      </p>
 
-                  <h3 className="relative z-10 font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
-                    {project.title}
-                  </h3>
-                  <p className="relative z-10 text-sm text-muted-foreground text-center">
-                    {project.description}
-                  </p>
+                      {/* Tags */}
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {project.tags.map((tag) => (
+                          <Badge
+                            key={tag}
+                            variant="secondary"
+                            className="bg-muted text-muted-foreground"
+                          >
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
 
-                  <motion.span
-                    className="relative z-10 mt-4 text-xs text-primary/60 font-medium uppercase tracking-wider"
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                  >
-                    Coming Soon
-                  </motion.span>
+                      {/* Actions */}
+                      <div className="flex flex-wrap gap-3">
+                        {project.isInternal ? (
+                          <Link to={project.liveUrl}>
+                            <Button className="gap-2">
+                              <ExternalLink className="w-4 h-4" />
+                              View Project
+                            </Button>
+                          </Link>
+                        ) : (
+                          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                            <Button className="gap-2">
+                              <ExternalLink className="w-4 h-4" />
+                              Live Demo
+                            </Button>
+                          </a>
+                        )}
+                        <Button variant="outline" className="gap-2" disabled>
+                          <Github className="w-4 h-4" />
+                          Source Code
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Current Activities */}
+        {/* More Projects Coming */}
         <motion.div
-          className="mt-16 text-center"
+          className="mt-12 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -157,9 +182,9 @@ const Portfolio = () => {
             whileHover={{ scale: 1.05, y: -3 }}
             transition={{ duration: 0.3 }}
           >
-            <Sparkles className="w-5 h-5 text-primary" />
+            <FolderOpen className="w-5 h-5 text-primary" />
             <span className="text-muted-foreground font-medium">
-              Currently practicing algorithms & building small projects
+              More projects coming soon...
             </span>
           </motion.div>
         </motion.div>
