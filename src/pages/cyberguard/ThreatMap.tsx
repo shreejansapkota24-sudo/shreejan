@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Globe, Shield } from "lucide-react";
 import CyberGuardNavbar from "@/components/cyberguard/CyberGuardNavbar";
@@ -6,104 +6,39 @@ import WorldMap from "@/components/cyberguard/WorldMap";
 import ThreatFeed from "@/components/cyberguard/ThreatFeed";
 import ThreatMapStats from "@/components/cyberguard/ThreatMapStats";
 import ThreatMapControls from "@/components/cyberguard/ThreatMapControls";
+import CountryDetailsPanel from "@/components/cyberguard/CountryDetailsPanel";
+import { useThreatSimulation } from "@/hooks/useThreatSimulation";
 import type { ThreatEvent } from "@/lib/cyberguard/threat-map-data";
-import { generateRandomEvent } from "@/lib/cyberguard/threat-map-data";
-
-const MAX_EVENTS = 50;
-const ANIMATION_DURATION = 3000; // 3 seconds per arc
-const ANIMATION_INTERVAL = 50; // Update animation every 50ms
 
 const ThreatMap = () => {
-  const [events, setEvents] = useState<ThreatEvent[]>([]);
   const [isSimulating, setIsSimulating] = useState(true);
   const [intensity, setIntensity] = useState(3);
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
-  const [attacksPerMinute, setAttacksPerMinute] = useState(0);
-  
-  const eventCountRef = useRef(0);
-  const lastMinuteRef = useRef(Date.now());
+  const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
 
-  // Calculate attacks per minute
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const now = Date.now();
-      const elapsed = (now - lastMinuteRef.current) / 1000;
-      if (elapsed >= 10) {
-        setAttacksPerMinute((eventCountRef.current / elapsed) * 60);
-        eventCountRef.current = 0;
-        lastMinuteRef.current = now;
-      }
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  // Animation loop for arc progress
-  useEffect(() => {
-    const animationLoop = setInterval(() => {
-      setEvents((prev) =>
-        prev
-          .map((event) => ({
-            ...event,
-            animationProgress: event.animationProgress + ANIMATION_INTERVAL / ANIMATION_DURATION,
-          }))
-          .filter((event) => event.animationProgress < 1.5) // Keep slightly longer for fade out
-      );
-    }, ANIMATION_INTERVAL);
-
-    return () => clearInterval(animationLoop);
-  }, []);
-
-  // Event generation based on intensity
-  useEffect(() => {
-    if (!isSimulating) return;
-
-    const generateEvent = () => {
-      const newEvent: ThreatEvent = {
-        ...generateRandomEvent(),
-        animationProgress: 0,
-      };
-
-      setEvents((prev) => [newEvent, ...prev].slice(0, MAX_EVENTS));
-      eventCountRef.current += 1;
-    };
-
-    // Base interval: 800-2500ms, adjusted by intensity
-    const getInterval = () => {
-      const baseMin = 2500 - intensity * 400; // At intensity 5: 500ms
-      const baseMax = 2500 - intensity * 300; // At intensity 5: 1000ms
-      return Math.random() * (baseMax - baseMin) + baseMin;
-    };
-
-    let timeoutId: NodeJS.Timeout;
-
-    const scheduleNext = () => {
-      timeoutId = setTimeout(() => {
-        generateEvent();
-        // At high intensity, sometimes generate multiple events
-        if (intensity >= 4 && Math.random() > 0.5) {
-          setTimeout(generateEvent, 100);
-        }
-        if (intensity === 5 && Math.random() > 0.6) {
-          setTimeout(generateEvent, 200);
-        }
-        scheduleNext();
-      }, getInterval());
-    };
-
-    scheduleNext();
-
-    return () => clearTimeout(timeoutId);
-  }, [isSimulating, intensity]);
+  const { events, attacksPerMinute } = useThreatSimulation({
+    isSimulating,
+    intensity,
+  });
 
   const handleEventClick = useCallback((event: ThreatEvent) => {
     setSelectedEventId((prev) => (prev === event.id ? null : event.id));
+    setSelectedCountry(null);
   }, []);
 
   const handleEventHover = useCallback((event: ThreatEvent | null) => {
-    if (event) {
+    if (event && !selectedCountry) {
       setSelectedEventId(event.id);
     }
+  }, [selectedCountry]);
+
+  const handleCountryClick = useCallback((countryCode: string) => {
+    setSelectedCountry((prev) => (prev === countryCode ? null : countryCode));
+    setSelectedEventId(null);
+  }, []);
+
+  const handleCloseCountryPanel = useCallback(() => {
+    setSelectedCountry(null);
   }, []);
 
   return (
@@ -157,7 +92,7 @@ const ThreatMap = () => {
           />
         </motion.div>
 
-        {/* Main Content: Map + Feed */}
+        {/* Main Content: Map + Feed/Panel */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -169,20 +104,43 @@ const ThreatMap = () => {
             <WorldMap
               events={events}
               selectedEventId={selectedEventId}
+              selectedCountry={selectedCountry}
               onEventHover={handleEventHover}
               onEventClick={handleEventClick}
+              onCountryClick={handleCountryClick}
             />
           </div>
 
-          {/* Threat Feed */}
+          {/* Right Panel: Country Details or Threat Feed */}
           <div className="h-full">
-            <ThreatFeed
-              events={events}
-              selectedEventId={selectedEventId}
-              onEventClick={handleEventClick}
-            />
+            {selectedCountry ? (
+              <CountryDetailsPanel
+                countryCode={selectedCountry}
+                events={events}
+                onClose={handleCloseCountryPanel}
+                className="h-full"
+              />
+            ) : (
+              <ThreatFeed
+                events={events}
+                selectedEventId={selectedEventId}
+                onEventClick={handleEventClick}
+              />
+            )}
           </div>
         </motion.div>
+
+        {/* Mobile Country Panel (bottom drawer style) */}
+        {selectedCountry && (
+          <div className="lg:hidden mt-4">
+            <CountryDetailsPanel
+              countryCode={selectedCountry}
+              events={events}
+              onClose={handleCloseCountryPanel}
+              className="max-h-[60vh]"
+            />
+          </div>
+        )}
 
         {/* Footer note */}
         <motion.div
