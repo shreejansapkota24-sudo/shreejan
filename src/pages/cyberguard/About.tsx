@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Shield, Link2, FileSearch, Database, Lock, Zap, Users, Github, Linkedin, Mail } from "lucide-react";
+import { Shield, Link2, FileSearch, Database, Lock, Zap, Users } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import CyberGuardNavbar from "@/components/cyberguard/CyberGuardNavbar";
 
@@ -164,33 +164,9 @@ const About = () => {
           transition={{ delay: 1.1 }}
           className="mt-16 text-center"
         >
-          <p className="text-muted-foreground mb-4">
-            Built by <span className="text-primary font-medium">Sai Sravan</span>
+          <p className="text-sm text-muted-foreground">
+            By <span className="text-primary/80 font-medium">Shreejan Sapkota</span>
           </p>
-          <div className="flex justify-center gap-4">
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-lg bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <Github className="w-5 h-5" />
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-lg bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <Linkedin className="w-5 h-5" />
-            </a>
-            <a
-              href="mailto:contact@example.com"
-              className="p-2 rounded-lg bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <Mail className="w-5 h-5" />
-            </a>
-          </div>
         </motion.div>
       </main>
     </div>

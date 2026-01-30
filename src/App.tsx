@@ -13,6 +13,7 @@ import {
   URLScanner,
   FileScanner,
   ThreatLogs,
+  ThreatMap,
   About as CyberGuardAbout,
 } from "./pages/cyberguard";
 
@@ -33,6 +34,7 @@ const App = () => (
             <Route path="/cyberguard" element={<CyberGuardDashboard />} />
             <Route path="/cyberguard/url-scanner" element={<URLScanner />} />
             <Route path="/cyberguard/file-scanner" element={<FileScanner />} />
+            <Route path="/cyberguard/threat-map" element={<ThreatMap />} />
             <Route path="/cyberguard/threat-logs" element={<ThreatLogs />} />
             <Route path="/cyberguard/about" element={<CyberGuardAbout />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
