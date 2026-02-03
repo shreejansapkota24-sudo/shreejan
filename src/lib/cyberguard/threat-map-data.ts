@@ -28,6 +28,7 @@ export const countryCoordinates: Record<string, [number, number]> = {
   SG: [103.8, 1.4],
   IL: [34.9, 31.0],
   VN: [108.3, 14.1],
+  NP: [84.1, 28.4],
 };
 
 export const countryNames: Record<string, string> = {
@@ -59,6 +60,7 @@ export const countryNames: Record<string, string> = {
   SG: "Singapore",
   IL: "Israel",
   VN: "Vietnam",
+  NP: "Nepal",
 };
 
 export const attackTypes = [
