@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Shield, LayoutDashboard, Link2, FileSearch, ScrollText, Info, Home, Globe } from "lucide-react";
+import { Shield, LayoutDashboard, Link2, FileSearch, ScrollText, Info, Home, Globe, Bot } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
@@ -8,6 +8,7 @@ const navItems = [
   { name: "URL Scanner", href: "/cyberguard/url-scanner", icon: Link2 },
   { name: "File Scanner", href: "/cyberguard/file-scanner", icon: FileSearch },
   { name: "Threat Map", href: "/cyberguard/threat-map", icon: Globe },
+  { name: "Cyber Saathi", href: "/cyberguard/cyber-saathi", icon: Bot },
   { name: "Threat Logs", href: "/cyberguard/threat-logs", icon: ScrollText },
   { name: "About", href: "/cyberguard/about", icon: Info },
 ];
