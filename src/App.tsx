@@ -15,6 +15,7 @@ import {
   ThreatLogs,
   ThreatMap,
   About as CyberGuardAbout,
+  CyberSaathi,
 } from "./pages/cyberguard";
 
 const queryClient = new QueryClient();
@@ -35,6 +36,7 @@ const App = () => (
             <Route path="/cyberguard/url-scanner" element={<URLScanner />} />
             <Route path="/cyberguard/file-scanner" element={<FileScanner />} />
             <Route path="/cyberguard/threat-map" element={<ThreatMap />} />
+            <Route path="/cyberguard/cyber-saathi" element={<CyberSaathi />} />
             <Route path="/cyberguard/threat-logs" element={<ThreatLogs />} />
             <Route path="/cyberguard/about" element={<CyberGuardAbout />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
