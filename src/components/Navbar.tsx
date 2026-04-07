@@ -20,11 +20,11 @@ const Navbar = () => {
   const isHomePage = location.pathname === "/";
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+    <nav className="fixed top-0 left-0 right-0 z-50 glass-strong border-b border-primary/10">
       <div className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <a href="#home" className="text-xl font-semibold text-foreground">
-            SS<span className="text-primary">.</span>
+          <a href="#home" className="text-xl font-bold font-cyber text-primary text-glow">
+            SS<span className="text-accent">.</span>
           </a>
 
           {/* Desktop Navigation */}
@@ -33,14 +33,14 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+                className="text-sm text-muted-foreground hover:text-primary transition-all duration-300 hover:text-glow font-medium tracking-wide"
               >
                 {link.name}
               </a>
             ))}
             
             <Link to="/matrix">
-              <Button variant="ghost" size="sm" className="gap-2 text-muted-foreground hover:text-primary">
+              <Button variant="ghost" size="sm" className="gap-2 text-muted-foreground hover:text-primary hover:bg-primary/10">
                 <Pill className="w-4 h-4" />
                 Matrix
               </Button>
@@ -51,14 +51,14 @@ const Navbar = () => {
                 variant="outline"
                 size="sm"
                 onClick={() => signOut()}
-                className="gap-2"
+                className="gap-2 border-primary/30 text-primary hover:bg-primary/10"
               >
                 <LogOut className="w-4 h-4" />
                 Logout
               </Button>
             ) : (
               <Link to="/auth">
-                <Button variant="default" size="sm" className="gap-2">
+                <Button variant="default" size="sm" className="gap-2 font-cyber text-xs">
                   <LogIn className="w-4 h-4" />
                   Login
                 </Button>
@@ -70,7 +70,7 @@ const Navbar = () => {
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden"
+            className="md:hidden text-primary"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -85,7 +85,7 @@ const Navbar = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.name}
@@ -107,7 +107,7 @@ const Navbar = () => {
                     signOut();
                     setIsOpen(false);
                   }}
-                  className="gap-2 w-fit"
+                  className="gap-2 w-fit border-primary/30 text-primary"
                 >
                   <LogOut className="w-4 h-4" />
                   Logout
