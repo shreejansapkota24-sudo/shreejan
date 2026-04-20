@@ -10,6 +10,7 @@ interface ChatInputProps {
   onSend: (message: string, attachments: Attachment[], analysisType?: string) => void;
   isLoading: boolean;
   onCancel: () => void;
+  disabled?: boolean;
 }
 
 const quickActions: { id: QuickAction; label: string; icon: React.ElementType; prompt: string }[] = [
@@ -19,7 +20,7 @@ const quickActions: { id: QuickAction; label: string; icon: React.ElementType; p
   { id: 'summarize_logs', label: 'Summarize Logs', icon: ScrollText, prompt: 'Please summarize the recent threat logs and identify any patterns or concerning trends.' },
 ];
 
-export default function ChatInput({ onSend, isLoading, onCancel }: ChatInputProps) {
+export default function ChatInput({ onSend, isLoading, onCancel, disabled = false }: ChatInputProps) {
   const [message, setMessage] = useState('');
   const [attachments, setAttachments] = useState<Attachment[]>([]);
   const [showUrlInput, setShowUrlInput] = useState(false);
@@ -168,9 +169,9 @@ export default function ChatInput({ onSend, isLoading, onCancel }: ChatInputProp
             value={message}
             onChange={e => setMessage(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Ask Cyber Saathi to analyze a threat..."
+            placeholder={disabled ? 'Daily chat limit reached. Try again tomorrow.' : 'Ask Cyber Saathi to analyze a threat...'}
             className="min-h-[60px] max-h-[150px] resize-none pr-24 bg-background"
-            disabled={isLoading}
+            disabled={isLoading || disabled}
             aria-label="Message input"
           />
           
@@ -214,7 +215,7 @@ export default function ChatInput({ onSend, isLoading, onCancel }: ChatInputProp
         ) : (
           <Button
             onClick={handleSend}
-            disabled={!message.trim() && attachments.length === 0}
+            disabled={(!message.trim() && attachments.length === 0) || disabled}
             size="icon"
             className="h-[60px] w-[60px] bg-primary hover:bg-primary/90"
             aria-label="Send message"

@@ -1,16 +1,19 @@
-import { useState } from 'react';
-import { Bot, Trash2, X } from 'lucide-react';
+import { useState, useCallback } from 'react';
+import { Bot, Trash2, Zap, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { toast } from 'sonner';
 import MessageList from '@/components/cyberguard/cyber-saathi/MessageList';
 import ChatInput from '@/components/cyberguard/cyber-saathi/ChatInput';
 import EvidencePanel from '@/components/cyberguard/cyber-saathi/EvidencePanel';
 import { useCyberSaathi } from '@/hooks/useCyberSaathi';
+import { useDailyChatLimit } from '@/hooks/useDailyChatLimit';
 import { useIsMobile } from '@/hooks/use-mobile';
 import CyberGuardNavbar from '@/components/cyberguard/CyberGuardNavbar';
+import type { Attachment } from '@/lib/cyberguard/cyber-saathi-types';
 
 export default function CyberSaathiPage() {
   const isMobile = useIsMobile();
@@ -27,6 +30,22 @@ export default function CyberSaathiPage() {
     clearChat,
     createIncident,
   } = useCyberSaathi();
+
+  const { count, remaining, limitReached, limit, increment } = useDailyChatLimit();
+
+  const handleSendWithLimit = useCallback(
+    async (msg: string, attachments: Attachment[], analysisType?: string) => {
+      if (limitReached) {
+        toast.error(`Daily limit reached`, {
+          description: `You've used all ${limit} chats for today. Please come back tomorrow.`,
+        });
+        return;
+      }
+      increment();
+      await sendMessage(msg, attachments, analysisType);
+    },
+    [limitReached, limit, increment, sendMessage]
+  );
 
   const handleCreateIncident = () => {
     if (currentAnalysis && incidentTitle.trim()) {
@@ -55,6 +74,21 @@ export default function CyberSaathiPage() {
             </div>
 
             <div className="flex items-center gap-2">
+              {/* Daily usage badge */}
+              <div
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium font-cyber ${
+                  limitReached
+                    ? 'border-destructive/40 bg-destructive/10 text-destructive'
+                    : remaining <= 3
+                    ? 'border-yellow-500/40 bg-yellow-500/10 text-yellow-500'
+                    : 'border-primary/30 bg-primary/10 text-primary'
+                }`}
+                title={`${count} of ${limit} chats used today`}
+              >
+                {limitReached ? <AlertTriangle className="w-3.5 h-3.5" /> : <Zap className="w-3.5 h-3.5" />}
+                <span>{count}/{limit}</span>
+              </div>
+
               {messages.length > 0 && (
                 <Button
                   variant="ghost"
@@ -93,10 +127,19 @@ export default function CyberSaathiPage() {
             {/* Chat Panel */}
             <div className="lg:col-span-2 flex flex-col bg-card/30 rounded-xl border border-border overflow-hidden">
               <MessageList messages={messages} isLoading={isLoading} />
+              {limitReached && (
+                <div className="px-4 py-2.5 bg-destructive/10 border-t border-destructive/30 flex items-center gap-2 text-sm text-destructive">
+                  <AlertTriangle className="w-4 h-4 flex-shrink-0" />
+                  <span>
+                    Daily limit of {limit} chats reached. Resets at midnight (local time).
+                  </span>
+                </div>
+              )}
               <ChatInput
-                onSend={sendMessage}
+                onSend={handleSendWithLimit}
                 isLoading={isLoading}
                 onCancel={cancelRequest}
+                disabled={limitReached}
               />
             </div>
 
