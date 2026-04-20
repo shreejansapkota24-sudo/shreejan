@@ -169,9 +169,9 @@ export default function ChatInput({ onSend, isLoading, onCancel, disabled = fals
             value={message}
             onChange={e => setMessage(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Ask Cyber Saathi to analyze a threat..."
+            placeholder={disabled ? 'Daily chat limit reached. Try again tomorrow.' : 'Ask Cyber Saathi to analyze a threat...'}
             className="min-h-[60px] max-h-[150px] resize-none pr-24 bg-background"
-            disabled={isLoading}
+            disabled={isLoading || disabled}
             aria-label="Message input"
           />
           
