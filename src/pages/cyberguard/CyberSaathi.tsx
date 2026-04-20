@@ -127,10 +127,19 @@ export default function CyberSaathiPage() {
             {/* Chat Panel */}
             <div className="lg:col-span-2 flex flex-col bg-card/30 rounded-xl border border-border overflow-hidden">
               <MessageList messages={messages} isLoading={isLoading} />
+              {limitReached && (
+                <div className="px-4 py-2.5 bg-destructive/10 border-t border-destructive/30 flex items-center gap-2 text-sm text-destructive">
+                  <AlertTriangle className="w-4 h-4 flex-shrink-0" />
+                  <span>
+                    Daily limit of {limit} chats reached. Resets at midnight (local time).
+                  </span>
+                </div>
+              )}
               <ChatInput
-                onSend={sendMessage}
+                onSend={handleSendWithLimit}
                 isLoading={isLoading}
                 onCancel={cancelRequest}
+                disabled={limitReached}
               />
             </div>
 
