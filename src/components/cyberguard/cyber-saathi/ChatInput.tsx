@@ -215,7 +215,7 @@ export default function ChatInput({ onSend, isLoading, onCancel, disabled = fals
         ) : (
           <Button
             onClick={handleSend}
-            disabled={!message.trim() && attachments.length === 0}
+            disabled={(!message.trim() && attachments.length === 0) || disabled}
             size="icon"
             className="h-[60px] w-[60px] bg-primary hover:bg-primary/90"
             aria-label="Send message"
