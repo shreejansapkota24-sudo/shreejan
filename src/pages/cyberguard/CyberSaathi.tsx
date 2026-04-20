@@ -1,16 +1,19 @@
-import { useState } from 'react';
-import { Bot, Trash2, X } from 'lucide-react';
+import { useState, useCallback } from 'react';
+import { Bot, Trash2, Zap, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { toast } from 'sonner';
 import MessageList from '@/components/cyberguard/cyber-saathi/MessageList';
 import ChatInput from '@/components/cyberguard/cyber-saathi/ChatInput';
 import EvidencePanel from '@/components/cyberguard/cyber-saathi/EvidencePanel';
 import { useCyberSaathi } from '@/hooks/useCyberSaathi';
+import { useDailyChatLimit } from '@/hooks/useDailyChatLimit';
 import { useIsMobile } from '@/hooks/use-mobile';
 import CyberGuardNavbar from '@/components/cyberguard/CyberGuardNavbar';
+import type { Attachment } from '@/lib/cyberguard/cyber-saathi-types';
 
 export default function CyberSaathiPage() {
   const isMobile = useIsMobile();
