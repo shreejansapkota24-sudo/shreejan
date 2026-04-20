@@ -74,6 +74,21 @@ export default function CyberSaathiPage() {
             </div>
 
             <div className="flex items-center gap-2">
+              {/* Daily usage badge */}
+              <div
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium font-cyber ${
+                  limitReached
+                    ? 'border-destructive/40 bg-destructive/10 text-destructive'
+                    : remaining <= 3
+                    ? 'border-yellow-500/40 bg-yellow-500/10 text-yellow-500'
+                    : 'border-primary/30 bg-primary/10 text-primary'
+                }`}
+                title={`${count} of ${limit} chats used today`}
+              >
+                {limitReached ? <AlertTriangle className="w-3.5 h-3.5" /> : <Zap className="w-3.5 h-3.5" />}
+                <span>{count}/{limit}</span>
+              </div>
+
               {messages.length > 0 && (
                 <Button
                   variant="ghost"
