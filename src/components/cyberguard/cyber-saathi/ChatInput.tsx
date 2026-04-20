@@ -20,7 +20,7 @@ const quickActions: { id: QuickAction; label: string; icon: React.ElementType; p
   { id: 'summarize_logs', label: 'Summarize Logs', icon: ScrollText, prompt: 'Please summarize the recent threat logs and identify any patterns or concerning trends.' },
 ];
 
-export default function ChatInput({ onSend, isLoading, onCancel }: ChatInputProps) {
+export default function ChatInput({ onSend, isLoading, onCancel, disabled = false }: ChatInputProps) {
   const [message, setMessage] = useState('');
   const [attachments, setAttachments] = useState<Attachment[]>([]);
   const [showUrlInput, setShowUrlInput] = useState(false);
