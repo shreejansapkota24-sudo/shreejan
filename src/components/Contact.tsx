@@ -66,7 +66,8 @@ const Contact = () => {
                 key={link.name}
                 href={link.href}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer external"
+                referrerPolicy="no-referrer"
                 className={`group relative p-4 glass border-glow rounded-2xl transition-all duration-300 ${link.color}`}
                 variants={itemVariants}
                 whileHover={{ y: -8, transition: { duration: 0.3 } }}
