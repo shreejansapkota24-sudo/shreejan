@@ -10,6 +10,7 @@ interface ChatInputProps {
   onSend: (message: string, attachments: Attachment[], analysisType?: string) => void;
   isLoading: boolean;
   onCancel: () => void;
+  disabled?: boolean;
 }
 
 const quickActions: { id: QuickAction; label: string; icon: React.ElementType; prompt: string }[] = [
