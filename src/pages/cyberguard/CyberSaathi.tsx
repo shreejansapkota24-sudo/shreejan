@@ -143,14 +143,15 @@ export default function CyberSaathiPage() {
                     To unlock more messages, please contact me through my social media.
                   </p>
                   <Button
-                    asChild
+                    type="button"
                     size="sm"
+                    onClick={() => {
+                      window.location.href = INSTAGRAM_URL;
+                    }}
                     className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2 font-cyber text-xs shadow-lg shadow-primary/30"
                   >
-                    <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
-                      <Instagram className="w-4 h-4" />
-                      Message me on Instagram
-                    </a>
+                    <Instagram className="w-4 h-4" />
+                    Message me on Instagram
                   </Button>
                 </div>
               )}
