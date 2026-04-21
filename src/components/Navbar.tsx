@@ -1,21 +1,21 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, LogIn, LogOut, Pill } from "lucide-react";
+import { Menu, X, Pill, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/contexts/AuthContext";
 
 const navLinks = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
+  { name: "Cyber Saathi", href: "#cyber-saathi" },
   { name: "Skills", href: "#skills" },
   { name: "Portfolio", href: "#portfolio" },
   { name: "Services", href: "#services" },
   { name: "Contact", href: "#contact" },
+  { name: "Inquiry", href: "#inquiry" },
 ];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, signOut } = useAuth();
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
@@ -28,7 +28,7 @@ const Navbar = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6">
             {isHomePage && navLinks.map((link) => (
               <a
                 key={link.name}
@@ -38,32 +38,20 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            
+
+            <Link to="/cyberguard/cyber-saathi">
+              <Button size="sm" className="gap-2 font-cyber text-xs bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20">
+                <Bot className="w-4 h-4" />
+                Chat with AI
+              </Button>
+            </Link>
+
             <Link to="/matrix">
               <Button variant="ghost" size="sm" className="gap-2 text-muted-foreground hover:text-primary hover:bg-primary/10">
                 <Pill className="w-4 h-4" />
                 Matrix
               </Button>
             </Link>
-            
-            {user ? (
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => signOut()}
-                className="gap-2 border-primary/30 text-primary hover:bg-primary/10"
-              >
-                <LogOut className="w-4 h-4" />
-                Logout
-              </Button>
-            ) : (
-              <Link to="/auth">
-                <Button variant="default" size="sm" className="gap-2 font-cyber text-xs">
-                  <LogIn className="w-4 h-4" />
-                  Login
-                </Button>
-              </Link>
-            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -91,35 +79,20 @@ const Navbar = () => {
                   {link.name}
                 </a>
               ))}
-              
+
+              <Link to="/cyberguard/cyber-saathi" onClick={() => setIsOpen(false)}>
+                <Button size="sm" className="gap-2 w-fit font-cyber text-xs bg-primary text-primary-foreground">
+                  <Bot className="w-4 h-4" />
+                  Chat with AI
+                </Button>
+              </Link>
+
               <Link to="/matrix" onClick={() => setIsOpen(false)}>
                 <Button variant="ghost" size="sm" className="gap-2 text-muted-foreground hover:text-primary w-fit">
                   <Pill className="w-4 h-4" />
                   Matrix
                 </Button>
               </Link>
-              
-              {user ? (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => {
-                    signOut();
-                    setIsOpen(false);
-                  }}
-                  className="gap-2 w-fit border-primary/30 text-primary"
-                >
-                  <LogOut className="w-4 h-4" />
-                  Logout
-                </Button>
-              ) : (
-                <Link to="/auth" onClick={() => setIsOpen(false)}>
-                  <Button variant="default" size="sm" className="gap-2">
-                    <LogIn className="w-4 h-4" />
-                    Login
-                  </Button>
-                </Link>
-              )}
             </div>
           </div>
         )}

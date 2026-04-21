@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 import Index from "./pages/Index";
-import Auth from "./pages/Auth";
 import Matrix from "./pages/Matrix";
 import NotFound from "./pages/NotFound";
 import {
@@ -29,9 +28,8 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/auth" element={<Auth />} />
             <Route path="/matrix" element={<Matrix />} />
-            {/* CyberGuard Routes */}
+            {/* CyberGuard Routes - accessible via direct URL */}
             <Route path="/cyberguard" element={<CyberGuardDashboard />} />
             <Route path="/cyberguard/url-scanner" element={<URLScanner />} />
             <Route path="/cyberguard/file-scanner" element={<FileScanner />} />

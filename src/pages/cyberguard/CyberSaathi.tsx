@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
-import { Bot, Trash2, Zap, AlertTriangle } from 'lucide-react';
+import { Bot, Trash2, Zap, AlertTriangle, Instagram, ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from '@/components/ui/dialog';
@@ -14,6 +15,8 @@ import { useDailyChatLimit } from '@/hooks/useDailyChatLimit';
 import { useIsMobile } from '@/hooks/use-mobile';
 import CyberGuardNavbar from '@/components/cyberguard/CyberGuardNavbar';
 import type { Attachment } from '@/lib/cyberguard/cyber-saathi-types';
+
+const INSTAGRAM_URL = 'https://www.instagram.com/sapkota.shreejan/';
 
 export default function CyberSaathiPage() {
   const isMobile = useIsMobile();
@@ -64,12 +67,15 @@ export default function CyberSaathiPage() {
           {/* Header */}
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
+              <Link to="/" className="hidden sm:flex items-center gap-1 px-2 py-1 rounded-lg text-xs text-muted-foreground hover:text-primary transition">
+                <ArrowLeft className="w-3.5 h-3.5" /> Back
+              </Link>
               <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
                 <Bot className="w-6 h-6 text-primary" />
               </div>
               <div>
                 <h1 className="text-xl font-bold">Cyber Saathi</h1>
-                <p className="text-sm text-muted-foreground">AI Security Analyst</p>
+                <p className="text-sm text-muted-foreground">Your personal AI assistant</p>
               </div>
             </div>
 
@@ -128,11 +134,24 @@ export default function CyberSaathiPage() {
             <div className="lg:col-span-2 flex flex-col bg-card/30 rounded-xl border border-border overflow-hidden">
               <MessageList messages={messages} isLoading={isLoading} />
               {limitReached && (
-                <div className="px-4 py-2.5 bg-destructive/10 border-t border-destructive/30 flex items-center gap-2 text-sm text-destructive">
-                  <AlertTriangle className="w-4 h-4 flex-shrink-0" />
-                  <span>
-                    Daily limit of {limit} chats reached. Resets at midnight (local time).
-                  </span>
+                <div className="px-4 py-3 bg-destructive/10 border-t border-destructive/30 space-y-2">
+                  <div className="flex items-center gap-2 text-sm text-destructive font-medium">
+                    <AlertTriangle className="w-4 h-4 flex-shrink-0" />
+                    <span>You've reached today's free limit of {limit} messages.</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    To unlock more messages, please contact me through my social media.
+                  </p>
+                  <Button
+                    asChild
+                    size="sm"
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2 font-cyber text-xs shadow-lg shadow-primary/30"
+                  >
+                    <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
+                      <Instagram className="w-4 h-4" />
+                      Message me on Instagram
+                    </a>
+                  </Button>
                 </div>
               )}
               <ChatInput
