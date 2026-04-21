@@ -145,7 +145,7 @@ export default function CyberSaathiPage() {
                   <Button
                     asChild
                     size="sm"
-                    className="bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 hover:opacity-90 text-white gap-2 font-cyber text-xs"
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2 font-cyber text-xs shadow-lg shadow-primary/30"
                   >
                     <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
                       <Instagram className="w-4 h-4" />
