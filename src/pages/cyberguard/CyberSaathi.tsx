@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
-import { Bot, Trash2, Zap, AlertTriangle } from 'lucide-react';
+import { Bot, Trash2, Zap, AlertTriangle, Instagram, ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from '@/components/ui/dialog';
@@ -14,6 +15,8 @@ import { useDailyChatLimit } from '@/hooks/useDailyChatLimit';
 import { useIsMobile } from '@/hooks/use-mobile';
 import CyberGuardNavbar from '@/components/cyberguard/CyberGuardNavbar';
 import type { Attachment } from '@/lib/cyberguard/cyber-saathi-types';
+
+const INSTAGRAM_URL = 'https://www.instagram.com/sapkota.shreejan/';
 
 export default function CyberSaathiPage() {
   const isMobile = useIsMobile();
