@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 
 const STORAGE_KEY = 'cyber-saathi-daily-usage';
-export const DAILY_LIMIT = 10;
+export const DAILY_LIMIT = 7;
 
 interface UsageRecord {
   date: string; // YYYY-MM-DD (local)
