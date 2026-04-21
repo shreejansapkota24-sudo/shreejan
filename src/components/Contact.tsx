@@ -65,7 +65,9 @@ const Contact = () => {
               <motion.button
                 key={link.name}
                 type="button"
-                onClick={() => window.open(link.href, "_blank", "noopener")}
+                onClick={() => {
+                  window.location.href = link.href;
+                }}
                 className={`group relative p-4 glass border-glow rounded-2xl transition-all duration-300 ${link.color}`}
                 variants={itemVariants}
                 whileHover={{ y: -8, transition: { duration: 0.3 } }}
