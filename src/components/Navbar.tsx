@@ -46,12 +46,6 @@ const Navbar = () => {
               </Button>
             </Link>
 
-            <Link to="/matrix">
-              <Button variant="ghost" size="sm" className="gap-2 text-muted-foreground hover:text-primary hover:bg-primary/10">
-                <Pill className="w-4 h-4" />
-                Matrix
-              </Button>
-            </Link>
           </div>
 
           {/* Mobile Menu Button */}
