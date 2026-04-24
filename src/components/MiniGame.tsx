@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Gamepad2, Play, RotateCcw, Trophy } from "lucide-react";
+import failSoundUrl from "@/assets/fail-sound.mp3";
 
 interface MiniGameProps {
   open: boolean;
@@ -48,13 +49,20 @@ const playBeep = (
   }
 };
 
+const playFailMp3 = () => {
+  try {
+    const audio = new Audio(failSoundUrl);
+    audio.volume = 0.6;
+    void audio.play();
+  } catch {
+    // ignore
+  }
+};
+
 const sounds = {
   start: () => playBeep(440, 0.12, "triangle", 0.06),
   pop: () => playBeep(880, 0.08, "square", 0.05),
-  fail: () => {
-    playBeep(220, 0.18, "sawtooth", 0.1);
-    setTimeout(() => playBeep(150, 0.25, "sawtooth", 0.1), 120);
-  },
+  fail: () => playFailMp3(),
 };
 
 const MiniGame = ({ open, onOpenChange }: MiniGameProps) => {
