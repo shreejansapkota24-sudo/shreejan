@@ -71,6 +71,12 @@ const MiniGame = ({ open, onOpenChange }: MiniGameProps) => {
   const spawnRef = useRef<number | null>(null);
   const statusRef = useRef(status);
   statusRef.current = status;
+  const scoreRef = useRef(0);
+  scoreRef.current = score;
+
+  // Difficulty scales with score: faster falls + faster spawns, with caps
+  const getSpeedMultiplier = (s: number) => Math.min(1 + s * 0.08, 3.5);
+  const getSpawnDelay = (s: number) => Math.max(900 - s * 35, 280);
 
   const clearTimers = useCallback(() => {
     if (tickRef.current) {
@@ -78,6 +84,7 @@ const MiniGame = ({ open, onOpenChange }: MiniGameProps) => {
       tickRef.current = null;
     }
     if (spawnRef.current) {
+      window.clearTimeout(spawnRef.current);
       window.clearInterval(spawnRef.current);
       spawnRef.current = null;
     }
@@ -104,16 +111,23 @@ const MiniGame = ({ open, onOpenChange }: MiniGameProps) => {
     setStatus("playing");
     sounds.start();
 
-    spawnRef.current = window.setInterval(() => {
-      const newIcon: FallingIcon = {
-        id: nextIdRef.current++,
-        emoji: ICONS[Math.floor(Math.random() * ICONS.length)],
-        x: Math.random() * 88 + 4,
-        y: 0,
-        speed: 1.4 + Math.random() * 1.2,
-      };
-      setIcons((prev) => [...prev, newIcon]);
-    }, SPAWN_INTERVAL);
+    const scheduleSpawn = () => {
+      const delay = getSpawnDelay(scoreRef.current);
+      spawnRef.current = window.setTimeout(() => {
+        if (statusRef.current !== "playing") return;
+        const mult = getSpeedMultiplier(scoreRef.current);
+        const newIcon: FallingIcon = {
+          id: nextIdRef.current++,
+          emoji: ICONS[Math.floor(Math.random() * ICONS.length)],
+          x: Math.random() * 88 + 4,
+          y: 0,
+          speed: (1.4 + Math.random() * 1.2) * mult,
+        };
+        setIcons((prev) => [...prev, newIcon]);
+        scheduleSpawn();
+      }, delay);
+    };
+    scheduleSpawn();
 
     tickRef.current = window.setInterval(() => {
       setIcons((prev) => {
