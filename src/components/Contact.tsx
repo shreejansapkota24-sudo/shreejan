@@ -62,12 +62,11 @@ const Contact = () => {
 
           <motion.div className="flex justify-center gap-4 flex-wrap" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             {socialLinks.map((link) => (
-              <motion.button
+              <motion.a
                 key={link.name}
-                type="button"
-                onClick={() => {
-                  window.location.href = link.href;
-                }}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`group relative p-4 glass border-glow rounded-2xl transition-all duration-300 ${link.color}`}
                 variants={itemVariants}
                 whileHover={{ y: -8, transition: { duration: 0.3 } }}
@@ -78,7 +77,7 @@ const Contact = () => {
                 <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 px-3 py-1 glass text-primary text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
                   {link.name}
                 </span>
-              </motion.button>
+              </motion.a>
             ))}
           </motion.div>
 

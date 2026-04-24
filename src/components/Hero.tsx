@@ -135,24 +135,27 @@ const Hero = () => {
                   { icon: Instagram, href: "https://www.instagram.com/sapkota.shreejan/", label: "Instagram" },
                   { icon: Twitter, href: "https://x.com/shreejansapkot4", label: "X (Twitter)" },
                   { icon: Mail, href: "mailto:shreejansapkota24@gmail.com", label: "Email" },
-                ].map((social, index) => (
-                  <motion.button
-                    key={social.label}
-                    type="button"
-                    onClick={() => {
-                      window.location.href = social.href;
-                    }}
-                    className="w-10 h-10 rounded-full glass border-glow flex items-center justify-center text-muted-foreground hover:text-primary hover:box-glow-strong transition-all duration-300"
-                    whileHover={{ scale: 1.1, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1 + index * 0.1, duration: 0.4 }}
-                    aria-label={social.label}
-                  >
-                    <social.icon className="w-5 h-5" />
-                  </motion.button>
-                ))}
+                ].map((social, index) => {
+                  const opensExternalSite = social.href.startsWith("http");
+
+                  return (
+                    <motion.a
+                      key={social.label}
+                      href={social.href}
+                      target={opensExternalSite ? "_blank" : undefined}
+                      rel={opensExternalSite ? "noopener noreferrer" : undefined}
+                      className="w-10 h-10 rounded-full glass border-glow flex items-center justify-center text-muted-foreground hover:text-primary hover:box-glow-strong transition-all duration-300"
+                      whileHover={{ scale: 1.1, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 1 + index * 0.1, duration: 0.4 }}
+                      aria-label={social.label}
+                    >
+                      <social.icon className="w-5 h-5" />
+                    </motion.a>
+                  );
+                })}
               </div>
             </motion.div>
           </motion.div>
