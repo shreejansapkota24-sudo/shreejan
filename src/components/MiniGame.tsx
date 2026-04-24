@@ -2,7 +2,6 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Gamepad2, Play, RotateCcw, Trophy } from "lucide-react";
-import failSoundUrl from "@/assets/fail-sound.mp3";
 
 interface MiniGameProps {
   open: boolean;
@@ -49,11 +48,34 @@ const playBeep = (
   }
 };
 
-const playFailMp3 = () => {
+// Classic "sad trombone" wah-wah-wah meme fail sound (WebAudio, no assets)
+const playSadTrombone = () => {
   try {
-    const audio = new Audio(failSoundUrl);
-    audio.volume = 0.6;
-    void audio.play();
+    const AudioCtx =
+      window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+    const ctx = new AudioCtx();
+    // Three descending "wah" notes
+    const notes = [
+      { freq: 311, start: 0, dur: 0.28 },    // Eb4
+      { freq: 277, start: 0.3, dur: 0.28 },  // Db4
+      { freq: 233, start: 0.6, dur: 0.55 },  // Bb3 (longer)
+    ];
+    notes.forEach(({ freq, start, dur }) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = "sawtooth";
+      osc.frequency.setValueAtTime(freq * 1.06, ctx.currentTime + start);
+      // pitch dip = "wah"
+      osc.frequency.linearRampToValueAtTime(freq * 0.92, ctx.currentTime + start + dur);
+      gain.gain.setValueAtTime(0.0001, ctx.currentTime + start);
+      gain.gain.linearRampToValueAtTime(0.18, ctx.currentTime + start + 0.04);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + start + dur);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(ctx.currentTime + start);
+      osc.stop(ctx.currentTime + start + dur + 0.05);
+    });
+    setTimeout(() => ctx.close(), 1500);
   } catch {
     // ignore
   }
@@ -62,7 +84,7 @@ const playFailMp3 = () => {
 const sounds = {
   start: () => playBeep(440, 0.12, "triangle", 0.06),
   pop: () => playBeep(880, 0.08, "square", 0.05),
-  fail: () => playFailMp3(),
+  fail: () => playSadTrombone(),
 };
 
 const MiniGame = ({ open, onOpenChange }: MiniGameProps) => {
