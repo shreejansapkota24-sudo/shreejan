@@ -84,6 +84,7 @@ const MiniGame = ({ open, onOpenChange }: MiniGameProps) => {
       tickRef.current = null;
     }
     if (spawnRef.current) {
+      window.clearTimeout(spawnRef.current);
       window.clearInterval(spawnRef.current);
       spawnRef.current = null;
     }
