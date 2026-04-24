@@ -1,4 +1,4 @@
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail, Facebook, Instagram, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 
@@ -127,15 +127,21 @@ const Hero = () => {
               transition={{ delay: 0.9, duration: 0.6 }}
             >
               <span className="text-sm text-muted-foreground">Find me on</span>
-              <div className="flex gap-3">
+              <div className="flex gap-3 flex-wrap">
                 {[
-                  { icon: Github, href: "#", label: "GitHub" },
-                  { icon: Linkedin, href: "#", label: "LinkedIn" },
+                  { icon: Github, href: "https://github.com/shreejansapkota24-sudo", label: "GitHub" },
+                  { icon: Linkedin, href: "https://www.linkedin.com/in/shreejan-sapkota-0449b023b/", label: "LinkedIn" },
+                  { icon: Facebook, href: "https://www.facebook.com/shreejan.sapkota.319", label: "Facebook" },
+                  { icon: Instagram, href: "https://www.instagram.com/sapkota.shreejan/", label: "Instagram" },
+                  { icon: Twitter, href: "https://x.com/shreejansapkot4", label: "X (Twitter)" },
                   { icon: Mail, href: "mailto:shreejansapkota24@gmail.com", label: "Email" },
                 ].map((social, index) => (
-                  <motion.a
+                  <motion.button
                     key={social.label}
-                    href={social.href}
+                    type="button"
+                    onClick={() => {
+                      window.location.href = social.href;
+                    }}
                     className="w-10 h-10 rounded-full glass border-glow flex items-center justify-center text-muted-foreground hover:text-primary hover:box-glow-strong transition-all duration-300"
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.95 }}
@@ -145,7 +151,7 @@ const Hero = () => {
                     aria-label={social.label}
                   >
                     <social.icon className="w-5 h-5" />
-                  </motion.a>
+                  </motion.button>
                 ))}
               </div>
             </motion.div>
