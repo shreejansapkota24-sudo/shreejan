@@ -44,6 +44,14 @@ function loadScript(): Promise<void> {
 
 export default function SiteGate({ children }: { children: React.ReactNode }) {
   const [verified, setVerified] = useState<boolean>(() => {
+    // Auto-skip gate in Lovable preview / sandbox environments so the
+    // builder isn't blocked by Cloudflare Turnstile hostname restrictions.
+    if (typeof window !== "undefined") {
+      const host = window.location.hostname;
+      if (host.endsWith(".lovable.app") || host.endsWith(".lovable.dev") || host === "localhost") {
+        return true;
+      }
+    }
     try {
       return sessionStorage.getItem(SESSION_KEY) === "1";
     } catch {
