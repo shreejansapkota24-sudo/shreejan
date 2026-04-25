@@ -12,7 +12,6 @@ declare global {
       render: (container: HTMLElement, opts: Record<string, unknown>) => string;
       reset: (widgetId?: string) => void;
       remove: (widgetId: string) => void;
-      execute?: (widgetId: string) => void;
     };
   }
 }
