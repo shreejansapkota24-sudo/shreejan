@@ -51,6 +51,31 @@ interface MessageContent {
 
 interface RequestBody {
   messages: Message[];
+  turnstileToken?: string;
+}
+
+async function verifyTurnstile(token: string, ip: string | null): Promise<boolean> {
+  const secret = Deno.env.get("TURNSTILE_SECRET_KEY");
+  if (!secret) {
+    console.error("TURNSTILE_SECRET_KEY is not configured");
+    return false;
+  }
+  try {
+    const formData = new FormData();
+    formData.append("secret", secret);
+    formData.append("response", token);
+    if (ip) formData.append("remoteip", ip);
+
+    const res = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      { method: "POST", body: formData },
+    );
+    const data = await res.json();
+    return Boolean(data.success);
+  } catch (e) {
+    console.error("Turnstile verify error:", e);
+    return false;
+  }
 }
 
 serve(async (req) => {
@@ -59,11 +84,29 @@ serve(async (req) => {
   }
 
   try {
-    const { messages }: RequestBody = await req.json();
+    const { messages, turnstileToken }: RequestBody = await req.json();
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
 
     if (!LOVABLE_API_KEY) {
       throw new Error("LOVABLE_API_KEY is not configured");
+    }
+
+    if (!turnstileToken) {
+      return new Response(
+        JSON.stringify({ error: "Verification required" }),
+        { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      );
+    }
+
+    const ip = req.headers.get("cf-connecting-ip")
+      ?? req.headers.get("x-forwarded-for")?.split(",")[0]?.trim()
+      ?? null;
+    const verified = await verifyTurnstile(turnstileToken, ip);
+    if (!verified) {
+      return new Response(
+        JSON.stringify({ error: "Verification failed" }),
+        { status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      );
     }
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
