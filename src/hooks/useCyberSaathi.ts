@@ -3,7 +3,6 @@ import type { ChatMessage, Attachment, AnalysisResult } from '@/lib/cyberguard/c
 import { extractIOCs, calculateRiskScore, getVerdict } from '@/lib/cyberguard/ioc-extractor';
 import { scanURL, scanFile } from '@/lib/cyberguard/security-service';
 import { useThreatStore } from '@/lib/cyberguard/threat-store';
-import { getTurnstileToken, resetTurnstileToken } from '@/lib/turnstile';
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/cyber-saathi`;
 
@@ -127,14 +126,6 @@ export function useCyberSaathi() {
     }));
 
     try {
-      // Invisible human verification (cached per session after first success)
-      let turnstileToken: string;
-      try {
-        turnstileToken = await getTurnstileToken();
-      } catch (e) {
-        throw new Error('Verification failed. Please refresh and try again.');
-      }
-
       const resp = await fetch(CHAT_URL, {
         method: 'POST',
         headers: {
@@ -148,14 +139,9 @@ export function useCyberSaathi() {
           ],
           analysisType,
           context,
-          turnstileToken,
         }),
         signal: abortControllerRef.current.signal,
       });
-
-      if (resp.status === 401 || resp.status === 403) {
-        resetTurnstileToken();
-      }
 
       if (!resp.ok || !resp.body) {
         const errorData = await resp.json().catch(() => ({}));
