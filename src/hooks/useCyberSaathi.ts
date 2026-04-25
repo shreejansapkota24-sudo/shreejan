@@ -3,6 +3,7 @@ import type { ChatMessage, Attachment, AnalysisResult } from '@/lib/cyberguard/c
 import { extractIOCs, calculateRiskScore, getVerdict } from '@/lib/cyberguard/ioc-extractor';
 import { scanURL, scanFile } from '@/lib/cyberguard/security-service';
 import { useThreatStore } from '@/lib/cyberguard/threat-store';
+import { getTurnstileToken, resetTurnstileToken } from '@/lib/turnstile';
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/cyber-saathi`;
 
