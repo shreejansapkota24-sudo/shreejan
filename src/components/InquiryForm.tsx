@@ -7,7 +7,10 @@ import { Label } from "@/components/ui/label";
 import { motion } from "framer-motion";
 import { z } from "zod";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
+import { getFreshTurnstileToken, isPreviewHost } from "@/lib/turnstile";
+
+const SUBMIT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-inquiry`;
+const PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
 const inquirySchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name must be under 100 characters"),
@@ -38,13 +41,38 @@ const InquiryForm = () => {
 
     setSubmitting(true);
     try {
-      const { error } = await supabase.from("inquiries").insert({
-        name: result.data.name,
-        email: result.data.email,
-        message: result.data.message,
+      // Get an invisible Turnstile token for this submission (skip in preview).
+      let turnstileToken = "preview-skip";
+      if (!isPreviewHost()) {
+        try {
+          turnstileToken = await getFreshTurnstileToken();
+        } catch {
+          toast.error("Verification failed", {
+            description: "Please refresh the page and try again.",
+          });
+          setSubmitting(false);
+          return;
+        }
+      }
+
+      const res = await fetch(SUBMIT_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${PUBLISHABLE_KEY}`,
+        },
+        body: JSON.stringify({
+          name: result.data.name,
+          email: result.data.email,
+          message: result.data.message,
+          turnstileToken,
+        }),
       });
 
-      if (error) throw error;
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || `Request failed (${res.status})`);
+      }
 
       toast.success("Message sent!", {
         description: "Thanks for reaching out. I'll get back to you soon.",
@@ -55,7 +83,7 @@ const InquiryForm = () => {
     } catch (err) {
       console.error("Inquiry submission error:", err);
       toast.error("Something went wrong", {
-        description: "Please try again or contact me on Instagram.",
+        description: err instanceof Error ? err.message : "Please try again later.",
       });
     } finally {
       setSubmitting(false);

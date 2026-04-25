@@ -1,0 +1,1 @@
+DROP POLICY IF EXISTS "Anyone can submit inquiries" ON public.inquiries;
