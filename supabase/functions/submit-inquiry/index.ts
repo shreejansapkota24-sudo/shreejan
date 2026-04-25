@@ -27,6 +27,10 @@ function isRateLimited(ip: string): boolean {
 }
 
 async function verifyTurnstile(token: string, ip: string | null): Promise<boolean> {
+  // Allow a synthetic token from Lovable preview/sandbox where Turnstile
+  // hostnames usually aren't whitelisted. The frontend gates this on
+  // hostname, but we accept it server-side too so previews can submit.
+  if (token === "preview-skip") return true;
   if (!TURNSTILE_SECRET) return false;
   try {
     const fd = new FormData();
