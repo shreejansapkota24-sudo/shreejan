@@ -32,6 +32,7 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/matrix" element={<Matrix />} />
+              <Route path="/license-check" element={<LicenseCheck />} />
               {/* CyberGuard Routes - accessible via direct URL */}
               <Route path="/cyberguard" element={<CyberGuardDashboard />} />
               <Route path="/cyberguard/url-scanner" element={<URLScanner />} />
