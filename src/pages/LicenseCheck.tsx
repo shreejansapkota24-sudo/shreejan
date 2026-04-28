@@ -24,7 +24,7 @@ type LicenseRecord = {
 
 type Status = "idle" | "loading" | "searching" | "found" | "notfound" | "error";
 
-const CATEGORY_MAP: LicenseRecord<string, string> & any = {
+const CATEGORY_MAP: Record<string, string> = {
   A: "Motorcycle",
   B: "Car",
   K: "Scooter",
