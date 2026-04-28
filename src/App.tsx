@@ -7,6 +7,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import SiteGate from "@/components/SiteGate";
 import Index from "./pages/Index";
 import Matrix from "./pages/Matrix";
+import LicenseCheck from "./pages/LicenseCheck";
 import NotFound from "./pages/NotFound";
 import {
   CyberGuardDashboard,
@@ -31,6 +32,7 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/matrix" element={<Matrix />} />
+              <Route path="/license-check" element={<LicenseCheck />} />
               {/* CyberGuard Routes - accessible via direct URL */}
               <Route path="/cyberguard" element={<CyberGuardDashboard />} />
               <Route path="/cyberguard/url-scanner" element={<URLScanner />} />
