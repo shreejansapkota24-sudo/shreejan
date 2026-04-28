@@ -116,7 +116,7 @@ const LicenseCheck = () => {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
               </span>
               <span className="text-xs font-cyber tracking-widest text-primary uppercase">
-                Official LicenseRecord
+                Official Record
               </span>
             </div>
 
@@ -228,7 +228,7 @@ const ResultFound = ({ record }: { record: LicenseRecord }) => {
           <h2 className="font-cyber text-xl md:text-2xl text-primary text-glow">
             License Verified
           </h2>
-          <p className="text-sm text-muted-foreground">Valid LicenseRecord Found</p>
+          <p className="text-sm text-muted-foreground">Valid Record Found</p>
         </div>
       </div>
 
