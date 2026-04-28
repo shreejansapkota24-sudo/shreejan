@@ -7,6 +7,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import SiteGate from "@/components/SiteGate";
 import Index from "./pages/Index";
 import Matrix from "./pages/Matrix";
+import LicenseCheck from "./pages/LicenseCheck";
 import NotFound from "./pages/NotFound";
 import {
   CyberGuardDashboard,
