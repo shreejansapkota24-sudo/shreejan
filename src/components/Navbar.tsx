@@ -39,6 +39,13 @@ const Navbar = () => {
               </a>
             ))}
 
+            <Link to="/license-check">
+              <Button size="sm" variant="outline" className="gap-2 font-cyber text-xs border-primary/40 text-primary hover:bg-primary/10 hover:text-primary shadow-[0_0_15px_hsl(var(--primary)/0.3)]">
+                <BadgeCheck className="w-4 h-4" />
+                License Check
+              </Button>
+            </Link>
+
             <Link to="/cyberguard/cyber-saathi">
               <Button size="sm" className="gap-2 font-cyber text-xs bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20">
                 <Bot className="w-4 h-4" />
