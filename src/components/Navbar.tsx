@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Bot, Gamepad2 } from "lucide-react";
+import { Menu, X, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import MiniGame from "@/components/MiniGame";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -17,7 +16,6 @@ const navLinks = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [gameOpen, setGameOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
@@ -40,16 +38,6 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
-
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={() => setGameOpen(true)}
-              className="gap-2 font-cyber text-xs border-primary/40 hover:bg-primary/10 hover:text-primary"
-            >
-              <Gamepad2 className="w-4 h-4" />
-              Mini Game
-            </Button>
 
             <Link to="/cyberguard/cyber-saathi">
               <Button size="sm" className="gap-2 font-cyber text-xs bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20">
@@ -86,19 +74,6 @@ const Navbar = () => {
                 </a>
               ))}
 
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={() => {
-                  setIsOpen(false);
-                  setGameOpen(true);
-                }}
-                className="gap-2 w-fit font-cyber text-xs border-primary/40"
-              >
-                <Gamepad2 className="w-4 h-4" />
-                Mini Game
-              </Button>
-
               <Link to="/cyberguard/cyber-saathi" onClick={() => setIsOpen(false)}>
                 <Button size="sm" className="gap-2 w-fit font-cyber text-xs bg-primary text-primary-foreground">
                   <Bot className="w-4 h-4" />
@@ -111,7 +86,6 @@ const Navbar = () => {
         )}
       </div>
 
-      <MiniGame open={gameOpen} onOpenChange={setGameOpen} />
     </nav>
   );
 };
