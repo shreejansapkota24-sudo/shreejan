@@ -14,7 +14,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-type Record = {
+type LicenseRecord = {
   name: string;
   licenseNumber: string;
   category: string;
@@ -24,7 +24,7 @@ type Record = {
 
 type Status = "idle" | "loading" | "searching" | "found" | "notfound" | "error";
 
-const CATEGORY_MAP: Record<string, string> & any = {
+const CATEGORY_MAP: LicenseRecord<string, string> & any = {
   A: "Motorcycle",
   B: "Car",
   K: "Scooter",
@@ -34,10 +34,10 @@ const CATEGORY_MAP: Record<string, string> & any = {
 
 const normalize = (s: string) => s.replace(/[-\s]/g, "").toLowerCase();
 
-let cachedMap: Map<string, Record> | null = null;
-let loadPromise: Promise<Map<string, Record>> | null = null;
+let cachedMap: Map<string, LicenseRecord> | null = null;
+let loadPromise: Promise<Map<string, LicenseRecord>> | null = null;
 
-const loadLicenseData = (): Promise<Map<string, Record>> => {
+const loadLicenseData = (): Promise<Map<string, LicenseRecord>> => {
   if (cachedMap) return Promise.resolve(cachedMap);
   if (loadPromise) return loadPromise;
   loadPromise = fetch("/data/licenses.json")
@@ -46,7 +46,7 @@ const loadLicenseData = (): Promise<Map<string, Record>> => {
       return r.json();
     })
     .then((arr: [string, string, string, string][]) => {
-      const map = new Map<string, Record>();
+      const map = new Map<string, LicenseRecord>();
       for (const [name, licenseNumber, category, printedDate] of arr) {
         map.set(normalize(licenseNumber), {
           name,
@@ -65,7 +65,7 @@ const loadLicenseData = (): Promise<Map<string, Record>> => {
 const LicenseCheck = () => {
   const [licenseInput, setLicenseInput] = useState("");
   const [status, setStatus] = useState<Status>("idle");
-  const [result, setResult] = useState<Record | null>(null);
+  const [result, setResult] = useState<LicenseRecord | null>(null);
   const [searchedNumber, setSearchedNumber] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -116,7 +116,7 @@ const LicenseCheck = () => {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
               </span>
               <span className="text-xs font-cyber tracking-widest text-primary uppercase">
-                Official Record
+                Official LicenseRecord
               </span>
             </div>
 
@@ -213,7 +213,7 @@ const LicenseCheck = () => {
   );
 };
 
-const ResultFound = ({ record }: { record: Record }) => {
+const ResultFound = ({ record }: { record: LicenseRecord }) => {
   const categories = record.category.split(",").map((c) => c.trim()).filter(Boolean);
   return (
     <div
@@ -228,7 +228,7 @@ const ResultFound = ({ record }: { record: Record }) => {
           <h2 className="font-cyber text-xl md:text-2xl text-primary text-glow">
             License Verified
           </h2>
-          <p className="text-sm text-muted-foreground">Valid Record Found</p>
+          <p className="text-sm text-muted-foreground">Valid LicenseRecord Found</p>
         </div>
       </div>
 
