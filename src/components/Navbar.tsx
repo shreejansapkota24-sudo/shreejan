@@ -81,6 +81,13 @@ const Navbar = () => {
                 </a>
               ))}
 
+              <Link to="/license-check" onClick={() => setIsOpen(false)}>
+                <Button size="sm" variant="outline" className="gap-2 w-fit font-cyber text-xs border-primary/40 text-primary hover:bg-primary/10">
+                  <BadgeCheck className="w-4 h-4" />
+                  License Check
+                </Button>
+              </Link>
+
               <Link to="/cyberguard/cyber-saathi" onClick={() => setIsOpen(false)}>
                 <Button size="sm" className="gap-2 w-fit font-cyber text-xs bg-primary text-primary-foreground">
                   <Bot className="w-4 h-4" />
