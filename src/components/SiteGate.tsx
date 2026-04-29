@@ -83,7 +83,7 @@ export default function SiteGate({ children }: { children: React.ReactNode }) {
         // the reference (Verify you are human + CLOUDFLARE branding).
         widgetIdRef.current = window.turnstile.render(widgetRef.current, {
           sitekey: siteKey,
-          theme: "light",
+          theme: "dark",
           size: "normal",
           callback: async (token: string) => {
             setStatus("verifying");
@@ -149,38 +149,73 @@ export default function SiteGate({ children }: { children: React.ReactNode }) {
   if (verified) return <>{children}</>;
 
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-background/95 backdrop-blur-sm p-4">
-      <div className="w-full max-w-md rounded-2xl border border-border bg-card shadow-2xl shadow-primary/10 p-8 text-center">
-        <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
-          <ShieldCheck className="h-7 w-7 text-primary" />
+    <div
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 arctic-noise"
+      style={{
+        backgroundColor: "#04080F",
+        backgroundImage:
+          "radial-gradient(ellipse 80% 60% at 75% 20%, rgba(91,155,213,0.12) 0%, transparent 70%), radial-gradient(ellipse 60% 50% at 20% 80%, rgba(168,216,240,0.06) 0%, transparent 60%)",
+      }}
+    >
+      <div className="aurora-blob" style={{ top: "10%", left: "55%" }} />
+
+      <div
+        className="w-full max-w-md rounded-3xl text-center cinematic-in"
+        style={{
+          background: "rgba(8, 13, 26, 0.8)",
+          backdropFilter: "blur(32px) saturate(180%)",
+          WebkitBackdropFilter: "blur(32px) saturate(180%)",
+          border: "1px solid rgba(168, 216, 240, 0.12)",
+          padding: "56px 48px",
+          animationDelay: "0.3s",
+        }}
+      >
+        <div className="relative mx-auto mb-6 flex h-[52px] w-[52px] items-center justify-center">
+          <div
+            className="absolute inset-0 rounded-full"
+            style={{
+              boxShadow: "0 0 40px rgba(91,155,213,0.3)",
+              animation: "pulse-glow 2s ease-in-out infinite",
+            }}
+          />
+          <ShieldCheck className="h-[52px] w-[52px] relative" style={{ color: "#5B9BD5", fill: "rgba(91,155,213,0.08)" }} strokeWidth={1.4} />
         </div>
-        <h2 className="text-xl font-semibold mb-2">Security check</h2>
-        <p className="text-sm text-muted-foreground mb-6">
+
+        <h2 className="font-display font-semibold mb-3" style={{ color: "#F0F6FF", fontSize: "28px" }}>
+          Security check
+        </h2>
+        <p className="font-light mb-8" style={{ color: "#7A8FA6" }}>
           Please verify you're human to continue to the portfolio.
         </p>
 
-        <div className="flex justify-center min-h-[70px]">
+        <div
+          className="flex justify-center min-h-[70px] rounded-[10px] overflow-hidden"
+          style={{ border: "1px solid rgba(255,255,255,0.06)" }}
+        >
           <div ref={widgetRef} aria-label="Cloudflare Turnstile verification" />
         </div>
 
         {status === "loading" && (
-          <div className="mt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground">
+          <div className="mt-5 flex items-center justify-center gap-2 text-xs" style={{ color: "#7A8FA6" }}>
             <Loader2 className="h-3.5 w-3.5 animate-spin" />
             Loading verification…
           </div>
         )}
         {status === "verifying" && (
-          <div className="mt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground">
+          <div className="mt-5 flex items-center justify-center gap-2 text-xs" style={{ color: "#7A8FA6" }}>
             <Loader2 className="h-3.5 w-3.5 animate-spin" />
             Verifying…
           </div>
         )}
         {status === "error" && (
-          <p className="mt-4 text-xs text-destructive">{errorMsg}</p>
+          <p className="mt-5 text-xs text-destructive">{errorMsg}</p>
         )}
 
-        <p className="mt-6 text-[11px] text-muted-foreground/70">
-          Protected by Cloudflare Turnstile
+        <p
+          className="mt-8 font-mono"
+          style={{ fontSize: "11px", color: "#4A5568", letterSpacing: "0.08em" }}
+        >
+          PROTECTED BY CLOUDFLARE TURNSTILE
         </p>
       </div>
     </div>

@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 import SiteGate from "@/components/SiteGate";
+import CustomCursor from "@/components/CustomCursor";
 import Index from "./pages/Index";
 import Matrix from "./pages/Matrix";
 import LicenseCheck from "./pages/LicenseCheck";
@@ -27,6 +28,7 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
+        <CustomCursor />
         <SiteGate>
           <BrowserRouter>
             <Routes>

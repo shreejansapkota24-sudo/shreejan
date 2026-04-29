@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Bot, BadgeCheck } from "lucide-react";
+import { Menu, X, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
@@ -16,50 +16,66 @@ const navLinks = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 80);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 glass-strong border-b border-primary/10">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 cinematic-ease ${
+        scrolled ? "border-b border-[rgba(168,216,240,0.12)]" : "border-b border-white/[0.05]"
+      }`}
+      style={{
+        background: "rgba(4, 8, 15, 0.75)",
+        backdropFilter: "blur(24px) saturate(180%)",
+        WebkitBackdropFilter: "blur(24px) saturate(180%)",
+      }}
+    >
       <div className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <a href="#home" className="text-xl font-bold font-cyber text-primary text-glow">
-            SS<span className="text-accent">.</span>
+          <a href="#home" className="text-2xl font-display font-bold arctic-gradient-text tracking-tight">
+            SS<span>.</span>
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-7">
             {isHomePage && navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm text-muted-foreground hover:text-primary transition-all duration-300 hover:text-glow font-medium tracking-wide"
+                className="nav-link-underline text-sm font-light tracking-wide transition-colors duration-300"
+                style={{ color: "var(--arctic-text-muted)" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#E8F4FD")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--arctic-text-muted)")}
               >
                 {link.name}
               </a>
             ))}
 
-            <Link to="/license-check">
-              <Button size="sm" variant="outline" className="gap-2 font-cyber text-xs border-primary/40 text-primary hover:bg-primary/10 hover:text-primary shadow-[0_0_15px_hsl(var(--primary)/0.3)]">
-                <BadgeCheck className="w-4 h-4" />
-                License Check
-              </Button>
-            </Link>
-
             <Link to="/cyberguard/cyber-saathi">
-              <Button size="sm" className="gap-2 font-cyber text-xs bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20">
+              <Button
+                size="sm"
+                variant="outline"
+                className="gap-2 font-mono text-[11px] uppercase tracking-[0.15em] border-[rgba(168,216,240,0.35)] bg-transparent text-[#E8F4FD] hover:bg-[rgba(168,216,240,0.08)] hover:border-[rgba(168,216,240,0.7)] hover-lift"
+              >
                 <Bot className="w-4 h-4" />
                 Chat with AI
               </Button>
             </Link>
-
           </div>
 
           {/* Mobile Menu Button */}
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden text-primary"
+            className="md:hidden text-[#E8F4FD] hover:bg-white/5"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -68,38 +84,34 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden pt-4 pb-2 animate-fade-in">
+          <div className="md:hidden pt-4 pb-2 cinematic-in">
             <div className="flex flex-col gap-4">
               {isHomePage && navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
+                  className="text-sm font-light tracking-wide transition-colors duration-200"
+                  style={{ color: "var(--arctic-text-muted)" }}
                   onClick={() => setIsOpen(false)}
                 >
                   {link.name}
                 </a>
               ))}
 
-              <Link to="/license-check" onClick={() => setIsOpen(false)}>
-                <Button size="sm" variant="outline" className="gap-2 w-fit font-cyber text-xs border-primary/40 text-primary hover:bg-primary/10">
-                  <BadgeCheck className="w-4 h-4" />
-                  License Check
-                </Button>
-              </Link>
-
               <Link to="/cyberguard/cyber-saathi" onClick={() => setIsOpen(false)}>
-                <Button size="sm" className="gap-2 w-fit font-cyber text-xs bg-primary text-primary-foreground">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="gap-2 w-fit font-mono text-[11px] uppercase tracking-[0.15em] border-[rgba(168,216,240,0.35)] bg-transparent text-[#E8F4FD] hover:bg-[rgba(168,216,240,0.08)]"
+                >
                   <Bot className="w-4 h-4" />
                   Chat with AI
                 </Button>
               </Link>
-
             </div>
           </div>
         )}
       </div>
-
     </nav>
   );
 };
