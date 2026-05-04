@@ -262,9 +262,10 @@ const Hero = () => {
               <motion.div
                 className="absolute -bottom-4 -right-4 w-16 h-16 rounded-2xl flex items-center justify-center"
                 style={{
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(255,255,255,0.10)",
+                  background: "rgba(255,255,255,0.85)",
+                  border: "1px solid rgba(107,91,255,0.18)",
                   backdropFilter: "blur(20px)",
+                  boxShadow: "0 8px 24px rgba(107,91,255,0.15)",
                 }}
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -275,9 +276,10 @@ const Hero = () => {
               <motion.div
                 className="absolute -top-4 -left-4 w-14 h-14 rounded-2xl flex items-center justify-center"
                 style={{
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(255,255,255,0.10)",
+                  background: "rgba(255,255,255,0.85)",
+                  border: "1px solid rgba(255,107,213,0.2)",
                   backdropFilter: "blur(20px)",
+                  boxShadow: "0 8px 24px rgba(255,107,213,0.15)",
                 }}
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
@@ -288,9 +290,10 @@ const Hero = () => {
               <motion.div
                 className="absolute top-1/2 -right-8 w-12 h-12 rounded-xl flex items-center justify-center"
                 style={{
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(255,255,255,0.10)",
+                  background: "rgba(255,255,255,0.85)",
+                  border: "1px solid rgba(107,213,255,0.25)",
                   backdropFilter: "blur(20px)",
+                  boxShadow: "0 8px 24px rgba(107,213,255,0.15)",
                 }}
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
