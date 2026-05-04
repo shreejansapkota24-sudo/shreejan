@@ -52,7 +52,7 @@ const CyberBackground = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 -z-20 opacity-40 pointer-events-none"
+      className="fixed inset-0 -z-20 opacity-30 pointer-events-none"
     />
   );
 };
