@@ -50,10 +50,10 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="nav-link-underline text-sm font-light tracking-wide transition-colors duration-300"
-                style={{ color: "var(--arctic-text-muted)" }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#E8F4FD")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--arctic-text-muted)")}
+                className="nav-link-underline text-sm font-medium tracking-tight transition-colors duration-300"
+                style={{ color: "var(--iri-text-muted)" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#0A0A0F")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--iri-text-muted)")}
               >
                 {link.name}
               </a>
@@ -62,8 +62,10 @@ const Navbar = () => {
             <Link to="/cyberguard/cyber-saathi">
               <Button
                 size="sm"
-                variant="outline"
-                className="gap-2 font-mono text-[11px] uppercase tracking-[0.15em] border-[rgba(168,216,240,0.35)] bg-transparent text-[#E8F4FD] hover:bg-[rgba(168,216,240,0.08)] hover:border-[rgba(168,216,240,0.7)] hover-lift"
+                className="gap-2 font-mono text-[11px] uppercase tracking-[0.15em] hover-lift border-0 text-white"
+                style={{
+                  background: "linear-gradient(135deg, #6B5BFF 0%, #8B6BFF 50%, #FF6BD5 100%)",
+                }}
               >
                 <Bot className="w-4 h-4" />
                 Chat with AI
