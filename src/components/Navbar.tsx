@@ -30,10 +30,10 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 cinematic-ease ${
-        scrolled ? "border-b border-[rgba(168,216,240,0.12)]" : "border-b border-white/[0.05]"
+        scrolled ? "border-b border-[rgba(10,10,15,0.08)]" : "border-b border-transparent"
       }`}
       style={{
-        background: "rgba(4, 8, 15, 0.75)",
+        background: "rgba(245, 245, 247, 0.72)",
         backdropFilter: "blur(24px) saturate(180%)",
         WebkitBackdropFilter: "blur(24px) saturate(180%)",
       }}
@@ -50,10 +50,10 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="nav-link-underline text-sm font-light tracking-wide transition-colors duration-300"
-                style={{ color: "var(--arctic-text-muted)" }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#E8F4FD")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--arctic-text-muted)")}
+                className="nav-link-underline text-sm font-medium tracking-tight transition-colors duration-300"
+                style={{ color: "var(--iri-text-muted)" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#0A0A0F")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--iri-text-muted)")}
               >
                 {link.name}
               </a>
@@ -62,8 +62,10 @@ const Navbar = () => {
             <Link to="/cyberguard/cyber-saathi">
               <Button
                 size="sm"
-                variant="outline"
-                className="gap-2 font-mono text-[11px] uppercase tracking-[0.15em] border-[rgba(168,216,240,0.35)] bg-transparent text-[#E8F4FD] hover:bg-[rgba(168,216,240,0.08)] hover:border-[rgba(168,216,240,0.7)] hover-lift"
+                className="gap-2 font-mono text-[11px] uppercase tracking-[0.15em] hover-lift border-0 text-white"
+                style={{
+                  background: "linear-gradient(135deg, #6B5BFF 0%, #8B6BFF 50%, #FF6BD5 100%)",
+                }}
               >
                 <Bot className="w-4 h-4" />
                 Chat with AI
@@ -75,7 +77,7 @@ const Navbar = () => {
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden text-[#E8F4FD] hover:bg-white/5"
+            className="md:hidden text-[#0A0A0F] hover:bg-black/5"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -90,8 +92,8 @@ const Navbar = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-sm font-light tracking-wide transition-colors duration-200"
-                  style={{ color: "var(--arctic-text-muted)" }}
+                  className="text-sm font-medium tracking-tight transition-colors duration-200"
+                  style={{ color: "var(--iri-text-muted)" }}
                   onClick={() => setIsOpen(false)}
                 >
                   {link.name}
@@ -101,8 +103,10 @@ const Navbar = () => {
               <Link to="/cyberguard/cyber-saathi" onClick={() => setIsOpen(false)}>
                 <Button
                   size="sm"
-                  variant="outline"
-                  className="gap-2 w-fit font-mono text-[11px] uppercase tracking-[0.15em] border-[rgba(168,216,240,0.35)] bg-transparent text-[#E8F4FD] hover:bg-[rgba(168,216,240,0.08)]"
+                  className="gap-2 w-fit font-mono text-[11px] uppercase tracking-[0.15em] border-0 text-white"
+                  style={{
+                    background: "linear-gradient(135deg, #6B5BFF 0%, #8B6BFF 50%, #FF6BD5 100%)",
+                  }}
                 >
                   <Bot className="w-4 h-4" />
                   Chat with AI
