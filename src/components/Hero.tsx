@@ -217,24 +217,24 @@ const Hero = () => {
               <div
                 className="absolute inset-0 rounded-full"
                 style={{
-                  background: "radial-gradient(circle, rgba(91,155,213,0.18) 0%, transparent 70%)",
-                  filter: "blur(40px)",
-                  transform: "scale(1.3)",
+                  background: "radial-gradient(circle, rgba(183,156,255,0.45) 0%, rgba(255,107,213,0.15) 50%, transparent 75%)",
+                  filter: "blur(50px)",
+                  transform: "scale(1.4)",
                 }}
               />
 
-              {/* Conic rotating ring */}
+              {/* Conic rotating iridescent ring */}
               <div
                 className="absolute -inset-2 rounded-full group-hover:[animation-duration:3s]"
                 style={{
                   background:
-                    "conic-gradient(from 0deg, transparent 0%, #5B9BD5 30%, #E8F4FD 50%, #5B9BD5 70%, transparent 100%)",
-                  padding: "1.5px",
+                    "conic-gradient(from 0deg, #6B5BFF 0%, #B79CFF 25%, #FF6BD5 50%, #6BD5FF 75%, #6B5BFF 100%)",
+                  padding: "2px",
                   borderRadius: "50%",
                   animation: "conic-spin 12s linear infinite",
                 }}
               >
-                <div className="w-full h-full rounded-full" style={{ background: "#04080F" }} />
+                <div className="w-full h-full rounded-full" style={{ background: "#F5F5F7" }} />
               </div>
 
               {/* Inner avatar */}
@@ -242,17 +242,15 @@ const Hero = () => {
                 <div
                   className="w-full h-full rounded-full flex items-center justify-center overflow-hidden"
                   style={{
-                    background: "radial-gradient(circle, #0A1628 60%, #071020 100%)",
-                    border: "1px solid rgba(168,216,240,0.15)",
+                    background: "radial-gradient(circle, #FFFFFF 60%, #F0EBFF 100%)",
+                    border: "1px solid rgba(107,91,255,0.15)",
                   }}
                 >
                   <span
-                    className="font-display text-7xl md:text-9xl"
+                    className="font-display arctic-gradient-text text-7xl md:text-9xl"
                     style={{
-                      fontWeight: 300,
-                      color: "#E8F4FD",
-                      textShadow: "0 0 30px rgba(168,216,240,0.6), 0 0 60px rgba(91,155,213,0.3)",
-                      letterSpacing: "-0.02em",
+                      fontWeight: 800,
+                      letterSpacing: "-0.04em",
                     }}
                   >
                     SS
