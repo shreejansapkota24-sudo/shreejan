@@ -314,7 +314,7 @@ const Hero = () => {
           <span
             className="font-mono text-[10px] uppercase"
             style={{
-              color: "#C0C8D8",
+              color: "#6B6B75",
               letterSpacing: "0.15em",
               animation: "opacity-pulse 2.5s ease-in-out infinite",
             }}
@@ -323,11 +323,11 @@ const Hero = () => {
           </span>
           <div
             className="w-6 h-10 rounded-full flex justify-center p-2"
-            style={{ border: "1px solid rgba(192,200,216,0.4)" }}
+            style={{ border: "1.5px solid rgba(107,91,255,0.5)" }}
           >
             <motion.div
               className="w-1 h-1 rounded-full"
-              style={{ background: "#A8D8F0", boxShadow: "0 0 6px rgba(168,216,240,0.6)" }}
+              style={{ background: "#6B5BFF", boxShadow: "0 0 8px rgba(107,91,255,0.7)" }}
               animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             />
