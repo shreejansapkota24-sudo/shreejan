@@ -75,16 +75,16 @@ const Hero = () => {
             >
               <span
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass font-mono text-[11px] uppercase tracking-[0.15em] mb-6"
-                style={{ color: "#E8F4FD", borderColor: "rgba(168,216,240,0.25)" }}
+                style={{ color: "#0A0A0F", borderColor: "rgba(107,91,255,0.25)" }}
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-[#A8D8F0] animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#6B5BFF] animate-pulse" />
                 Available for opportunities
               </span>
             </motion.div>
 
             <motion.p
               className="font-mono mb-3 tracking-[0.25em] uppercase text-[11px]"
-              style={{ color: "#7A8FA6" }}
+              style={{ color: "#6B6B75" }}
               initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ delay: 1.5, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
@@ -92,16 +92,16 @@ const Hero = () => {
               Hello, I'm
             </motion.p>
 
-            <h1 className="font-display text-6xl md:text-8xl mb-6 leading-[1.05] tracking-tight">
+            <h1 className="font-display text-6xl md:text-8xl mb-6 leading-[0.95] tracking-tight">
               <span
                 className="block clip-reveal"
-                style={{ color: "#F0F6FF", fontWeight: 300, animationDelay: "1.7s" }}
+                style={{ color: "#0A0A0F", fontWeight: 800, animationDelay: "1.7s" }}
               >
                 Shreejan
               </span>
               <span
                 className="block clip-reveal arctic-gradient-text"
-                style={{ fontWeight: 700, animationDelay: "2.0s" }}
+                style={{ fontWeight: 800, animationDelay: "2.0s" }}
               >
                 Sapkota
               </span>
@@ -109,12 +109,12 @@ const Hero = () => {
 
             <motion.p
               className="font-mono text-sm mb-4 pl-4 min-h-[1.5em]"
-              style={{ color: "#C0C8D8", borderLeft: "1px solid rgba(168,216,240,0.4)" }}
+              style={{ color: "#0A0A0F", borderLeft: "2px solid #6B5BFF" }}
               initial={{ opacity: 0 }}
               animate={{ opacity: introDone ? 1 : 0 }}
               transition={{ duration: 0.5 }}
             >
-              "{typed}<span className="inline-block w-[2px] h-4 bg-[#A8D8F0] align-middle ml-0.5 animate-pulse" />"
+              "{typed}<span className="inline-block w-[2px] h-4 bg-[#6B5BFF] align-middle ml-0.5 animate-pulse" />"
             </motion.p>
 
             <motion.p
