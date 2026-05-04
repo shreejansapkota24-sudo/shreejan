@@ -77,7 +77,7 @@ const Navbar = () => {
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden text-[#E8F4FD] hover:bg-white/5"
+            className="md:hidden text-[#0A0A0F] hover:bg-black/5"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -92,8 +92,8 @@ const Navbar = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-sm font-light tracking-wide transition-colors duration-200"
-                  style={{ color: "var(--arctic-text-muted)" }}
+                  className="text-sm font-medium tracking-tight transition-colors duration-200"
+                  style={{ color: "var(--iri-text-muted)" }}
                   onClick={() => setIsOpen(false)}
                 >
                   {link.name}
@@ -103,8 +103,10 @@ const Navbar = () => {
               <Link to="/cyberguard/cyber-saathi" onClick={() => setIsOpen(false)}>
                 <Button
                   size="sm"
-                  variant="outline"
-                  className="gap-2 w-fit font-mono text-[11px] uppercase tracking-[0.15em] border-[rgba(168,216,240,0.35)] bg-transparent text-[#E8F4FD] hover:bg-[rgba(168,216,240,0.08)]"
+                  className="gap-2 w-fit font-mono text-[11px] uppercase tracking-[0.15em] border-0 text-white"
+                  style={{
+                    background: "linear-gradient(135deg, #6B5BFF 0%, #8B6BFF 50%, #FF6BD5 100%)",
+                  }}
                 >
                   <Bot className="w-4 h-4" />
                   Chat with AI
