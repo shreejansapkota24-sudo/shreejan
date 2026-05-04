@@ -25,9 +25,9 @@ const CyberBackground = () => {
     window.addEventListener("resize", resize);
 
     const draw = () => {
-      ctx.fillStyle = "rgba(5, 10, 15, 0.06)";
+      ctx.fillStyle = "rgba(245, 245, 247, 0.08)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "rgba(0, 255, 159, 0.08)";
+      ctx.fillStyle = "rgba(107, 91, 255, 0.06)";
       ctx.font = `${fontSize}px monospace`;
 
       for (let i = 0; i < columns.length; i++) {
