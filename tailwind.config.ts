@@ -64,10 +64,10 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        display: ['"Cormorant Garamond"', "serif"],
-        cyber: ['"Cormorant Garamond"', "serif"],
-        sans: ['"Outfit"', "sans-serif"],
-        mono: ['"IBM Plex Mono"', "monospace"],
+        display: ['"Space Grotesk"', "sans-serif"],
+        cyber: ['"Space Grotesk"', "sans-serif"],
+        sans: ['"Inter"', "sans-serif"],
+        mono: ['"JetBrains Mono"', "monospace"],
       },
       keyframes: {
         "accordion-down": {
