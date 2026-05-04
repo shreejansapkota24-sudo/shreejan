@@ -118,8 +118,8 @@ const Hero = () => {
             </motion.p>
 
             <motion.p
-              className="mb-8 max-w-md leading-relaxed font-light"
-              style={{ color: "#7A8FA6" }}
+              className="mb-8 max-w-md leading-relaxed font-normal"
+              style={{ color: "#6B6B75" }}
               initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ delay: 2.5, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
@@ -137,10 +137,9 @@ const Hero = () => {
               <Button
                 asChild
                 size="lg"
-                className="font-mono text-[11px] uppercase tracking-[0.18em] hover-lift border-0"
+                className="font-mono text-[11px] uppercase tracking-[0.18em] hover-lift border-0 text-white"
                 style={{
-                  background: "linear-gradient(135deg, #5B9BD5, #A8D8F0)",
-                  color: "#04080F",
+                  background: "linear-gradient(135deg, #6B5BFF 0%, #8B6BFF 50%, #FF6BD5 100%)",
                   fontWeight: 600,
                 }}
               >
@@ -152,8 +151,8 @@ const Hero = () => {
                 variant="outline"
                 className="font-mono text-[11px] uppercase tracking-[0.18em] hover-lift bg-transparent backdrop-blur-md"
                 style={{
-                  border: "1px solid rgba(232,244,253,0.3)",
-                  color: "#F0F6FF",
+                  border: "1.5px solid #0A0A0F",
+                  color: "#0A0A0F",
                 }}
               >
                 <a href="#contact">Contact Me</a>
