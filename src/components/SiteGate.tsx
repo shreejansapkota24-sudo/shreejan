@@ -83,7 +83,7 @@ export default function SiteGate({ children }: { children: React.ReactNode }) {
         // the reference (Verify you are human + CLOUDFLARE branding).
         widgetIdRef.current = window.turnstile.render(widgetRef.current, {
           sitekey: siteKey,
-          theme: "dark",
+          theme: "light",
           size: "normal",
           callback: async (token: string) => {
             setStatus("verifying");
