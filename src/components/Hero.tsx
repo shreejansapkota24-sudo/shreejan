@@ -42,17 +42,17 @@ const Hero = () => {
       {/* Film slate intro */}
       {!introDone && (
         <>
-          <div className="fixed inset-0 z-[100] bg-[#04080F] pointer-events-none" style={{ animation: "opacity-pulse 0.6s ease-out forwards", animationFillMode: "forwards" }} />
+          <div className="fixed inset-0 z-[100] bg-[#F5F5F7] pointer-events-none" style={{ animation: "opacity-pulse 0.6s ease-out forwards", animationFillMode: "forwards" }} />
           <div
-            className="fixed left-0 right-0 top-1/2 h-px bg-[#E8F4FD] z-[101] pointer-events-none origin-left"
+            className="fixed left-0 right-0 top-1/2 h-px bg-[#6B5BFF] z-[101] pointer-events-none origin-left"
             style={{ animation: "slate-expand 0.6s cubic-bezier(0.16,1,0.3,1) forwards" }}
           />
           <div
-            className="fixed left-0 right-0 top-0 h-1/2 bg-[#04080F] z-[100] pointer-events-none"
+            className="fixed left-0 right-0 top-0 h-1/2 bg-[#F5F5F7] z-[100] pointer-events-none"
             style={{ animation: "slate-split-top 0.55s cubic-bezier(0.7,0,0.84,0) 0.6s forwards" }}
           />
           <div
-            className="fixed left-0 right-0 bottom-0 h-1/2 bg-[#04080F] z-[100] pointer-events-none"
+            className="fixed left-0 right-0 bottom-0 h-1/2 bg-[#F5F5F7] z-[100] pointer-events-none"
             style={{ animation: "slate-split-bottom 0.55s cubic-bezier(0.7,0,0.84,0) 0.6s forwards" }}
           />
         </>
@@ -60,8 +60,8 @@ const Hero = () => {
 
       {/* Aurora background */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="aurora-blob" style={{ top: "10%", right: "10%" }} />
-        <div className="aurora-blob" style={{ bottom: "5%", left: "5%", animationDelay: "-7s" }} />
+        <div className="aurora-blob" style={{ top: "5%", right: "5%" }} />
+        <div className="aurora-blob alt" style={{ bottom: "0%", left: "0%", animationDelay: "-7s" }} />
       </div>
 
       <div className="max-w-6xl mx-auto w-full">
