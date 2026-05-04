@@ -166,7 +166,7 @@ const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 2.9, duration: 0.6 }}
             >
-              <span className="font-mono text-[11px] uppercase tracking-[0.15em]" style={{ color: "#7A8FA6" }}>
+              <span className="font-mono text-[11px] uppercase tracking-[0.15em]" style={{ color: "#6B6B75" }}>
                 Find me on
               </span>
               <div className="flex gap-3 flex-wrap">
@@ -180,16 +180,16 @@ const Hero = () => {
                       rel={opensExternalSite ? "noopener noreferrer" : undefined}
                       className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
                       style={{
-                        background: "rgba(255,255,255,0.04)",
-                        border: "1px solid rgba(255,255,255,0.08)",
-                        color: "#C0C8D8",
+                        background: "rgba(255,255,255,0.7)",
+                        border: "1px solid rgba(10,10,15,0.08)",
+                        color: "#0A0A0F",
                       }}
                       whileHover={{
                         scale: 1.12,
                         y: -2,
-                        boxShadow: "0 0 16px rgba(91,155,213,0.25)",
-                        borderColor: "rgba(168,216,240,0.5)",
-                        color: "#A8D8F0",
+                        boxShadow: "0 6px 20px rgba(107,91,255,0.35)",
+                        borderColor: "rgba(107,91,255,0.6)",
+                        color: "#6B5BFF",
                       }}
                       whileTap={{ scale: 0.95 }}
                       initial={{ opacity: 0, y: 10 }}
