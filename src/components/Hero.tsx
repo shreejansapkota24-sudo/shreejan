@@ -83,8 +83,8 @@ const Hero = () => {
             </motion.div>
 
             <motion.p
-              className="font-mono mb-3 tracking-[0.25em] uppercase text-[11px]"
-              style={{ color: "#6B6B75" }}
+              className="font-mono mb-3 tracking-[0.3em] uppercase text-[10px]"
+              style={{ color: "var(--nav-text-faint)" }}
               initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ delay: 1.5, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
@@ -92,29 +92,29 @@ const Hero = () => {
               Hello, I'm
             </motion.p>
 
-            <h1 className="font-display text-6xl md:text-8xl mb-6 leading-[0.95] tracking-tight">
+            <h1 className="font-display text-6xl md:text-8xl mb-6 leading-[0.9] tracking-tight">
               <span
                 className="block clip-reveal"
-                style={{ color: "#0A0A0F", fontWeight: 800, animationDelay: "1.7s" }}
+                style={{ color: "var(--nav-text)", fontWeight: 400, fontStyle: "italic", animationDelay: "1.7s" }}
               >
                 Shreejan
               </span>
               <span
                 className="block clip-reveal arctic-gradient-text"
-                style={{ fontWeight: 800, animationDelay: "2.0s" }}
+                style={{ fontWeight: 600, animationDelay: "2.0s" }}
               >
                 Sapkota
               </span>
             </h1>
 
             <motion.p
-              className="font-mono text-sm mb-4 pl-4 min-h-[1.5em]"
-              style={{ color: "#0A0A0F", borderLeft: "2px solid #6B5BFF" }}
+              className="font-mono text-[13px] mb-4 pl-4 min-h-[1.5em]"
+              style={{ color: "var(--nav-text)", borderLeft: "1px solid #FF7A45" }}
               initial={{ opacity: 0 }}
               animate={{ opacity: introDone ? 1 : 0 }}
               transition={{ duration: 0.5 }}
             >
-              "{typed}<span className="inline-block w-[2px] h-4 bg-[#6B5BFF] align-middle ml-0.5 animate-pulse" />"
+              "{typed}<span className="inline-block w-[2px] h-4 bg-[#FF7A45] align-middle ml-0.5 animate-pulse" />"
             </motion.p>
 
             <motion.p
