@@ -118,8 +118,8 @@ const Hero = () => {
             </motion.p>
 
             <motion.p
-              className="mb-8 max-w-md leading-relaxed font-normal"
-              style={{ color: "#6B6B75" }}
+              className="mb-8 max-w-md leading-relaxed font-normal text-[13px]"
+              style={{ color: "var(--nav-text-muted)" }}
               initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ delay: 2.5, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
@@ -129,34 +129,17 @@ const Hero = () => {
             </motion.p>
 
             <motion.div
-              className="flex flex-wrap gap-4 mb-8"
+              className="flex flex-wrap gap-3 mb-8"
               initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ delay: 2.7, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             >
-              <Button
-                asChild
-                size="lg"
-                className="font-mono text-[11px] uppercase tracking-[0.18em] hover-lift border-0 text-white"
-                style={{
-                  background: "linear-gradient(135deg, #6B5BFF 0%, #8B6BFF 50%, #FF6BD5 100%)",
-                  fontWeight: 600,
-                }}
-              >
-                <a href="#portfolio">View Portfolio</a>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="font-mono text-[11px] uppercase tracking-[0.18em] hover-lift bg-transparent backdrop-blur-md"
-                style={{
-                  border: "1.5px solid #0A0A0F",
-                  color: "#0A0A0F",
-                }}
-              >
-                <a href="#contact">Contact Me</a>
-              </Button>
+              <a href="#portfolio" className="btn-mono hover-lift" style={{ background: "var(--accent-orange)", color: "var(--nav-bg)", borderColor: "var(--accent-orange)" }}>
+                View Portfolio
+              </a>
+              <a href="#contact" className="btn-ghost-mono hover-lift">
+                Contact Me
+              </a>
             </motion.div>
 
             {/* Quick Links */}
