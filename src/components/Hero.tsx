@@ -74,10 +74,10 @@ const Hero = () => {
               transition={{ delay: 1.3, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             >
               <span
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass font-mono text-[11px] uppercase tracking-[0.15em] mb-6"
-                style={{ color: "#0A0A0F", borderColor: "rgba(107,91,255,0.25)" }}
+                className="inline-flex items-center gap-2 px-4 py-1.5 glass font-mono text-[10px] uppercase tracking-[0.2em] mb-6"
+                style={{ color: "var(--nav-text-muted)", borderRadius: 2 }}
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-[#6B5BFF] animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FF7A45] animate-pulse" />
                 Available for opportunities
               </span>
             </motion.div>
