@@ -39,20 +39,20 @@ const Hero = () => {
       id="home"
       className="min-h-screen flex items-center justify-center pt-16 px-6 relative overflow-hidden arctic-noise"
     >
-      {/* Film slate intro */}
+      {/* Film slate intro (mono dark) */}
       {!introDone && (
         <>
-          <div className="fixed inset-0 z-[100] bg-[#F5F5F7] pointer-events-none" style={{ animation: "opacity-pulse 0.6s ease-out forwards", animationFillMode: "forwards" }} />
+          <div className="fixed inset-0 z-[100] bg-[#08101F] pointer-events-none" />
           <div
-            className="fixed left-0 right-0 top-1/2 h-px bg-[#6B5BFF] z-[101] pointer-events-none origin-left"
+            className="fixed left-0 right-0 top-1/2 h-px bg-[#FF7A45] z-[101] pointer-events-none origin-left"
             style={{ animation: "slate-expand 0.6s cubic-bezier(0.16,1,0.3,1) forwards" }}
           />
           <div
-            className="fixed left-0 right-0 top-0 h-1/2 bg-[#F5F5F7] z-[100] pointer-events-none"
+            className="fixed left-0 right-0 top-0 h-1/2 bg-[#08101F] z-[100] pointer-events-none"
             style={{ animation: "slate-split-top 0.55s cubic-bezier(0.7,0,0.84,0) 0.6s forwards" }}
           />
           <div
-            className="fixed left-0 right-0 bottom-0 h-1/2 bg-[#F5F5F7] z-[100] pointer-events-none"
+            className="fixed left-0 right-0 bottom-0 h-1/2 bg-[#08101F] z-[100] pointer-events-none"
             style={{ animation: "slate-split-bottom 0.55s cubic-bezier(0.7,0,0.84,0) 0.6s forwards" }}
           />
         </>
