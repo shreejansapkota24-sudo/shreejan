@@ -149,10 +149,10 @@ const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 2.9, duration: 0.6 }}
             >
-              <span className="font-mono text-[11px] uppercase tracking-[0.15em]" style={{ color: "#6B6B75" }}>
+              <span className="font-mono text-[10px] uppercase tracking-[0.2em]" style={{ color: "var(--nav-text-faint)" }}>
                 Find me on
               </span>
-              <div className="flex gap-3 flex-wrap">
+              <div className="flex gap-2 flex-wrap">
                 {socials.map((social, index) => {
                   const opensExternalSite = social.href.startsWith("http");
                   return (
@@ -161,18 +161,17 @@ const Hero = () => {
                       href={social.href}
                       target={opensExternalSite ? "_blank" : undefined}
                       rel={opensExternalSite ? "noopener noreferrer" : undefined}
-                      className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
+                      className="w-9 h-9 flex items-center justify-center transition-all duration-300"
                       style={{
-                        background: "rgba(255,255,255,0.7)",
-                        border: "1px solid rgba(10,10,15,0.08)",
-                        color: "#0A0A0F",
+                        background: "transparent",
+                        border: "1px solid var(--nav-border)",
+                        color: "var(--nav-text-muted)",
+                        borderRadius: 2,
                       }}
                       whileHover={{
-                        scale: 1.12,
                         y: -2,
-                        boxShadow: "0 6px 20px rgba(107,91,255,0.35)",
-                        borderColor: "rgba(107,91,255,0.6)",
-                        color: "#6B5BFF",
+                        borderColor: "#FF7A45",
+                        color: "#FF7A45",
                       }}
                       whileTap={{ scale: 0.95 }}
                       initial={{ opacity: 0, y: 10 }}
@@ -180,7 +179,7 @@ const Hero = () => {
                       transition={{ delay: 3.0 + index * 0.08, duration: 0.4 }}
                       aria-label={social.label}
                     >
-                      <social.icon className="w-4 h-4" />
+                      <social.icon className="w-3.5 h-3.5" />
                     </motion.a>
                   );
                 })}
