@@ -39,20 +39,20 @@ const Hero = () => {
       id="home"
       className="min-h-screen flex items-center justify-center pt-16 px-6 relative overflow-hidden arctic-noise"
     >
-      {/* Film slate intro */}
+      {/* Film slate intro (mono dark) */}
       {!introDone && (
         <>
-          <div className="fixed inset-0 z-[100] bg-[#F5F5F7] pointer-events-none" style={{ animation: "opacity-pulse 0.6s ease-out forwards", animationFillMode: "forwards" }} />
+          <div className="fixed inset-0 z-[100] bg-[#08101F] pointer-events-none" />
           <div
-            className="fixed left-0 right-0 top-1/2 h-px bg-[#6B5BFF] z-[101] pointer-events-none origin-left"
+            className="fixed left-0 right-0 top-1/2 h-px bg-[#FF7A45] z-[101] pointer-events-none origin-left"
             style={{ animation: "slate-expand 0.6s cubic-bezier(0.16,1,0.3,1) forwards" }}
           />
           <div
-            className="fixed left-0 right-0 top-0 h-1/2 bg-[#F5F5F7] z-[100] pointer-events-none"
+            className="fixed left-0 right-0 top-0 h-1/2 bg-[#08101F] z-[100] pointer-events-none"
             style={{ animation: "slate-split-top 0.55s cubic-bezier(0.7,0,0.84,0) 0.6s forwards" }}
           />
           <div
-            className="fixed left-0 right-0 bottom-0 h-1/2 bg-[#F5F5F7] z-[100] pointer-events-none"
+            className="fixed left-0 right-0 bottom-0 h-1/2 bg-[#08101F] z-[100] pointer-events-none"
             style={{ animation: "slate-split-bottom 0.55s cubic-bezier(0.7,0,0.84,0) 0.6s forwards" }}
           />
         </>
@@ -74,17 +74,17 @@ const Hero = () => {
               transition={{ delay: 1.3, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             >
               <span
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass font-mono text-[11px] uppercase tracking-[0.15em] mb-6"
-                style={{ color: "#0A0A0F", borderColor: "rgba(107,91,255,0.25)" }}
+                className="inline-flex items-center gap-2 px-4 py-1.5 glass font-mono text-[10px] uppercase tracking-[0.2em] mb-6"
+                style={{ color: "var(--nav-text-muted)", borderRadius: 2 }}
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-[#6B5BFF] animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FF7A45] animate-pulse" />
                 Available for opportunities
               </span>
             </motion.div>
 
             <motion.p
-              className="font-mono mb-3 tracking-[0.25em] uppercase text-[11px]"
-              style={{ color: "#6B6B75" }}
+              className="font-mono mb-3 tracking-[0.3em] uppercase text-[10px]"
+              style={{ color: "var(--nav-text-faint)" }}
               initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ delay: 1.5, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
@@ -92,34 +92,34 @@ const Hero = () => {
               Hello, I'm
             </motion.p>
 
-            <h1 className="font-display text-6xl md:text-8xl mb-6 leading-[0.95] tracking-tight">
+            <h1 className="font-display text-6xl md:text-8xl mb-6 leading-[0.9] tracking-tight">
               <span
                 className="block clip-reveal"
-                style={{ color: "#0A0A0F", fontWeight: 800, animationDelay: "1.7s" }}
+                style={{ color: "var(--nav-text)", fontWeight: 400, fontStyle: "italic", animationDelay: "1.7s" }}
               >
                 Shreejan
               </span>
               <span
                 className="block clip-reveal arctic-gradient-text"
-                style={{ fontWeight: 800, animationDelay: "2.0s" }}
+                style={{ fontWeight: 600, animationDelay: "2.0s" }}
               >
                 Sapkota
               </span>
             </h1>
 
             <motion.p
-              className="font-mono text-sm mb-4 pl-4 min-h-[1.5em]"
-              style={{ color: "#0A0A0F", borderLeft: "2px solid #6B5BFF" }}
+              className="font-mono text-[13px] mb-4 pl-4 min-h-[1.5em]"
+              style={{ color: "var(--nav-text)", borderLeft: "1px solid #FF7A45" }}
               initial={{ opacity: 0 }}
               animate={{ opacity: introDone ? 1 : 0 }}
               transition={{ duration: 0.5 }}
             >
-              "{typed}<span className="inline-block w-[2px] h-4 bg-[#6B5BFF] align-middle ml-0.5 animate-pulse" />"
+              "{typed}<span className="inline-block w-[2px] h-4 bg-[#FF7A45] align-middle ml-0.5 animate-pulse" />"
             </motion.p>
 
             <motion.p
-              className="mb-8 max-w-md leading-relaxed font-normal"
-              style={{ color: "#6B6B75" }}
+              className="mb-8 max-w-md leading-relaxed font-normal text-[13px]"
+              style={{ color: "var(--nav-text-muted)" }}
               initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ delay: 2.5, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
@@ -129,34 +129,17 @@ const Hero = () => {
             </motion.p>
 
             <motion.div
-              className="flex flex-wrap gap-4 mb-8"
+              className="flex flex-wrap gap-3 mb-8"
               initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ delay: 2.7, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             >
-              <Button
-                asChild
-                size="lg"
-                className="font-mono text-[11px] uppercase tracking-[0.18em] hover-lift border-0 text-white"
-                style={{
-                  background: "linear-gradient(135deg, #6B5BFF 0%, #8B6BFF 50%, #FF6BD5 100%)",
-                  fontWeight: 600,
-                }}
-              >
-                <a href="#portfolio">View Portfolio</a>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="font-mono text-[11px] uppercase tracking-[0.18em] hover-lift bg-transparent backdrop-blur-md"
-                style={{
-                  border: "1.5px solid #0A0A0F",
-                  color: "#0A0A0F",
-                }}
-              >
-                <a href="#contact">Contact Me</a>
-              </Button>
+              <a href="#portfolio" className="btn-mono hover-lift" style={{ background: "var(--accent-orange)", color: "var(--nav-bg)", borderColor: "var(--accent-orange)" }}>
+                View Portfolio
+              </a>
+              <a href="#contact" className="btn-ghost-mono hover-lift">
+                Contact Me
+              </a>
             </motion.div>
 
             {/* Quick Links */}
@@ -166,10 +149,10 @@ const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 2.9, duration: 0.6 }}
             >
-              <span className="font-mono text-[11px] uppercase tracking-[0.15em]" style={{ color: "#6B6B75" }}>
+              <span className="font-mono text-[10px] uppercase tracking-[0.2em]" style={{ color: "var(--nav-text-faint)" }}>
                 Find me on
               </span>
-              <div className="flex gap-3 flex-wrap">
+              <div className="flex gap-2 flex-wrap">
                 {socials.map((social, index) => {
                   const opensExternalSite = social.href.startsWith("http");
                   return (
@@ -178,18 +161,17 @@ const Hero = () => {
                       href={social.href}
                       target={opensExternalSite ? "_blank" : undefined}
                       rel={opensExternalSite ? "noopener noreferrer" : undefined}
-                      className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
+                      className="w-9 h-9 flex items-center justify-center transition-all duration-300"
                       style={{
-                        background: "rgba(255,255,255,0.7)",
-                        border: "1px solid rgba(10,10,15,0.08)",
-                        color: "#0A0A0F",
+                        background: "transparent",
+                        border: "1px solid var(--nav-border)",
+                        color: "var(--nav-text-muted)",
+                        borderRadius: 2,
                       }}
                       whileHover={{
-                        scale: 1.12,
                         y: -2,
-                        boxShadow: "0 6px 20px rgba(107,91,255,0.35)",
-                        borderColor: "rgba(107,91,255,0.6)",
-                        color: "#6B5BFF",
+                        borderColor: "#FF7A45",
+                        color: "#FF7A45",
                       }}
                       whileTap={{ scale: 0.95 }}
                       initial={{ opacity: 0, y: 10 }}
@@ -197,7 +179,7 @@ const Hero = () => {
                       transition={{ delay: 3.0 + index * 0.08, duration: 0.4 }}
                       aria-label={social.label}
                     >
-                      <social.icon className="w-4 h-4" />
+                      <social.icon className="w-3.5 h-3.5" />
                     </motion.a>
                   );
                 })}
@@ -205,101 +187,40 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* Arctic SS Avatar */}
+          {/* SS Gradient Ring (rotating) */}
           <motion.div
             className="order-1 md:order-2 flex justify-center"
             initial={{ opacity: 0, scale: 0.85, filter: "blur(8px)" }}
             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-            transition={{ delay: 1.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ delay: 1.4, duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="relative group">
-              {/* Outer halo */}
-              <div
-                className="absolute inset-0 rounded-full"
-                style={{
-                  background: "radial-gradient(circle, rgba(183,156,255,0.45) 0%, rgba(255,107,213,0.15) 50%, transparent 75%)",
-                  filter: "blur(50px)",
-                  transform: "scale(1.4)",
-                }}
-              />
-
-              {/* Conic rotating iridescent ring */}
-              <div
-                className="absolute -inset-2 rounded-full group-hover:[animation-duration:3s]"
-                style={{
-                  background:
-                    "conic-gradient(from 0deg, #6B5BFF 0%, #B79CFF 25%, #FF6BD5 50%, #6BD5FF 75%, #6B5BFF 100%)",
-                  padding: "2px",
-                  borderRadius: "50%",
-                  animation: "conic-spin 12s linear infinite",
-                }}
-              >
-                <div className="w-full h-full rounded-full" style={{ background: "#F5F5F7" }} />
-              </div>
-
-              {/* Inner avatar */}
-              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full p-1">
-                <div
-                  className="w-full h-full rounded-full flex items-center justify-center overflow-hidden"
+            <div className="hero-ring-wrap">
+              <div className="hero-ring-glow" />
+              <div className="hero-ring" />
+              <div className="hero-ring shadow" />
+              {/* SS in middle */}
+              <div className="relative z-10 flex flex-col items-center justify-center text-center">
+                <span
+                  className="font-display"
                   style={{
-                    background: "radial-gradient(circle, #FFFFFF 60%, #F0EBFF 100%)",
-                    border: "1px solid rgba(107,91,255,0.15)",
+                    fontSize: "5.5rem",
+                    lineHeight: 1,
+                    fontWeight: 500,
+                    fontStyle: "italic",
+                    color: "var(--nav-text)",
+                    letterSpacing: "-0.04em",
+                    textShadow: "0 4px 30px rgba(255,77,138,0.4)",
                   }}
                 >
-                  <span
-                    className="font-display arctic-gradient-text text-7xl md:text-9xl"
-                    style={{
-                      fontWeight: 800,
-                      letterSpacing: "-0.04em",
-                    }}
-                  >
-                    SS
-                  </span>
-                </div>
+                  SS
+                </span>
+                <span
+                  className="font-mono mt-3 text-[10px] uppercase"
+                  style={{ color: "var(--nav-text-muted)", letterSpacing: "0.4em" }}
+                >
+                  Shreejan · Sapkota
+                </span>
               </div>
-
-              {/* Floating frosted cards */}
-              <motion.div
-                className="absolute -bottom-4 -right-4 w-16 h-16 rounded-2xl flex items-center justify-center"
-                style={{
-                  background: "rgba(255,255,255,0.85)",
-                  border: "1px solid rgba(107,91,255,0.18)",
-                  backdropFilter: "blur(20px)",
-                  boxShadow: "0 8px 24px rgba(107,91,255,0.15)",
-                }}
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <span className="text-2xl">💻</span>
-              </motion.div>
-
-              <motion.div
-                className="absolute -top-4 -left-4 w-14 h-14 rounded-2xl flex items-center justify-center"
-                style={{
-                  background: "rgba(255,255,255,0.85)",
-                  border: "1px solid rgba(255,107,213,0.2)",
-                  backdropFilter: "blur(20px)",
-                  boxShadow: "0 8px 24px rgba(255,107,213,0.15)",
-                }}
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              >
-                <span className="text-xl">⚡</span>
-              </motion.div>
-
-              <motion.div
-                className="absolute top-1/2 -right-8 w-12 h-12 rounded-xl flex items-center justify-center"
-                style={{
-                  background: "rgba(255,255,255,0.85)",
-                  border: "1px solid rgba(107,213,255,0.25)",
-                  backdropFilter: "blur(20px)",
-                  boxShadow: "0 8px 24px rgba(107,213,255,0.15)",
-                }}
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              >
-                <span className="text-lg">🚀</span>
-              </motion.div>
             </div>
           </motion.div>
         </div>
@@ -314,20 +235,20 @@ const Hero = () => {
           <span
             className="font-mono text-[10px] uppercase"
             style={{
-              color: "#6B6B75",
-              letterSpacing: "0.15em",
+              color: "var(--nav-text-faint)",
+              letterSpacing: "0.3em",
               animation: "opacity-pulse 2.5s ease-in-out infinite",
             }}
           >
-            Scroll to explore
+            Scroll
           </span>
           <div
-            className="w-6 h-10 rounded-full flex justify-center p-2"
-            style={{ border: "1.5px solid rgba(107,91,255,0.5)" }}
+            className="w-5 h-9 flex justify-center p-1.5"
+            style={{ border: "1px solid var(--nav-border)", borderRadius: 12 }}
           >
             <motion.div
-              className="w-1 h-1 rounded-full"
-              style={{ background: "#6B5BFF", boxShadow: "0 0 8px rgba(107,91,255,0.7)" }}
+              className="w-0.5 h-1.5 rounded-full"
+              style={{ background: "var(--accent-orange)" }}
               animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             />
