@@ -30,18 +30,22 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 cinematic-ease ${
-        scrolled ? "border-b border-[rgba(10,10,15,0.08)]" : "border-b border-transparent"
+        scrolled ? "border-b border-[#222]" : "border-b border-transparent"
       }`}
       style={{
-        background: "rgba(245, 245, 247, 0.72)",
-        backdropFilter: "blur(24px) saturate(180%)",
-        WebkitBackdropFilter: "blur(24px) saturate(180%)",
+        background: "rgba(10, 10, 10, 0.85)",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
       }}
     >
       <div className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <a href="#home" className="text-2xl font-display font-bold arctic-gradient-text tracking-tight">
-            SS<span>.</span>
+          <a
+            href="#home"
+            className="text-xl font-display tracking-[0.15em] uppercase"
+            style={{ color: "#F0F0F0", fontWeight: 400 }}
+          >
+            SS<span style={{ color: "#888" }}>.</span>
           </a>
 
           {/* Desktop Navigation */}
@@ -50,26 +54,20 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="nav-link-underline text-sm font-medium tracking-tight transition-colors duration-300"
-                style={{ color: "var(--iri-text-muted)" }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#0A0A0F")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--iri-text-muted)")}
+                className="nav-link-underline transition-colors duration-300"
+                style={{ color: "#888", fontFamily: "'Space Mono', monospace" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#F0F0F0")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#888")}
               >
                 {link.name}
               </a>
             ))}
 
             <Link to="/cyberguard/cyber-saathi">
-              <Button
-                size="sm"
-                className="gap-2 font-mono text-[11px] uppercase tracking-[0.15em] hover-lift border-0 text-white"
-                style={{
-                  background: "linear-gradient(135deg, #6B5BFF 0%, #8B6BFF 50%, #FF6BD5 100%)",
-                }}
-              >
-                <Bot className="w-4 h-4" />
+              <button className="btn-mono">
+                <Bot className="w-3.5 h-3.5" />
                 Chat with AI
-              </Button>
+              </button>
             </Link>
           </div>
 
@@ -77,7 +75,8 @@ const Navbar = () => {
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden text-[#0A0A0F] hover:bg-black/5"
+            className="md:hidden hover:bg-white/5"
+            style={{ color: "#F0F0F0" }}
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -92,8 +91,8 @@ const Navbar = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-sm font-medium tracking-tight transition-colors duration-200"
-                  style={{ color: "var(--iri-text-muted)" }}
+                  className="text-[11px] uppercase tracking-[0.1em] transition-colors duration-200"
+                  style={{ color: "#888", fontFamily: "'Space Mono', monospace" }}
                   onClick={() => setIsOpen(false)}
                 >
                   {link.name}
@@ -101,16 +100,10 @@ const Navbar = () => {
               ))}
 
               <Link to="/cyberguard/cyber-saathi" onClick={() => setIsOpen(false)}>
-                <Button
-                  size="sm"
-                  className="gap-2 w-fit font-mono text-[11px] uppercase tracking-[0.15em] border-0 text-white"
-                  style={{
-                    background: "linear-gradient(135deg, #6B5BFF 0%, #8B6BFF 50%, #FF6BD5 100%)",
-                  }}
-                >
-                  <Bot className="w-4 h-4" />
+                <button className="btn-mono">
+                  <Bot className="w-3.5 h-3.5" />
                   Chat with AI
-                </Button>
+                </button>
               </Link>
             </div>
           </div>

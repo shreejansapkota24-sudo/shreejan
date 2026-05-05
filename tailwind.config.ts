@@ -64,10 +64,10 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        display: ['"Space Grotesk"', "sans-serif"],
-        cyber: ['"Space Grotesk"', "sans-serif"],
-        sans: ['"Inter"', "sans-serif"],
-        mono: ['"JetBrains Mono"', "monospace"],
+        display: ['"Space Mono"', "monospace"],
+        cyber: ['"Space Mono"', "monospace"],
+        sans: ['"Space Mono"', '"JetBrains Mono"', "monospace"],
+        mono: ['"JetBrains Mono"', '"Space Mono"', "monospace"],
       },
       keyframes: {
         "accordion-down": {
