@@ -187,101 +187,40 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* Arctic SS Avatar */}
+          {/* SS Gradient Ring (rotating) */}
           <motion.div
             className="order-1 md:order-2 flex justify-center"
             initial={{ opacity: 0, scale: 0.85, filter: "blur(8px)" }}
             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-            transition={{ delay: 1.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ delay: 1.4, duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="relative group">
-              {/* Outer halo */}
-              <div
-                className="absolute inset-0 rounded-full"
-                style={{
-                  background: "radial-gradient(circle, rgba(183,156,255,0.45) 0%, rgba(255,107,213,0.15) 50%, transparent 75%)",
-                  filter: "blur(50px)",
-                  transform: "scale(1.4)",
-                }}
-              />
-
-              {/* Conic rotating iridescent ring */}
-              <div
-                className="absolute -inset-2 rounded-full group-hover:[animation-duration:3s]"
-                style={{
-                  background:
-                    "conic-gradient(from 0deg, #6B5BFF 0%, #B79CFF 25%, #FF6BD5 50%, #6BD5FF 75%, #6B5BFF 100%)",
-                  padding: "2px",
-                  borderRadius: "50%",
-                  animation: "conic-spin 12s linear infinite",
-                }}
-              >
-                <div className="w-full h-full rounded-full" style={{ background: "#F5F5F7" }} />
-              </div>
-
-              {/* Inner avatar */}
-              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full p-1">
-                <div
-                  className="w-full h-full rounded-full flex items-center justify-center overflow-hidden"
+            <div className="hero-ring-wrap">
+              <div className="hero-ring-glow" />
+              <div className="hero-ring" />
+              <div className="hero-ring shadow" />
+              {/* SS in middle */}
+              <div className="relative z-10 flex flex-col items-center justify-center text-center">
+                <span
+                  className="font-display"
                   style={{
-                    background: "radial-gradient(circle, #FFFFFF 60%, #F0EBFF 100%)",
-                    border: "1px solid rgba(107,91,255,0.15)",
+                    fontSize: "5.5rem",
+                    lineHeight: 1,
+                    fontWeight: 500,
+                    fontStyle: "italic",
+                    color: "var(--nav-text)",
+                    letterSpacing: "-0.04em",
+                    textShadow: "0 4px 30px rgba(255,77,138,0.4)",
                   }}
                 >
-                  <span
-                    className="font-display arctic-gradient-text text-7xl md:text-9xl"
-                    style={{
-                      fontWeight: 800,
-                      letterSpacing: "-0.04em",
-                    }}
-                  >
-                    SS
-                  </span>
-                </div>
+                  SS
+                </span>
+                <span
+                  className="font-mono mt-3 text-[10px] uppercase"
+                  style={{ color: "var(--nav-text-muted)", letterSpacing: "0.4em" }}
+                >
+                  Shreejan · Sapkota
+                </span>
               </div>
-
-              {/* Floating frosted cards */}
-              <motion.div
-                className="absolute -bottom-4 -right-4 w-16 h-16 rounded-2xl flex items-center justify-center"
-                style={{
-                  background: "rgba(255,255,255,0.85)",
-                  border: "1px solid rgba(107,91,255,0.18)",
-                  backdropFilter: "blur(20px)",
-                  boxShadow: "0 8px 24px rgba(107,91,255,0.15)",
-                }}
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <span className="text-2xl">💻</span>
-              </motion.div>
-
-              <motion.div
-                className="absolute -top-4 -left-4 w-14 h-14 rounded-2xl flex items-center justify-center"
-                style={{
-                  background: "rgba(255,255,255,0.85)",
-                  border: "1px solid rgba(255,107,213,0.2)",
-                  backdropFilter: "blur(20px)",
-                  boxShadow: "0 8px 24px rgba(255,107,213,0.15)",
-                }}
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              >
-                <span className="text-xl">⚡</span>
-              </motion.div>
-
-              <motion.div
-                className="absolute top-1/2 -right-8 w-12 h-12 rounded-xl flex items-center justify-center"
-                style={{
-                  background: "rgba(255,255,255,0.85)",
-                  border: "1px solid rgba(107,213,255,0.25)",
-                  backdropFilter: "blur(20px)",
-                  boxShadow: "0 8px 24px rgba(107,213,255,0.15)",
-                }}
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              >
-                <span className="text-lg">🚀</span>
-              </motion.div>
             </div>
           </motion.div>
         </div>
@@ -296,20 +235,20 @@ const Hero = () => {
           <span
             className="font-mono text-[10px] uppercase"
             style={{
-              color: "#6B6B75",
-              letterSpacing: "0.15em",
+              color: "var(--nav-text-faint)",
+              letterSpacing: "0.3em",
               animation: "opacity-pulse 2.5s ease-in-out infinite",
             }}
           >
-            Scroll to explore
+            Scroll
           </span>
           <div
-            className="w-6 h-10 rounded-full flex justify-center p-2"
-            style={{ border: "1.5px solid rgba(107,91,255,0.5)" }}
+            className="w-5 h-9 flex justify-center p-1.5"
+            style={{ border: "1px solid var(--nav-border)", borderRadius: 12 }}
           >
             <motion.div
-              className="w-1 h-1 rounded-full"
-              style={{ background: "#6B5BFF", boxShadow: "0 0 8px rgba(107,91,255,0.7)" }}
+              className="w-0.5 h-1.5 rounded-full"
+              style={{ background: "var(--accent-orange)" }}
               animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             />
