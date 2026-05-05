@@ -30,12 +30,12 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 cinematic-ease ${
-        scrolled ? "border-b border-[#222]" : "border-b border-transparent"
+        scrolled ? "border-b border-[#1B2747]" : "border-b border-transparent"
       }`}
       style={{
-        background: "rgba(10, 10, 10, 0.85)",
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
+        background: "rgba(8, 16, 31, 0.78)",
+        backdropFilter: "blur(14px) saturate(140%)",
+        WebkitBackdropFilter: "blur(14px) saturate(140%)",
       }}
     >
       <div className="max-w-6xl mx-auto px-6 py-4">
