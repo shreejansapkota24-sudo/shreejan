@@ -42,10 +42,11 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <a
             href="#home"
-            className="text-xl font-display tracking-[0.15em] uppercase"
-            style={{ color: "#F0F0F0", fontWeight: 400 }}
+            className="text-2xl font-display tracking-tight"
+            style={{ color: "#ECEFF7", fontWeight: 500, fontStyle: "italic" }}
           >
-            SS<span style={{ color: "#888" }}>.</span>
+            <span style={{ background: "linear-gradient(135deg,#FF7A45,#FF4D8A)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>SS</span>
+            <span style={{ color: "#FF7A45" }}>.</span>
           </a>
 
           {/* Desktop Navigation */}
