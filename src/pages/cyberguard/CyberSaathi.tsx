@@ -85,14 +85,15 @@ export default function CyberSaathiPage() {
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium font-cyber ${
                   limitReached
                     ? 'border-destructive/40 bg-destructive/10 text-destructive'
-                    : remaining <= 3
+                    : remaining <= 2
                     ? 'border-yellow-500/40 bg-yellow-500/10 text-yellow-500'
                     : 'border-primary/30 bg-primary/10 text-primary'
                 }`}
-                title={`${count} of ${limit} chats used today`}
+                title="5 free messages per day · No login required"
               >
                 {limitReached ? <AlertTriangle className="w-3.5 h-3.5" /> : <Zap className="w-3.5 h-3.5" />}
-                <span>{count}/{limit}</span>
+                <span className="hidden sm:inline">{limit} free messages per day · No login required</span>
+                <span className="sm:hidden">{count}/{limit}</span>
               </div>
 
               {messages.length > 0 && (
@@ -212,6 +213,35 @@ export default function CyberSaathiPage() {
             </Button>
             <Button onClick={handleCreateIncident} disabled={!incidentTitle.trim()}>
               Create Incident
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Daily Limit Reached Dialog */}
+      <Dialog open={limitDialogOpen} onOpenChange={setLimitDialogOpen}>
+        <DialogContent className="bg-[#0E1830] border border-[#1B2747] rounded-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-display text-white flex items-center gap-2">
+              Daily Limit Reached <span>🔒</span>
+            </DialogTitle>
+            <DialogDescription className="text-[#8892B0] pt-2">
+              You've used all {limit} free messages today. Want unlimited access? Reach out to Shreejan directly.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="gap-2 sm:gap-2">
+            <Button
+              variant="outline"
+              onClick={() => setLimitDialogOpen(false)}
+              className="border-[#1B2747] text-[#ECEFF7] hover:bg-[#142042]"
+            >
+              Try Again Tomorrow
+            </Button>
+            <Button
+              onClick={() => { window.location.href = "mailto:shreejansapkota24@gmail.com"; }}
+              className="bg-[#FF7A45] hover:bg-[#FF7A45]/90 text-[#08101F] font-medium"
+            >
+              Contact Shreejan
             </Button>
           </DialogFooter>
         </DialogContent>
