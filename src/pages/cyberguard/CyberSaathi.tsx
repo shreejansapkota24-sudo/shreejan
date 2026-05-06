@@ -36,18 +36,18 @@ export default function CyberSaathiPage() {
 
   const { count, remaining, limitReached, limit, increment } = useDailyChatLimit();
 
+  const [limitDialogOpen, setLimitDialogOpen] = useState(false);
+
   const handleSendWithLimit = useCallback(
     async (msg: string, attachments: Attachment[], analysisType?: string) => {
       if (limitReached) {
-        toast.error(`Daily limit reached`, {
-          description: `You've used all ${limit} chats for today. Please come back tomorrow.`,
-        });
+        setLimitDialogOpen(true);
         return;
       }
       increment();
       await sendMessage(msg, attachments, analysisType);
     },
-    [limitReached, limit, increment, sendMessage]
+    [limitReached, increment, sendMessage]
   );
 
   const handleCreateIncident = () => {

@@ -1,117 +1,179 @@
-import { FolderOpen, Shield, ExternalLink, Github, Link2, FileSearch, ScrollText } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { Github, Linkedin, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const projects = [
+type Project = {
+  title: string;
+  subtitle: string;
+  bg: string; // CSS background
+  href?: string;
+  internal?: boolean;
+};
+
+const projects: Project[] = [
   {
     title: "CyberGuard",
-    description: "A professional cybersecurity toolkit featuring URL phishing detection, file malware scanning with SHA-256 hash analysis, real-time threat logging, and SOC-style dashboard.",
-    image: null,
-    icon: Shield,
-    tags: ["React", "TypeScript", "Tailwind", "Zustand", "Web Crypto API"],
-    features: [
-      { icon: Link2, label: "URL Scanner" },
-      { icon: FileSearch, label: "File Scanner" },
-      { icon: ScrollText, label: "Threat Logs" },
-    ],
-    liveUrl: "/cyberguard",
-    isInternal: true,
-    color: "from-primary/20 to-accent/10",
+    subtitle: "Cybersecurity Toolkit · URL & File Scanner · Threat Map",
+    href: "/cyberguard",
+    internal: true,
+    bg: `radial-gradient(ellipse at 30% 20%, rgba(255,122,69,0.35), transparent 55%),
+         radial-gradient(ellipse at 80% 80%, rgba(79,139,255,0.4), transparent 60%),
+         linear-gradient(135deg, #08101F 0%, #142042 60%, #1B0A1A 100%)`,
+  },
+  {
+    title: "Cyber Saathi",
+    subtitle: "AI-powered Defensive Security Analyst · IOC Extraction",
+    href: "/cyberguard/cyber-saathi",
+    internal: true,
+    bg: `radial-gradient(ellipse at 70% 30%, rgba(255,77,138,0.35), transparent 60%),
+         radial-gradient(ellipse at 20% 70%, rgba(140,107,255,0.35), transparent 60%),
+         linear-gradient(160deg, #050B17 0%, #0E1830 50%, #1A0E2E 100%)`,
+  },
+  {
+    title: "More Coming Soon",
+    subtitle: "New experiments in motion · Stay tuned",
+    bg: `linear-gradient(135deg, #08101F 0%, #0E1830 50%, #08101F 100%)`,
   },
 ];
 
 const Portfolio = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
+  const [index, setIndex] = useState(0);
+  const [hovered, setHovered] = useState(false);
+  const [mouse, setMouse] = useState({ x: 0, y: 0, visible: false });
+  const wrapRef = useRef<HTMLDivElement>(null);
+
+  const next = () => setIndex((i) => (i + 1) % projects.length);
+  const prev = () => setIndex((i) => (i - 1 + projects.length) % projects.length);
+
+  // Auto-advance, pause on hover
+  useEffect(() => {
+    if (hovered) return;
+    const id = setInterval(next, 5000);
+    return () => clearInterval(id);
+  }, [hovered]);
+
+  const onMove = (e: React.MouseEvent) => {
+    setMouse({ x: e.clientX, y: e.clientY, visible: true });
   };
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.95 },
-    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: "easeOut" as const } },
+  const onClick = (e: React.MouseEvent) => {
+    if (!wrapRef.current) return;
+    const target = e.target as HTMLElement;
+    // ignore clicks on links/buttons
+    if (target.closest("a, button")) return;
+    const rect = wrapRef.current.getBoundingClientRect();
+    if (e.clientX - rect.left > rect.width / 2) next();
+    else prev();
   };
+
+  const current = projects[index];
 
   return (
-    <section id="portfolio" className="py-24 px-6 relative overflow-hidden">
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-20 left-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-20 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
-      </div>
+    <section id="portfolio" className="relative">
+      <div
+        ref={wrapRef}
+        className="relative w-screen h-screen overflow-hidden -mx-6 cursor-none"
+        style={{ marginLeft: "calc(-50vw + 50%)", marginRight: "calc(-50vw + 50%)" }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => { setHovered(false); setMouse((m) => ({ ...m, visible: false })); }}
+        onMouseMove={onMove}
+        onClick={onClick}
+      >
+        {/* Slides */}
+        {projects.map((p, i) => (
+          <div
+            key={p.title}
+            className={`carousel-slide ${i === index ? "active" : ""}`}
+            aria-hidden={i !== index}
+          >
+            <div className="ken-burns-img" style={{ background: p.bg }} />
+            {/* dark gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#040810] via-[#040810]/40 to-transparent" />
+            <div className="absolute inset-0 arctic-noise pointer-events-none" />
+          </div>
+        ))}
 
-      <div className="max-w-6xl mx-auto">
-        <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-          <motion.span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border-glow text-primary font-medium text-sm mb-4" initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-            <FolderOpen className="w-4 h-4" />
-            My Work
-          </motion.span>
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground font-cyber text-glow">Portfolio</h2>
-          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-            Explore my projects showcasing skills in web development, cybersecurity, and modern UI/UX design.
+        {/* Slide counter (left middle) */}
+        <div className="absolute left-6 md:left-10 top-1/2 -translate-y-1/2 z-20 flex flex-col items-center gap-3 font-mono text-[12px] text-white/80 select-none">
+          <span className="text-2xl text-[#FF7A45]">{String(index + 1).padStart(2, "0")}</span>
+          <span className="block w-px h-16 bg-white/30" />
+          <span className="text-white/50">{String(projects.length).padStart(2, "0")}</span>
+        </div>
+
+        {/* Title bottom-left, partially cropped */}
+        <div className="absolute left-6 md:left-20 bottom-[-20px] md:bottom-[-30px] z-20 max-w-[90%] pointer-events-none">
+          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#FF7A45] mb-3">
+            {current.subtitle}
           </p>
-        </motion.div>
+          <h3
+            className="font-display leading-[0.85] text-white"
+            style={{
+              fontSize: "clamp(60px, 12vw, 140px)",
+              fontWeight: 700,
+              fontStyle: "italic",
+              letterSpacing: "-0.04em",
+            }}
+          >
+            {current.title}
+          </h3>
+        </div>
 
-        <motion.div className="grid gap-8" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-          {projects.map((project) => (
-            <motion.div key={project.title} variants={cardVariants}>
-              <Card className="group glass border-glow hover:box-glow transition-all duration-500 overflow-hidden">
-                <CardContent className="p-0">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className={`relative min-h-[300px] bg-gradient-to-br ${project.color} flex items-center justify-center p-8`}>
-                      <motion.div className="relative z-10 p-6 glass border-glow rounded-2xl" whileHover={{ scale: 1.05, rotate: 2 }} transition={{ duration: 0.3 }}>
-                        <project.icon className="w-16 h-16 text-primary mx-auto" style={{ filter: "drop-shadow(0 0 10px hsl(var(--primary) / 0.5))" }} />
-                      </motion.div>
-                      <div className="absolute bottom-4 left-4 right-4 flex justify-center gap-3">
-                        {project.features.map((feature, index) => (
-                          <motion.div key={feature.label} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + index * 0.1 }} className="flex items-center gap-1.5 px-3 py-1.5 glass rounded-full text-xs font-medium text-foreground border border-primary/20">
-                            <feature.icon className="w-3.5 h-3.5 text-primary" />
-                            {feature.label}
-                          </motion.div>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="p-8 flex flex-col justify-center">
-                      <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors font-cyber">{project.title}</h3>
-                      <p className="text-muted-foreground mb-6 leading-relaxed">{project.description}</p>
-                      <div className="flex flex-wrap gap-2 mb-6">
-                        {project.tags.map((tag) => (
-                          <Badge key={tag} variant="secondary" className="bg-primary/10 text-primary border border-primary/20">{tag}</Badge>
-                        ))}
-                      </div>
-                      <div className="flex flex-wrap gap-3">
-                        {project.isInternal ? (
-                          <Link to={project.liveUrl}>
-                            <Button className="gap-2 font-cyber text-xs">
-                              <ExternalLink className="w-4 h-4" />
-                              View Project
-                            </Button>
-                          </Link>
-                        ) : (
-                          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                            <Button className="gap-2"><ExternalLink className="w-4 h-4" />Live Demo</Button>
-                          </a>
-                        )}
-                        <Button variant="outline" className="gap-2 border-primary/30 text-primary hover:bg-primary/10" disabled>
-                          <Github className="w-4 h-4" />
-                          Source Code
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </motion.div>
+        {/* CTA View Project */}
+        {current.href && (
+          <div className="absolute right-6 md:right-20 bottom-32 md:bottom-44 z-30">
+            {current.internal ? (
+              <Link to={current.href} className="btn-mono pointer-events-auto" style={{ background: "#FF7A45", color: "#08101F", borderColor: "#FF7A45" }}>
+                View Project
+              </Link>
+            ) : (
+              <a href={current.href} target="_blank" rel="noopener noreferrer" className="btn-mono pointer-events-auto">
+                View Project
+              </a>
+            )}
+          </div>
+        )}
 
-        <motion.div className="mt-12 text-center" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.5 }}>
-          <motion.div className="inline-flex items-center gap-3 px-6 py-3 glass border-glow rounded-full" whileHover={{ scale: 1.05, y: -3 }} transition={{ duration: 0.3 }}>
-            <FolderOpen className="w-5 h-5 text-primary" />
-            <span className="text-muted-foreground font-medium">More projects coming soon...</span>
-          </motion.div>
-        </motion.div>
+        {/* Social links bottom-right */}
+        <div className="absolute right-6 md:right-10 bottom-8 z-20 flex gap-3">
+          <a href="https://github.com/shreejansapkota24-sudo" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="w-9 h-9 flex items-center justify-center border border-white/20 text-white/70 hover:text-[#FF7A45] hover:border-[#FF7A45] transition">
+            <Github className="w-4 h-4" />
+          </a>
+          <a href="https://www.linkedin.com/in/shreejan-sapkota-0449b023b/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="w-9 h-9 flex items-center justify-center border border-white/20 text-white/70 hover:text-[#FF7A45] hover:border-[#FF7A45] transition">
+            <Linkedin className="w-4 h-4" />
+          </a>
+        </div>
+
+        {/* Subtle nav arrows on hover */}
+        <button
+          onClick={(e) => { e.stopPropagation(); prev(); }}
+          aria-label="Previous"
+          className={`absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 flex items-center justify-center text-white/60 hover:text-[#FF7A45] transition-opacity ${hovered ? "opacity-100" : "opacity-0"}`}
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </button>
+        <button
+          onClick={(e) => { e.stopPropagation(); next(); }}
+          aria-label="Next"
+          className={`absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 flex items-center justify-center text-white/60 hover:text-[#FF7A45] transition-opacity ${hovered ? "opacity-100" : "opacity-0"}`}
+        >
+          <ChevronRight className="w-6 h-6" />
+        </button>
+
+        {/* Custom rotating "Explore Project" cursor */}
+        <div
+          className={`explore-cursor ${mouse.visible ? "visible" : ""}`}
+          style={{ left: mouse.x, top: mouse.y }}
+        >
+          <svg viewBox="0 0 100 100">
+            <defs>
+              <path id="circlePath" d="M 50,50 m -36,0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0" />
+            </defs>
+            <text fill="#FFFFFF" fontSize="9" fontFamily="'Space Mono', monospace" letterSpacing="2">
+              <textPath href="#circlePath">EXPLORE PROJECT • EXPLORE PROJECT • </textPath>
+            </text>
+            <circle cx="50" cy="50" r="3" fill="#FF7A45" />
+          </svg>
+        </div>
       </div>
     </section>
   );

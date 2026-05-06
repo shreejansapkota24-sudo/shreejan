@@ -187,40 +187,21 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* SS Gradient Ring (rotating) */}
+          {/* Profile photo with rotating gradient border + float */}
           <motion.div
             className="order-1 md:order-2 flex justify-center"
             initial={{ opacity: 0, scale: 0.85, filter: "blur(8px)" }}
             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
             transition={{ delay: 1.4, duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="hero-ring-wrap">
-              <div className="hero-ring-glow" />
-              <div className="hero-ring" />
-              <div className="hero-ring shadow" />
-              {/* SS in middle */}
-              <div className="relative z-10 flex flex-col items-center justify-center text-center">
-                <span
-                  className="font-display"
-                  style={{
-                    fontSize: "5.5rem",
-                    lineHeight: 1,
-                    fontWeight: 500,
-                    fontStyle: "italic",
-                    color: "var(--nav-text)",
-                    letterSpacing: "-0.04em",
-                    textShadow: "0 4px 30px rgba(255,77,138,0.4)",
-                  }}
-                >
-                  SS
-                </span>
-                <span
-                  className="font-mono mt-3 text-[10px] uppercase"
-                  style={{ color: "var(--nav-text-muted)", letterSpacing: "0.4em" }}
-                >
-                  Shreejan · Sapkota
-                </span>
-              </div>
+            <div className="profile-photo-wrap">
+              <img
+                id="hero-profile-photo"
+                src={new URL("../assets/profile-themed.jpg", import.meta.url).href}
+                alt="Shreejan Sapkota"
+                className="profile-photo"
+                loading="eager"
+              />
             </div>
           </motion.div>
         </div>
