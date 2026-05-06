@@ -72,8 +72,7 @@ const Portfolio = () => {
     <section id="portfolio" className="relative">
       <div
         ref={wrapRef}
-        className="relative w-screen h-screen overflow-hidden -mx-6 cursor-none"
-        style={{ marginLeft: "calc(-50vw + 50%)", marginRight: "calc(-50vw + 50%)" }}
+        className="relative w-screen h-screen overflow-hidden cursor-none"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => { setHovered(false); setMouse((m) => ({ ...m, visible: false })); }}
         onMouseMove={onMove}
