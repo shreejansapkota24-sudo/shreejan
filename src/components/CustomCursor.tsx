@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 
-const INTERACTIVE_SELECTORS = "a, button, [role='button'], summary, select, .group, [data-cursor='hover']";
+const INTERACTIVE_SELECTORS =
+  "a, button, [role='button'], summary, select, .group, [data-cursor='hover']";
 
 const CustomCursor = () => {
   const dotRef = useRef<HTMLDivElement>(null);
@@ -22,9 +23,8 @@ const CustomCursor = () => {
     };
 
     const tick = () => {
-      // Lerp ~0.1 second lag
-      ring.current.x += (mouse.current.x - ring.current.x) * 0.18;
-      ring.current.y += (mouse.current.y - ring.current.y) * 0.18;
+      ring.current.x += (mouse.current.x - ring.current.x) * 0.16;
+      ring.current.y += (mouse.current.y - ring.current.y) * 0.16;
       if (ringRef.current) {
         ringRef.current.style.transform = `translate(${ring.current.x}px, ${ring.current.y}px) translate(-50%, -50%)`;
       }
@@ -34,7 +34,10 @@ const CustomCursor = () => {
     const onOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement | null;
       if (!target || !ringRef.current) return;
-      ringRef.current.classList.toggle("hovering", !!target.closest(INTERACTIVE_SELECTORS));
+      ringRef.current.classList.toggle(
+        "hovering",
+        !!target.closest(INTERACTIVE_SELECTORS)
+      );
     };
 
     const onDown = () => {
