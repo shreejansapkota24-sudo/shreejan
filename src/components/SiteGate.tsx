@@ -150,72 +150,95 @@ export default function SiteGate({ children }: { children: React.ReactNode }) {
 
   return (
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 arctic-noise"
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 arctic-noise overflow-hidden"
       style={{
-        backgroundColor: "#F5F5F7",
+        backgroundColor: "#0A0A0A",
         backgroundImage:
-          "radial-gradient(ellipse 70% 50% at 80% 10%, rgba(183,156,255,0.25) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 10% 90%, rgba(107,213,255,0.15) 0%, transparent 60%)",
+          "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(255,255,255,0.04) 0%, transparent 60%), linear-gradient(180deg,#0A0A0A 0%, #050505 100%)",
       }}
     >
+      {/* Animated mono grid lines */}
+      <div className="pointer-events-none absolute inset-0 opacity-[0.06]"
+        style={{
+          backgroundImage:
+            "linear-gradient(#FFFFFF 1px, transparent 1px), linear-gradient(90deg, #FFFFFF 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
+        }}
+      />
       <div className="aurora-blob" style={{ top: "10%", left: "55%" }} />
       <div className="aurora-blob alt" style={{ bottom: "5%", left: "5%", animationDelay: "-6s" }} />
 
+      {/* Top bar */}
+      <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-6 py-5 font-mono text-[10px] tracking-[0.3em] uppercase text-white/50">
+        <span>SS · Studio</span>
+        <span className="hidden sm:inline">Security Checkpoint</span>
+        <span>{new Date().getFullYear()}</span>
+      </div>
+
       <div
-        className="w-full max-w-md rounded-3xl text-center cinematic-in relative"
+        className="w-full max-w-md text-center cinematic-in relative"
         style={{
-          background: "rgba(255, 255, 255, 0.85)",
-          backdropFilter: "blur(32px) saturate(200%)",
-          WebkitBackdropFilter: "blur(32px) saturate(200%)",
-          border: "1px solid rgba(10, 10, 15, 0.06)",
-          boxShadow: "0 20px 60px rgba(107, 91, 255, 0.15), 0 0 0 1px rgba(255,255,255,0.5) inset",
-          padding: "56px 48px",
+          background: "rgba(17,17,17,0.85)",
+          backdropFilter: "blur(20px) saturate(150%)",
+          WebkitBackdropFilter: "blur(20px) saturate(150%)",
+          border: "1px solid #242424",
+          padding: "56px 44px",
           animationDelay: "0.3s",
         }}
       >
-        <div className="relative mx-auto mb-6 flex h-[52px] w-[52px] items-center justify-center">
+        {/* corner ticks */}
+        <span className="absolute top-0 left-0 w-3 h-3 border-t border-l border-white" />
+        <span className="absolute top-0 right-0 w-3 h-3 border-t border-r border-white" />
+        <span className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-white" />
+        <span className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-white" />
+
+        <div className="relative mx-auto mb-6 flex h-[56px] w-[56px] items-center justify-center">
           <div
-            className="absolute inset-0 rounded-full"
-            style={{
-              boxShadow: "0 0 50px rgba(107,91,255,0.4)",
-              animation: "pulse-glow 2s ease-in-out infinite",
-            }}
+            className="absolute inset-0 border border-white/30"
+            style={{ animation: "border-spin 6s linear infinite" }}
           />
-          <ShieldCheck className="h-[52px] w-[52px] relative" style={{ color: "#6B5BFF", fill: "rgba(107,91,255,0.08)" }} strokeWidth={1.4} />
+          <ShieldCheck className="h-7 w-7 text-white" strokeWidth={1.5} />
         </div>
 
-        <h2 className="font-display font-bold mb-3" style={{ color: "#0A0A0F", fontSize: "28px", letterSpacing: "-0.02em" }}>
+        <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-white/50 mb-2">
+          [ Verification Required ]
+        </p>
+        <h2
+          className="font-display mb-3"
+          style={{ color: "#FFFFFF", fontSize: "26px", fontWeight: 800, letterSpacing: "-0.02em" }}
+        >
           Security check
         </h2>
-        <p className="font-normal mb-8" style={{ color: "#6B6B75" }}>
+        <p className="font-normal mb-8 text-[13px]" style={{ color: "#9A9A9A" }}>
           Please verify you're human to continue to the portfolio.
         </p>
 
         <div
-          className="flex justify-center min-h-[70px] rounded-[10px] overflow-hidden"
-          style={{ border: "1px solid rgba(10,10,15,0.06)" }}
+          className="flex justify-center min-h-[70px] overflow-hidden"
+          style={{ border: "1px solid #242424", background: "#0A0A0A" }}
         >
           <div ref={widgetRef} aria-label="Cloudflare Turnstile verification" />
         </div>
 
         {status === "loading" && (
-          <div className="mt-5 flex items-center justify-center gap-2 text-xs" style={{ color: "#6B6B75" }}>
+          <div className="mt-5 flex items-center justify-center gap-2 text-xs font-mono uppercase tracking-widest" style={{ color: "#9A9A9A" }}>
             <Loader2 className="h-3.5 w-3.5 animate-spin" />
-            Loading verification…
+            Loading…
           </div>
         )}
         {status === "verifying" && (
-          <div className="mt-5 flex items-center justify-center gap-2 text-xs" style={{ color: "#6B6B75" }}>
+          <div className="mt-5 flex items-center justify-center gap-2 text-xs font-mono uppercase tracking-widest" style={{ color: "#9A9A9A" }}>
             <Loader2 className="h-3.5 w-3.5 animate-spin" />
             Verifying…
           </div>
         )}
         {status === "error" && (
-          <p className="mt-5 text-xs text-destructive">{errorMsg}</p>
+          <p className="mt-5 text-xs text-destructive font-mono">{errorMsg}</p>
         )}
 
         <p
           className="mt-8 font-mono"
-          style={{ fontSize: "11px", color: "#9B9BA5", letterSpacing: "0.08em" }}
+          style={{ fontSize: "10px", color: "#5C5C5C", letterSpacing: "0.25em" }}
         >
           PROTECTED BY CLOUDFLARE TURNSTILE
         </p>

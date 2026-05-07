@@ -1,12 +1,11 @@
 import { useState, useCallback } from 'react';
-import { Bot, Trash2, Zap, AlertTriangle, Instagram, ArrowLeft } from 'lucide-react';
+import { Bot, Trash2, Zap, AlertTriangle, Instagram, ArrowLeft, Mail, Linkedin, Github, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { toast } from 'sonner';
 import MessageList from '@/components/cyberguard/cyber-saathi/MessageList';
 import ChatInput from '@/components/cyberguard/cyber-saathi/ChatInput';
 import EvidencePanel from '@/components/cyberguard/cyber-saathi/EvidencePanel';
@@ -17,6 +16,14 @@ import CyberGuardNavbar from '@/components/cyberguard/CyberGuardNavbar';
 import type { Attachment } from '@/lib/cyberguard/cyber-saathi-types';
 
 const INSTAGRAM_URL = 'https://www.instagram.com/sapkota.shreejan/';
+const LINKEDIN_URL = 'https://www.linkedin.com/in/shreejan-sapkota-0449b023b/';
+const GITHUB_URL = 'https://github.com/shreejansapkota24-sudo';
+const EMAIL_URL = 'mailto:shreejansapkota24@gmail.com';
+
+const isWithinHours = () => {
+  const h = new Date().getHours();
+  return h >= 9 && h < 19;
+};
 
 export default function CyberSaathiPage() {
   const isMobile = useIsMobile();
@@ -135,25 +142,25 @@ export default function CyberSaathiPage() {
             <div className="lg:col-span-2 flex flex-col bg-card/30 rounded-xl border border-border overflow-hidden">
               <MessageList messages={messages} isLoading={isLoading} />
               {limitReached && (
-                <div className="px-4 py-3 bg-destructive/10 border-t border-destructive/30 space-y-2">
-                  <div className="flex items-center gap-2 text-sm text-destructive font-medium">
+                <div className="px-4 py-3 bg-white/5 border-t border-white/10 space-y-2">
+                  <div className="flex items-center gap-2 text-sm text-white font-medium">
                     <AlertTriangle className="w-4 h-4 flex-shrink-0" />
                     <span>You've reached today's free limit of {limit} messages.</span>
                   </div>
-                  <p className="text-xs text-muted-foreground">
-                    To unlock more messages, please contact me through my social media.
+                  <p className="text-xs text-white/60">
+                    Contact me directly · Available 9:00 AM – 7:00 PM (NPT). Outside these hours I'll get back to you the next day.
                   </p>
-                  <Button
-                    type="button"
-                    size="sm"
-                    onClick={() => {
-                      window.location.href = INSTAGRAM_URL;
-                    }}
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2 font-cyber text-xs shadow-lg shadow-primary/30"
-                  >
-                    <Instagram className="w-4 h-4" />
-                    Message me on Instagram
-                  </Button>
+                  <div className="flex flex-wrap gap-2 pt-1">
+                    <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="btn-ghost-mono text-[10px]">
+                      <Instagram className="w-3.5 h-3.5" /> Instagram
+                    </a>
+                    <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="btn-ghost-mono text-[10px]">
+                      <Linkedin className="w-3.5 h-3.5" /> LinkedIn
+                    </a>
+                    <a href={EMAIL_URL} className="btn-mono text-[10px]" style={{ background: '#FFFFFF', color: '#0A0A0A', borderColor: '#FFFFFF' }}>
+                      <Mail className="w-3.5 h-3.5" /> Email
+                    </a>
+                  </div>
                 </div>
               )}
               <ChatInput
@@ -220,30 +227,63 @@ export default function CyberSaathiPage() {
 
       {/* Daily Limit Reached Dialog */}
       <Dialog open={limitDialogOpen} onOpenChange={setLimitDialogOpen}>
-        <DialogContent className="bg-[#0E1830] border border-[#1B2747] rounded-2xl">
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-display text-white flex items-center gap-2">
-              Daily Limit Reached <span>🔒</span>
-            </DialogTitle>
-            <DialogDescription className="text-[#8892B0] pt-2">
-              You've used all {limit} free messages today. Want unlimited access? Reach out to Shreejan directly.
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter className="gap-2 sm:gap-2">
-            <Button
-              variant="outline"
+        <DialogContent className="bg-[#0A0A0A] border border-[#242424] rounded-none max-w-md p-0 overflow-hidden">
+          {/* corner ticks */}
+          <span className="absolute top-0 left-0 w-3 h-3 border-t border-l border-white pointer-events-none" />
+          <span className="absolute top-0 right-0 w-3 h-3 border-t border-r border-white pointer-events-none" />
+          <span className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-white pointer-events-none" />
+          <span className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-white pointer-events-none" />
+
+          <div className="p-8">
+            <div className="flex items-center gap-2 font-mono text-[10px] tracking-[0.3em] uppercase text-white/50 mb-4">
+              <span className="w-1.5 h-1.5 bg-white animate-pulse" />
+              Daily Limit Reached
+            </div>
+
+            <DialogHeader className="text-left space-y-3">
+              <DialogTitle className="text-3xl font-display text-white" style={{ fontWeight: 800, letterSpacing: '-0.02em' }}>
+                Let's take this further
+              </DialogTitle>
+              <DialogDescription className="text-[#9A9A9A] text-[13px] leading-relaxed">
+                You've used all {limit} free messages today. To continue the conversation, reach out to me directly through any of my channels below.
+              </DialogDescription>
+            </DialogHeader>
+
+            <div className="mt-6 border border-[#242424] p-4 flex items-start gap-3">
+              <Clock className="w-4 h-4 text-white mt-0.5 shrink-0" />
+              <div className="font-mono text-[11px] tracking-wider text-white/80">
+                <div className="uppercase text-white/50 text-[9px] tracking-[0.3em] mb-1">Available</div>
+                <div>09:00 AM — 07:00 PM (NPT)</div>
+                <div className={`mt-1 text-[10px] ${isWithinHours() ? 'text-white' : 'text-white/40'}`}>
+                  {isWithinHours()
+                    ? '● Online — usually replies within an hour'
+                    : '○ Currently offline — please contact during available hours'}
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-5 grid grid-cols-2 gap-2">
+              <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="btn-ghost-mono justify-center">
+                <Instagram className="w-3.5 h-3.5" /> Instagram
+              </a>
+              <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="btn-ghost-mono justify-center">
+                <Linkedin className="w-3.5 h-3.5" /> LinkedIn
+              </a>
+              <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="btn-ghost-mono justify-center">
+                <Github className="w-3.5 h-3.5" /> GitHub
+              </a>
+              <a href={EMAIL_URL} className="btn-mono justify-center" style={{ background: '#FFFFFF', color: '#0A0A0A', borderColor: '#FFFFFF' }}>
+                <Mail className="w-3.5 h-3.5" /> Email
+              </a>
+            </div>
+
+            <button
               onClick={() => setLimitDialogOpen(false)}
-              className="border-[#1B2747] text-[#ECEFF7] hover:bg-[#142042]"
+              className="mt-5 w-full text-center font-mono text-[10px] tracking-[0.25em] uppercase text-white/40 hover:text-white transition"
             >
-              Try Again Tomorrow
-            </Button>
-            <Button
-              onClick={() => { window.location.href = "mailto:shreejansapkota24@gmail.com"; }}
-              className="bg-[#FF7A45] hover:bg-[#FF7A45]/90 text-[#08101F] font-medium"
-            >
-              Contact Shreejan
-            </Button>
-          </DialogFooter>
+              [ Try again tomorrow ]
+            </button>
+          </div>
         </DialogContent>
       </Dialog>
     </div>

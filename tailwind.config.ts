@@ -64,11 +64,11 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        display: ['"Cormorant Garamond"', "serif"],
-        cyber: ['"Cormorant Garamond"', "serif"],
-        serif: ['"Cormorant Garamond"', "serif"],
-        sans: ['"Space Mono"', '"JetBrains Mono"', "monospace"],
-        mono: ['"Space Mono"', '"JetBrains Mono"', "monospace"],
+        display: ['"Archivo"', '"Inter"', "sans-serif"],
+        cyber: ['"Archivo"', '"Inter"', "sans-serif"],
+        serif: ['"Archivo"', '"Inter"', "sans-serif"],
+        sans: ['"Inter"', '"JetBrains Mono"', "sans-serif"],
+        mono: ['"JetBrains Mono"', "monospace"],
       },
       keyframes: {
         "accordion-down": {

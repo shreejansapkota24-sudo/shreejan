@@ -30,39 +30,38 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 cinematic-ease ${
-        scrolled ? "border-b border-[#1B2747]" : "border-b border-transparent"
+        scrolled ? "border-b border-[#242424]" : "border-b border-transparent"
       }`}
       style={{
-        background: "rgba(8, 16, 31, 0.78)",
-        backdropFilter: "blur(14px) saturate(140%)",
-        WebkitBackdropFilter: "blur(14px) saturate(140%)",
+        background: scrolled ? "rgba(10,10,10,0.78)" : "transparent",
+        backdropFilter: scrolled ? "blur(14px) saturate(140%)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(14px) saturate(140%)" : "none",
       }}
     >
-      <div className="max-w-6xl mx-auto px-6 py-4">
+      <div className="max-w-7xl mx-auto px-6 py-5">
         <div className="flex items-center justify-between">
           <a
             href="#home"
-            className="text-2xl font-display tracking-tight"
-            style={{ color: "#ECEFF7", fontWeight: 500, fontStyle: "italic" }}
+            className="text-sm font-mono uppercase tracking-[0.25em]"
+            style={{ color: "#F5F5F5", fontWeight: 500 }}
           >
-            <span style={{ background: "linear-gradient(135deg,#FF7A45,#FF4D8A)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>SS</span>
-            <span style={{ color: "#FF7A45" }}>.</span>
+            SS · Studio
           </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-7">
-            {isHomePage && navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="nav-link-underline transition-colors duration-300"
-                style={{ color: "#888", fontFamily: "'Space Mono', monospace" }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#F0F0F0")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "#888")}
-              >
-                {link.name}
-              </a>
-            ))}
+          <div className="hidden md:flex items-center gap-8">
+            {isHomePage &&
+              navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="nav-link-underline transition-colors duration-300"
+                  style={{ color: "#9A9A9A" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "#FFFFFF")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "#9A9A9A")}
+                >
+                  {link.name}
+                </a>
+              ))}
 
             <Link to="/cyberguard/cyber-saathi">
               <button className="btn-mono">
@@ -72,33 +71,32 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
           <Button
             variant="ghost"
             size="icon"
             className="md:hidden hover:bg-white/5"
-            style={{ color: "#F0F0F0" }}
+            style={{ color: "#F5F5F5" }}
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
         </div>
 
-        {/* Mobile Navigation */}
         {isOpen && (
           <div className="md:hidden pt-4 pb-2 cinematic-in">
             <div className="flex flex-col gap-4">
-              {isHomePage && navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-[11px] uppercase tracking-[0.1em] transition-colors duration-200"
-                  style={{ color: "#888", fontFamily: "'Space Mono', monospace" }}
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.name}
-                </a>
-              ))}
+              {isHomePage &&
+                navLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="text-[11px] uppercase tracking-[0.18em] font-mono transition-colors duration-200"
+                    style={{ color: "#9A9A9A" }}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.name}
+                  </a>
+                ))}
 
               <Link to="/cyberguard/cyber-saathi" onClick={() => setIsOpen(false)}>
                 <button className="btn-mono">
