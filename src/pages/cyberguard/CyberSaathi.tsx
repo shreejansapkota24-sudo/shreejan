@@ -1,12 +1,11 @@
 import { useState, useCallback } from 'react';
-import { Bot, Trash2, Zap, AlertTriangle, Instagram, ArrowLeft } from 'lucide-react';
+import { Bot, Trash2, Zap, AlertTriangle, Instagram, ArrowLeft, Mail, Linkedin, Github, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { toast } from 'sonner';
 import MessageList from '@/components/cyberguard/cyber-saathi/MessageList';
 import ChatInput from '@/components/cyberguard/cyber-saathi/ChatInput';
 import EvidencePanel from '@/components/cyberguard/cyber-saathi/EvidencePanel';
@@ -17,6 +16,14 @@ import CyberGuardNavbar from '@/components/cyberguard/CyberGuardNavbar';
 import type { Attachment } from '@/lib/cyberguard/cyber-saathi-types';
 
 const INSTAGRAM_URL = 'https://www.instagram.com/sapkota.shreejan/';
+const LINKEDIN_URL = 'https://www.linkedin.com/in/shreejan-sapkota-0449b023b/';
+const GITHUB_URL = 'https://github.com/shreejansapkota24-sudo';
+const EMAIL_URL = 'mailto:shreejansapkota24@gmail.com';
+
+const isWithinHours = () => {
+  const h = new Date().getHours();
+  return h >= 9 && h < 19;
+};
 
 export default function CyberSaathiPage() {
   const isMobile = useIsMobile();
