@@ -142,25 +142,25 @@ export default function CyberSaathiPage() {
             <div className="lg:col-span-2 flex flex-col bg-card/30 rounded-xl border border-border overflow-hidden">
               <MessageList messages={messages} isLoading={isLoading} />
               {limitReached && (
-                <div className="px-4 py-3 bg-destructive/10 border-t border-destructive/30 space-y-2">
-                  <div className="flex items-center gap-2 text-sm text-destructive font-medium">
+                <div className="px-4 py-3 bg-white/5 border-t border-white/10 space-y-2">
+                  <div className="flex items-center gap-2 text-sm text-white font-medium">
                     <AlertTriangle className="w-4 h-4 flex-shrink-0" />
                     <span>You've reached today's free limit of {limit} messages.</span>
                   </div>
-                  <p className="text-xs text-muted-foreground">
-                    To unlock more messages, please contact me through my social media.
+                  <p className="text-xs text-white/60">
+                    Contact me directly · Available 9:00 AM – 7:00 PM (NPT). Outside these hours I'll get back to you the next day.
                   </p>
-                  <Button
-                    type="button"
-                    size="sm"
-                    onClick={() => {
-                      window.location.href = INSTAGRAM_URL;
-                    }}
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2 font-cyber text-xs shadow-lg shadow-primary/30"
-                  >
-                    <Instagram className="w-4 h-4" />
-                    Message me on Instagram
-                  </Button>
+                  <div className="flex flex-wrap gap-2 pt-1">
+                    <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="btn-ghost-mono text-[10px]">
+                      <Instagram className="w-3.5 h-3.5" /> Instagram
+                    </a>
+                    <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="btn-ghost-mono text-[10px]">
+                      <Linkedin className="w-3.5 h-3.5" /> LinkedIn
+                    </a>
+                    <a href={EMAIL_URL} className="btn-mono text-[10px]" style={{ background: '#FFFFFF', color: '#0A0A0A', borderColor: '#FFFFFF' }}>
+                      <Mail className="w-3.5 h-3.5" /> Email
+                    </a>
+                  </div>
                 </div>
               )}
               <ChatInput
