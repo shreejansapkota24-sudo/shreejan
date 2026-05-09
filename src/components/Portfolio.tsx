@@ -228,10 +228,10 @@ const Portfolio = () => {
               <defs>
                 <path id="circlePath" d="M 50,50 m -36,0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0" />
               </defs>
-              <text fill="#FFFFFF" fontSize="9" fontFamily="'JetBrains Mono', monospace" letterSpacing="2">
+              <text fill="#FF8A1E" fontSize="9" fontFamily="'JetBrains Mono', monospace" letterSpacing="2" style={{ filter: "drop-shadow(0 0 4px rgba(255,138,30,0.7))" }}>
                 <textPath href="#circlePath">EXPLORE PROJECT • EXPLORE PROJECT • </textPath>
               </text>
-              <circle cx="50" cy="50" r="2.5" fill="#FFFFFF" />
+              <circle cx="50" cy="50" r="2.5" fill="#FF8A1E" />
             </svg>
           </div>
 
