@@ -451,17 +451,18 @@
   border-radius: 50%;
   transform: translate(-50%, -50%);
   will-change: transform, width, height, opacity;
-  mix-blend-mode: difference;
 }
 .cursor-dot {
-  width: 4px; height: 4px;
-  background: #FFFFFF;
+  width: 5px; height: 5px;
+  background: #FF8A1E;
+  box-shadow: 0 0 10px rgba(255,138,30,0.9), 0 0 22px rgba(255,138,30,0.5);
   transition: opacity 0.2s ease, transform 0.15s ease;
 }
 .cursor-ring {
-  width: 28px; height: 28px;
-  border: 1px solid #FFFFFF;
+  width: 30px; height: 30px;
+  border: 1.2px solid rgba(255,138,30,0.85);
   background: transparent;
+  box-shadow: 0 0 18px rgba(255,138,30,0.35), inset 0 0 8px rgba(255,138,30,0.18);
   transition: width 0.25s cubic-bezier(0.16,1,0.3,1),
               height 0.25s cubic-bezier(0.16,1,0.3,1),
               border-color 0.3s ease,
@@ -469,7 +470,7 @@
 }
 .cursor-ring.hovering {
   width: 56px; height: 56px;
-  border-color: #FFFFFF;
+  border-color: #F5B544;
 }
 .cursor-ring.click { transform: translate(-50%, -50%) scale(0.8); opacity: 0.6; }
 .cursor-dot.click { transform: translate(-50%, -50%) scale(0.6); }
