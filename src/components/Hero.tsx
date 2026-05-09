@@ -70,10 +70,10 @@ const Hero = () => {
               transition={{ delay: 1.3, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             >
               <span
-                className="inline-flex items-center gap-2 px-4 py-1.5 glass font-mono text-[10px] uppercase tracking-[0.22em] mb-6"
-                style={{ color: "#9A9A9A", borderRadius: 0 }}
+                className="inline-flex items-center gap-2 px-4 py-1.5 glass font-mono text-[10px] uppercase tracking-[0.22em] mb-6 border-glow"
+                style={{ color: "#FFB36B", borderRadius: 999 }}
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FF8A1E] animate-pulse" style={{ boxShadow: "0 0 8px #FF8A1E" }} />
                 Available for opportunities
               </span>
             </motion.div>
