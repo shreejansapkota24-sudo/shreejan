@@ -484,7 +484,9 @@
   position: fixed;
   top: 0; left: 0;
   height: 1px; width: 0%;
-  background: #FFFFFF;
+  background: linear-gradient(90deg, #FF8A1E, #F5B544);
+  box-shadow: 0 0 12px rgba(255,138,30,0.7);
+  height: 2px;
   z-index: 100000;
   pointer-events: none;
   transition: width 0.05s linear;
