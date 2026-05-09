@@ -162,14 +162,13 @@ const Hero = () => {
                       href={social.href}
                       target={opensExternalSite ? "_blank" : undefined}
                       rel={opensExternalSite ? "noopener noreferrer" : undefined}
-                      className="w-9 h-9 flex items-center justify-center transition-all duration-300"
+                      className="w-9 h-9 flex items-center justify-center transition-all duration-300 rounded-full"
                       style={{
-                        background: "transparent",
-                        border: "1px solid #242424",
-                        color: "#9A9A9A",
-                        borderRadius: 0,
+                        background: "rgba(255,138,30,0.04)",
+                        border: "1px solid rgba(255,138,30,0.25)",
+                        color: "#FFB36B",
                       }}
-                      whileHover={{ y: -2, borderColor: "#FFFFFF", color: "#FFFFFF" }}
+                      whileHover={{ y: -2, borderColor: "#FF8A1E", color: "#FFFFFF", boxShadow: "0 0 18px rgba(255,138,30,0.5)" }}
                       whileTap={{ scale: 0.95 }}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -220,10 +219,11 @@ const Hero = () => {
           </span>
           <div
             className="w-5 h-9 flex justify-center p-1.5"
-            style={{ border: "1px solid #242424", borderRadius: 12 }}
+            style={{ border: "1px solid rgba(255,138,30,0.4)", borderRadius: 12 }}
           >
             <motion.div
-              className="w-0.5 h-1.5 rounded-full bg-white"
+              className="w-0.5 h-1.5 rounded-full"
+              style={{ background: "#FF8A1E", boxShadow: "0 0 8px #FF8A1E" }}
               animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             />
