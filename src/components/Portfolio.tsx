@@ -16,23 +16,24 @@ const projects: Project[] = [
     subtitle: "Cybersecurity Toolkit · URL & File Scanner · Threat Map",
     href: "/cyberguard",
     internal: true,
-    bg: `radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.10), transparent 55%),
-         radial-gradient(ellipse at 80% 80%, rgba(255,255,255,0.06), transparent 60%),
-         linear-gradient(135deg, #0A0A0A 0%, #161616 60%, #0A0A0A 100%)`,
+    bg: `radial-gradient(ellipse at 30% 20%, rgba(255,138,30,0.35), transparent 55%),
+         radial-gradient(ellipse at 80% 80%, rgba(245,181,68,0.20), transparent 60%),
+         linear-gradient(135deg, #1a0a02 0%, #2a1305 40%, #0A0A0A 100%)`,
   },
   {
     title: "Cyber Saathi",
     subtitle: "AI-powered Defensive Security Analyst · IOC Extraction",
     href: "/cyberguard/cyber-saathi",
     internal: true,
-    bg: `radial-gradient(ellipse at 70% 30%, rgba(255,255,255,0.10), transparent 60%),
-         radial-gradient(ellipse at 20% 70%, rgba(255,255,255,0.05), transparent 60%),
-         linear-gradient(160deg, #060606 0%, #141414 50%, #0A0A0A 100%)`,
+    bg: `radial-gradient(ellipse at 70% 30%, rgba(255,106,61,0.32), transparent 60%),
+         radial-gradient(ellipse at 20% 70%, rgba(245,181,68,0.18), transparent 60%),
+         linear-gradient(160deg, #160803 0%, #2c1206 50%, #0A0A0A 100%)`,
   },
   {
     title: "More Coming Soon",
     subtitle: "New experiments in motion · Stay tuned",
-    bg: `linear-gradient(135deg, #0A0A0A 0%, #141414 50%, #0A0A0A 100%)`,
+    bg: `radial-gradient(ellipse at 50% 30%, rgba(255,138,30,0.20), transparent 60%),
+         linear-gradient(135deg, #0A0A0A 0%, #1a0d04 50%, #0A0A0A 100%)`,
   },
 ];
 
@@ -89,22 +90,22 @@ const Portfolio = () => {
         {/* Section header */}
         <div className="flex items-end justify-between mb-6 px-2">
           <div>
-            <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-white/40 mb-2">
+            <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-[#FF8A1E]/80 mb-2">
               Selected Works · 2024 — 2026
             </p>
-            <h2 className="font-display text-3xl md:text-5xl text-white" style={{ fontWeight: 800, letterSpacing: "-0.03em" }}>
+            <h2 className="font-display text-3xl md:text-5xl arctic-gradient-text" style={{ fontWeight: 800, letterSpacing: "-0.03em" }}>
               Portfolio
             </h2>
           </div>
           <div className="hidden md:flex items-center gap-6 font-mono text-[10px] tracking-[0.25em] uppercase text-white/50">
             <span>{dateStr}</span>
-            <span className="text-white">{timeStr}</span>
+            <span style={{ color: "#FF8A1E" }}>{timeStr}</span>
           </div>
         </div>
 
         <div
           ref={wrapRef}
-          className="relative w-full overflow-hidden border border-[#242424]"
+          className="relative w-full overflow-hidden rounded-2xl border border-[#FF8A1E]/20 box-glow"
           style={{ height: "min(78vh, 720px)" }}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => {
@@ -164,7 +165,6 @@ const Portfolio = () => {
                 <Link
                   to={current.href}
                   className="btn-mono pointer-events-auto"
-                  style={{ background: "#FFFFFF", color: "#0A0A0A", borderColor: "#FFFFFF" }}
                 >
                   View Project →
                 </Link>
@@ -242,10 +242,13 @@ const Portfolio = () => {
                 key={i}
                 onClick={(e) => { e.stopPropagation(); setIndex(i); }}
                 aria-label={`Go to slide ${i + 1}`}
-                className="h-px transition-all"
+                className="h-[2px] transition-all rounded-full"
                 style={{
                   width: i === index ? 36 : 14,
-                  background: i === index ? "#FFFFFF" : "rgba(255,255,255,0.3)",
+                  background: i === index
+                    ? "linear-gradient(90deg, #FF8A1E, #F5B544)"
+                    : "rgba(255,138,30,0.3)",
+                  boxShadow: i === index ? "0 0 8px #FF8A1E" : "none",
                 }}
               />
             ))}
