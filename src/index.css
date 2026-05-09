@@ -593,7 +593,6 @@
   transform: translate(-50%, -50%);
   opacity: 0;
   transition: opacity 0.25s ease;
-  mix-blend-mode: difference;
 }
 .explore-cursor.visible { opacity: 1; }
 .explore-cursor svg {
