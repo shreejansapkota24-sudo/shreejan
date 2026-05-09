@@ -105,12 +105,12 @@ const Hero = () => {
 
             <motion.p
               className="font-mono text-[13px] mb-4 pl-4 min-h-[1.5em]"
-              style={{ color: "#F5F5F5", borderLeft: "1px solid #FFFFFF" }}
+              style={{ color: "#F5F5F5", borderLeft: "2px solid #FF8A1E", boxShadow: "inset 2px 0 12px -6px rgba(255,138,30,0.6)" }}
               initial={{ opacity: 0 }}
               animate={{ opacity: introDone ? 1 : 0 }}
               transition={{ duration: 0.5 }}
             >
-              "{typed}<span className="inline-block w-[2px] h-4 bg-white align-middle ml-0.5 animate-pulse" />"
+              "{typed}<span className="inline-block w-[2px] h-4 bg-[#FF8A1E] align-middle ml-0.5 animate-pulse" />"
             </motion.p>
 
             <motion.p
@@ -133,7 +133,6 @@ const Hero = () => {
               <a
                 href="#portfolio"
                 className="btn-mono hover-lift"
-                style={{ background: "#FFFFFF", color: "#0A0A0A", borderColor: "#FFFFFF" }}
               >
                 View Portfolio
               </a>
