@@ -129,7 +129,8 @@
     color: var(--mono-text);
     background-color: var(--mono-bg);
     background-image:
-      radial-gradient(ellipse 60% 50% at 50% 0%, rgba(255,255,255,0.025) 0%, transparent 60%),
+      radial-gradient(ellipse 70% 55% at 50% 0%, rgba(255,138,30,0.10) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 90% 110%, rgba(245,181,68,0.06) 0%, transparent 60%),
       linear-gradient(180deg, #0A0A0A 0%, #060606 100%);
     background-attachment: fixed;
     cursor: none;
@@ -178,27 +179,46 @@
   }
   .font-mono-arctic { font-family: 'JetBrains Mono', monospace; letter-spacing: 0.15em; text-transform: uppercase; }
 
-  .text-glow,
-  .text-glow-strong,
-  .text-glow-cyan { text-shadow: none; }
+  /* Cinematic glowing text */
+  .text-glow {
+    text-shadow:
+      0 0 12px rgba(255,138,30,0.45),
+      0 0 32px rgba(255,138,30,0.18);
+  }
+  .text-glow-strong {
+    text-shadow:
+      0 0 16px rgba(255,138,30,0.6),
+      0 0 48px rgba(255,138,30,0.25);
+  }
+  .text-glow-cyan { text-shadow: 0 0 12px rgba(245,181,68,0.45); }
 
-  /* Mono "gradient" text — soft white-to-grey */
+  /* Cinematic gradient text — orange to gold */
   .arctic-gradient-text {
-    background: linear-gradient(110deg, #FFFFFF 0%, #BFBFBF 50%, #FFFFFF 100%);
+    background: linear-gradient(110deg, #FF8A1E 0%, #F5B544 50%, #FF6A3D 100%);
     background-size: 200% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
-    animation: warm-shift 12s ease-in-out infinite;
+    animation: warm-shift 10s ease-in-out infinite;
   }
   @keyframes warm-shift {
     0%, 100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
   }
 
-  .box-glow,
-  .box-glow-strong { box-shadow: none; }
+  .box-glow {
+    box-shadow:
+      0 0 0 1px rgba(255,138,30,0.18),
+      0 10px 40px -10px rgba(255,138,30,0.35),
+      0 0 80px -20px rgba(255,138,30,0.25);
+  }
+  .box-glow-strong {
+    box-shadow:
+      0 0 0 1px rgba(255,138,30,0.32),
+      0 14px 60px -10px rgba(255,138,30,0.55),
+      0 0 120px -20px rgba(255,138,30,0.35);
+  }
 
   .glass {
     background: rgba(17, 17, 17, 0.55);
@@ -213,8 +233,10 @@
     border: 1px solid var(--mono-border);
   }
   .border-glow {
-    border-color: rgba(255,255,255,0.18);
-    box-shadow: none;
+    border-color: rgba(255,138,30,0.22);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.04),
+      0 0 24px -8px rgba(255,138,30,0.30);
   }
 
   /* Film grain */
