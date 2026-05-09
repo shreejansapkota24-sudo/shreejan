@@ -42,8 +42,8 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <a
             href="#home"
-            className="text-sm font-mono uppercase tracking-[0.25em]"
-            style={{ color: "#F5F5F5", fontWeight: 500 }}
+            className="text-sm font-mono uppercase tracking-[0.25em] arctic-gradient-text"
+            style={{ fontWeight: 600 }}
           >
             SS · Studio
           </a>
@@ -56,7 +56,7 @@ const Navbar = () => {
                   href={link.href}
                   className="nav-link-underline transition-colors duration-300"
                   style={{ color: "#9A9A9A" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#FFFFFF")}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "#FF8A1E")}
                   onMouseLeave={(e) => (e.currentTarget.style.color = "#9A9A9A")}
                 >
                   {link.name}

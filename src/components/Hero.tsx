@@ -70,10 +70,10 @@ const Hero = () => {
               transition={{ delay: 1.3, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             >
               <span
-                className="inline-flex items-center gap-2 px-4 py-1.5 glass font-mono text-[10px] uppercase tracking-[0.22em] mb-6"
-                style={{ color: "#9A9A9A", borderRadius: 0 }}
+                className="inline-flex items-center gap-2 px-4 py-1.5 glass font-mono text-[10px] uppercase tracking-[0.22em] mb-6 border-glow"
+                style={{ color: "#FFB36B", borderRadius: 999 }}
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FF8A1E] animate-pulse" style={{ boxShadow: "0 0 8px #FF8A1E" }} />
                 Available for opportunities
               </span>
             </motion.div>
@@ -105,12 +105,12 @@ const Hero = () => {
 
             <motion.p
               className="font-mono text-[13px] mb-4 pl-4 min-h-[1.5em]"
-              style={{ color: "#F5F5F5", borderLeft: "1px solid #FFFFFF" }}
+              style={{ color: "#F5F5F5", borderLeft: "2px solid #FF8A1E", boxShadow: "inset 2px 0 12px -6px rgba(255,138,30,0.6)" }}
               initial={{ opacity: 0 }}
               animate={{ opacity: introDone ? 1 : 0 }}
               transition={{ duration: 0.5 }}
             >
-              "{typed}<span className="inline-block w-[2px] h-4 bg-white align-middle ml-0.5 animate-pulse" />"
+              "{typed}<span className="inline-block w-[2px] h-4 bg-[#FF8A1E] align-middle ml-0.5 animate-pulse" />"
             </motion.p>
 
             <motion.p
@@ -133,7 +133,6 @@ const Hero = () => {
               <a
                 href="#portfolio"
                 className="btn-mono hover-lift"
-                style={{ background: "#FFFFFF", color: "#0A0A0A", borderColor: "#FFFFFF" }}
               >
                 View Portfolio
               </a>
@@ -163,14 +162,13 @@ const Hero = () => {
                       href={social.href}
                       target={opensExternalSite ? "_blank" : undefined}
                       rel={opensExternalSite ? "noopener noreferrer" : undefined}
-                      className="w-9 h-9 flex items-center justify-center transition-all duration-300"
+                      className="w-9 h-9 flex items-center justify-center transition-all duration-300 rounded-full"
                       style={{
-                        background: "transparent",
-                        border: "1px solid #242424",
-                        color: "#9A9A9A",
-                        borderRadius: 0,
+                        background: "rgba(255,138,30,0.04)",
+                        border: "1px solid rgba(255,138,30,0.25)",
+                        color: "#FFB36B",
                       }}
-                      whileHover={{ y: -2, borderColor: "#FFFFFF", color: "#FFFFFF" }}
+                      whileHover={{ y: -2, borderColor: "#FF8A1E", color: "#FFFFFF", boxShadow: "0 0 18px rgba(255,138,30,0.5)" }}
                       whileTap={{ scale: 0.95 }}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -221,10 +219,11 @@ const Hero = () => {
           </span>
           <div
             className="w-5 h-9 flex justify-center p-1.5"
-            style={{ border: "1px solid #242424", borderRadius: 12 }}
+            style={{ border: "1px solid rgba(255,138,30,0.4)", borderRadius: 12 }}
           >
             <motion.div
-              className="w-0.5 h-1.5 rounded-full bg-white"
+              className="w-0.5 h-1.5 rounded-full"
+              style={{ background: "#FF8A1E", boxShadow: "0 0 8px #FF8A1E" }}
               animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             />
