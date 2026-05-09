@@ -154,14 +154,14 @@ export default function SiteGate({ children }: { children: React.ReactNode }) {
       style={{
         backgroundColor: "#0A0A0A",
         backgroundImage:
-          "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(255,255,255,0.04) 0%, transparent 60%), linear-gradient(180deg,#0A0A0A 0%, #050505 100%)",
+          "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(255,138,30,0.18) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 90% 100%, rgba(245,181,68,0.10) 0%, transparent 60%), linear-gradient(180deg,#0A0A0A 0%, #050505 100%)",
       }}
     >
       {/* Animated mono grid lines */}
-      <div className="pointer-events-none absolute inset-0 opacity-[0.06]"
+      <div className="pointer-events-none absolute inset-0 opacity-[0.07]"
         style={{
           backgroundImage:
-            "linear-gradient(#FFFFFF 1px, transparent 1px), linear-gradient(90deg, #FFFFFF 1px, transparent 1px)",
+            "linear-gradient(rgba(255,138,30,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,138,30,0.6) 1px, transparent 1px)",
           backgroundSize: "48px 48px",
         }}
       />
@@ -169,38 +169,48 @@ export default function SiteGate({ children }: { children: React.ReactNode }) {
       <div className="aurora-blob alt" style={{ bottom: "5%", left: "5%", animationDelay: "-6s" }} />
 
       {/* Top bar */}
-      <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-6 py-5 font-mono text-[10px] tracking-[0.3em] uppercase text-white/50">
+      <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-6 py-5 font-mono text-[10px] tracking-[0.3em] uppercase text-[#FFB36B]/70">
         <span>SS · Studio</span>
         <span className="hidden sm:inline">Security Checkpoint</span>
         <span>{new Date().getFullYear()}</span>
       </div>
 
       <div
-        className="w-full max-w-md text-center cinematic-in relative"
+        className="w-full max-w-md text-center cinematic-in relative rounded-2xl"
         style={{
           background: "rgba(17,17,17,0.85)",
           backdropFilter: "blur(20px) saturate(150%)",
           WebkitBackdropFilter: "blur(20px) saturate(150%)",
-          border: "1px solid #242424",
+          border: "1px solid rgba(255,138,30,0.25)",
+          boxShadow: "0 24px 80px -20px rgba(255,138,30,0.45), 0 0 0 1px rgba(255,138,30,0.08) inset",
           padding: "56px 44px",
           animationDelay: "0.3s",
         }}
       >
         {/* corner ticks */}
-        <span className="absolute top-0 left-0 w-3 h-3 border-t border-l border-white" />
-        <span className="absolute top-0 right-0 w-3 h-3 border-t border-r border-white" />
-        <span className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-white" />
-        <span className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-white" />
+        <span className="absolute top-2 left-2 w-3 h-3 border-t border-l" style={{ borderColor: "#FF8A1E" }} />
+        <span className="absolute top-2 right-2 w-3 h-3 border-t border-r" style={{ borderColor: "#FF8A1E" }} />
+        <span className="absolute bottom-2 left-2 w-3 h-3 border-b border-l" style={{ borderColor: "#FF8A1E" }} />
+        <span className="absolute bottom-2 right-2 w-3 h-3 border-b border-r" style={{ borderColor: "#FF8A1E" }} />
 
-        <div className="relative mx-auto mb-6 flex h-[56px] w-[56px] items-center justify-center">
+        <div className="relative mx-auto mb-6 flex h-[64px] w-[64px] items-center justify-center">
           <div
-            className="absolute inset-0 border border-white/30"
-            style={{ animation: "border-spin 6s linear infinite" }}
+            className="absolute inset-0 rounded-full"
+            style={{
+              background: "conic-gradient(from 0deg, #FF8A1E, transparent 40%, #F5B544 70%, #FF8A1E)",
+              animation: "border-spin 4s linear infinite",
+              WebkitMask: "radial-gradient(circle, transparent 58%, #000 60%)",
+              mask: "radial-gradient(circle, transparent 58%, #000 60%)",
+            }}
           />
-          <ShieldCheck className="h-7 w-7 text-white" strokeWidth={1.5} />
+          <div
+            className="absolute inset-2 rounded-full"
+            style={{ background: "radial-gradient(circle, rgba(255,138,30,0.25), transparent 70%)" }}
+          />
+          <ShieldCheck className="h-7 w-7" strokeWidth={1.5} style={{ color: "#FF8A1E", filter: "drop-shadow(0 0 8px rgba(255,138,30,0.7))" }} />
         </div>
 
-        <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-white/50 mb-2">
+        <p className="font-mono text-[10px] tracking-[0.3em] uppercase mb-2" style={{ color: "#FFB36B" }}>
           [ Verification Required ]
         </p>
         <h2
