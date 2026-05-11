@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Bot } from "lucide-react";
+import { Menu, X, Bot, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
@@ -63,6 +63,17 @@ const Navbar = () => {
                 </a>
               ))}
 
+            <Link
+              to="/result-checker"
+              className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.18em] font-mono transition-colors duration-200"
+              style={{ color: "#FFB36B" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#FFFFFF")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#FFB36B")}
+            >
+              <GraduationCap className="w-3.5 h-3.5" />
+              Result Checker
+            </Link>
+
             <Link to="/cyberguard/cyber-saathi">
               <button className="btn-mono">
                 <Bot className="w-3.5 h-3.5" />
@@ -97,6 +108,16 @@ const Navbar = () => {
                     {link.name}
                   </a>
                 ))}
+
+              <Link
+                to="/result-checker"
+                onClick={() => setIsOpen(false)}
+                className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] font-mono"
+                style={{ color: "#FFB36B" }}
+              >
+                <GraduationCap className="w-3.5 h-3.5" />
+                Result Checker
+              </Link>
 
               <Link to="/cyberguard/cyber-saathi" onClick={() => setIsOpen(false)}>
                 <button className="btn-mono">

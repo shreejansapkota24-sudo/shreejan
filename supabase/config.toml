@@ -11,3 +11,6 @@ verify_jwt = false
 
 [functions.cyber-saathi]
 verify_jwt = false
+
+[functions.see-result]
+verify_jwt = false
