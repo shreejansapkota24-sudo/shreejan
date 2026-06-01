@@ -12,8 +12,18 @@ const Footer = () => {
     <footer className="py-10 px-6 border-t border-primary/10 relative">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="flex items-center gap-2">
-            <span className="text-xl font-bold text-primary font-cyber text-glow">SS</span>
+          <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="flex items-center gap-3">
+            <span
+              className="text-2xl tracking-[0.18em]"
+              style={{
+                fontWeight: 700,
+                color: "#F5B942",
+                textShadow: "0 0 18px rgba(245,185,66,0.55)",
+                fontFamily: '"Playfair Display","Cormorant Garamond",serif',
+              }}
+            >
+              SS
+            </span>
             <span className="text-primary/30">|</span>
             <span className="text-foreground font-medium">Shreejan Sapkota</span>
           </motion.div>
