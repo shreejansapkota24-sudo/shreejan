@@ -169,9 +169,9 @@ export default function SiteGate({ children }: { children: React.ReactNode }) {
       <div className="aurora-blob alt" style={{ bottom: "5%", left: "5%", animationDelay: "-6s" }} />
 
       {/* Top bar */}
-      <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-6 py-5 font-mono text-[10px] tracking-[0.3em] uppercase text-[#FFB36B]/70">
-        <span>SS · Studio</span>
-        <span className="hidden sm:inline">Security Checkpoint</span>
+      <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-6 py-5 font-mono text-[10px] tracking-[0.3em] uppercase text-[#FFD56A]/70">
+        <span style={{ fontFamily: '"Playfair Display",serif', fontSize: 16, letterSpacing: "0.18em", color: "#F5B942" }}>SS</span>
+        <span className="hidden sm:inline">Secure Portfolio Access</span>
         <span>{new Date().getFullYear()}</span>
       </div>
 
@@ -210,17 +210,17 @@ export default function SiteGate({ children }: { children: React.ReactNode }) {
           <ShieldCheck className="h-7 w-7" strokeWidth={1.5} style={{ color: "#FF8A1E", filter: "drop-shadow(0 0 8px rgba(255,138,30,0.7))" }} />
         </div>
 
-        <p className="font-mono text-[10px] tracking-[0.3em] uppercase mb-2" style={{ color: "#FFB36B" }}>
+        <p className="font-mono text-[10px] tracking-[0.3em] uppercase mb-2" style={{ color: "#FFD56A" }}>
           [ Verification Required ]
         </p>
         <h2
-          className="font-display mb-3"
-          style={{ color: "#FFFFFF", fontSize: "26px", fontWeight: 800, letterSpacing: "-0.02em" }}
+          className="mb-3"
+          style={{ color: "#FFFFFF", fontSize: "30px", fontWeight: 700, letterSpacing: "-0.01em", fontFamily: '"Playfair Display","Cormorant Garamond",serif' }}
         >
-          Security check
+          Secure Portfolio Access
         </h2>
-        <p className="font-normal mb-8 text-[13px]" style={{ color: "#9A9A9A" }}>
-          Please verify you're human to continue to the portfolio.
+        <p className="font-normal mb-8 text-[13px]" style={{ color: "#A1A1AA" }}>
+          To ensure a secure browsing experience, please complete the verification below before entering the portfolio.
         </p>
 
         <div

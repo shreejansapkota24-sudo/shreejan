@@ -11,7 +11,7 @@ const socials = [
   { icon: Mail, href: "mailto:shreejansapkota24@gmail.com", label: "Email" },
 ];
 
-const TAGLINE = "Coder by day, anime enthusiast by night.";
+const TAGLINE = "Computer Science Student • Software Developer • Technology Enthusiast";
 
 const Hero = () => {
   const [introDone, setIntroDone] = useState(false);
@@ -120,8 +120,9 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ delay: 2.5, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             >
-              A passionate Computer Science student exploring the depths of algorithms,
-              problem-solving, and building meaningful technology solutions.
+              I design and build modern, efficient, and user-focused software solutions.
+              Passionate about problem-solving, full-stack development, and emerging technologies,
+              I am committed to creating impactful digital experiences and continuously expanding my technical expertise.
             </motion.p>
 
             <motion.div

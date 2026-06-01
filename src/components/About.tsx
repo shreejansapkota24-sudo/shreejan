@@ -38,21 +38,15 @@ const About = () => {
           <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
             <div className="space-y-6">
               <motion.p className="text-muted-foreground leading-relaxed text-lg" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-                I'm <span className="text-primary font-semibold text-glow">Shreejan Sapkota</span>, a curious and driven Computer Science student with a deep passion for coding, algorithms, and technology.
+                I am <span className="text-primary font-semibold text-glow">Shreejan Sapkota</span>, a dedicated Computer Science student with a strong foundation in programming, algorithms, and software engineering principles. My interests include full-stack web development, database systems, artificial intelligence, and cybersecurity.
               </motion.p>
               <motion.p className="text-muted-foreground leading-relaxed" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
-                When I'm not immersed in code, you'll find me enjoying anime—drawing inspiration from creative storytelling and imaginative worlds.
+                I enjoy transforming ideas into practical applications that solve real-world problems. Through academic study, personal projects, and continuous learning, I strive to strengthen both my technical and analytical skills.
               </motion.p>
               <motion.p className="text-muted-foreground leading-relaxed" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }}>
-                I'm committed to continuous learning and growth, always seeking to expand my skills and take on new challenges.
+                I am motivated by the challenge of building scalable, reliable, and innovative technology solutions that deliver meaningful value.
               </motion.p>
             </div>
-
-            <motion.div className="mt-8 p-4 glass border-glow rounded-xl" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.5 }}>
-              <p className="text-sm text-muted-foreground">
-                <span className="text-primary font-medium text-glow">Fun fact:</span> My favorite anime inspires how I approach problem-solving — with creativity, persistence, and a never-give-up attitude! 🎌
-              </p>
-            </motion.div>
           </motion.div>
 
           <motion.div className="space-y-5" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
