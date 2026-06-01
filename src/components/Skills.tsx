@@ -1,92 +1,176 @@
-import { Code2, Zap } from "lucide-react";
 import { motion } from "framer-motion";
+import {
+  Code2,
+  Server,
+  Database,
+  Terminal,
+  Sparkles,
+  Shield,
+  Wrench,
+  Zap,
+} from "lucide-react";
 
-const skills = [
-  { name: "Python", icon: "🐍", level: 75, category: "Programming" },
-  { name: "Java", icon: "☕", level: 70, category: "Programming" },
-  { name: "C", icon: "⚙️", level: 65, category: "Programming" },
-  { name: "HTML", icon: "🌐", level: 80, category: "Web" },
-  { name: "CSS", icon: "🎨", level: 75, category: "Web" },
-  { name: "Linux", icon: "🐧", level: 60, category: "Tools" },
+const categories = [
+  {
+    label: "Frontend",
+    icon: Code2,
+    items: ["HTML5", "CSS3", "JavaScript (ES6+)", "TypeScript", "React.js", "Next.js", "Tailwind CSS"],
+    featured: ["React.js", "Tailwind CSS"],
+  },
+  {
+    label: "Backend",
+    icon: Server,
+    items: ["Node.js", "Express.js", "REST APIs"],
+  },
+  {
+    label: "Databases",
+    icon: Database,
+    items: ["MySQL", "PostgreSQL", "MongoDB"],
+  },
+  {
+    label: "Languages",
+    icon: Terminal,
+    items: ["C", "C++", "Python", "Java", "JavaScript", "TypeScript"],
+  },
+  {
+    label: "AI & Emerging",
+    icon: Sparkles,
+    items: ["OpenAI API", "Artificial Intelligence", "Prompt Engineering"],
+  },
+  {
+    label: "Cybersecurity",
+    icon: Shield,
+    items: ["Web Security Fundamentals", "Ethical Hacking Basics"],
+  },
+  {
+    label: "Tools & Platforms",
+    icon: Wrench,
+    items: ["Git", "GitHub", "VS Code", "Linux", "Docker"],
+  },
 ];
 
-const Skills = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-  };
+const Skills = () => (
+  <section id="skills" className="py-32 px-6 relative overflow-hidden arctic-noise">
+    <div className="absolute inset-0 -z-10">
+      <div className="aurora-blob" style={{ top: "10%", left: "5%" }} />
+      <div className="aurora-blob alt" style={{ bottom: "10%", right: "5%", animationDelay: "-9s" }} />
+    </div>
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.9 },
-    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: "easeOut" as const } },
-  };
+    <div className="max-w-7xl mx-auto">
+      <motion.div
+        className="text-center mb-20"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7 }}
+      >
+        <span
+          className="inline-flex items-center gap-2 px-4 py-1.5 glass border-glow font-mono text-[10px] uppercase tracking-[0.3em] mb-6"
+          style={{ color: "#FFD56A", borderRadius: 999 }}
+        >
+          <Zap className="w-3 h-3" />
+          Technical Expertise
+        </span>
+        <h2
+          className="text-5xl md:text-7xl text-foreground"
+          style={{
+            fontFamily: '"Playfair Display","Cormorant Garamond",serif',
+            fontWeight: 600,
+            letterSpacing: "-0.02em",
+          }}
+        >
+          <span style={{ fontStyle: "italic", color: "#FFFFFF" }}>Skills</span>{" "}
+          <span className="arctic-gradient-text">& Technologies</span>
+        </h2>
+        <p className="mt-6 max-w-xl mx-auto text-[14px]" style={{ color: "#A1A1AA" }}>
+          A focused stack across full-stack development, AI, and cybersecurity — refined through study, projects, and continuous learning.
+        </p>
+      </motion.div>
 
-  return (
-    <section id="skills" className="py-24 px-6 relative overflow-hidden">
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-primary/5 via-transparent to-accent/5 rounded-full blur-3xl" />
-      </div>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {categories.map((cat, i) => (
+          <motion.div
+            key={cat.label}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ y: -6 }}
+            className="group relative p-8 rounded-3xl overflow-hidden cinematic-ease"
+            style={{
+              background: "rgba(17,17,17,0.6)",
+              backdropFilter: "blur(20px) saturate(140%)",
+              WebkitBackdropFilter: "blur(20px) saturate(140%)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04)",
+            }}
+          >
+            {/* gold glow on hover */}
+            <div
+              className="absolute -inset-px rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+              style={{
+                background:
+                  "radial-gradient(600px circle at 50% 0%, rgba(245,185,66,0.18), transparent 60%)",
+              }}
+            />
+            <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(245,185,66,0.5), transparent)" }} />
 
-      <div className="max-w-6xl mx-auto">
-        <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-          <motion.span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border-glow text-primary font-medium text-sm mb-4" initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-            <Zap className="w-4 h-4" />
-            Technical Expertise
-          </motion.span>
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground font-cyber text-glow">Skills & Technologies</h2>
-        </motion.div>
-
-        <motion.div className="grid grid-cols-2 md:grid-cols-3 gap-6" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-          {skills.map((skill, index) => (
-            <motion.div
-              key={skill.name}
-              variants={cardVariants}
-              className="group relative glass p-6 rounded-2xl border-glow hover:box-glow transition-all duration-500 overflow-hidden"
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <span className="absolute top-3 right-3 text-[10px] uppercase tracking-wider text-muted-foreground/60 font-medium font-cyber">{skill.category}</span>
-              <div className="relative z-10">
-                <div className="flex items-center gap-3 mb-5">
-                  <motion.span className="text-3xl" whileHover={{ scale: 1.2, rotate: [0, -10, 10, 0] }} transition={{ duration: 0.4 }}>
-                    {skill.icon}
-                  </motion.span>
-                  <h3 className="font-semibold text-foreground text-lg group-hover:text-primary transition-colors duration-300">{skill.name}</h3>
-                </div>
-                <div className="space-y-2">
-                  <div className="flex justify-between text-xs">
-                    <span className="text-muted-foreground">Proficiency</span>
-                    <span className="text-primary font-medium text-glow">{skill.level}%</span>
-                  </div>
-                  <div className="w-full bg-muted rounded-full h-2.5 overflow-hidden">
-                    <motion.div
-                      className="h-full rounded-full"
-                      style={{
-                        background: "linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)))",
-                        boxShadow: "0 0 8px hsl(var(--primary) / 0.5)",
-                      }}
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${skill.level}%` }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1, delay: index * 0.1, ease: "easeOut" }}
-                    />
-                  </div>
-                </div>
+            <div className="relative flex items-center gap-3 mb-6">
+              <div
+                className="p-2.5 rounded-xl"
+                style={{
+                  background: "rgba(245,185,66,0.08)",
+                  border: "1px solid rgba(245,185,66,0.25)",
+                  boxShadow: "0 0 24px -8px rgba(245,185,66,0.45)",
+                }}
+              >
+                <cat.icon className="w-4 h-4" style={{ color: "#F5B942" }} />
               </div>
-            </motion.div>
-          ))}
-        </motion.div>
+              <h3
+                className="text-xl"
+                style={{
+                  fontFamily: '"Playfair Display",serif',
+                  fontWeight: 600,
+                  color: "#FFFFFF",
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                {cat.label}
+              </h3>
+            </div>
 
-        <motion.div className="mt-16 text-center" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }}>
-          <motion.div className="inline-flex items-center gap-3 px-6 py-3 glass border-glow rounded-full" whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-            <Code2 className="w-5 h-5 text-primary" />
-            <span className="text-muted-foreground font-medium">Always learning new technologies</span>
-            <motion.span className="w-2 h-2 rounded-full bg-primary" animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }} transition={{ duration: 2, repeat: Infinity }} style={{ boxShadow: "0 0 6px hsl(var(--primary) / 0.6)" }} />
+            <div className="flex flex-wrap gap-2 relative">
+              {cat.items.map((item) => {
+                const isFeatured = cat.featured?.includes(item);
+                return (
+                  <span
+                    key={item}
+                    className="px-3 py-1.5 text-[11px] rounded-full font-mono tracking-[0.05em] transition-all duration-300"
+                    style={
+                      isFeatured
+                        ? {
+                            background: "linear-gradient(135deg, rgba(245,185,66,0.18), rgba(255,213,106,0.10))",
+                            border: "1px solid rgba(245,185,66,0.45)",
+                            color: "#FFD56A",
+                            boxShadow: "0 0 18px -4px rgba(245,185,66,0.5)",
+                          }
+                        : {
+                            background: "rgba(255,255,255,0.03)",
+                            border: "1px solid rgba(255,255,255,0.08)",
+                            color: "#A1A1AA",
+                          }
+                    }
+                  >
+                    {item}
+                  </span>
+                );
+              })}
+            </div>
           </motion.div>
-        </motion.div>
+        ))}
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default Skills;

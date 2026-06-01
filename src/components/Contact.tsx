@@ -22,19 +22,22 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 px-6 relative overflow-hidden">
+    <section id="contact" className="py-32 px-6 relative overflow-hidden">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
+        <div className="aurora-blob" style={{ top: "0%", left: "10%" }} />
+        <div className="aurora-blob alt" style={{ bottom: "0%", right: "10%", animationDelay: "-6s" }} />
       </div>
 
       <div className="max-w-6xl mx-auto">
-        <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-          <motion.span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border-glow text-primary font-medium text-sm mb-4" initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-            <MessageCircle className="w-4 h-4" />
+        <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 glass border-glow font-mono text-[10px] uppercase tracking-[0.3em] mb-6" style={{ color: "#FFD56A", borderRadius: 999 }}>
+            <MessageCircle className="w-3 h-3" />
             Get in touch
-          </motion.span>
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground font-cyber text-glow">Contact Me</h2>
+          </span>
+          <h2 className="text-5xl md:text-7xl" style={{ fontFamily: '"Playfair Display",serif', fontWeight: 600, letterSpacing: "-0.02em" }}>
+            <span style={{ fontStyle: "italic", color: "#FFFFFF" }}>Let's</span>{" "}
+            <span className="arctic-gradient-text">Connect</span>
+          </h2>
         </motion.div>
 
         <motion.div className="max-w-2xl mx-auto text-center" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>

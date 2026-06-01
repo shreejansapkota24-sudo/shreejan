@@ -88,16 +88,16 @@ const Hero = () => {
               Hello, I'm
             </motion.p>
 
-            <h1 className="font-display text-6xl md:text-8xl mb-6 leading-[0.9] tracking-tight">
+            <h1 className="font-display text-6xl md:text-8xl mb-6 leading-[0.9] tracking-tight" style={{ fontFamily: '"Playfair Display","Cormorant Garamond",serif' }}>
               <span
                 className="block clip-reveal"
-                style={{ color: "#F5F5F5", fontWeight: 800, animationDelay: "1.7s" }}
+                style={{ color: "#FFFFFF", fontWeight: 600, animationDelay: "1.7s", fontStyle: "italic" }}
               >
                 Shreejan
               </span>
               <span
                 className="block clip-reveal arctic-gradient-text"
-                style={{ fontWeight: 800, animationDelay: "2.0s" }}
+                style={{ fontWeight: 700, animationDelay: "2.0s" }}
               >
                 Sapkota
               </span>

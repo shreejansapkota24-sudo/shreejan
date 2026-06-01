@@ -108,8 +108,8 @@ const InquiryForm = () => {
             <MessageSquare className="w-4 h-4" />
             Inquiry
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground font-cyber text-glow mb-3">
-            Have an inquiry or want more AI access?
+          <h2 className="text-4xl md:text-6xl mb-3" style={{ fontFamily: '"Playfair Display",serif', fontWeight: 600, letterSpacing: "-0.02em" }}>
+            <span style={{ fontStyle: "italic", color: "#FFFFFF" }}>Send</span> <span className="arctic-gradient-text">an Inquiry</span>
           </h2>
           <p className="text-muted-foreground text-base">
             Send me a message — I'll get back to you as soon as I can.

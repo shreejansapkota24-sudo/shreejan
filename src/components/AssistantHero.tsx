@@ -37,8 +37,8 @@ const AssistantHero = () => {
             <Sparkles className="w-4 h-4" />
             My Personal AI Assistant
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground font-cyber text-glow mb-4">
-            Meet <span className="text-primary text-glow-strong">Cyber Saathi</span>
+          <h2 className="text-5xl md:text-7xl mb-4" style={{ fontFamily: '"Playfair Display",serif', fontWeight: 600, letterSpacing: "-0.02em" }}>
+            <span style={{ fontStyle: "italic", color: "#FFFFFF" }}>Meet</span> <span className="arctic-gradient-text">Cyber Saathi</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">
             A smart multipurpose AI assistant — chat, write, code, study, brainstorm.
