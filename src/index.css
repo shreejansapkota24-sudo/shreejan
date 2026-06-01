@@ -16,7 +16,7 @@
     --popover: 0 0% 7%;
     --popover-foreground: 36 30% 96%;
 
-    --primary: 24 95% 58%;            /* cinematic orange */
+    --primary: 42 89% 62%;            /* luxury gold #F5B942 */
     --primary-foreground: 0 0% 6%;
 
     --secondary: 0 0% 10%;
@@ -25,7 +25,7 @@
     --muted: 0 0% 12%;
     --muted-foreground: 36 8% 62%;
 
-    --accent: 38 92% 60%;             /* gold */
+    --accent: 42 100% 71%;            /* gold hover #FFD56A */
     --accent-foreground: 0 0% 6%;
 
     --destructive: 0 70% 55%;
@@ -33,7 +33,7 @@
 
     --border: 0 0% 14%;
     --input: 0 0% 14%;
-    --ring: 24 95% 58%;
+    --ring: 42 89% 62%;
 
     --radius: 0.125rem;
 
@@ -91,19 +91,19 @@
     --card-foreground: 36 30% 96%;
     --popover: 0 0% 7%;
     --popover-foreground: 36 30% 96%;
-    --primary: 24 95% 58%;
+    --primary: 42 89% 62%;
     --primary-foreground: 0 0% 6%;
     --secondary: 0 0% 10%;
     --secondary-foreground: 36 30% 96%;
     --muted: 0 0% 12%;
     --muted-foreground: 36 8% 62%;
-    --accent: 38 92% 60%;
+    --accent: 42 100% 71%;
     --accent-foreground: 0 0% 6%;
     --destructive: 0 70% 55%;
     --destructive-foreground: 0 0% 96%;
     --border: 0 0% 14%;
     --input: 0 0% 14%;
-    --ring: 24 95% 58%;
+    --ring: 42 89% 62%;
     --sidebar-background: 0 0% 4%;
     --sidebar-foreground: 0 0% 96%;
     --sidebar-primary: 0 0% 96%;
