@@ -61,7 +61,7 @@ const Navbar = () => {
                   href={link.href}
                   className="nav-link-underline transition-colors duration-300"
                   style={{ color: "#9A9A9A" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#FF8A1E")}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "#F5B942")}
                   onMouseLeave={(e) => (e.currentTarget.style.color = "#9A9A9A")}
                 >
                   {link.name}
