@@ -243,7 +243,25 @@ export default function SiteGate({ children }: { children: React.ReactNode }) {
           </div>
         )}
         {status === "error" && (
-          <p className="mt-5 text-xs text-destructive font-mono">{errorMsg}</p>
+          <div className="mt-5 flex flex-col items-center gap-3">
+            <p className="text-xs font-mono" style={{ color: "#FF8A8A" }}>{errorMsg || "Verification failed."}</p>
+            <button
+              onClick={() => {
+                setStatus("loading");
+                setErrorMsg("");
+                if (widgetIdRef.current && window.turnstile) {
+                  try { window.turnstile.reset(widgetIdRef.current); setStatus("ready"); } catch { /* ignore */ }
+                } else {
+                  // Force full re-init
+                  setVerified((v) => v);
+                  window.location.reload();
+                }
+              }}
+              className="btn-ghost-mono hover-lift"
+            >
+              Retry verification
+            </button>
+          </div>
         )}
 
         <p
