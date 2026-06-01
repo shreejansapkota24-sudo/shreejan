@@ -9,18 +9,21 @@ const opportunities = [
 
 const Services = () => {
   return (
-    <section id="services" className="py-24 px-6 relative overflow-hidden">
+    <section id="services" className="py-32 px-6 relative overflow-hidden">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-primary/3 to-transparent rounded-full blur-3xl" />
+        <div className="aurora-blob" style={{ top: "20%", right: "10%" }} />
       </div>
 
       <div className="max-w-6xl mx-auto">
-        <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-          <motion.span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border-glow text-primary font-medium text-sm mb-4" initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-            <Briefcase className="w-4 h-4" />
+        <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 glass border-glow font-mono text-[10px] uppercase tracking-[0.3em] mb-6" style={{ color: "#FFD56A", borderRadius: 999 }}>
+            <Briefcase className="w-3 h-3" />
             Opportunities
-          </motion.span>
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground font-cyber text-glow">Services</h2>
+          </span>
+          <h2 className="text-5xl md:text-7xl" style={{ fontFamily: '"Playfair Display",serif', fontWeight: 600, letterSpacing: "-0.02em" }}>
+            <span style={{ fontStyle: "italic", color: "#FFFFFF" }}>Services</span>{" "}
+            <span className="arctic-gradient-text">& Collaboration</span>
+          </h2>
         </motion.div>
 
         <div className="max-w-3xl mx-auto">

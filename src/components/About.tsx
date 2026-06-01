@@ -26,12 +26,15 @@ const About = () => {
       </div>
 
       <div className="max-w-6xl mx-auto">
-        <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-          <motion.span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border-glow text-primary font-medium text-sm mb-4" initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-            <Sparkles className="w-4 h-4" />
+        <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 glass border-glow font-mono text-[10px] uppercase tracking-[0.3em] mb-6" style={{ color: "#FFD56A", borderRadius: 999 }}>
+            <Sparkles className="w-3 h-3" />
             Get to know me
-          </motion.span>
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground font-cyber text-glow">About Me</h2>
+          </span>
+          <h2 className="text-5xl md:text-7xl" style={{ fontFamily: '"Playfair Display",serif', fontWeight: 600, letterSpacing: "-0.02em" }}>
+            <span style={{ fontStyle: "italic", color: "#FFFFFF" }}>About</span>{" "}
+            <span className="arctic-gradient-text">Me</span>
+          </h2>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
