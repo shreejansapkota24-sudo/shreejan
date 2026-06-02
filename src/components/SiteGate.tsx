@@ -154,14 +154,14 @@ export default function SiteGate({ children }: { children: React.ReactNode }) {
       style={{
         backgroundColor: "#0A0A0A",
         backgroundImage:
-          "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(245,185,66,0.18) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 90% 100%, rgba(255,213,106,0.10) 0%, transparent 60%), linear-gradient(180deg,#0A0A0A 0%, #050505 100%)",
+          "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,168,76,0.18) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 90% 100%, rgba(232,213,163,0.10) 0%, transparent 60%), linear-gradient(180deg,#0A0A0A 0%, #050505 100%)",
       }}
     >
       {/* Animated mono grid lines */}
       <div className="pointer-events-none absolute inset-0 opacity-[0.07]"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(245,185,66,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(245,185,66,0.6) 1px, transparent 1px)",
+            "linear-gradient(rgba(201,168,76,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.6) 1px, transparent 1px)",
           backgroundSize: "48px 48px",
         }}
       />
@@ -169,8 +169,8 @@ export default function SiteGate({ children }: { children: React.ReactNode }) {
       <div className="aurora-blob alt" style={{ bottom: "5%", left: "5%", animationDelay: "-6s" }} />
 
       {/* Top bar */}
-      <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-6 py-5 font-mono text-[10px] tracking-[0.3em] uppercase text-[#FFD56A]/70">
-        <span style={{ fontFamily: '"Playfair Display",serif', fontSize: 16, letterSpacing: "0.18em", color: "#F5B942" }}>SS</span>
+      <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-6 py-5 font-mono text-[10px] tracking-[0.3em] uppercase text-[#E8D5A3]/70">
+        <span style={{ fontFamily: '"Playfair Display",serif', fontSize: 16, letterSpacing: "0.18em", color: "#C9A84C" }}>SS</span>
         <span className="hidden sm:inline">Secure Portfolio Access</span>
         <span>{new Date().getFullYear()}</span>
       </div>
@@ -181,23 +181,23 @@ export default function SiteGate({ children }: { children: React.ReactNode }) {
           background: "rgba(17,17,17,0.85)",
           backdropFilter: "blur(20px) saturate(150%)",
           WebkitBackdropFilter: "blur(20px) saturate(150%)",
-          border: "1px solid rgba(245,185,66,0.25)",
-          boxShadow: "0 24px 80px -20px rgba(245,185,66,0.45), 0 0 0 1px rgba(245,185,66,0.08) inset",
+          border: "1px solid rgba(201,168,76,0.25)",
+          boxShadow: "0 24px 80px -20px rgba(201,168,76,0.45), 0 0 0 1px rgba(201,168,76,0.08) inset",
           padding: "56px 44px",
           animationDelay: "0.3s",
         }}
       >
         {/* corner ticks */}
-        <span className="absolute top-2 left-2 w-3 h-3 border-t border-l" style={{ borderColor: "#F5B942" }} />
-        <span className="absolute top-2 right-2 w-3 h-3 border-t border-r" style={{ borderColor: "#F5B942" }} />
-        <span className="absolute bottom-2 left-2 w-3 h-3 border-b border-l" style={{ borderColor: "#F5B942" }} />
-        <span className="absolute bottom-2 right-2 w-3 h-3 border-b border-r" style={{ borderColor: "#F5B942" }} />
+        <span className="absolute top-2 left-2 w-3 h-3 border-t border-l" style={{ borderColor: "#C9A84C" }} />
+        <span className="absolute top-2 right-2 w-3 h-3 border-t border-r" style={{ borderColor: "#C9A84C" }} />
+        <span className="absolute bottom-2 left-2 w-3 h-3 border-b border-l" style={{ borderColor: "#C9A84C" }} />
+        <span className="absolute bottom-2 right-2 w-3 h-3 border-b border-r" style={{ borderColor: "#C9A84C" }} />
 
         <div className="relative mx-auto mb-6 flex h-[64px] w-[64px] items-center justify-center">
           <div
             className="absolute inset-0 rounded-full"
             style={{
-              background: "conic-gradient(from 0deg, #F5B942, transparent 40%, #FFD56A 70%, #F5B942)",
+              background: "conic-gradient(from 0deg, #C9A84C, transparent 40%, #E8D5A3 70%, #C9A84C)",
               animation: "border-spin 4s linear infinite",
               WebkitMask: "radial-gradient(circle, transparent 58%, #000 60%)",
               mask: "radial-gradient(circle, transparent 58%, #000 60%)",
@@ -205,12 +205,12 @@ export default function SiteGate({ children }: { children: React.ReactNode }) {
           />
           <div
             className="absolute inset-2 rounded-full"
-            style={{ background: "radial-gradient(circle, rgba(245,185,66,0.25), transparent 70%)" }}
+            style={{ background: "radial-gradient(circle, rgba(201,168,76,0.25), transparent 70%)" }}
           />
-          <ShieldCheck className="h-7 w-7" strokeWidth={1.5} style={{ color: "#F5B942", filter: "drop-shadow(0 0 8px rgba(245,185,66,0.7))" }} />
+          <ShieldCheck className="h-7 w-7" strokeWidth={1.5} style={{ color: "#C9A84C", filter: "drop-shadow(0 0 8px rgba(201,168,76,0.7))" }} />
         </div>
 
-        <p className="font-mono text-[10px] tracking-[0.3em] uppercase mb-2" style={{ color: "#FFD56A" }}>
+        <p className="font-mono text-[10px] tracking-[0.3em] uppercase mb-2" style={{ color: "#E8D5A3" }}>
           [ Verification Required ]
         </p>
         <h2

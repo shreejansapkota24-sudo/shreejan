@@ -17,8 +17,8 @@ const Footer = () => {
               className="text-2xl tracking-[0.18em]"
               style={{
                 fontWeight: 700,
-                color: "#F5B942",
-                textShadow: "0 0 18px rgba(245,185,66,0.55)",
+                color: "#C9A84C",
+                textShadow: "0 0 18px rgba(201,168,76,0.55)",
                 fontFamily: '"Playfair Display","Cormorant Garamond",serif',
               }}
             >

@@ -15,23 +15,12 @@ const TAGLINE = "Computer Science Student • Technology Enthusiast";
 
 const Hero = () => {
   const [introDone, setIntroDone] = useState(false);
-  const [typed, setTyped] = useState("");
 
   useEffect(() => {
     const t = setTimeout(() => setIntroDone(true), 1100);
     return () => clearTimeout(t);
   }, []);
 
-  useEffect(() => {
-    if (!introDone) return;
-    let i = 0;
-    const id = setInterval(() => {
-      i++;
-      setTyped(TAGLINE.slice(0, i));
-      if (i >= TAGLINE.length) clearInterval(id);
-    }, 35);
-    return () => clearInterval(id);
-  }, [introDone]);
 
   return (
     <section
@@ -71,9 +60,9 @@ const Hero = () => {
             >
               <span
                 className="inline-flex items-center gap-2 px-4 py-1.5 glass font-mono text-[10px] uppercase tracking-[0.22em] mb-6 border-glow"
-                style={{ color: "#FFD56A", borderRadius: 999 }}
+                style={{ color: "#E8D5A3", borderRadius: 999 }}
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-[#F5B942] animate-pulse" style={{ boxShadow: "0 0 8px #F5B942" }} />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#C9A84C] animate-pulse" style={{ boxShadow: "0 0 8px #C9A84C" }} />
                 Available for opportunities
               </span>
             </motion.div>
@@ -104,14 +93,15 @@ const Hero = () => {
             </h1>
 
             <motion.p
-              className="font-mono text-[13px] mb-4 pl-4 min-h-[1.5em]"
-              style={{ color: "#F5F5F5", borderLeft: "2px solid #F5B942", boxShadow: "inset 2px 0 12px -6px rgba(245,185,66,0.6)" }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: introDone ? 1 : 0 }}
-              transition={{ duration: 0.5 }}
+              className="font-mono text-[12px] mb-4 inline-block px-4 py-2"
+              style={{ color: "#E8D5A3", border: "1px solid rgba(201,168,76,0.35)", borderRadius: 999, background: "rgba(201,168,76,0.04)" }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: introDone ? 1 : 0, y: introDone ? 0 : 10 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
             >
-              "{typed}<span className="inline-block w-[2px] h-4 bg-[#F5B942] align-middle ml-0.5 animate-pulse" />"
+              {TAGLINE}
             </motion.p>
+
 
             <motion.p
               className="mb-8 max-w-md leading-relaxed font-normal text-[13px]"
@@ -165,11 +155,11 @@ const Hero = () => {
                       rel={opensExternalSite ? "noopener noreferrer" : undefined}
                       className="w-9 h-9 flex items-center justify-center transition-all duration-300 rounded-full"
                       style={{
-                        background: "rgba(245,185,66,0.04)",
-                        border: "1px solid rgba(245,185,66,0.25)",
-                        color: "#FFD56A",
+                        background: "rgba(201,168,76,0.04)",
+                        border: "1px solid rgba(201,168,76,0.25)",
+                        color: "#E8D5A3",
                       }}
-                      whileHover={{ y: -2, borderColor: "#F5B942", color: "#FFFFFF", boxShadow: "0 0 18px rgba(245,185,66,0.5)" }}
+                      whileHover={{ y: -2, borderColor: "#C9A84C", color: "#FFFFFF", boxShadow: "0 0 18px rgba(201,168,76,0.5)" }}
                       whileTap={{ scale: 0.95 }}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -190,12 +180,13 @@ const Hero = () => {
             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
             transition={{ delay: 1.4, duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="profile-photo-wrap">
+            <div className="profile-photo-wrap" style={{ clipPath: "polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%)" }}>
               <img
                 id="hero-profile-photo"
                 src={new URL("../assets/profile-themed.jpg", import.meta.url).href}
                 alt="Shreejan Sapkota"
                 className="profile-photo"
+                style={{ clipPath: "polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%)", borderRadius: 0 }}
                 loading="eager"
               />
             </div>
@@ -203,33 +194,25 @@ const Hero = () => {
         </div>
 
         <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-3"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ delay: 3.4, duration: 0.6 }}
         >
           <span
             className="font-mono text-[10px] uppercase"
-            style={{
-              color: "#5C5C5C",
-              letterSpacing: "0.3em",
-              animation: "opacity-pulse 2.5s ease-in-out infinite",
-            }}
+            style={{ color: "#888880", letterSpacing: "0.3em" }}
           >
             Scroll
           </span>
-          <div
-            className="w-5 h-9 flex justify-center p-1.5"
-            style={{ border: "1px solid rgba(245,185,66,0.4)", borderRadius: 12 }}
-          >
-            <motion.div
-              className="w-0.5 h-1.5 rounded-full"
-              style={{ background: "#F5B942", boxShadow: "0 0 8px #F5B942" }}
-              animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            />
-          </div>
+          <motion.div
+            className="w-px h-12 origin-top"
+            style={{ background: "linear-gradient(180deg, #C9A84C, transparent)" }}
+            animate={{ scaleY: [0.3, 1, 0.3], opacity: [0.4, 1, 0.4] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          />
         </motion.div>
+
       </div>
     </section>
   );

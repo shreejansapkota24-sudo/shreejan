@@ -27,7 +27,7 @@ const About = () => {
 
       <div className="max-w-6xl mx-auto">
         <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 glass border-glow font-mono text-[10px] uppercase tracking-[0.3em] mb-6" style={{ color: "#FFD56A", borderRadius: 999 }}>
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 glass border-glow font-mono text-[10px] uppercase tracking-[0.3em] mb-6" style={{ color: "#E8D5A3", borderRadius: 999 }}>
             <Sparkles className="w-3 h-3" />
             Get to know me
           </span>

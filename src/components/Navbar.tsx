@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Bot } from "lucide-react";
+import { Menu, X, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
@@ -45,8 +45,8 @@ const Navbar = () => {
             className="font-display text-2xl tracking-[0.18em]"
             style={{
               fontWeight: 700,
-              color: "#F5B942",
-              textShadow: "0 0 18px rgba(245,185,66,0.55), 0 0 4px rgba(245,185,66,0.35)",
+              color: "#C9A84C",
+              textShadow: "0 0 18px rgba(201,168,76,0.55), 0 0 4px rgba(201,168,76,0.35)",
               fontFamily: '"Playfair Display", "Cormorant Garamond", serif',
             }}
           >
@@ -61,7 +61,7 @@ const Navbar = () => {
                   href={link.href}
                   className="nav-link-underline transition-colors duration-300"
                   style={{ color: "#9A9A9A" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#F5B942")}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "#C9A84C")}
                   onMouseLeave={(e) => (e.currentTarget.style.color = "#9A9A9A")}
                 >
                   {link.name}
@@ -71,7 +71,7 @@ const Navbar = () => {
 
             <Link to="/cyberguard/cyber-saathi">
               <button className="btn-mono">
-                <Bot className="w-3.5 h-3.5" />
+                <Sparkles className="w-3.5 h-3.5" />
                 Chat with AI
               </button>
             </Link>
@@ -107,7 +107,7 @@ const Navbar = () => {
 
               <Link to="/cyberguard/cyber-saathi" onClick={() => setIsOpen(false)}>
                 <button className="btn-mono">
-                  <Bot className="w-3.5 h-3.5" />
+                  <Sparkles className="w-3.5 h-3.5" />
                   Chat with AI
                 </button>
               </Link>

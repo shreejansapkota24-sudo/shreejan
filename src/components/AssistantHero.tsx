@@ -80,8 +80,11 @@ const AssistantHero = () => {
                 </motion.div>
                 <div>
                   <h3 className="text-xl font-bold font-cyber text-foreground">Cyber Saathi</h3>
-                  <p className="text-xs text-muted-foreground flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                  <p className="text-xs text-muted-foreground flex items-center gap-2">
+                    <span className="relative inline-flex">
+                      <span className="w-2 h-2 rounded-full" style={{ background: "#22c55e", boxShadow: "0 0 8px #22c55e" }} />
+                      <span className="absolute inset-0 w-2 h-2 rounded-full animate-ping" style={{ background: "#22c55e", opacity: 0.6 }} />
+                    </span>
                     Online · Ready to help
                   </p>
                 </div>

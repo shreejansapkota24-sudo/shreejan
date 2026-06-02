@@ -1,78 +1,124 @@
-import { Briefcase, GraduationCap, Users, Heart, ArrowRight } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Briefcase, GraduationCap, Users, Heart } from "lucide-react";
 import { motion } from "framer-motion";
 
 const opportunities = [
-  { icon: GraduationCap, title: "Internships", description: "Open to learning opportunities and internship positions" },
-  { icon: Users, title: "Collaborations", description: "Interested in project collaborations and team experiences" },
+  { icon: GraduationCap, title: "Internships", description: "Open to learning opportunities and internship positions." },
+  { icon: Users, title: "Collaborations", description: "Interested in project collaborations and team experiences." },
 ];
 
 const Services = () => {
   return (
     <section id="services" className="py-32 px-6 relative overflow-hidden">
-      <div className="absolute inset-0 -z-10">
-        <div className="aurora-blob" style={{ top: "20%", right: "10%" }} />
-      </div>
-
-      <div className="max-w-6xl mx-auto">
-        <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 glass border-glow font-mono text-[10px] uppercase tracking-[0.3em] mb-6" style={{ color: "#FFD56A", borderRadius: 999 }}>
+      <div className="max-w-4xl mx-auto">
+        <motion.div
+          className="text-center mb-14"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
+          <span
+            className="inline-flex items-center gap-2 px-4 py-1.5 glass font-mono text-[10px] uppercase tracking-[0.3em] mb-6"
+            style={{ color: "#E8D5A3", border: "1px solid rgba(201,168,76,0.25)", borderRadius: 999 }}
+          >
             <Briefcase className="w-3 h-3" />
             Opportunities
           </span>
-          <h2 className="text-5xl md:text-7xl" style={{ fontFamily: '"Playfair Display",serif', fontWeight: 600, letterSpacing: "-0.02em" }}>
-            <span style={{ fontStyle: "italic", color: "#FFFFFF" }}>Services</span>{" "}
+          <h2
+            className="text-5xl md:text-6xl"
+            style={{ fontFamily: '"Playfair Display",serif', fontWeight: 600, letterSpacing: "-0.02em" }}
+          >
+            <span style={{ fontStyle: "italic", color: "#F5F5F0" }}>Services</span>{" "}
             <span className="arctic-gradient-text">& Collaboration</span>
           </h2>
         </motion.div>
 
-        <div className="max-w-3xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-            <Card className="glass border-glow overflow-hidden">
-              <CardContent className="p-8 md:p-12 text-center relative">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl" />
-                <div className="absolute bottom-0 left-0 w-24 h-24 bg-accent/5 rounded-full blur-2xl" />
-
-                <motion.div className="relative z-10 inline-flex p-5 glass border-glow rounded-2xl mb-6" whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }} transition={{ duration: 0.5 }}>
-                  <Briefcase className="w-10 h-10 text-muted-foreground" />
-                </motion.div>
-
-                <h3 className="relative z-10 text-2xl font-bold text-foreground mb-3 font-cyber">Currently Not Offering Services</h3>
-                <p className="relative z-10 text-muted-foreground mb-10 max-w-md mx-auto">As a student, I'm focused on learning and building my skills. However, I'm always open to new opportunities!</p>
-
-                <div className="relative z-10 grid md:grid-cols-2 gap-5">
-                  {opportunities.map((item, index) => (
-                    <motion.div
-                      key={item.title}
-                      className="group p-6 glass rounded-2xl border-glow hover:box-glow transition-all duration-500 cursor-pointer"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.3 + index * 0.1 }}
-                      whileHover={{ y: -5, transition: { duration: 0.3 } }}
-                    >
-                      <div className="relative z-10 flex flex-col items-center text-center">
-                        <motion.div className="p-3 bg-primary/10 rounded-xl mb-4 group-hover:bg-primary/20 transition-colors duration-300 border border-primary/20" whileHover={{ scale: 1.1 }}>
-                          <item.icon className="w-6 h-6 text-primary" />
-                        </motion.div>
-                        <span className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300">{item.title}</span>
-                        <p className="text-sm text-muted-foreground mt-2">{item.description}</p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-
-                <motion.div className="relative z-10 mt-10 flex items-center justify-center gap-2 text-primary" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.5 }}>
-                  <Heart className="w-4 h-4" />
-                  <span className="text-sm font-medium text-glow">Let's grow together</span>
-                  <motion.div animate={{ x: [0, 5, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
-                    <ArrowRight className="w-4 h-4" />
-                  </motion.div>
-                </motion.div>
-              </CardContent>
-            </Card>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="p-10 md:p-14 text-center relative"
+          style={{
+            background: "#111111",
+            border: "2px dashed rgba(201,168,76,0.4)",
+            borderRadius: 24,
+          }}
+        >
+          <motion.div
+            className="inline-flex p-5 rounded-2xl mb-6"
+            style={{
+              background: "rgba(201,168,76,0.08)",
+              border: "1px solid rgba(201,168,76,0.25)",
+            }}
+            animate={{ y: [0, -6, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Briefcase className="w-9 h-9" style={{ color: "#C9A84C" }} />
           </motion.div>
-        </div>
+
+          <h3
+            className="text-2xl md:text-3xl mb-4"
+            style={{
+              fontFamily: '"Playfair Display",serif',
+              fontWeight: 600,
+              color: "#F5F5F0",
+              letterSpacing: "-0.01em",
+            }}
+          >
+            Currently Not Offering Services
+          </h3>
+          <p className="max-w-md mx-auto mb-10 text-[14px] leading-relaxed" style={{ color: "#888880" }}>
+            As a student, I'm focused on learning and building my skills. However, I'm always open to new opportunities!
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-5 text-left">
+            {opportunities.map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 + i * 0.1, duration: 0.6, ease: "easeOut" }}
+                whileHover={{ y: -4 }}
+                className="p-6 rounded-2xl transition-all duration-300"
+                style={{
+                  background: "#0d0d0d",
+                  border: "1px solid rgba(201,168,76,0.15)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = "0 0 0 1px rgba(201,168,76,0.5)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = "none";
+                }}
+              >
+                <div className="flex items-start gap-4">
+                  <div
+                    className="p-2.5 rounded-lg flex-shrink-0"
+                    style={{
+                      background: "rgba(201,168,76,0.08)",
+                      border: "1px solid rgba(201,168,76,0.25)",
+                    }}
+                  >
+                    <item.icon className="w-5 h-5" style={{ color: "#C9A84C" }} />
+                  </div>
+                  <div>
+                    <h4 className="font-medium mb-1" style={{ color: "#F5F5F0", fontFamily: '"Inter",sans-serif' }}>
+                      {item.title}
+                    </h4>
+                    <p className="text-[13px]" style={{ color: "#888880" }}>{item.description}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-10 flex items-center justify-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em]" style={{ color: "#C9A84C" }}>
+            <Heart className="w-3 h-3" />
+            Let's grow together
+          </div>
+        </motion.div>
       </div>
     </section>
   );
