@@ -52,8 +52,8 @@
     --mono-elevated: #161616;
     --mono-border: #242424;
     --mono-border-soft: #1A1A1A;
-    --mono-text: #F5F5F5;
-    --mono-text-muted: #9A9A9A;
+    --mono-text: #F5F5F0;
+    --mono-text-muted: #888880;
     --mono-text-faint: #5C5C5C;
     --mono-line: #2E2E2E;
 
@@ -91,19 +91,19 @@
     --card-foreground: 36 30% 96%;
     --popover: 0 0% 7%;
     --popover-foreground: 36 30% 96%;
-    --primary: 42 89% 62%;
+    --primary: 43 53% 54%;
     --primary-foreground: 0 0% 6%;
     --secondary: 0 0% 10%;
-    --secondary-foreground: 36 30% 96%;
+    --secondary-foreground: 60 20% 96%;
     --muted: 0 0% 12%;
-    --muted-foreground: 36 8% 62%;
-    --accent: 42 100% 71%;
+    --muted-foreground: 60 3% 53%;
+    --accent: 42 59% 77%;
     --accent-foreground: 0 0% 6%;
     --destructive: 0 70% 55%;
     --destructive-foreground: 0 0% 96%;
     --border: 0 0% 14%;
     --input: 0 0% 14%;
-    --ring: 42 89% 62%;
+    --ring: 43 53% 54%;
     --sidebar-background: 0 0% 4%;
     --sidebar-foreground: 0 0% 96%;
     --sidebar-primary: 0 0% 96%;
