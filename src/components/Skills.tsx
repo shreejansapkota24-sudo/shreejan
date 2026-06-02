@@ -121,7 +121,7 @@ const Skills = () => (
       >
         <span
           className="inline-flex items-center gap-2 px-4 py-1.5 glass border-glow font-mono text-[10px] uppercase tracking-[0.3em] mb-6"
-          style={{ color: "#FFD56A", borderRadius: 999 }}
+          style={{ color: "#E8D5A3", borderRadius: 999 }}
         >
           <Zap className="w-3 h-3" />
           Technical Expertise
@@ -164,21 +164,21 @@ const Skills = () => (
               className="absolute -inset-px rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
               style={{
                 background:
-                  "radial-gradient(600px circle at 50% 0%, rgba(245,185,66,0.18), transparent 60%)",
+                  "radial-gradient(600px circle at 50% 0%, rgba(201,168,76,0.18), transparent 60%)",
               }}
             />
-            <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(245,185,66,0.5), transparent)" }} />
+            <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(201,168,76,0.5), transparent)" }} />
 
             <div className="relative flex items-center gap-3 mb-6">
               <div
                 className="p-2.5 rounded-xl"
                 style={{
-                  background: "rgba(245,185,66,0.08)",
-                  border: "1px solid rgba(245,185,66,0.25)",
-                  boxShadow: "0 0 24px -8px rgba(245,185,66,0.45)",
+                  background: "rgba(201,168,76,0.08)",
+                  border: "1px solid rgba(201,168,76,0.25)",
+                  boxShadow: "0 0 24px -8px rgba(201,168,76,0.45)",
                 }}
               >
-                <cat.icon className="w-4 h-4" style={{ color: "#F5B942" }} />
+                <cat.icon className="w-4 h-4" style={{ color: "#C9A84C" }} />
               </div>
               <h3
                 className="text-xl"
@@ -204,10 +204,10 @@ const Skills = () => (
                     style={
                       isFeatured
                         ? {
-                            background: "linear-gradient(135deg, rgba(245,185,66,0.18), rgba(255,213,106,0.10))",
-                            border: "1px solid rgba(245,185,66,0.45)",
-                            color: "#FFD56A",
-                            boxShadow: "0 0 18px -4px rgba(245,185,66,0.5)",
+                            background: "linear-gradient(135deg, rgba(201,168,76,0.18), rgba(232,213,163,0.10))",
+                            border: "1px solid rgba(201,168,76,0.45)",
+                            color: "#E8D5A3",
+                            boxShadow: "0 0 18px -4px rgba(201,168,76,0.5)",
                           }
                         : {
                             background: "rgba(255,255,255,0.03)",
@@ -225,7 +225,7 @@ const Skills = () => (
                     ) : LucideIco ? (
                       <LucideIco
                         size={16}
-                        style={{ marginRight: 6, color: "#F5B942" }}
+                        style={{ marginRight: 6, color: "#C9A84C" }}
                         aria-hidden="true"
                       />
                     ) : null}

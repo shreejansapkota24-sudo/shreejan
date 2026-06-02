@@ -16,8 +16,8 @@ const projects: Project[] = [
     subtitle: "Cybersecurity Toolkit · URL & File Scanner · Threat Map",
     href: "/cyberguard",
     internal: true,
-    bg: `radial-gradient(ellipse at 30% 20%, rgba(245,185,66,0.35), transparent 55%),
-         radial-gradient(ellipse at 80% 80%, rgba(255,213,106,0.20), transparent 60%),
+    bg: `radial-gradient(ellipse at 30% 20%, rgba(201,168,76,0.35), transparent 55%),
+         radial-gradient(ellipse at 80% 80%, rgba(232,213,163,0.20), transparent 60%),
          linear-gradient(135deg, #1a0a02 0%, #2a1305 40%, #0A0A0A 100%)`,
   },
   {
@@ -25,14 +25,14 @@ const projects: Project[] = [
     subtitle: "AI-powered Defensive Security Analyst · IOC Extraction",
     href: "/cyberguard/cyber-saathi",
     internal: true,
-    bg: `radial-gradient(ellipse at 70% 30%, rgba(245,185,66,0.32), transparent 60%),
-         radial-gradient(ellipse at 20% 70%, rgba(255,213,106,0.18), transparent 60%),
+    bg: `radial-gradient(ellipse at 70% 30%, rgba(201,168,76,0.32), transparent 60%),
+         radial-gradient(ellipse at 20% 70%, rgba(232,213,163,0.18), transparent 60%),
          linear-gradient(160deg, #160803 0%, #2c1206 50%, #0A0A0A 100%)`,
   },
   {
     title: "More Coming Soon",
     subtitle: "New experiments in motion · Stay tuned",
-    bg: `radial-gradient(ellipse at 50% 30%, rgba(245,185,66,0.20), transparent 60%),
+    bg: `radial-gradient(ellipse at 50% 30%, rgba(201,168,76,0.20), transparent 60%),
          linear-gradient(135deg, #0A0A0A 0%, #1a0d04 50%, #0A0A0A 100%)`,
   },
 ];
@@ -90,7 +90,7 @@ const Portfolio = () => {
         {/* Section header */}
         <div className="flex items-end justify-between mb-6 px-2">
           <div>
-            <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-[#F5B942]/80 mb-2">
+            <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-[#C9A84C]/80 mb-2">
               Selected Works · 2024 — 2026
             </p>
             <h2 className="font-display text-3xl md:text-5xl arctic-gradient-text" style={{ fontWeight: 800, letterSpacing: "-0.03em" }}>
@@ -99,13 +99,13 @@ const Portfolio = () => {
           </div>
           <div className="hidden md:flex items-center gap-6 font-mono text-[10px] tracking-[0.25em] uppercase text-white/50">
             <span>{dateStr}</span>
-            <span style={{ color: "#F5B942" }}>{timeStr}</span>
+            <span style={{ color: "#C9A84C" }}>{timeStr}</span>
           </div>
         </div>
 
         <div
           ref={wrapRef}
-          className="relative w-full overflow-hidden rounded-2xl border border-[#F5B942]/20 box-glow"
+          className="relative w-full overflow-hidden rounded-2xl border border-[#C9A84C]/20 box-glow"
           style={{ height: "min(78vh, 720px)" }}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => {
@@ -228,10 +228,10 @@ const Portfolio = () => {
               <defs>
                 <path id="circlePath" d="M 50,50 m -36,0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0" />
               </defs>
-              <text fill="#F5B942" fontSize="9" fontFamily="'JetBrains Mono', monospace" letterSpacing="2" style={{ filter: "drop-shadow(0 0 4px rgba(245,185,66,0.7))" }}>
+              <text fill="#C9A84C" fontSize="9" fontFamily="'JetBrains Mono', monospace" letterSpacing="2" style={{ filter: "drop-shadow(0 0 4px rgba(201,168,76,0.7))" }}>
                 <textPath href="#circlePath">EXPLORE PROJECT • EXPLORE PROJECT • </textPath>
               </text>
-              <circle cx="50" cy="50" r="2.5" fill="#F5B942" />
+              <circle cx="50" cy="50" r="2.5" fill="#C9A84C" />
             </svg>
           </div>
 
@@ -246,9 +246,9 @@ const Portfolio = () => {
                 style={{
                   width: i === index ? 36 : 14,
                   background: i === index
-                    ? "linear-gradient(90deg, #F5B942, #FFD56A)"
-                    : "rgba(245,185,66,0.3)",
-                  boxShadow: i === index ? "0 0 8px #F5B942" : "none",
+                    ? "linear-gradient(90deg, #C9A84C, #E8D5A3)"
+                    : "rgba(201,168,76,0.3)",
+                  boxShadow: i === index ? "0 0 8px #C9A84C" : "none",
                 }}
               />
             ))}

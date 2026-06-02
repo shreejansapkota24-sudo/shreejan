@@ -21,7 +21,7 @@ const NotFound = () => {
         transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
         className="text-center max-w-lg relative"
       >
-        <p className="font-mono text-[10px] uppercase tracking-[0.3em] mb-6" style={{ color: "#FFD56A" }}>
+        <p className="font-mono text-[10px] uppercase tracking-[0.3em] mb-6" style={{ color: "#E8D5A3" }}>
           [ Lost Signal ]
         </p>
         <h1
@@ -34,7 +34,7 @@ const NotFound = () => {
           This page drifted off-screen.
         </h2>
         <p className="mb-10" style={{ color: "#A1A1AA" }}>
-          The route <span className="font-mono text-[12px]" style={{ color: "#FFD56A" }}>{location.pathname}</span> does not exist in the portfolio.
+          The route <span className="font-mono text-[12px]" style={{ color: "#E8D5A3" }}>{location.pathname}</span> does not exist in the portfolio.
         </p>
         <a href="/" className="btn-mono hover-lift">
           <ArrowLeft className="w-3.5 h-3.5" />
