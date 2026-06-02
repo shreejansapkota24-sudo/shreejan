@@ -71,7 +71,7 @@ const Navbar = () => {
 
             <Link to="/cyberguard/cyber-saathi">
               <button className="btn-mono">
-                <Bot className="w-3.5 h-3.5" />
+                <Sparkles className="w-3.5 h-3.5" />
                 Chat with AI
               </button>
             </Link>
@@ -107,7 +107,7 @@ const Navbar = () => {
 
               <Link to="/cyberguard/cyber-saathi" onClick={() => setIsOpen(false)}>
                 <button className="btn-mono">
-                  <Bot className="w-3.5 h-3.5" />
+                  <Sparkles className="w-3.5 h-3.5" />
                   Chat with AI
                 </button>
               </Link>
