@@ -137,8 +137,8 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Archivo', 'Inter', sans-serif;
-    font-weight: 800;
+    font-family: '"Playfair Display"', 'Cormorant Garamond', serif;
+    font-weight: 600;
     letter-spacing: -0.02em;
     color: var(--mono-text);
   }
