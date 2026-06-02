@@ -8,44 +8,99 @@ import {
   Shield,
   Wrench,
   Zap,
+  Brain,
+  MessageSquare,
+  Lock,
+  Bug,
+  Network,
+  type LucideIcon,
 } from "lucide-react";
 
-const categories = [
+type Skill = {
+  name: string;
+  devicon?: string;
+  lucide?: LucideIcon;
+};
+
+type Category = {
+  label: string;
+  icon: LucideIcon;
+  items: Skill[];
+  featured?: string[];
+};
+
+const categories: Category[] = [
   {
     label: "Frontend",
     icon: Code2,
-    items: ["HTML5", "CSS3", "JavaScript (ES6+)", "TypeScript", "React.js", "Next.js", "Tailwind CSS"],
+    items: [
+      { name: "HTML5", devicon: "devicon-html5-plain colored" },
+      { name: "CSS3", devicon: "devicon-css3-plain colored" },
+      { name: "JavaScript", devicon: "devicon-javascript-plain colored" },
+      { name: "TypeScript", devicon: "devicon-typescript-plain colored" },
+      { name: "React.js", devicon: "devicon-react-original colored" },
+      { name: "Next.js", devicon: "devicon-nextjs-plain" },
+      { name: "Tailwind CSS", devicon: "devicon-tailwindcss-plain colored" },
+    ],
     featured: ["React.js", "Tailwind CSS"],
   },
   {
     label: "Backend",
     icon: Server,
-    items: ["Node.js", "Express.js", "REST APIs"],
+    items: [
+      { name: "Node.js", devicon: "devicon-nodejs-plain colored" },
+      { name: "Express.js", devicon: "devicon-express-original" },
+      { name: "REST APIs", lucide: Network },
+    ],
   },
   {
     label: "Databases",
     icon: Database,
-    items: ["MySQL", "PostgreSQL", "MongoDB"],
+    items: [
+      { name: "MySQL", devicon: "devicon-mysql-plain colored" },
+      { name: "PostgreSQL", devicon: "devicon-postgresql-plain colored" },
+      { name: "MongoDB", devicon: "devicon-mongodb-plain colored" },
+    ],
   },
   {
     label: "Languages",
     icon: Terminal,
-    items: ["C", "C++", "Python", "Java", "JavaScript", "TypeScript"],
+    items: [
+      { name: "C", devicon: "devicon-c-plain colored" },
+      { name: "C++", devicon: "devicon-cplusplus-plain colored" },
+      { name: "Python", devicon: "devicon-python-plain colored" },
+      { name: "Java", devicon: "devicon-java-plain colored" },
+      { name: "JavaScript", devicon: "devicon-javascript-plain colored" },
+      { name: "TypeScript", devicon: "devicon-typescript-plain colored" },
+    ],
   },
   {
     label: "AI & Emerging",
     icon: Sparkles,
-    items: ["OpenAI API", "Artificial Intelligence", "Prompt Engineering"],
+    items: [
+      { name: "OpenAI API", lucide: Brain },
+      { name: "Artificial Intelligence", lucide: Sparkles },
+      { name: "Prompt Engineering", lucide: MessageSquare },
+    ],
   },
   {
     label: "Cybersecurity",
     icon: Shield,
-    items: ["Web Security Fundamentals", "Ethical Hacking Basics"],
+    items: [
+      { name: "Web Security Fundamentals", lucide: Lock },
+      { name: "Ethical Hacking Basics", lucide: Bug },
+    ],
   },
   {
     label: "Tools & Platforms",
     icon: Wrench,
-    items: ["Git", "GitHub", "VS Code", "Linux", "Docker"],
+    items: [
+      { name: "Git", devicon: "devicon-git-plain colored" },
+      { name: "GitHub", devicon: "devicon-github-original" },
+      { name: "VS Code", devicon: "devicon-vscode-plain colored" },
+      { name: "Linux", devicon: "devicon-linux-plain" },
+      { name: "Docker", devicon: "devicon-docker-plain colored" },
+    ],
   },
 ];
 
@@ -105,7 +160,6 @@ const Skills = () => (
               boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04)",
             }}
           >
-            {/* gold glow on hover */}
             <div
               className="absolute -inset-px rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
               style={{
@@ -141,11 +195,12 @@ const Skills = () => (
 
             <div className="flex flex-wrap gap-2 relative">
               {cat.items.map((item) => {
-                const isFeatured = cat.featured?.includes(item);
+                const isFeatured = cat.featured?.includes(item.name);
+                const LucideIco = item.lucide;
                 return (
                   <span
-                    key={item}
-                    className="px-3 py-1.5 text-[11px] rounded-full font-mono tracking-[0.05em] transition-all duration-300"
+                    key={item.name}
+                    className="inline-flex items-center px-3 py-1.5 text-[11px] rounded-full font-mono tracking-[0.05em] transition-all duration-300"
                     style={
                       isFeatured
                         ? {
@@ -161,7 +216,20 @@ const Skills = () => (
                           }
                     }
                   >
-                    {item}
+                    {item.devicon ? (
+                      <i
+                        className={item.devicon}
+                        style={{ fontSize: 18, verticalAlign: "middle", marginRight: 6 }}
+                        aria-hidden="true"
+                      />
+                    ) : LucideIco ? (
+                      <LucideIco
+                        size={16}
+                        style={{ marginRight: 6, color: "#F5B942" }}
+                        aria-hidden="true"
+                      />
+                    ) : null}
+                    {item.name}
                   </span>
                 );
               })}

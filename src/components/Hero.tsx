@@ -11,7 +11,7 @@ const socials = [
   { icon: Mail, href: "mailto:shreejansapkota24@gmail.com", label: "Email" },
 ];
 
-const TAGLINE = "Computer Science Student • Software Developer • Technology Enthusiast";
+const TAGLINE = "Computer Science Student • Technology Enthusiast";
 
 const Hero = () => {
   const [introDone, setIntroDone] = useState(false);
