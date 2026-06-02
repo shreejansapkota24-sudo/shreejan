@@ -1,258 +1,257 @@
-import { useEffect, useRef, useState } from "react";
-import { Github, Linkedin, ChevronLeft, ChevronRight } from "lucide-react";
+import { Github, Linkedin, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 type Project = {
+  num: string;
   title: string;
   subtitle: string;
-  bg: string;
+  tags: string[];
   href?: string;
   internal?: boolean;
 };
 
 const projects: Project[] = [
   {
+    num: "01",
     title: "CyberGuard",
-    subtitle: "Cybersecurity Toolkit · URL & File Scanner · Threat Map",
+    subtitle:
+      "A cybersecurity toolkit with URL & file scanning, a live threat map, and country-level intelligence panels.",
+    tags: ["React", "TypeScript", "Security", "Threat Intel"],
     href: "/cyberguard",
     internal: true,
-    bg: `radial-gradient(ellipse at 30% 20%, rgba(201,168,76,0.35), transparent 55%),
-         radial-gradient(ellipse at 80% 80%, rgba(232,213,163,0.20), transparent 60%),
-         linear-gradient(135deg, #1a0a02 0%, #2a1305 40%, #0A0A0A 100%)`,
   },
   {
+    num: "02",
     title: "Cyber Saathi",
-    subtitle: "AI-powered Defensive Security Analyst · IOC Extraction",
+    subtitle:
+      "An AI-powered defensive security analyst that extracts IOCs, scores risk, and explains threats in plain language.",
+    tags: ["AI", "LLM", "IOC Extraction", "Risk Scoring"],
     href: "/cyberguard/cyber-saathi",
     internal: true,
-    bg: `radial-gradient(ellipse at 70% 30%, rgba(201,168,76,0.32), transparent 60%),
-         radial-gradient(ellipse at 20% 70%, rgba(232,213,163,0.18), transparent 60%),
-         linear-gradient(160deg, #160803 0%, #2c1206 50%, #0A0A0A 100%)`,
   },
   {
+    num: "03",
     title: "More Coming Soon",
-    subtitle: "New experiments in motion · Stay tuned",
-    bg: `radial-gradient(ellipse at 50% 30%, rgba(201,168,76,0.20), transparent 60%),
-         linear-gradient(135deg, #0A0A0A 0%, #1a0d04 50%, #0A0A0A 100%)`,
+    subtitle:
+      "New experiments in full-stack development, AI tooling, and security research — stay tuned.",
+    tags: ["WIP", "Research", "Experiments"],
   },
 ];
 
-const useClock = () => {
-  const [now, setNow] = useState(new Date());
-  useEffect(() => {
-    const id = setInterval(() => setNow(new Date()), 1000);
-    return () => clearInterval(id);
-  }, []);
-  return now;
-};
-
 const Portfolio = () => {
-  const [index, setIndex] = useState(0);
-  const [hovered, setHovered] = useState(false);
-  const [mouse, setMouse] = useState({ x: 0, y: 0, visible: false });
-  const wrapRef = useRef<HTMLDivElement>(null);
-  const now = useClock();
-
-  const next = () => setIndex((i) => (i + 1) % projects.length);
-  const prev = () => setIndex((i) => (i - 1 + projects.length) % projects.length);
-
-  useEffect(() => {
-    if (hovered) return;
-    const id = setInterval(next, 6000);
-    return () => clearInterval(id);
-  }, [hovered]);
-
-  const onMove = (e: React.MouseEvent) => {
-    if (!wrapRef.current) return;
-    const rect = wrapRef.current.getBoundingClientRect();
-    setMouse({ x: e.clientX - rect.left, y: e.clientY - rect.top, visible: true });
-  };
-
-  const onClick = (e: React.MouseEvent) => {
-    if (!wrapRef.current) return;
-    const target = e.target as HTMLElement;
-    if (target.closest("a, button")) return;
-    const rect = wrapRef.current.getBoundingClientRect();
-    if (e.clientX - rect.left > rect.width / 2) next();
-    else prev();
-  };
-
-  const current = projects[index];
-
-  const dateStr = now
-    .toLocaleDateString("en-US", { weekday: "short", day: "2-digit", month: "short", year: "numeric" })
-    .toUpperCase();
-  const timeStr = now.toLocaleTimeString("en-US", { hour12: false });
-
   return (
-    <section id="portfolio" className="relative bg-[#0A0A0A] py-16 md:py-24 px-4 md:px-10">
-      <div className="max-w-[1600px] mx-auto">
-        {/* Section header */}
-        <div className="flex items-end justify-between mb-6 px-2">
-          <div>
-            <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-[#C9A84C]/80 mb-2">
-              Selected Works · 2024 — 2026
-            </p>
-            <h2 className="font-display text-3xl md:text-5xl arctic-gradient-text" style={{ fontWeight: 800, letterSpacing: "-0.03em" }}>
-              Portfolio
-            </h2>
-          </div>
-          <div className="hidden md:flex items-center gap-6 font-mono text-[10px] tracking-[0.25em] uppercase text-white/50">
-            <span>{dateStr}</span>
-            <span style={{ color: "#C9A84C" }}>{timeStr}</span>
-          </div>
-        </div>
-
-        <div
-          ref={wrapRef}
-          className="relative w-full overflow-hidden rounded-2xl border border-[#C9A84C]/20 box-glow"
-          style={{ height: "min(78vh, 720px)" }}
-          onMouseEnter={() => setHovered(true)}
-          onMouseLeave={() => {
-            setHovered(false);
-            setMouse((m) => ({ ...m, visible: false }));
-          }}
-          onMouseMove={onMove}
-          onClick={onClick}
+    <section id="portfolio" className="relative py-32 px-6">
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          className="mb-16"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          {/* Slides */}
-          {projects.map((p, i) => (
-            <div
-              key={p.title}
-              className={`carousel-slide ${i === index ? "active" : ""}`}
-              aria-hidden={i !== index}
-            >
-              <div className="ken-burns-img" style={{ background: p.bg }} />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-              <div className="absolute inset-0 arctic-noise pointer-events-none" />
-            </div>
-          ))}
-
-          {/* Top bar inside frame */}
-          <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-6 md:px-10 py-5 font-mono text-[10px] tracking-[0.25em] uppercase text-white/60 pointer-events-none">
-            <span>Project · {String(index + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}</span>
-            <span className="hidden md:inline text-white/80">{timeStr} · KTM</span>
-          </div>
-
-          {/* Vertical counter left */}
-          <div className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 flex flex-col items-center gap-3 font-mono text-[11px] text-white/80 select-none pointer-events-none">
-            <span className="text-2xl text-white">{String(index + 1).padStart(2, "0")}</span>
-            <span className="block w-px h-16 bg-white/30" />
-            <span className="text-white/40">{String(projects.length).padStart(2, "0")}</span>
-          </div>
-
-          {/* Title bottom-left */}
-          <div className="absolute left-6 md:left-12 bottom-8 md:bottom-12 z-20 max-w-[85%] pointer-events-none">
-            <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/70 mb-3">
-              {current.subtitle}
-            </p>
-            <h3
-              className="font-display leading-[0.9] text-white"
-              style={{
-                fontSize: "clamp(48px, 9vw, 120px)",
-                fontWeight: 800,
-                letterSpacing: "-0.04em",
-              }}
-            >
-              {current.title}
-            </h3>
-          </div>
-
-          {/* CTA bottom-right */}
-          {current.href && (
-            <div className="absolute right-6 md:right-12 bottom-12 md:bottom-16 z-30">
-              {current.internal ? (
-                <Link
-                  to={current.href}
-                  className="btn-mono pointer-events-auto"
-                >
-                  View Project →
-                </Link>
-              ) : (
-                <a
-                  href={current.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-mono pointer-events-auto"
-                >
-                  View Project →
-                </a>
-              )}
-            </div>
-          )}
-
-          {/* Socials */}
-          <div className="absolute right-6 md:right-12 top-16 z-20 flex gap-3">
-            <a
-              href="https://github.com/shreejansapkota24-sudo"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              className="w-9 h-9 flex items-center justify-center border border-white/20 text-white/70 hover:text-white hover:border-white transition"
-            >
-              <Github className="w-4 h-4" />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/shreejan-sapkota-0449b023b/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="w-9 h-9 flex items-center justify-center border border-white/20 text-white/70 hover:text-white hover:border-white transition"
-            >
-              <Linkedin className="w-4 h-4" />
-            </a>
-          </div>
-
-          {/* Arrows */}
-          <button
-            onClick={(e) => { e.stopPropagation(); prev(); }}
-            aria-label="Previous"
-            className={`absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 flex items-center justify-center text-white/60 hover:text-white transition-opacity ${hovered ? "opacity-100" : "opacity-0"}`}
+          <span
+            className="inline-flex items-center gap-2 px-4 py-1.5 glass font-mono text-[10px] uppercase tracking-[0.3em] mb-6"
+            style={{ color: "#E8D5A3", border: "1px solid rgba(201,168,76,0.25)", borderRadius: 999 }}
           >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-          <button
-            onClick={(e) => { e.stopPropagation(); next(); }}
-            aria-label="Next"
-            className={`absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 flex items-center justify-center text-white/60 hover:text-white transition-opacity ${hovered ? "opacity-100" : "opacity-0"}`}
+            Selected Works
+          </span>
+          <h2
+            className="text-5xl md:text-7xl"
+            style={{ fontFamily: '"Playfair Display",serif', fontWeight: 600, letterSpacing: "-0.02em" }}
           >
-            <ChevronRight className="w-6 h-6" />
-          </button>
+            <span style={{ fontStyle: "italic", color: "#F5F5F0" }}>My</span>{" "}
+            <span className="arctic-gradient-text">Portfolio</span>
+          </h2>
+        </motion.div>
 
-          {/* Rotating "Explore Project" cursor — confined to this section */}
-          <div
-            className={`explore-cursor ${mouse.visible ? "visible" : ""}`}
-            style={{ left: mouse.x, top: mouse.y, position: "absolute" }}
-          >
-            <svg viewBox="0 0 100 100">
-              <defs>
-                <path id="circlePath" d="M 50,50 m -36,0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0" />
-              </defs>
-              <text fill="#C9A84C" fontSize="9" fontFamily="'JetBrains Mono', monospace" letterSpacing="2" style={{ filter: "drop-shadow(0 0 4px rgba(201,168,76,0.7))" }}>
-                <textPath href="#circlePath">EXPLORE PROJECT • EXPLORE PROJECT • </textPath>
-              </text>
-              <circle cx="50" cy="50" r="2.5" fill="#C9A84C" />
-            </svg>
-          </div>
+        <div className="space-y-px">
+          {projects.map((p, i) => {
+            const ButtonInner = (
+              <span className="inline-flex items-center gap-2 group/btn">
+                View Project
+                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
+              </span>
+            );
 
-          {/* Progress dots */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
-            {projects.map((_, i) => (
-              <button
-                key={i}
-                onClick={(e) => { e.stopPropagation(); setIndex(i); }}
-                aria-label={`Go to slide ${i + 1}`}
-                className="h-[2px] transition-all rounded-full"
+            return (
+              <motion.article
+                key={p.num}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.7, delay: i * 0.08, ease: "easeOut" }}
+                className="group relative overflow-hidden cinematic-ease"
                 style={{
-                  width: i === index ? 36 : 14,
-                  background: i === index
-                    ? "linear-gradient(90deg, #C9A84C, #E8D5A3)"
-                    : "rgba(201,168,76,0.3)",
-                  boxShadow: i === index ? "0 0 8px #C9A84C" : "none",
+                  background: "#111111",
+                  border: "1px solid rgba(201,168,76,0.15)",
+                  borderRadius: 16,
+                  marginBottom: 16,
+                  transition: "background 0.5s ease, border-color 0.4s ease",
                 }}
-              />
-            ))}
-          </div>
+                whileHover={{ scale: 1.01 }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background =
+                    "linear-gradient(135deg, #14110a 0%, #111111 100%)";
+                  e.currentTarget.style.borderColor = "rgba(201,168,76,0.4)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "#111111";
+                  e.currentTarget.style.borderColor = "rgba(201,168,76,0.15)";
+                }}
+              >
+                <div className="relative p-8 md:p-14 overflow-hidden">
+                  {/* big background number */}
+                  <span
+                    aria-hidden
+                    className="absolute right-6 top-2 select-none pointer-events-none"
+                    style={{
+                      fontFamily: '"JetBrains Mono", monospace',
+                      fontSize: "clamp(80px, 14vw, 180px)",
+                      fontWeight: 700,
+                      color: "#F5F5F0",
+                      opacity: 0.05,
+                      letterSpacing: "-0.05em",
+                      lineHeight: 1,
+                    }}
+                  >
+                    {p.num}
+                  </span>
+
+                  {/* top-right socials */}
+                  <div className="absolute top-6 right-6 flex gap-2 z-10">
+                    <a
+                      href="https://github.com/shreejansapkota24-sudo"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="GitHub"
+                      className="w-9 h-9 flex items-center justify-center rounded-full transition-all"
+                      style={{
+                        border: "1px solid rgba(201,168,76,0.25)",
+                        color: "#888880",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = "#C9A84C";
+                        e.currentTarget.style.borderColor = "#C9A84C";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = "#888880";
+                        e.currentTarget.style.borderColor = "rgba(201,168,76,0.25)";
+                      }}
+                    >
+                      <Github className="w-4 h-4" />
+                    </a>
+                    <a
+                      href="https://www.linkedin.com/in/shreejan-sapkota-0449b023b/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="LinkedIn"
+                      className="w-9 h-9 flex items-center justify-center rounded-full transition-all"
+                      style={{
+                        border: "1px solid rgba(201,168,76,0.25)",
+                        color: "#888880",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = "#C9A84C";
+                        e.currentTarget.style.borderColor = "#C9A84C";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = "#888880";
+                        e.currentTarget.style.borderColor = "rgba(201,168,76,0.25)";
+                      }}
+                    >
+                      <Linkedin className="w-4 h-4" />
+                    </a>
+                  </div>
+
+                  <div className="relative z-[2] max-w-3xl">
+                    <p
+                      className="font-mono text-[10px] uppercase tracking-[0.3em] mb-4"
+                      style={{ color: "#C9A84C" }}
+                    >
+                      Project · {p.num}
+                    </p>
+                    <h3
+                      className="mb-5"
+                      style={{
+                        fontFamily: '"Playfair Display",serif',
+                        fontWeight: 600,
+                        fontSize: "clamp(36px, 5vw, 64px)",
+                        lineHeight: 1.05,
+                        letterSpacing: "-0.02em",
+                        color: "#F5F5F0",
+                      }}
+                    >
+                      {p.title}
+                    </h3>
+                    <p
+                      className="mb-7 max-w-2xl text-[14px] leading-relaxed"
+                      style={{ color: "#888880" }}
+                    >
+                      {p.subtitle}
+                    </p>
+
+                    <div className="flex flex-wrap gap-2 mb-8">
+                      {p.tags.map((t) => (
+                        <span
+                          key={t}
+                          className="font-mono px-3 py-1 text-[10px] uppercase tracking-[0.18em] rounded-full"
+                          style={{
+                            color: "#C9A84C",
+                            border: "1px solid rgba(201,168,76,0.3)",
+                            background: "rgba(201,168,76,0.04)",
+                          }}
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+
+                    {p.href ? (
+                      p.internal ? (
+                        <Link
+                          to={p.href}
+                          className="group/btn inline-flex items-center gap-2 px-7 py-3 font-mono text-[11px] uppercase tracking-[0.18em] rounded-full transition-all duration-300"
+                          style={{
+                            border: "1px solid #C9A84C",
+                            color: "#C9A84C",
+                            background: "transparent",
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.background = "#C9A84C";
+                            e.currentTarget.style.color = "#0A0A0A";
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.background = "transparent";
+                            e.currentTarget.style.color = "#C9A84C";
+                          }}
+                        >
+                          {ButtonInner}
+                        </Link>
+                      ) : (
+                        <a
+                          href={p.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group/btn inline-flex items-center gap-2 px-7 py-3 font-mono text-[11px] uppercase tracking-[0.18em] rounded-full"
+                          style={{ border: "1px solid #C9A84C", color: "#C9A84C" }}
+                        >
+                          {ButtonInner}
+                        </a>
+                      )
+                    ) : (
+                      <span
+                        className="inline-flex items-center gap-2 px-7 py-3 font-mono text-[11px] uppercase tracking-[0.18em] rounded-full opacity-60"
+                        style={{ border: "1px dashed rgba(201,168,76,0.4)", color: "#888880" }}
+                      >
+                        Coming Soon
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </motion.article>
+            );
+          })}
         </div>
       </div>
     </section>

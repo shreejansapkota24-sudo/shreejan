@@ -1,9 +1,5 @@
-import { useState } from "react";
-import { Send, Mail, User, MessageSquare, Loader2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
+import { useRef, useState } from "react";
+import { Send, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { z } from "zod";
 import { toast } from "sonner";
@@ -13,27 +9,54 @@ const SUBMIT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-inq
 const PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
 const inquirySchema = z.object({
-  name: z.string().trim().min(1, "Name is required").max(100, "Name must be under 100 characters"),
+  name: z.string().trim().min(1, "Name is required").max(100),
   email: z.string().trim().email("Please enter a valid email").max(255),
-  message: z.string().trim().min(10, "Message should be at least 10 characters").max(2000, "Message too long"),
+  message: z.string().trim().min(10, "Message should be at least 10 characters").max(2000),
 });
 
+type FieldName = "name" | "email" | "message";
+
+const fieldLabel: Record<FieldName, string> = {
+  name: "Name",
+  email: "Email",
+  message: "Message",
+};
+
 const InquiryForm = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [values, setValues] = useState({ name: "", email: "", message: "" });
+  const [errors, setErrors] = useState<Partial<Record<FieldName, string>>>({});
+  const [shake, setShake] = useState<Partial<Record<FieldName, boolean>>>({});
   const [submitting, setSubmitting] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [cooldown, setCooldown] = useState(false);
+  const honeypotRef = useRef<HTMLInputElement>(null);
+
+  const setField = (k: FieldName) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setValues((v) => ({ ...v, [k]: e.target.value }));
+    if (errors[k]) setErrors((er) => ({ ...er, [k]: undefined }));
+  };
+
+  const triggerShake = (k: FieldName) => {
+    setShake((s) => ({ ...s, [k]: true }));
+    setTimeout(() => setShake((s) => ({ ...s, [k]: false })), 450);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setErrors({});
+    if (submitting || cooldown) return;
 
-    const result = inquirySchema.safeParse({ name, email, message });
+    // honeypot
+    if (honeypotRef.current?.value) return;
+
+    setErrors({});
+    const result = inquirySchema.safeParse(values);
     if (!result.success) {
-      const fieldErrors: Record<string, string> = {};
+      const fieldErrors: Partial<Record<FieldName, string>> = {};
       result.error.errors.forEach((err) => {
-        if (err.path[0]) fieldErrors[err.path[0] as string] = err.message;
+        const key = err.path[0] as FieldName | undefined;
+        if (key) {
+          fieldErrors[key] = err.message;
+          triggerShake(key);
+        }
       });
       setErrors(fieldErrors);
       return;
@@ -41,15 +64,12 @@ const InquiryForm = () => {
 
     setSubmitting(true);
     try {
-      // Get an invisible Turnstile token for this submission (skip in preview).
       let turnstileToken = "preview-skip";
       if (!isPreviewHost()) {
         try {
           turnstileToken = await getFreshTurnstileToken();
         } catch {
-          toast.error("Verification failed", {
-            description: "Please refresh the page and try again.",
-          });
+          toast.error("Verification failed", { description: "Please refresh the page and try again." });
           setSubmitting(false);
           return;
         }
@@ -61,12 +81,7 @@ const InquiryForm = () => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${PUBLISHABLE_KEY}`,
         },
-        body: JSON.stringify({
-          name: result.data.name,
-          email: result.data.email,
-          message: result.data.message,
-          turnstileToken,
-        }),
+        body: JSON.stringify({ ...result.data, turnstileToken }),
       });
 
       if (!res.ok) {
@@ -74,12 +89,8 @@ const InquiryForm = () => {
         throw new Error(data.error || `Request failed (${res.status})`);
       }
 
-      toast.success("Message sent!", {
-        description: "Thanks for reaching out. I'll get back to you soon.",
-      });
-      setName("");
-      setEmail("");
-      setMessage("");
+      toast.success("Message sent!", { description: "Thanks for reaching out. I'll get back to you soon." });
+      setValues({ name: "", email: "", message: "" });
     } catch (err) {
       console.error("Inquiry submission error:", err);
       toast.error("Something went wrong", {
@@ -87,107 +98,164 @@ const InquiryForm = () => {
       });
     } finally {
       setSubmitting(false);
+      setCooldown(true);
+      setTimeout(() => setCooldown(false), 3000);
     }
   };
 
-  return (
-    <section id="inquiry" className="py-24 px-6 relative overflow-hidden">
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
-      </div>
+  const inputStyle = (k: FieldName): React.CSSProperties => ({
+    background: "#1a1a1a",
+    border: "none",
+    borderBottom: errors[k]
+      ? "1px solid #ef4444"
+      : "1px solid rgba(201,168,76,0.3)",
+    borderRadius: 0,
+    color: "#F5F5F0",
+    padding: "12px 4px",
+    width: "100%",
+    outline: "none",
+    fontFamily: '"Inter", sans-serif',
+    fontSize: 14,
+    transition: "border-color 0.3s ease",
+  });
 
+  return (
+    <section id="inquiry" className="py-32 px-6 relative">
       <div className="max-w-3xl mx-auto">
         <motion.div
-          className="text-center mb-10"
-          initial={{ opacity: 0, y: 20 }}
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border-glow text-primary font-medium text-sm mb-4 font-cyber">
-            <MessageSquare className="w-4 h-4" />
+          <span
+            className="inline-flex items-center gap-2 px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.3em] mb-6"
+            style={{ color: "#E8D5A3", border: "1px solid rgba(201,168,76,0.25)", borderRadius: 999, background: "rgba(17,17,17,0.6)" }}
+          >
             Inquiry
           </span>
-          <h2 className="text-4xl md:text-6xl mb-3" style={{ fontFamily: '"Playfair Display",serif', fontWeight: 600, letterSpacing: "-0.02em" }}>
-            <span style={{ fontStyle: "italic", color: "#FFFFFF" }}>Send</span> <span className="arctic-gradient-text">an Inquiry</span>
+          <h2
+            className="text-4xl md:text-6xl"
+            style={{ fontFamily: '"Playfair Display",serif', fontWeight: 600, letterSpacing: "-0.02em" }}
+          >
+            <span style={{ fontStyle: "italic", color: "#F5F5F0" }}>Send</span>{" "}
+            <span className="arctic-gradient-text">an Inquiry</span>
           </h2>
-          <p className="text-muted-foreground text-base">
-            Send me a message — I'll get back to you as soon as I can.
-          </p>
         </motion.div>
 
         <motion.form
           onSubmit={handleSubmit}
-          className="glass border-glow rounded-3xl p-6 md:p-8 space-y-5"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2, duration: 0.6 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+          className="relative p-8 md:p-12 rounded-2xl space-y-8"
+          style={{
+            background: "#111111",
+            border: "1px solid rgba(201,168,76,0.15)",
+            borderTop: "4px solid #C9A84C",
+          }}
+          noValidate
         >
-          <div className="grid md:grid-cols-2 gap-5">
-            <div className="space-y-2">
-              <Label htmlFor="inq-name" className="text-sm font-medium text-foreground flex items-center gap-2">
-                <User className="w-3.5 h-3.5 text-primary" /> Name
-              </Label>
-              <Input
-                id="inq-name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Your name"
-                maxLength={100}
-                disabled={submitting}
-                className="bg-background/40 border-primary/20 focus:border-primary/60"
-              />
-              {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
-            </div>
+          {/* honeypot */}
+          <input
+            ref={honeypotRef}
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            style={{ position: "absolute", left: "-9999px", opacity: 0, pointerEvents: "none", height: 0, width: 0 }}
+          />
 
-            <div className="space-y-2">
-              <Label htmlFor="inq-email" className="text-sm font-medium text-foreground flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-primary" /> Email
-              </Label>
-              <Input
-                id="inq-email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.com"
-                maxLength={255}
+          {(["name", "email"] as FieldName[]).map((k) => (
+            <motion.div
+              key={k}
+              animate={shake[k] ? { x: [0, -6, 6, -4, 4, 0] } : { x: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              <label
+                htmlFor={`inq-${k}`}
+                className="block mb-2 font-mono text-[11px] uppercase tracking-[0.22em]"
+                style={{ color: "#C9A84C" }}
+              >
+                {fieldLabel[k]}
+              </label>
+              <input
+                id={`inq-${k}`}
+                type={k === "email" ? "email" : "text"}
+                value={values[k]}
+                onChange={setField(k)}
                 disabled={submitting}
-                className="bg-background/40 border-primary/20 focus:border-primary/60"
+                maxLength={k === "email" ? 255 : 100}
+                placeholder={k === "email" ? "you@example.com" : "Your name"}
+                style={inputStyle(k)}
+                aria-label={fieldLabel[k]}
+                aria-invalid={!!errors[k]}
+                onFocus={(e) => {
+                  if (!errors[k]) e.target.style.borderBottomColor = "#C9A84C";
+                }}
+                onBlur={(e) => {
+                  if (!errors[k]) e.target.style.borderBottomColor = "rgba(201,168,76,0.3)";
+                }}
               />
-              {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
-            </div>
-          </div>
+              {errors[k] && <p className="mt-2 text-[12px]" style={{ color: "#ef4444" }}>{errors[k]}</p>}
+            </motion.div>
+          ))}
 
-          <div className="space-y-2">
-            <Label htmlFor="inq-message" className="text-sm font-medium text-foreground flex items-center gap-2">
-              <MessageSquare className="w-3.5 h-3.5 text-primary" /> Message
-            </Label>
-            <Textarea
+          <motion.div
+            animate={shake.message ? { x: [0, -6, 6, -4, 4, 0] } : { x: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            <label
+              htmlFor="inq-message"
+              className="block mb-2 font-mono text-[11px] uppercase tracking-[0.22em]"
+              style={{ color: "#C9A84C" }}
+            >
+              Message
+            </label>
+            <textarea
               id="inq-message"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              placeholder="Tell me what you'd like to discuss, request more AI access, or share an opportunity..."
-              rows={5}
-              maxLength={2000}
+              value={values.message}
+              onChange={setField("message")}
               disabled={submitting}
-              className="bg-background/40 border-primary/20 focus:border-primary/60 resize-none"
+              maxLength={2000}
+              placeholder="Tell me what you'd like to discuss..."
+              style={{ ...inputStyle("message"), height: 180, resize: "vertical" }}
+              aria-label="Message"
+              aria-invalid={!!errors.message}
+              onFocus={(e) => {
+                if (!errors.message) e.target.style.borderBottomColor = "#C9A84C";
+              }}
+              onBlur={(e) => {
+                if (!errors.message) e.target.style.borderBottomColor = "rgba(201,168,76,0.3)";
+              }}
             />
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center mt-2">
               {errors.message ? (
-                <p className="text-xs text-destructive">{errors.message}</p>
+                <p className="text-[12px]" style={{ color: "#ef4444" }}>{errors.message}</p>
               ) : (
-                <span className="text-xs text-muted-foreground">Min 10 characters</span>
+                <span className="text-[12px]" style={{ color: "#888880" }}>Min 10 characters</span>
               )}
-              <span className="text-xs text-muted-foreground font-cyber">{message.length}/2000</span>
+              <span className="font-mono text-[11px]" style={{ color: "#888880" }}>
+                {values.message.length}/2000
+              </span>
             </div>
-          </div>
+          </motion.div>
 
-          <Button
+          <button
             type="submit"
-            disabled={submitting}
-            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/50 transition-all duration-300 font-cyber text-sm gap-2"
-            size="lg"
+            disabled={submitting || cooldown}
+            aria-label="Send inquiry"
+            className="group/btn w-full inline-flex items-center justify-center gap-2 py-4 rounded-full font-medium transition-all duration-300 disabled:opacity-60"
+            style={{
+              background: "#C9A84C",
+              color: "#0A0A0A",
+              fontFamily: '"Inter", sans-serif',
+              fontSize: 14,
+              letterSpacing: "0.02em",
+            }}
           >
             {submitting ? (
               <>
@@ -196,11 +264,11 @@ const InquiryForm = () => {
               </>
             ) : (
               <>
-                <Send className="w-4 h-4" />
                 Send Inquiry
+                <Send className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
               </>
             )}
-          </Button>
+          </button>
         </motion.form>
       </div>
     </section>
