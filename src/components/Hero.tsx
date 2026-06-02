@@ -180,12 +180,13 @@ const Hero = () => {
             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
             transition={{ delay: 1.4, duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="profile-photo-wrap">
+            <div className="profile-photo-wrap" style={{ clipPath: "polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%)" }}>
               <img
                 id="hero-profile-photo"
                 src={new URL("../assets/profile-themed.jpg", import.meta.url).href}
                 alt="Shreejan Sapkota"
                 className="profile-photo"
+                style={{ clipPath: "polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%)", borderRadius: 0 }}
                 loading="eager"
               />
             </div>
