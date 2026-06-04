@@ -8,22 +8,25 @@ import Services from "@/components/Services";
 import Contact from "@/components/Contact";
 import InquiryForm from "@/components/InquiryForm";
 import Footer from "@/components/Footer";
-import CyberBackground from "@/components/CyberBackground";
-import ParticleField from "@/components/ParticleField";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background relative scanline-overlay">
-      <CyberBackground />
-      <ParticleField />
+    <div className="min-h-screen bg-background relative">
       <Navbar />
       <Hero />
+      <div className="hairline max-w-6xl mx-auto" />
       <About />
+      <div className="hairline max-w-6xl mx-auto" />
       <AssistantHero />
+      <div className="hairline max-w-6xl mx-auto" />
       <Skills />
+      <div className="hairline max-w-6xl mx-auto" />
       <Portfolio />
+      <div className="hairline max-w-6xl mx-auto" />
       <Services />
+      <div className="hairline max-w-6xl mx-auto" />
       <Contact />
+      <div className="hairline max-w-6xl mx-auto" />
       <InquiryForm />
       <Footer />
     </div>

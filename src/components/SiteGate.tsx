@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ShieldCheck, Loader2 } from "lucide-react";
+import { Lock, Loader2 } from "lucide-react";
 
 const SCRIPT_SRC = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
 const CONFIG_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/get-turnstile-config`;
@@ -44,8 +44,6 @@ function loadScript(): Promise<void> {
 
 export default function SiteGate({ children }: { children: React.ReactNode }) {
   const [verified, setVerified] = useState<boolean>(() => {
-    // Auto-skip gate in Lovable preview / sandbox environments so the
-    // builder isn't blocked by Cloudflare Turnstile hostname restrictions.
     if (typeof window !== "undefined") {
       const host = window.location.hostname;
       if (host.endsWith(".lovable.app") || host.endsWith(".lovable.dev") || host === "localhost") {
@@ -79,8 +77,6 @@ export default function SiteGate({ children }: { children: React.ReactNode }) {
         await loadScript();
         if (cancelled || !widgetRef.current || !window.turnstile) return;
 
-        // Render the standard "managed" widget — the checkbox style shown in
-        // the reference (Verify you are human + CLOUDFLARE branding).
         widgetIdRef.current = window.turnstile.render(widgetRef.current, {
           sitekey: siteKey,
           theme: "light",
@@ -150,101 +146,87 @@ export default function SiteGate({ children }: { children: React.ReactNode }) {
 
   return (
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 arctic-noise overflow-hidden"
-      style={{
-        backgroundColor: "#0A0A0A",
-        backgroundImage:
-          "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,168,76,0.18) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 90% 100%, rgba(232,213,163,0.10) 0%, transparent 60%), linear-gradient(180deg,#0A0A0A 0%, #050505 100%)",
-      }}
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 overflow-hidden"
+      style={{ background: "#FFFFFF" }}
     >
-      {/* Animated mono grid lines */}
-      <div className="pointer-events-none absolute inset-0 opacity-[0.07]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(201,168,76,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.6) 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
-        }}
-      />
-      <div className="aurora-blob" style={{ top: "10%", left: "55%" }} />
-      <div className="aurora-blob alt" style={{ bottom: "5%", left: "5%", animationDelay: "-6s" }} />
-
       {/* Top bar */}
-      <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-6 py-5 font-mono text-[10px] tracking-[0.3em] uppercase text-[#E8D5A3]/70">
-        <span style={{ fontFamily: '"Playfair Display",serif', fontSize: 16, letterSpacing: "0.18em", color: "#C9A84C" }}>SS</span>
-        <span className="hidden sm:inline">Secure Portfolio Access</span>
-        <span>{new Date().getFullYear()}</span>
+      <div
+        className="absolute top-0 left-0 right-0 flex items-center justify-between px-6 py-5"
+        style={{ borderBottom: "1px solid var(--sp-border)" }}
+      >
+        <span
+          style={{
+            fontFamily: '"Playfair Display", serif',
+            fontSize: 18,
+            fontWeight: 600,
+            color: "var(--sp-charcoal)",
+            letterSpacing: "-0.02em",
+          }}
+        >
+          Shreejan<span style={{ color: "var(--sp-medium)" }}>.</span>
+        </span>
+        <span className="hidden sm:inline font-mono-label" style={{ fontSize: 10 }}>
+          Portfolio Access
+        </span>
+        <span className="font-mono-label" style={{ fontSize: 10 }}>
+          {new Date().getFullYear()}
+        </span>
       </div>
 
       <div
-        className="w-full max-w-md text-center cinematic-in relative rounded-2xl"
+        className="w-full max-w-md text-center cinematic-in rounded-xl"
         style={{
-          background: "rgba(17,17,17,0.85)",
-          backdropFilter: "blur(20px) saturate(150%)",
-          WebkitBackdropFilter: "blur(20px) saturate(150%)",
-          border: "1px solid rgba(201,168,76,0.25)",
-          boxShadow: "0 24px 80px -20px rgba(201,168,76,0.45), 0 0 0 1px rgba(201,168,76,0.08) inset",
-          padding: "56px 44px",
-          animationDelay: "0.3s",
+          background: "var(--sp-white)",
+          border: "1px solid var(--sp-border)",
+          padding: "48px 40px",
         }}
       >
-        {/* corner ticks */}
-        <span className="absolute top-2 left-2 w-3 h-3 border-t border-l" style={{ borderColor: "#C9A84C" }} />
-        <span className="absolute top-2 right-2 w-3 h-3 border-t border-r" style={{ borderColor: "#C9A84C" }} />
-        <span className="absolute bottom-2 left-2 w-3 h-3 border-b border-l" style={{ borderColor: "#C9A84C" }} />
-        <span className="absolute bottom-2 right-2 w-3 h-3 border-b border-r" style={{ borderColor: "#C9A84C" }} />
-
-        <div className="relative mx-auto mb-6 flex h-[64px] w-[64px] items-center justify-center">
-          <div
-            className="absolute inset-0 rounded-full"
-            style={{
-              background: "conic-gradient(from 0deg, #C9A84C, transparent 40%, #E8D5A3 70%, #C9A84C)",
-              animation: "border-spin 4s linear infinite",
-              WebkitMask: "radial-gradient(circle, transparent 58%, #000 60%)",
-              mask: "radial-gradient(circle, transparent 58%, #000 60%)",
-            }}
-          />
-          <div
-            className="absolute inset-2 rounded-full"
-            style={{ background: "radial-gradient(circle, rgba(201,168,76,0.25), transparent 70%)" }}
-          />
-          <ShieldCheck className="h-7 w-7" strokeWidth={1.5} style={{ color: "#C9A84C", filter: "drop-shadow(0 0 8px rgba(201,168,76,0.7))" }} />
+        <div
+          className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-full"
+          style={{ background: "var(--sp-surface-2)", border: "1px solid var(--sp-border)" }}
+        >
+          <Lock className="h-5 w-5" strokeWidth={1.5} style={{ color: "var(--sp-charcoal)" }} />
         </div>
 
-        <p className="font-mono text-[10px] tracking-[0.3em] uppercase mb-2" style={{ color: "#E8D5A3" }}>
-          [ Verification Required ]
-        </p>
+        <p className="font-mono-label mb-3">Verification</p>
         <h2
           className="mb-3"
-          style={{ color: "#FFFFFF", fontSize: "30px", fontWeight: 700, letterSpacing: "-0.01em", fontFamily: '"Playfair Display","Cormorant Garamond",serif' }}
+          style={{
+            color: "var(--sp-charcoal)",
+            fontSize: 26,
+            fontWeight: 500,
+            letterSpacing: "-0.02em",
+            fontFamily: '"Playfair Display", serif',
+          }}
         >
-          Secure Portfolio Access
+          A quick check before you enter.
         </h2>
-        <p className="font-normal mb-8 text-[13px]" style={{ color: "#A1A1AA" }}>
-          To ensure a secure browsing experience, please complete the verification below before entering the portfolio.
+        <p className="mb-8 text-[14px] leading-relaxed" style={{ color: "var(--sp-mid)" }}>
+          Please complete the verification below to continue to the portfolio.
         </p>
 
         <div
-          className="flex justify-center min-h-[70px] overflow-hidden"
-          style={{ border: "1px solid #242424", background: "#0A0A0A" }}
+          className="flex justify-center min-h-[70px] rounded-md"
+          style={{ border: "1px solid var(--sp-border)", background: "var(--sp-surface)" }}
         >
           <div ref={widgetRef} aria-label="Cloudflare Turnstile verification" />
         </div>
 
         {status === "loading" && (
-          <div className="mt-5 flex items-center justify-center gap-2 text-xs font-mono uppercase tracking-widest" style={{ color: "#9A9A9A" }}>
+          <div className="mt-5 flex items-center justify-center gap-2 text-xs" style={{ color: "var(--sp-mid)" }}>
             <Loader2 className="h-3.5 w-3.5 animate-spin" />
             Loading…
           </div>
         )}
         {status === "verifying" && (
-          <div className="mt-5 flex items-center justify-center gap-2 text-xs font-mono uppercase tracking-widest" style={{ color: "#9A9A9A" }}>
+          <div className="mt-5 flex items-center justify-center gap-2 text-xs" style={{ color: "var(--sp-mid)" }}>
             <Loader2 className="h-3.5 w-3.5 animate-spin" />
             Verifying…
           </div>
         )}
         {status === "error" && (
           <div className="mt-5 flex flex-col items-center gap-3">
-            <p className="text-xs font-mono" style={{ color: "#FF8A8A" }}>{errorMsg || "Verification failed."}</p>
+            <p className="text-xs" style={{ color: "#d14343" }}>{errorMsg || "Verification failed."}</p>
             <button
               onClick={() => {
                 setStatus("loading");
@@ -252,23 +234,18 @@ export default function SiteGate({ children }: { children: React.ReactNode }) {
                 if (widgetIdRef.current && window.turnstile) {
                   try { window.turnstile.reset(widgetIdRef.current); setStatus("ready"); } catch { /* ignore */ }
                 } else {
-                  // Force full re-init
-                  setVerified((v) => v);
                   window.location.reload();
                 }
               }}
-              className="btn-ghost-mono hover-lift"
+              className="btn-ghost-mono"
             >
               Retry verification
             </button>
           </div>
         )}
 
-        <p
-          className="mt-8 font-mono"
-          style={{ fontSize: "10px", color: "#5C5C5C", letterSpacing: "0.25em" }}
-        >
-          PROTECTED BY CLOUDFLARE TURNSTILE
+        <p className="mt-8 font-mono-label" style={{ fontSize: 10 }}>
+          Protected by Cloudflare Turnstile
         </p>
       </div>
     </div>
