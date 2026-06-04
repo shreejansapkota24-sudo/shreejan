@@ -64,10 +64,10 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        display: ['"Playfair Display"', '"Cormorant Garamond"', "serif"],
-        serif: ['"Playfair Display"', '"Cormorant Garamond"', "serif"],
-        cyber: ['"Archivo"', '"Inter"', "sans-serif"],
-        sans: ['"Inter"', "sans-serif"],
+        display: ['"Playfair Display"', "serif"],
+        serif: ['"Playfair Display"', "serif"],
+        cyber: ['"Inter"', "sans-serif"],
+        sans: ['"Inter"', "system-ui", "sans-serif"],
         mono: ['"JetBrains Mono"', "monospace"],
       },
       keyframes: {
