@@ -1,95 +1,105 @@
-import { Mail, Github, Linkedin, Facebook, Instagram, Twitter, Send, MessageCircle } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Mail, Github, Linkedin, Facebook, Instagram, Twitter, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 const socialLinks = [
-  { name: "GitHub", icon: Github, href: "https://github.com/shreejansapkota24-sudo", color: "hover:text-primary hover:border-primary/50 hover:box-glow" },
-  { name: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/in/shreejan-sapkota-0449b023b/", color: "hover:text-primary hover:border-primary/50 hover:box-glow" },
-  { name: "Facebook", icon: Facebook, href: "https://www.facebook.com/shreejan.sapkota.319", color: "hover:text-primary hover:border-primary/50 hover:box-glow" },
-  { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/sapkota.shreejan/", color: "hover:text-primary hover:border-primary/50 hover:box-glow" },
-  { name: "X (Twitter)", icon: Twitter, href: "https://x.com/shreejansapkot4", color: "hover:text-primary hover:border-primary/50 hover:box-glow" },
+  { name: "GitHub", icon: Github, href: "https://github.com/shreejansapkota24-sudo" },
+  { name: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/in/shreejan-sapkota-0449b023b/" },
+  { name: "Facebook", icon: Facebook, href: "https://www.facebook.com/shreejan.sapkota.319" },
+  { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/sapkota.shreejan/" },
+  { name: "X (Twitter)", icon: Twitter, href: "https://x.com/shreejansapkot4" },
 ];
 
 const Contact = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20, scale: 0.9 },
-    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.4 } },
-  };
-
   return (
-    <section id="contact" className="py-32 px-6 relative overflow-hidden">
-      <div className="absolute inset-0 -z-10">
-        <div className="aurora-blob" style={{ top: "0%", left: "10%" }} />
-        <div className="aurora-blob alt" style={{ bottom: "0%", right: "10%", animationDelay: "-6s" }} />
-      </div>
-
+    <section id="contact" className="py-28 md:py-36 px-6">
       <div className="max-w-6xl mx-auto">
-        <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 glass border-glow font-mono text-[10px] uppercase tracking-[0.3em] mb-6" style={{ color: "#E8D5A3", borderRadius: 999 }}>
-            <MessageCircle className="w-3 h-3" />
-            Get in touch
-          </span>
-          <h2 className="text-5xl md:text-7xl" style={{ fontFamily: '"Playfair Display",serif', fontWeight: 600, letterSpacing: "-0.02em" }}>
-            <span style={{ fontStyle: "italic", color: "#FFFFFF" }}>Let's</span>{" "}
-            <span className="arctic-gradient-text">Connect</span>
+        <motion.div
+          className="mb-14 max-w-2xl"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <span className="eyebrow mb-6 inline-flex">Contact</span>
+          <h2
+            className="text-4xl md:text-6xl mb-6"
+            style={{ fontFamily: '"Playfair Display", serif', fontWeight: 500, letterSpacing: "-0.025em" }}
+          >
+            Let's{" "}
+            <span style={{ fontStyle: "italic", color: "var(--sp-mid-dark)" }}>connect.</span>
           </h2>
-        </motion.div>
-
-        <motion.div className="max-w-2xl mx-auto text-center" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-          <p className="text-muted-foreground text-lg mb-10">
-            I'm always open to connecting with fellow developers, tech enthusiasts, and anyone interested in collaboration!
+          <p className="text-[15px]" style={{ color: "var(--sp-mid)" }}>
+            I'm always open to connecting with fellow students, developers, and anyone curious about technology.
           </p>
-
-          <motion.div className="mb-12" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-            <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-xl shadow-primary/20 hover:shadow-2xl hover:shadow-primary/40 transition-all duration-300 px-8 py-6 text-base font-cyber text-xs">
-              <a href="mailto:shreejansapkota24@gmail.com" className="flex items-center gap-3">
-                <Mail className="w-5 h-5" />
-                shreejansapkota24@gmail.com
-                <motion.div animate={{ x: [0, 5, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
-                  <Send className="w-4 h-4" />
-                </motion.div>
-              </a>
-            </Button>
-          </motion.div>
-
-          <div className="flex items-center gap-4 mb-10">
-            <div className="flex-1 h-px bg-primary/20" />
-            <span className="text-sm text-muted-foreground">or find me on</span>
-            <div className="flex-1 h-px bg-primary/20" />
-          </div>
-
-          <motion.div className="flex justify-center gap-4 flex-wrap" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            {socialLinks.map((link) => (
-              <motion.a
-                key={link.name}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`group relative p-4 glass border-glow rounded-2xl transition-all duration-300 ${link.color}`}
-                variants={itemVariants}
-                whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                whileTap={{ scale: 0.95 }}
-                aria-label={link.name}
-              >
-                <link.icon className="w-6 h-6 transition-colors duration-300" />
-                <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 px-3 py-1 glass text-primary text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-                  {link.name}
-                </span>
-              </motion.a>
-            ))}
-          </motion.div>
-
-          <motion.div className="mt-16 p-6 glass border-glow rounded-2xl" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }}>
-            <p className="text-muted-foreground">
-              <span className="text-primary font-medium text-glow">Let's connect</span> and build something amazing together! 🚀
-            </p>
-          </motion.div>
         </motion.div>
+
+        <motion.div
+          className="grid md:grid-cols-12 gap-6"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+        >
+          <a
+            href="mailto:shreejansapkota24@gmail.com"
+            className="md:col-span-7 sp-card p-8 flex items-start justify-between gap-6 group"
+          >
+            <div>
+              <p className="font-mono-label mb-3">Email</p>
+              <p
+                className="text-2xl md:text-3xl"
+                style={{
+                  fontFamily: '"Playfair Display", serif',
+                  fontWeight: 500,
+                  color: "var(--sp-charcoal)",
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                shreejansapkota24@gmail.com
+              </p>
+              <p className="mt-2 text-[13px]" style={{ color: "var(--sp-mid)" }}>
+                Best for inquiries, collaborations, and opportunities.
+              </p>
+            </div>
+            <div
+              className="w-11 h-11 rounded-full flex items-center justify-center transition-transform duration-500 group-hover:rotate-45"
+              style={{ background: "var(--sp-charcoal)", color: "var(--sp-white)" }}
+            >
+              <ArrowUpRight className="w-5 h-5" />
+            </div>
+          </a>
+
+          <div className="md:col-span-5 sp-card p-8">
+            <p className="font-mono-label mb-5">Elsewhere</p>
+            <ul className="space-y-3">
+              {socialLinks.map((link) => (
+                <li key={link.name}>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between py-2 group transition-colors"
+                    style={{ borderBottom: "1px solid var(--sp-border-soft)" }}
+                  >
+                    <span className="flex items-center gap-3 text-[14px]" style={{ color: "var(--sp-charcoal)" }}>
+                      <link.icon className="w-4 h-4" />
+                      {link.name}
+                    </span>
+                    <ArrowUpRight
+                      className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      style={{ color: "var(--sp-mid)" }}
+                    />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </motion.div>
+
+        <div className="mt-4 flex items-center gap-2 text-[12px]" style={{ color: "var(--sp-mid)" }}>
+          <Mail className="w-3.5 h-3.5" />
+          Based in Kathmandu — open to remote and on-site opportunities.
+        </div>
       </div>
     </section>
   );

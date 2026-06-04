@@ -1,130 +1,156 @@
-import { Bot, Sparkles, MessageSquare, Code2, BookOpen, PenTool, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Sparkles, MessageSquare, Code2, BookOpen, PenTool, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const capabilities = [
-  { icon: MessageSquare, label: "Ask anything" },
-  { icon: PenTool, label: "Writing help" },
-  { icon: Code2, label: "Coding & debugging" },
-  { icon: BookOpen, label: "Study help" },
+  { icon: MessageSquare, label: "Ask anything", desc: "Open-ended conversation and answers." },
+  { icon: PenTool, label: "Writing help", desc: "Drafts, edits, and clear summaries." },
+  { icon: Code2, label: "Code & debug", desc: "Snippets, reviews, and explanations." },
+  { icon: BookOpen, label: "Study help", desc: "Notes, breakdowns, and study guides." },
 ];
+
+const easing = [0.16, 1, 0.3, 1] as const;
 
 const AssistantHero = () => {
   return (
-    <section
-      id="cyber-saathi"
-      className="py-24 px-6 relative overflow-hidden"
-    >
-      {/* Background glow */}
-      <div className="absolute inset-0 -z-10">
-        <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-3xl"
-          animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.6, 0.4] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </div>
-
+    <section id="cyber-saathi" className="py-28 md:py-36 px-6">
       <div className="max-w-6xl mx-auto">
-        <motion.div
-          className="text-center mb-10"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border-glow text-primary font-medium text-sm mb-6 font-cyber">
-            <Sparkles className="w-4 h-4" />
-            My Personal AI Assistant
-          </span>
-          <h2 className="text-5xl md:text-7xl mb-4" style={{ fontFamily: '"Playfair Display",serif', fontWeight: 600, letterSpacing: "-0.02em" }}>
-            <span style={{ fontStyle: "italic", color: "#FFFFFF" }}>Meet</span> <span className="arctic-gradient-text">Cyber Saathi</span>
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">
-            A smart multipurpose AI assistant — chat, write, code, study, brainstorm.
-            Ask anything, get clear answers powered by advanced AI.
-          </p>
-        </motion.div>
-
-        <motion.div
-          className="relative max-w-4xl mx-auto"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-        >
-          <div className="glass border-glow rounded-3xl p-8 md:p-12 relative overflow-hidden">
-            {/* Decorative bot icon */}
-            <motion.div
-              className="absolute -top-8 -right-8 w-40 h-40 rounded-full bg-primary/5 flex items-center justify-center"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        <div className="grid md:grid-cols-12 gap-12 md:gap-16 items-start">
+          {/* Left: copy */}
+          <motion.div
+            className="md:col-span-5"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: easing }}
+          >
+            <span className="eyebrow mb-6 inline-flex">AI Assistant</span>
+            <h2
+              className="text-4xl md:text-5xl mb-6"
+              style={{ fontFamily: '"Playfair Display", serif', fontWeight: 500, letterSpacing: "-0.025em" }}
             >
-              <Bot className="w-16 h-16 text-primary/30" />
-            </motion.div>
+              Meet{" "}
+              <span style={{ fontStyle: "italic", color: "var(--sp-mid-dark)" }}>Cyber Saathi.</span>
+            </h2>
+            <p className="text-[15px] leading-relaxed mb-8" style={{ color: "var(--sp-mid-dark)" }}>
+              A focused multipurpose AI assistant — chat, write, code, study, and brainstorm.
+              Built as part of my portfolio to explore applied AI and product design.
+            </p>
 
-            <div className="relative z-10">
-              <div className="flex items-center gap-4 mb-6">
-                <motion.div
-                  className="w-14 h-14 rounded-2xl bg-primary/20 flex items-center justify-center border border-primary/30 box-glow"
-                  animate={{
-                    boxShadow: [
-                      "0 0 20px hsl(var(--primary) / 0.3)",
-                      "0 0 40px hsl(var(--primary) / 0.6)",
-                      "0 0 20px hsl(var(--primary) / 0.3)",
-                    ],
-                  }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            <div className="flex flex-wrap gap-3 mb-8">
+              <Link to="/cyberguard/cyber-saathi" className="btn-mono">
+                <Sparkles className="w-3.5 h-3.5" />
+                Start Chatting
+              </Link>
+              <a href="#portfolio" className="btn-ghost-mono">Learn more</a>
+            </div>
+
+            <div className="flex items-center gap-3 text-[12px]" style={{ color: "var(--sp-mid)" }}>
+              <span className="relative inline-flex">
+                <span
+                  className="w-2 h-2 rounded-full"
+                  style={{ background: "var(--sp-charcoal)" }}
+                />
+                <span
+                  className="absolute inset-0 w-2 h-2 rounded-full animate-ping"
+                  style={{ background: "var(--sp-charcoal)", opacity: 0.4 }}
+                />
+              </span>
+              Online · 7 free messages per day · No login required
+            </div>
+          </motion.div>
+
+          {/* Right: product preview card */}
+          <motion.div
+            className="md:col-span-7"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.1, ease: easing }}
+          >
+            <div className="sp-card overflow-hidden">
+              {/* Window chrome */}
+              <div
+                className="flex items-center justify-between px-5 py-3"
+                style={{ borderBottom: "1px solid var(--sp-border)", background: "var(--sp-surface)" }}
+              >
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full" style={{ background: "var(--sp-light)" }} />
+                  <span className="w-2.5 h-2.5 rounded-full" style={{ background: "var(--sp-light)" }} />
+                  <span className="w-2.5 h-2.5 rounded-full" style={{ background: "var(--sp-light)" }} />
+                </div>
+                <span className="font-mono-label" style={{ fontSize: 10 }}>
+                  cyber-saathi · v1.0
+                </span>
+                <Link
+                  to="/cyberguard/cyber-saathi"
+                  className="inline-flex items-center gap-1 text-[11px]"
+                  style={{ color: "var(--sp-charcoal)", fontFamily: "Inter, sans-serif" }}
                 >
-                  <Bot className="w-7 h-7 text-primary" />
-                </motion.div>
-                <div>
-                  <h3 className="text-xl font-bold font-cyber text-foreground">Cyber Saathi</h3>
-                  <p className="text-xs text-muted-foreground flex items-center gap-2">
-                    <span className="relative inline-flex">
-                      <span className="w-2 h-2 rounded-full" style={{ background: "#22c55e", boxShadow: "0 0 8px #22c55e" }} />
-                      <span className="absolute inset-0 w-2 h-2 rounded-full animate-ping" style={{ background: "#22c55e", opacity: 0.6 }} />
-                    </span>
-                    Online · Ready to help
-                  </p>
+                  Open <ArrowUpRight className="w-3 h-3" />
+                </Link>
+              </div>
+
+              {/* Chat preview */}
+              <div className="p-6 md:p-8 space-y-4" style={{ background: "var(--sp-white)" }}>
+                <div className="flex gap-3">
+                  <div
+                    className="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center text-[11px]"
+                    style={{ background: "var(--sp-surface-2)", color: "var(--sp-mid-dark)", fontFamily: "Inter,sans-serif", fontWeight: 600 }}
+                  >
+                    S
+                  </div>
+                  <div
+                    className="px-4 py-3 rounded-2xl text-[13.5px] max-w-md"
+                    style={{ background: "var(--sp-surface)", color: "var(--sp-charcoal)" }}
+                  >
+                    Explain what a primary key is in a database.
+                  </div>
+                </div>
+                <div className="flex gap-3 justify-end">
+                  <div
+                    className="px-4 py-3 rounded-2xl text-[13.5px] max-w-md"
+                    style={{ background: "var(--sp-charcoal)", color: "var(--sp-white)" }}
+                  >
+                    A primary key uniquely identifies each row in a table. It must be unique and non-null —
+                    think of it as the row's permanent ID.
+                  </div>
+                  <div
+                    className="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center"
+                    style={{ background: "var(--sp-charcoal)" }}
+                  >
+                    <Sparkles className="w-3.5 h-3.5" style={{ color: "var(--sp-white)" }} />
+                  </div>
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+              {/* Capabilities grid */}
+              <div className="grid grid-cols-2 md:grid-cols-4" style={{ borderTop: "1px solid var(--sp-border)" }}>
                 {capabilities.map((cap, i) => (
-                  <motion.div
+                  <div
                     key={cap.label}
-                    className="flex items-center gap-2 px-3 py-2.5 rounded-xl glass border border-primary/10 hover:border-primary/40 transition-all duration-300"
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 + i * 0.1 }}
-                    whileHover={{ y: -3, scale: 1.03 }}
+                    className="p-5 transition-colors duration-300"
+                    style={{
+                      borderRight: i < capabilities.length - 1 ? "1px solid var(--sp-border)" : "none",
+                      background: "var(--sp-white)",
+                    }}
                   >
-                    <cap.icon className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span className="text-xs font-medium text-foreground">{cap.label}</span>
-                  </motion.div>
+                    <cap.icon className="w-4 h-4 mb-3" style={{ color: "var(--sp-charcoal)" }} />
+                    <p
+                      className="text-[13px] mb-1"
+                      style={{ color: "var(--sp-charcoal)", fontFamily: "Inter,sans-serif", fontWeight: 600 }}
+                    >
+                      {cap.label}
+                    </p>
+                    <p className="text-[11.5px] leading-snug" style={{ color: "var(--sp-mid)" }}>
+                      {cap.desc}
+                    </p>
+                  </div>
                 ))}
               </div>
-
-              <div className="flex flex-col sm:flex-row gap-4 items-center">
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-xl shadow-primary/30 hover:shadow-2xl hover:shadow-primary/50 transition-all duration-300 font-cyber text-sm w-full sm:w-auto group"
-                >
-                  <Link to="/cyberguard/cyber-saathi">
-                    Start Chatting
-                    <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </Button>
-                <p className="text-xs text-muted-foreground font-cyber">
-                  <span className="text-primary">7 free messages</span> per day · No login required
-                </p>
-              </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

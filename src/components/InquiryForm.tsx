@@ -43,8 +43,6 @@ const InquiryForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (submitting || cooldown) return;
-
-    // honeypot
     if (honeypotRef.current?.value) return;
 
     setErrors({});
@@ -89,7 +87,7 @@ const InquiryForm = () => {
         throw new Error(data.error || `Request failed (${res.status})`);
       }
 
-      toast.success("Message sent!", { description: "Thanks for reaching out. I'll get back to you soon." });
+      toast.success("Message sent", { description: "Thanks for reaching out. I'll reply soon." });
       setValues({ name: "", email: "", message: "" });
     } catch (err) {
       console.error("Inquiry submission error:", err);
@@ -104,61 +102,50 @@ const InquiryForm = () => {
   };
 
   const inputStyle = (k: FieldName): React.CSSProperties => ({
-    background: "#1a1a1a",
+    background: "transparent",
     border: "none",
     borderBottom: errors[k]
-      ? "1px solid #ef4444"
-      : "1px solid rgba(201,168,76,0.3)",
+      ? "1px solid #d14343"
+      : "1px solid var(--sp-border)",
     borderRadius: 0,
-    color: "#F5F5F0",
-    padding: "12px 4px",
+    color: "var(--sp-charcoal)",
+    padding: "12px 2px",
     width: "100%",
     outline: "none",
     fontFamily: '"Inter", sans-serif',
-    fontSize: 14,
+    fontSize: 15,
     transition: "border-color 0.3s ease",
   });
 
   return (
-    <section id="inquiry" className="py-32 px-6 relative">
+    <section id="inquiry" className="py-28 md:py-36 px-6">
       <div className="max-w-3xl mx-auto">
         <motion.div
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: 40 }}
+          className="mb-12"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
+          transition={{ duration: 0.7 }}
         >
-          <span
-            className="inline-flex items-center gap-2 px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.3em] mb-6"
-            style={{ color: "#E8D5A3", border: "1px solid rgba(201,168,76,0.25)", borderRadius: 999, background: "rgba(17,17,17,0.6)" }}
-          >
-            Inquiry
-          </span>
+          <span className="eyebrow mb-6 inline-flex">Inquiry</span>
           <h2
-            className="text-4xl md:text-6xl"
-            style={{ fontFamily: '"Playfair Display",serif', fontWeight: 600, letterSpacing: "-0.02em" }}
+            className="text-4xl md:text-5xl"
+            style={{ fontFamily: '"Playfair Display", serif', fontWeight: 500, letterSpacing: "-0.025em" }}
           >
-            <span style={{ fontStyle: "italic", color: "#F5F5F0" }}>Send</span>{" "}
-            <span className="arctic-gradient-text">an Inquiry</span>
+            Send a{" "}
+            <span style={{ fontStyle: "italic", color: "var(--sp-mid-dark)" }}>message.</span>
           </h2>
         </motion.div>
 
         <motion.form
           onSubmit={handleSubmit}
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-          className="relative p-8 md:p-12 rounded-2xl space-y-8"
-          style={{
-            background: "#111111",
-            border: "1px solid rgba(201,168,76,0.15)",
-            borderTop: "4px solid #C9A84C",
-          }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="sp-card p-8 md:p-10 space-y-8"
           noValidate
         >
-          {/* honeypot */}
           <input
             ref={honeypotRef}
             type="text"
@@ -177,8 +164,7 @@ const InquiryForm = () => {
             >
               <label
                 htmlFor={`inq-${k}`}
-                className="block mb-2 font-mono text-[11px] uppercase tracking-[0.22em]"
-                style={{ color: "#C9A84C" }}
+                className="block mb-2 font-mono-label"
               >
                 {fieldLabel[k]}
               </label>
@@ -194,13 +180,13 @@ const InquiryForm = () => {
                 aria-label={fieldLabel[k]}
                 aria-invalid={!!errors[k]}
                 onFocus={(e) => {
-                  if (!errors[k]) e.target.style.borderBottomColor = "#C9A84C";
+                  if (!errors[k]) e.target.style.borderBottomColor = "var(--sp-charcoal)";
                 }}
                 onBlur={(e) => {
-                  if (!errors[k]) e.target.style.borderBottomColor = "rgba(201,168,76,0.3)";
+                  if (!errors[k]) e.target.style.borderBottomColor = "var(--sp-border)";
                 }}
               />
-              {errors[k] && <p className="mt-2 text-[12px]" style={{ color: "#ef4444" }}>{errors[k]}</p>}
+              {errors[k] && <p className="mt-2 text-[12px]" style={{ color: "#d14343" }}>{errors[k]}</p>}
             </motion.div>
           ))}
 
@@ -208,11 +194,7 @@ const InquiryForm = () => {
             animate={shake.message ? { x: [0, -6, 6, -4, 4, 0] } : { x: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <label
-              htmlFor="inq-message"
-              className="block mb-2 font-mono text-[11px] uppercase tracking-[0.22em]"
-              style={{ color: "#C9A84C" }}
-            >
+            <label htmlFor="inq-message" className="block mb-2 font-mono-label">
               Message
             </label>
             <textarea
@@ -221,24 +203,24 @@ const InquiryForm = () => {
               onChange={setField("message")}
               disabled={submitting}
               maxLength={2000}
-              placeholder="Tell me what you'd like to discuss..."
-              style={{ ...inputStyle("message"), height: 180, resize: "vertical" }}
+              placeholder="Tell me what you'd like to discuss…"
+              style={{ ...inputStyle("message"), height: 160, resize: "vertical" }}
               aria-label="Message"
               aria-invalid={!!errors.message}
               onFocus={(e) => {
-                if (!errors.message) e.target.style.borderBottomColor = "#C9A84C";
+                if (!errors.message) e.target.style.borderBottomColor = "var(--sp-charcoal)";
               }}
               onBlur={(e) => {
-                if (!errors.message) e.target.style.borderBottomColor = "rgba(201,168,76,0.3)";
+                if (!errors.message) e.target.style.borderBottomColor = "var(--sp-border)";
               }}
             />
             <div className="flex justify-between items-center mt-2">
               {errors.message ? (
-                <p className="text-[12px]" style={{ color: "#ef4444" }}>{errors.message}</p>
+                <p className="text-[12px]" style={{ color: "#d14343" }}>{errors.message}</p>
               ) : (
-                <span className="text-[12px]" style={{ color: "#888880" }}>Min 10 characters</span>
+                <span className="text-[12px]" style={{ color: "var(--sp-mid)" }}>Min 10 characters</span>
               )}
-              <span className="font-mono text-[11px]" style={{ color: "#888880" }}>
+              <span className="font-mono text-[11px]" style={{ color: "var(--sp-mid)" }}>
                 {values.message.length}/2000
               </span>
             </div>
@@ -248,23 +230,16 @@ const InquiryForm = () => {
             type="submit"
             disabled={submitting || cooldown}
             aria-label="Send inquiry"
-            className="group/btn w-full inline-flex items-center justify-center gap-2 py-4 rounded-full font-medium transition-all duration-300 disabled:opacity-60"
-            style={{
-              background: "#C9A84C",
-              color: "#0A0A0A",
-              fontFamily: '"Inter", sans-serif',
-              fontSize: 14,
-              letterSpacing: "0.02em",
-            }}
+            className="btn-mono w-full justify-center group/btn disabled:opacity-60"
           >
             {submitting ? (
               <>
                 <Loader2 className="w-4 h-4 animate-spin" />
-                Sending...
+                Sending…
               </>
             ) : (
               <>
-                Send Inquiry
+                Send Message
                 <Send className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
               </>
             )}

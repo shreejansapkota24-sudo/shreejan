@@ -7,36 +7,46 @@ const NotFound = () => {
   const location = useLocation();
 
   useEffect(() => {
-    console.error("404 Error: User attempted to access non-existent route:", location.pathname);
+    console.error("404: User attempted to access non-existent route:", location.pathname);
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-6 relative overflow-hidden arctic-noise" style={{ background: "#0A0A0A" }}>
-      <div className="aurora-blob" style={{ top: "10%", left: "20%" }} />
-      <div className="aurora-blob alt" style={{ bottom: "10%", right: "20%", animationDelay: "-7s" }} />
-
+    <div className="min-h-screen flex items-center justify-center px-6" style={{ background: "var(--sp-white)" }}>
       <motion.div
-        initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
-        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-        className="text-center max-w-lg relative"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        className="text-center max-w-lg"
       >
-        <p className="font-mono text-[10px] uppercase tracking-[0.3em] mb-6" style={{ color: "#E8D5A3" }}>
-          [ Lost Signal ]
-        </p>
+        <p className="font-mono-label mb-6">Not Found</p>
         <h1
-          className="text-[140px] md:text-[200px] leading-none arctic-gradient-text"
-          style={{ fontFamily: '"Playfair Display","Cormorant Garamond",serif', fontWeight: 700, fontStyle: "italic" }}
+          className="text-[120px] md:text-[180px] leading-none"
+          style={{
+            fontFamily: '"Playfair Display", serif',
+            fontWeight: 500,
+            color: "var(--sp-charcoal)",
+            letterSpacing: "-0.04em",
+          }}
         >
           404
         </h1>
-        <h2 className="text-2xl md:text-3xl mt-2 mb-4" style={{ fontFamily: '"Playfair Display",serif', color: "#FFFFFF", fontWeight: 500 }}>
-          This page drifted off-screen.
+        <h2
+          className="text-2xl md:text-3xl mt-4 mb-4"
+          style={{ fontFamily: '"Playfair Display", serif', color: "var(--sp-charcoal)", fontWeight: 500 }}
+        >
+          This page doesn't exist.
         </h2>
-        <p className="mb-10" style={{ color: "#A1A1AA" }}>
-          The route <span className="font-mono text-[12px]" style={{ color: "#E8D5A3" }}>{location.pathname}</span> does not exist in the portfolio.
+        <p className="mb-10 text-[14px]" style={{ color: "var(--sp-mid)" }}>
+          The route{" "}
+          <span
+            className="px-1.5 py-0.5 rounded font-mono text-[12px]"
+            style={{ background: "var(--sp-surface-2)", color: "var(--sp-charcoal)" }}
+          >
+            {location.pathname}
+          </span>{" "}
+          could not be found.
         </p>
-        <a href="/" className="btn-mono hover-lift">
+        <a href="/" className="btn-mono">
           <ArrowLeft className="w-3.5 h-3.5" />
           Return Home
         </a>
