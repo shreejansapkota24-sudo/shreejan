@@ -1,14 +1,3 @@
-import { motion } from "framer-motion";
-
-const profile = [
-  { label: "Name", value: "Shreejan Sapkota" },
-  { label: "Role", value: "Computer Science Student" },
-  { label: "Location", value: "Kathmandu, Nepal" },
-  { label: "Education", value: "BCS (Hons), IIMS College" },
-  { label: "Graduation", value: "Expected 2029" },
-  { label: "Focus", value: "Data Science · Software Development" },
-];
-
 const highlights = [
   "Building technical foundations in programming and databases",
   "Practicing modern web development with React and Tailwind",
@@ -16,100 +5,85 @@ const highlights = [
   "Strengthening analytical and problem-solving skills through projects",
 ];
 
+const facts: { label: string; value: string; span?: string }[] = [
+  { label: "Name", value: "Shreejan Sapkota" },
+  { label: "Role", value: "CS Student" },
+  { label: "Location", value: "Kathmandu, NP" },
+  { label: "Education", value: "BCS (Hons)" },
+  { label: "College", value: "IIMS College" },
+  { label: "Graduation", value: "Expected 2029" },
+  { label: "Focus", value: "Data Science · Web Development · AI", span: "col-span-2" },
+];
+
 const About = () => {
   return (
-    <section id="about" className="py-28 md:py-36 px-6">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          className="mb-16 max-w-2xl"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <span className="eyebrow mb-6 inline-flex">About</span>
-          <h2
-            className="text-4xl md:text-6xl mb-6"
-            style={{ fontFamily: '"Playfair Display", serif', fontWeight: 500, letterSpacing: "-0.025em" }}
-          >
-            A student building a thoughtful path into{" "}
-            <span style={{ fontStyle: "italic", color: "var(--sp-mid-dark)" }}>data and software.</span>
-          </h2>
-        </motion.div>
+    <section id="about" className="px-6 md:px-16 py-28 md:py-36">
+      <div className="max-w-[1320px] mx-auto">
+        <span className="eyebrow fade-up">— About</span>
 
-        <div className="grid md:grid-cols-12 gap-12 md:gap-16">
-          <motion.div
-            className="md:col-span-7 space-y-6 text-[15px] leading-relaxed"
-            style={{ color: "var(--sp-mid-dark)" }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1 }}
+        <h2 className="mt-6 fade-up delay-1 leading-[0.95]" style={{ fontSize: "clamp(44px,7vw,96px)" }}>
+          <span className="block">BUILDING A PATH INTO</span>
+          <span
+            className="block"
+            style={{
+              fontFamily: 'Georgia, "Playfair Display", serif',
+              fontStyle: "italic",
+              fontWeight: 400,
+              textTransform: "lowercase",
+              color: "transparent",
+              WebkitTextStroke: "1px var(--white2)",
+            }}
           >
-            <p>
-              I'm Shreejan Sapkota, a Computer Science student pursuing a BCS (Hons)
-              at IIMS in Kathmandu, with expected graduation in 2029. I'm building
-              a strong foundation in Python, Java, JavaScript, React, Tailwind CSS,
-              MySQL, MongoDB, and Linux — with a growing focus on Data Science.
+            data &amp; software.
+          </span>
+        </h2>
+
+        <div className="mt-20 grid lg:grid-cols-12 gap-20">
+          <div className="lg:col-span-7 space-y-6">
+            <p className="fade-up text-[15px] leading-[1.9]" style={{ color: "var(--white2)" }}>
+              I'm Shreejan Sapkota, a Computer Science student at IIMS College in Kathmandu, currently
+              working through my BCS (Hons) — expected to graduate in 2029. My focus is on building strong
+              fundamentals in programming, databases, and modern web development.
             </p>
-            <p>
-              My goal is to use computing and data-driven thinking to solve
-              practical problems and create useful digital solutions. I'm committed
-              to continuous learning, technical growth, and building a credible
-              career in Data Science.
+            <p className="fade-up delay-1 text-[15px] leading-[1.9]" style={{ color: "var(--white2)" }}>
+              I gravitate toward problems that mix logic, data, and design. I've been steadily building
+              full-stack projects with React and TypeScript, and I'm sharpening my Python and SQL toward a
+              long-term path in Data Science and applied AI.
             </p>
-            <p>
-              Outside of coursework, I spend time on programming, databases, web
-              technologies, and analytical thinking — preparing for future
-              opportunities in Data Science and software development.
+            <p className="fade-up delay-2 text-[15px] leading-[1.9]" style={{ color: "var(--white2)" }}>
+              Outside of class I explore cybersecurity, write tools that scratch my own itch, and try to ship
+              things end-to-end — not just demos. I'm always open to learning from people further ahead.
             </p>
 
-            <div className="pt-6">
-              <p className="font-mono-label mb-4">Learning Highlights</p>
-              <ul className="space-y-3">
-                {highlights.map((h) => (
-                  <li key={h} className="flex items-start gap-3 text-[14px]">
-                    <span
-                      className="mt-2 inline-block w-3 h-px flex-shrink-0"
-                      style={{ background: "var(--sp-charcoal)" }}
-                    />
-                    <span>{h}</span>
-                  </li>
-                ))}
-              </ul>
+            <ul className="mt-8 space-y-3">
+              {highlights.map((h, i) => (
+                <li
+                  key={i}
+                  className="fade-up flex items-start gap-4 py-3 transition-transform duration-300 hover:translate-x-2 cursor-default"
+                  style={{ borderBottom: "1px solid var(--line)" }}
+                >
+                  <span className="font-mono-syne" style={{ color: "var(--accent)", minWidth: 28 }}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span style={{ color: "var(--white)" }}>{h}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="lg:col-span-5">
+            <div className="grid grid-cols-2 gap-3">
+              {facts.map((f, i) => (
+                <div
+                  key={f.label}
+                  className={`fade-up delay-${(i % 4) + 1} p-6 sp-card transition-all duration-400 hover:border-[var(--accent)] hover:-translate-y-1 ${f.span ?? ""}`}
+                >
+                  <p className="font-mono-syne mb-2" style={{ color: "var(--white3)" }}>{f.label}</p>
+                  <p className="font-display" style={{ fontSize: 18, color: "var(--white)" }}>{f.value}</p>
+                </div>
+              ))}
             </div>
-          </motion.div>
-
-          <motion.aside
-            className="md:col-span-5"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-          >
-            <div className="sp-card p-8">
-              <p className="font-mono-label mb-5">Profile</p>
-              <dl className="space-y-4">
-                {profile.map((row) => (
-                  <div
-                    key={row.label}
-                    className="flex justify-between gap-4 pb-3"
-                    style={{ borderBottom: "1px solid var(--sp-border-soft)" }}
-                  >
-                    <dt className="text-[13px]" style={{ color: "var(--sp-mid)" }}>
-                      {row.label}
-                    </dt>
-                    <dd
-                      className="text-[13px] text-right"
-                      style={{ color: "var(--sp-charcoal)", fontWeight: 500 }}
-                    >
-                      {row.value}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-          </motion.aside>
+          </div>
         </div>
       </div>
     </section>

@@ -1,104 +1,102 @@
-import { Mail, Github, Linkedin, Facebook, Instagram, Twitter, ArrowUpRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { ArrowUpRight, Mail } from "lucide-react";
 
-const socialLinks = [
-  { name: "GitHub", icon: Github, href: "https://github.com/shreejansapkota24-sudo" },
-  { name: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/in/shreejan-sapkota-0449b023b/" },
-  { name: "Facebook", icon: Facebook, href: "https://www.facebook.com/shreejan.sapkota.319" },
-  { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/sapkota.shreejan/" },
-  { name: "X (Twitter)", icon: Twitter, href: "https://x.com/shreejansapkot4" },
+const socials = [
+  { name: "GitHub", icon: "devicon-github-original", href: "https://github.com/shreejansapkota24-sudo" },
+  { name: "LinkedIn", icon: "devicon-linkedin-plain colored", href: "https://www.linkedin.com/in/shreejan-sapkota-0449b023b/" },
+  { name: "Facebook", icon: "devicon-facebook-plain colored", href: "https://www.facebook.com/shreejan.sapkota.319" },
+  { name: "Instagram", svg: "instagram", href: "https://www.instagram.com/sapkota.shreejan/" },
+  { name: "X / Twitter", svg: "x", href: "https://x.com/shreejansapkot4" },
+  { name: "Email", svg: "email", href: "mailto:shreejansapkota24@gmail.com" },
 ];
+
+const Glyph = ({ kind }: { kind: string }) => {
+  if (kind === "instagram")
+    return (
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.6">
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
+      </svg>
+    );
+  if (kind === "x")
+    return (
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+        <path d="M18.244 2H21l-6.52 7.45L22 22h-6.844l-5.36-7.013L3.6 22H.84l6.98-7.974L1.5 2h6.99l4.84 6.4L18.244 2zm-1.2 18h1.65L7.05 4H5.33l11.715 16z" />
+      </svg>
+    );
+  if (kind === "email")
+    return <Mail size={14} />;
+  return null;
+};
 
 const Contact = () => {
   return (
-    <section id="contact" className="py-28 md:py-36 px-6">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          className="mb-14 max-w-2xl"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-        >
-          <span className="eyebrow mb-6 inline-flex">Contact</span>
-          <h2
-            className="text-4xl md:text-6xl mb-6"
-            style={{ fontFamily: '"Playfair Display", serif', fontWeight: 500, letterSpacing: "-0.025em" }}
+    <section id="contact" className="px-6 md:px-16 py-28 md:py-36">
+      <div className="max-w-[1320px] mx-auto">
+        <span className="eyebrow fade-up">— Contact</span>
+        <h2 className="mt-6 fade-up delay-1 leading-[0.95]" style={{ fontSize: "clamp(48px,9vw,128px)" }}>
+          <span className="block">LET'S</span>
+          <span
+            className="block"
+            style={{
+              fontFamily: 'Georgia, serif', fontStyle: "italic", fontWeight: 400,
+              textTransform: "lowercase", color: "transparent",
+              WebkitTextStroke: "1px var(--accent)",
+            }}
           >
-            Let's{" "}
-            <span style={{ fontStyle: "italic", color: "var(--sp-mid-dark)" }}>connect.</span>
-          </h2>
-          <p className="text-[15px]" style={{ color: "var(--sp-mid)" }}>
-            I'm always open to connecting with fellow students, developers, and anyone curious about technology.
-          </p>
-        </motion.div>
+            connect.
+          </span>
+        </h2>
 
-        <motion.div
-          className="grid md:grid-cols-12 gap-6"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-        >
+        <div className="mt-16 grid lg:grid-cols-2" style={{ borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)" }}>
+          {/* Email block */}
           <a
             href="mailto:shreejansapkota24@gmail.com"
-            className="md:col-span-7 sp-card p-8 flex items-start justify-between gap-6 group"
+            className="fade-up group relative p-10 md:p-14 transition-all duration-500 hover:bg-[var(--bg2)]"
+            style={{ borderRight: "1px solid var(--line)" }}
           >
-            <div>
-              <p className="font-mono-label mb-3">Email</p>
-              <p
-                className="text-2xl md:text-3xl"
-                style={{
-                  fontFamily: '"Playfair Display", serif',
-                  fontWeight: 500,
-                  color: "var(--sp-charcoal)",
-                  letterSpacing: "-0.01em",
-                }}
-              >
-                shreejansapkota24@gmail.com
-              </p>
-              <p className="mt-2 text-[13px]" style={{ color: "var(--sp-mid)" }}>
-                Best for inquiries, collaborations, and opportunities.
-              </p>
-            </div>
-            <div
-              className="w-11 h-11 rounded-full flex items-center justify-center transition-transform duration-500 group-hover:rotate-45"
-              style={{ background: "var(--sp-charcoal)", color: "var(--sp-white)" }}
+            <span className="font-mono-syne block mb-6" style={{ color: "var(--white3)" }}>Email</span>
+            <p
+              className="font-display break-all leading-[1.05]"
+              style={{ fontSize: "clamp(24px,3.6vw,44px)", color: "var(--white)" }}
             >
-              <ArrowUpRight className="w-5 h-5" />
+              shreejansapkota24@gmail.com
+            </p>
+            <p className="mt-6 text-[14px]" style={{ color: "var(--white2)" }}>
+              Best for inquiries, collaborations, and opportunities.
+            </p>
+            <div
+              className="absolute bottom-8 right-8 w-12 h-12 flex items-center justify-center transition-all duration-500 group-hover:bg-[var(--accent)] group-hover:rotate-45 group-hover:border-[var(--accent)]"
+              style={{ border: "1px solid var(--line2)", color: "var(--white)" }}
+            >
+              <ArrowUpRight className="w-5 h-5" style={{ color: "var(--bg)" }} />
             </div>
           </a>
 
-          <div className="md:col-span-5 sp-card p-8">
-            <p className="font-mono-label mb-5">Elsewhere</p>
-            <ul className="space-y-3">
-              {socialLinks.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-between py-2 group transition-colors"
-                    style={{ borderBottom: "1px solid var(--sp-border-soft)" }}
-                  >
-                    <span className="flex items-center gap-3 text-[14px]" style={{ color: "var(--sp-charcoal)" }}>
-                      <link.icon className="w-4 h-4" />
-                      {link.name}
-                    </span>
-                    <ArrowUpRight
-                      className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      style={{ color: "var(--sp-mid)" }}
-                    />
-                  </a>
-                </li>
-              ))}
-            </ul>
+          {/* Socials */}
+          <div className="p-6 md:p-10">
+            {socials.map((s) => (
+              <a
+                key={s.name}
+                href={s.href}
+                target={s.href.startsWith("http") ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                aria-label={s.name}
+                className="fade-up group flex items-center justify-between px-5 py-5 transition-all duration-300 hover:translate-x-1"
+                style={{ borderBottom: "1px solid var(--line)", boxShadow: "inset 0 0 0 var(--accent)" }}
+                onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "inset 2px 0 0 var(--accent)")}
+                onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "inset 0 0 0 var(--accent)")}
+              >
+                <span className="flex items-center gap-4 text-[15px] transition-colors duration-300 group-hover:text-[var(--accent)]" style={{ color: "var(--white)" }}>
+                  <span className="w-5 inline-flex justify-center">
+                    {s.icon ? <i className={s.icon} style={{ fontSize: 16 }} /> : <Glyph kind={s.svg!} />}
+                  </span>
+                  {s.name}
+                </span>
+                <ArrowUpRight className="w-4 h-4 opacity-0 -translate-x-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-[var(--accent)]" />
+              </a>
+            ))}
           </div>
-        </motion.div>
-
-        <div className="mt-4 flex items-center gap-2 text-[12px]" style={{ color: "var(--sp-mid)" }}>
-          <Mail className="w-3.5 h-3.5" />
-          Based in Kathmandu — open to remote and on-site opportunities.
         </div>
       </div>
     </section>

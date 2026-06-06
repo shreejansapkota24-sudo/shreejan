@@ -1,35 +1,36 @@
-import Navbar from "@/components/Navbar";
+import { useEffect } from "react";
 import Hero from "@/components/Hero";
+import Marquee from "@/components/Marquee";
 import About from "@/components/About";
-import AssistantHero from "@/components/AssistantHero";
 import Skills from "@/components/Skills";
 import Portfolio from "@/components/Portfolio";
+import CTAStrip from "@/components/CTAStrip";
 import Services from "@/components/Services";
 import Contact from "@/components/Contact";
 import InquiryForm from "@/components/InquiryForm";
 import Footer from "@/components/Footer";
+import SideDotNav from "@/components/SideDotNav";
+import FloatingAI from "@/components/FloatingAI";
+import { useReveal } from "@/hooks/useReveal";
 
 const Index = () => {
+  useReveal();
+  useEffect(() => { document.documentElement.style.background = "var(--bg)"; }, []);
   return (
-    <div className="min-h-screen bg-background relative">
-      <Navbar />
+    <main className="relative" style={{ background: "var(--bg)" }}>
+      <SideDotNav />
       <Hero />
-      <div className="hairline max-w-6xl mx-auto" />
+      <Marquee />
       <About />
-      <div className="hairline max-w-6xl mx-auto" />
-      <AssistantHero />
-      <div className="hairline max-w-6xl mx-auto" />
       <Skills />
-      <div className="hairline max-w-6xl mx-auto" />
       <Portfolio />
-      <div className="hairline max-w-6xl mx-auto" />
+      <CTAStrip />
       <Services />
-      <div className="hairline max-w-6xl mx-auto" />
       <Contact />
-      <div className="hairline max-w-6xl mx-auto" />
       <InquiryForm />
       <Footer />
-    </div>
+      <FloatingAI />
+    </main>
   );
 };
 

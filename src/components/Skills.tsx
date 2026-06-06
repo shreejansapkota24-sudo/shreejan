@@ -1,220 +1,130 @@
-import { motion } from "framer-motion";
-import {
-  Code2,
-  Server,
-  Database,
-  Terminal,
-  Sparkles,
-  Shield,
-  Wrench,
-  Brain,
-  MessageSquare,
-  Lock,
-  Bug,
-  Network,
-  type LucideIcon,
-} from "lucide-react";
+import { Brain, Shield, Sparkles, Network, Cpu, Code2 } from "lucide-react";
 
-type Skill = { name: string; devicon?: string; lucide?: LucideIcon };
-type Category = { label: string; icon: LucideIcon; items: Skill[] };
+type Skill = { name: string; icon?: string; lucide?: React.ComponentType<{ size?: number; className?: string }> };
 
-const categories: Category[] = [
+const categories: { name: string; items: Skill[] }[] = [
   {
-    label: "Programming Languages",
-    icon: Terminal,
+    name: "Languages",
     items: [
-      { name: "Python", devicon: "devicon-python-plain colored" },
-      { name: "Java", devicon: "devicon-java-plain colored" },
-      { name: "JavaScript", devicon: "devicon-javascript-plain colored" },
-      { name: "TypeScript", devicon: "devicon-typescript-plain colored" },
-      { name: "C", devicon: "devicon-c-plain colored" },
-      { name: "C++", devicon: "devicon-cplusplus-plain colored" },
+      { name: "Python", icon: "devicon-python-plain colored" },
+      { name: "Java", icon: "devicon-java-plain colored" },
+      { name: "JavaScript", icon: "devicon-javascript-plain colored" },
+      { name: "TypeScript", icon: "devicon-typescript-plain colored" },
+      { name: "C", icon: "devicon-c-plain" },
+      { name: "C++", icon: "devicon-cplusplus-plain colored" },
     ],
   },
   {
-    label: "Frontend",
-    icon: Code2,
+    name: "Frontend",
     items: [
-      { name: "React", devicon: "devicon-react-original colored" },
-      { name: "Tailwind CSS", devicon: "devicon-tailwindcss-plain colored" },
-      { name: "HTML5", devicon: "devicon-html5-plain colored" },
-      { name: "CSS3", devicon: "devicon-css3-plain colored" },
-      { name: "Next.js", devicon: "devicon-nextjs-plain" },
+      { name: "React", icon: "devicon-react-original colored" },
+      { name: "Tailwind CSS", icon: "devicon-tailwindcss-plain colored" },
+      { name: "HTML5", icon: "devicon-html5-plain colored" },
+      { name: "CSS3", icon: "devicon-css3-plain colored" },
+      { name: "Next.js", icon: "devicon-nextjs-plain" },
     ],
   },
   {
-    label: "Backend",
-    icon: Server,
+    name: "Backend",
     items: [
-      { name: "Node.js", devicon: "devicon-nodejs-plain colored" },
-      { name: "Express", devicon: "devicon-express-original" },
+      { name: "Node.js", icon: "devicon-nodejs-plain colored" },
+      { name: "Express", icon: "devicon-express-original" },
       { name: "REST APIs", lucide: Network },
     ],
   },
   {
-    label: "Databases",
-    icon: Database,
+    name: "Databases",
     items: [
-      { name: "MySQL", devicon: "devicon-mysql-plain colored" },
-      { name: "PostgreSQL", devicon: "devicon-postgresql-plain colored" },
-      { name: "MongoDB", devicon: "devicon-mongodb-plain colored" },
+      { name: "MySQL", icon: "devicon-mysql-plain colored" },
+      { name: "PostgreSQL", icon: "devicon-postgresql-plain colored" },
+      { name: "MongoDB", icon: "devicon-mongodb-plain colored" },
     ],
   },
   {
-    label: "Tools & Platforms",
-    icon: Wrench,
+    name: "Tools",
     items: [
-      { name: "Git", devicon: "devicon-git-plain colored" },
-      { name: "GitHub", devicon: "devicon-github-original" },
-      { name: "VS Code", devicon: "devicon-vscode-plain colored" },
-      { name: "Linux", devicon: "devicon-linux-plain" },
-      { name: "Docker", devicon: "devicon-docker-plain colored" },
+      { name: "Git", icon: "devicon-git-plain colored" },
+      { name: "GitHub", icon: "devicon-github-original" },
+      { name: "VS Code", icon: "devicon-vscode-plain colored" },
+      { name: "Linux", icon: "devicon-linux-plain" },
+      { name: "Docker", icon: "devicon-docker-plain colored" },
     ],
   },
   {
-    label: "AI & Emerging",
-    icon: Sparkles,
+    name: "AI & Security",
     items: [
-      { name: "OpenAI API", lucide: Brain },
-      { name: "Prompt Engineering", lucide: MessageSquare },
-      { name: "Applied AI Basics", lucide: Sparkles },
+      { name: "OpenAI API", lucide: Sparkles },
+      { name: "Prompt Engineering", lucide: Brain },
+      { name: "Web Security", lucide: Shield },
+      { name: "Ethical Hacking", lucide: Shield },
+      { name: "Applied AI", lucide: Cpu },
     ],
   },
   {
-    label: "Cybersecurity Foundations",
-    icon: Shield,
+    name: "Soft Skills",
     items: [
-      { name: "Web Security Fundamentals", lucide: Lock },
-      { name: "Ethical Hacking Basics", lucide: Bug },
+      { name: "Problem Solving" },
+      { name: "Communication" },
+      { name: "Continuous Learning" },
+      { name: "Adaptability" },
+      { name: "Teamwork" },
+      { name: "Attention to Detail" },
     ],
   },
 ];
 
-const softSkills = [
-  "Problem solving",
-  "Communication",
-  "Continuous learning",
-  "Adaptability",
-  "Teamwork",
-  "Attention to detail",
-];
-
-const Skills = () => (
-  <section id="skills" className="py-28 md:py-36 px-6">
-    <div className="max-w-6xl mx-auto">
-      <motion.div
-        className="mb-16 max-w-2xl"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
-      >
-        <span className="eyebrow mb-6 inline-flex">Skills</span>
-        <h2
-          className="text-4xl md:text-6xl mb-6"
-          style={{ fontFamily: '"Playfair Display", serif', fontWeight: 500, letterSpacing: "-0.025em" }}
-        >
-          A focused toolkit for{" "}
-          <span style={{ fontStyle: "italic", color: "var(--sp-mid-dark)" }}>building and learning.</span>
-        </h2>
-        <p className="text-[15px]" style={{ color: "var(--sp-mid)" }}>
-          Organized by category — refined through study, personal projects, and continuous practice.
-        </p>
-      </motion.div>
-
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {categories.map((cat, i) => (
-          <motion.div
-            key={cat.label}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
-            className="sp-card p-7"
+const Skills = () => {
+  return (
+    <section id="skills" className="px-6 md:px-16 py-28 md:py-36">
+      <div className="max-w-[1320px] mx-auto">
+        <span className="eyebrow fade-up">— Skills</span>
+        <h2 className="mt-6 fade-up delay-1 leading-[0.95]" style={{ fontSize: "clamp(44px,7vw,96px)" }}>
+          <span className="block">A FOCUSED TOOLKIT</span>
+          <span
+            className="block"
+            style={{
+              fontFamily: 'Georgia, serif', fontStyle: "italic", fontWeight: 400,
+              textTransform: "lowercase", color: "transparent",
+              WebkitTextStroke: "1px var(--white2)",
+            }}
           >
-            <div className="flex items-center gap-3 mb-5">
-              <div
-                className="p-2 rounded-md"
-                style={{ background: "var(--sp-surface-2)", border: "1px solid var(--sp-border)" }}
-              >
-                <cat.icon className="w-4 h-4" style={{ color: "var(--sp-charcoal)" }} />
-              </div>
-              <h3
-                className="text-base"
-                style={{
-                  fontFamily: '"Inter", sans-serif',
-                  fontWeight: 600,
-                  color: "var(--sp-charcoal)",
-                  letterSpacing: "-0.005em",
-                }}
-              >
-                {cat.label}
-              </h3>
-            </div>
+            for building.
+          </span>
+        </h2>
 
-            <div className="flex flex-wrap gap-2">
-              {cat.items.map((item) => {
-                const LucideIco = item.lucide;
-                return (
-                  <span
-                    key={item.name}
-                    className="inline-flex items-center px-3 py-1.5 text-[12px] rounded-full transition-all duration-300"
-                    style={{
-                      background: "var(--sp-surface)",
-                      border: "1px solid var(--sp-border)",
-                      color: "var(--sp-charcoal)",
-                      fontFamily: "Inter, sans-serif",
-                      fontWeight: 500,
-                    }}
-                  >
-                    {item.devicon ? (
-                      <i
-                        className={item.devicon}
-                        style={{ fontSize: 16, verticalAlign: "middle", marginRight: 6 }}
-                        aria-hidden="true"
-                      />
-                    ) : LucideIco ? (
-                      <LucideIco
-                        size={14}
-                        style={{ marginRight: 6, color: "var(--sp-mid-dark)" }}
-                        aria-hidden="true"
-                      />
-                    ) : null}
-                    {item.name}
-                  </span>
-                );
-              })}
-            </div>
-          </motion.div>
-        ))}
-      </div>
-
-      <motion.div
-        className="mt-10 sp-card p-7"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <p className="font-mono-label mb-4">Soft Skills</p>
-        <div className="flex flex-wrap gap-2">
-          {softSkills.map((s) => (
-            <span
-              key={s}
-              className="px-3 py-1.5 text-[12px] rounded-full"
-              style={{
-                background: "var(--sp-white)",
-                border: "1px solid var(--sp-border)",
-                color: "var(--sp-mid-dark)",
-              }}
+        <div className="mt-20 divide-y" style={{ borderColor: "var(--line)" }}>
+          {categories.map((c, idx) => (
+            <div
+              key={c.name}
+              className="fade-up group grid md:grid-cols-[220px_1fr] gap-6 py-8 transition-all duration-300 hover:pl-2"
+              style={{ borderTop: idx === 0 ? "1px solid var(--line)" : undefined, borderBottom: "1px solid var(--line)" }}
             >
-              {s}
-            </span>
+              <h3
+                className="font-display text-xl transition-colors duration-300 group-hover:text-[var(--accent)]"
+                style={{ color: "var(--white)" }}
+              >
+                {c.name}
+              </h3>
+              <div className="flex flex-wrap gap-2.5">
+                {c.items.map((s) => (
+                  <span key={s.name} className="stag">
+                    {s.icon ? (
+                      <i className={s.icon} style={{ fontSize: 16 }} />
+                    ) : s.lucide ? (
+                      <s.lucide size={14} className="text-[var(--accent)]" />
+                    ) : (
+                      <Code2 size={12} className="text-[var(--white3)]" />
+                    )}
+                    {s.name}
+                  </span>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
-      </motion.div>
-    </div>
-  </section>
-);
+      </div>
+    </section>
+  );
+};
 
 export default Skills;
