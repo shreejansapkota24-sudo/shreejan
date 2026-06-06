@@ -1,6 +1,6 @@
-import { Brain, Shield, Sparkles, Network, Cpu, Code2 } from "lucide-react";
+import { Brain, Shield, Sparkles, Network, Cpu, Code2, type LucideIcon } from "lucide-react";
 
-type Skill = { name: string; icon?: string; lucide?: React.ComponentType<{ size?: number; className?: string }> };
+type Skill = { name: string; icon?: string; lucide?: LucideIcon };
 
 const categories: { name: string; items: Skill[] }[] = [
   {
