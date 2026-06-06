@@ -1,82 +1,57 @@
-import { GraduationCap, Users, Code2 } from "lucide-react";
-import { motion } from "framer-motion";
-
-const opportunities = [
+const items = [
   {
-    icon: GraduationCap,
+    num: "01",
     title: "Internships",
-    description:
-      "Open to data, software, and research internships where I can learn and contribute.",
+    body: "Open to data, software, and research internships where I can learn and contribute meaningfully to a team.",
   },
   {
-    icon: Users,
+    num: "02",
     title: "Collaborations",
-    description:
-      "Interested in student project collaborations and small team experiences.",
+    body: "Interested in student project collaborations and small team experiences that stretch my technical abilities.",
   },
   {
-    icon: Code2,
-    title: "Open-source",
-    description:
-      "Happy to contribute to beginner-friendly open-source projects across the stack.",
+    num: "03",
+    title: "Open Source",
+    body: "Happy to contribute to beginner-friendly open-source projects across the stack — web, AI, and tooling.",
   },
 ];
 
 const Services = () => {
   return (
-    <section id="services" className="py-28 md:py-36 px-6">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          className="mb-14 max-w-2xl"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-        >
-          <span className="eyebrow mb-6 inline-flex">Opportunities</span>
-          <h2
-            className="text-4xl md:text-6xl mb-6"
-            style={{ fontFamily: '"Playfair Display", serif', fontWeight: 500, letterSpacing: "-0.025em" }}
+    <section id="services" className="px-6 md:px-16 py-28 md:py-36">
+      <div className="max-w-[1320px] mx-auto">
+        <span className="eyebrow fade-up">— Opportunities</span>
+        <h2 className="mt-6 fade-up delay-1 leading-[0.95]" style={{ fontSize: "clamp(44px,7vw,96px)" }}>
+          <span className="block">OPEN TO LEARNING &amp;</span>
+          <span
+            className="block"
+            style={{
+              fontFamily: 'Georgia, serif', fontStyle: "italic", fontWeight: 400,
+              textTransform: "lowercase", color: "transparent",
+              WebkitTextStroke: "1px var(--white2)",
+            }}
           >
-            Open to learning and{" "}
-            <span style={{ fontStyle: "italic", color: "var(--sp-mid-dark)" }}>working together.</span>
-          </h2>
-          <p className="text-[15px]" style={{ color: "var(--sp-mid)" }}>
-            As a student, I'm focused on building skills — and I'm always open to opportunities that help me grow.
-          </p>
-        </motion.div>
+            working together.
+          </span>
+        </h2>
 
-        <div className="grid md:grid-cols-3 gap-5">
-          {opportunities.map((item, i) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className="sp-card p-8"
+        <div className="mt-16 grid md:grid-cols-3 gap-5">
+          {items.map((it, i) => (
+            <article
+              key={it.num}
+              className={`fade-up delay-${i + 1} group p-10 transition-all duration-500 hover:-translate-y-2`}
+              style={{ background: "var(--bg2)", border: "1px solid var(--line)" }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = "var(--bg3)")}
+              onMouseLeave={(e) => (e.currentTarget.style.background = "var(--bg2)")}
             >
-              <div
-                className="inline-flex p-3 rounded-md mb-5"
-                style={{ background: "var(--sp-surface-2)", border: "1px solid var(--sp-border)" }}
-              >
-                <item.icon className="w-5 h-5" style={{ color: "var(--sp-charcoal)" }} />
-              </div>
-              <h3
-                className="text-xl mb-3"
-                style={{
-                  fontFamily: '"Playfair Display", serif',
-                  fontWeight: 500,
-                  color: "var(--sp-charcoal)",
-                  letterSpacing: "-0.01em",
-                }}
-              >
-                {item.title}
+              <span className="font-mono-syne block mb-6" style={{ color: "var(--white3)" }}>{it.num} —</span>
+              <h3 className="font-display text-2xl md:text-3xl transition-colors duration-300 group-hover:text-[var(--accent)]">
+                {it.title}
               </h3>
-              <p className="text-[14px] leading-relaxed" style={{ color: "var(--sp-mid-dark)" }}>
-                {item.description}
+              <p className="mt-5 text-[14px] leading-[1.85]" style={{ color: "var(--white2)" }}>
+                {it.body}
               </p>
-            </motion.div>
+            </article>
           ))}
         </div>
       </div>
