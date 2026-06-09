@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import SocialTopBar from "@/components/SocialTopBar";
+import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
 import About from "@/components/About";
@@ -18,6 +20,8 @@ const Index = () => {
   useEffect(() => { document.documentElement.style.background = "var(--bg)"; }, []);
   return (
     <main className="relative" style={{ background: "var(--bg)" }}>
+      <SocialTopBar />
+      <Navbar />
       <SideDotNav />
       <Hero />
       <Marquee />

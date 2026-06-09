@@ -1,10 +1,11 @@
 const ITEMS = [
   "SHREEJAN SAPKOTA",
-  "DATA SCIENCE",
-  "FULL STACK DEV",
   "CYBERSECURITY",
-  "ASPIRING ENGINEER",
+  "ETHICAL HACKING",
+  "FULL STACK DEV",
+  "NETWORK SECURITY",
   "KATHMANDU · NEPAL",
+  "BCS HONS · IIMS",
 ];
 
 const Marquee = () => {
@@ -20,7 +21,9 @@ const Marquee = () => {
     >
       <div className="marquee-track font-display" style={{ fontSize: "clamp(24px,4vw,48px)" }}>
         {row.map((t, i) => (
-          <span key={i} className="inline-flex items-center gap-14 transition-all duration-300 hover:text-accent-c hover:scale-[1.04]"
+          <span
+            key={i}
+            className="inline-flex items-center gap-14 transition-all duration-300 hover:text-accent-c hover:scale-[1.04]"
             style={{
               color: i % 2 === 0 ? "var(--white)" : "transparent",
               WebkitTextStroke: i % 2 === 0 ? "0" : "1px var(--line2)",
