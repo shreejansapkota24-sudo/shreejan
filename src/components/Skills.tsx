@@ -1,4 +1,4 @@
-import { Brain, Shield, Sparkles, Network, Cpu, Code2, type LucideIcon } from "lucide-react";
+import { Shield, ShieldAlert, Flag, Brain, Sparkles, Network, Code2, Search, type LucideIcon } from "lucide-react";
 
 type Skill = { name: string; icon?: string; lucide?: LucideIcon };
 
@@ -9,9 +9,30 @@ const categories: { name: string; items: Skill[] }[] = [
       { name: "Python", icon: "devicon-python-plain colored" },
       { name: "Java", icon: "devicon-java-plain colored" },
       { name: "JavaScript", icon: "devicon-javascript-plain colored" },
-      { name: "TypeScript", icon: "devicon-typescript-plain colored" },
       { name: "C", icon: "devicon-c-plain" },
       { name: "C++", icon: "devicon-cplusplus-plain colored" },
+      { name: "Bash", icon: "devicon-bash-plain" },
+    ],
+  },
+  {
+    name: "Cybersecurity",
+    items: [
+      { name: "Ethical Hacking", lucide: Shield },
+      { name: "Network Security", lucide: Network },
+      { name: "Web App Security", lucide: ShieldAlert },
+      { name: "OWASP Top 10", lucide: Shield },
+      { name: "CTF Challenges", lucide: Flag },
+      { name: "Threat Analysis", lucide: Search },
+    ],
+  },
+  {
+    name: "Security Tools",
+    items: [
+      { name: "Linux / Kali", icon: "devicon-linux-plain" },
+      { name: "Wireshark", lucide: Network },
+      { name: "Nmap", lucide: Search },
+      { name: "Burp Suite", lucide: ShieldAlert },
+      { name: "Metasploit", lucide: Shield },
     ],
   },
   {
@@ -25,50 +46,32 @@ const categories: { name: string; items: Skill[] }[] = [
     ],
   },
   {
-    name: "Backend",
+    name: "Backend & DB",
     items: [
       { name: "Node.js", icon: "devicon-nodejs-plain colored" },
       { name: "Express", icon: "devicon-express-original" },
-      { name: "REST APIs", lucide: Network },
-    ],
-  },
-  {
-    name: "Databases",
-    items: [
       { name: "MySQL", icon: "devicon-mysql-plain colored" },
       { name: "PostgreSQL", icon: "devicon-postgresql-plain colored" },
       { name: "MongoDB", icon: "devicon-mongodb-plain colored" },
     ],
   },
   {
-    name: "Tools",
+    name: "Tools & DevOps",
     items: [
       { name: "Git", icon: "devicon-git-plain colored" },
       { name: "GitHub", icon: "devicon-github-original" },
-      { name: "VS Code", icon: "devicon-vscode-plain colored" },
-      { name: "Linux", icon: "devicon-linux-plain" },
       { name: "Docker", icon: "devicon-docker-plain colored" },
+      { name: "VS Code", icon: "devicon-vscode-plain colored" },
+      { name: "REST APIs", lucide: Network },
     ],
   },
   {
-    name: "AI & Security",
+    name: "AI & Research",
     items: [
       { name: "OpenAI API", lucide: Sparkles },
       { name: "Prompt Engineering", lucide: Brain },
-      { name: "Web Security", lucide: Shield },
-      { name: "Ethical Hacking", lucide: Shield },
-      { name: "Applied AI", lucide: Cpu },
-    ],
-  },
-  {
-    name: "Soft Skills",
-    items: [
-      { name: "Problem Solving" },
-      { name: "Communication" },
-      { name: "Continuous Learning" },
-      { name: "Adaptability" },
-      { name: "Teamwork" },
-      { name: "Attention to Detail" },
+      { name: "IOC Analysis", lucide: Search },
+      { name: "Applied AI", lucide: Sparkles },
     ],
   },
 ];
@@ -79,7 +82,7 @@ const Skills = () => {
       <div className="max-w-[1320px] mx-auto">
         <span className="eyebrow fade-up">— Skills</span>
         <h2 className="mt-6 fade-up delay-1 leading-[0.95]" style={{ fontSize: "clamp(44px,7vw,96px)" }}>
-          <span className="block">A FOCUSED TOOLKIT</span>
+          <span className="block">A SECURITY-FIRST</span>
           <span
             className="block"
             style={{
@@ -88,7 +91,7 @@ const Skills = () => {
               WebkitTextStroke: "1px var(--white2)",
             }}
           >
-            for building.
+            toolkit.
           </span>
         </h2>
 

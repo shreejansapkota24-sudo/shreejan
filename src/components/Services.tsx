@@ -2,17 +2,17 @@ const items = [
   {
     num: "01",
     title: "Internships",
-    body: "Open to data, software, and research internships where I can learn and contribute meaningfully to a team.",
+    body: "Open to cybersecurity, SOC, blue team, red team, and full-stack development internships where I can learn from senior engineers and contribute meaningfully.",
   },
   {
     num: "02",
     title: "Collaborations",
-    body: "Interested in student project collaborations and small team experiences that stretch my technical abilities.",
+    body: "Interested in security research projects, CTF teams, and student collaborations that push my technical boundaries across offense and defense.",
   },
   {
     num: "03",
     title: "Open Source",
-    body: "Happy to contribute to beginner-friendly open-source projects across the stack — web, AI, and tooling.",
+    body: "Happy to contribute to security tooling, defensive frameworks, and beginner-friendly open-source projects across the stack.",
   },
 ];
 
@@ -41,8 +41,14 @@ const Services = () => {
               key={it.num}
               className={`fade-up delay-${i + 1} group p-10 transition-all duration-500 hover:-translate-y-2`}
               style={{ background: "var(--bg2)", border: "1px solid var(--line)" }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = "var(--bg3)")}
-              onMouseLeave={(e) => (e.currentTarget.style.background = "var(--bg2)")}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "var(--bg3)";
+                e.currentTarget.style.boxShadow = "0 0 0 1px rgba(232,213,163,0.35)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "var(--bg2)";
+                e.currentTarget.style.boxShadow = "none";
+              }}
             >
               <span className="font-mono-syne block mb-6" style={{ color: "var(--white3)" }}>{it.num} —</span>
               <h3 className="font-display text-2xl md:text-3xl transition-colors duration-300 group-hover:text-[var(--accent)]">

@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Sparkles } from "lucide-react";
+import { useLocation } from "react-router-dom";
+import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { name: "About", href: "#about" },
-  { name: "AI", href: "#cyber-saathi" },
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#portfolio" },
-  { name: "Services", href: "#services" },
+  { name: "Opportunities", href: "#services" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -18,57 +17,57 @@ const Navbar = () => {
   const isHomePage = location.pathname === "/";
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30);
+    const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  if (!isHomePage) return null;
+
   return (
     <nav
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 cinematic-ease"
+      className="fixed left-0 right-0 z-50 transition-all duration-500"
       style={{
-        background: scrolled ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0)",
-        backdropFilter: scrolled ? "blur(14px) saturate(180%)" : "none",
-        WebkitBackdropFilter: scrolled ? "blur(14px) saturate(180%)" : "none",
-        borderBottom: scrolled ? "1px solid var(--sp-border)" : "1px solid transparent",
+        top: 36,
+        background: scrolled ? "rgba(10,10,10,0.75)" : "transparent",
+        backdropFilter: scrolled ? "blur(16px) saturate(180%)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(16px) saturate(180%)" : "none",
+        borderBottom: scrolled ? "1px solid var(--line)" : "1px solid transparent",
       }}
     >
-      <div className="max-w-6xl mx-auto px-6 py-4">
+      <div className="max-w-[1320px] mx-auto px-6 md:px-16 py-4">
         <div className="flex items-center justify-between">
           <a
             href="#home"
             className="font-display text-xl tracking-tight"
-            style={{
-              fontWeight: 600,
-              color: "var(--sp-charcoal)",
-              fontFamily: '"Playfair Display", serif',
-              letterSpacing: "-0.02em",
-            }}
+            style={{ color: "var(--white)" }}
             aria-label="Shreejan Sapkota — Home"
           >
-            Shreejan<span style={{ color: "var(--sp-medium)" }}>.</span>
+            Shreejan<span style={{ color: "var(--accent)" }}>.</span>
           </a>
 
           <div className="hidden md:flex items-center gap-8">
-            {isHomePage &&
-              navLinks.map((link) => (
-                <a key={link.name} href={link.href} className="nav-link-underline">
-                  {link.name}
-                </a>
-              ))}
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="font-mono-syne transition-colors duration-300 hover:text-[var(--accent)]"
+                style={{ color: "var(--white2)" }}
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
 
-            <Link to="/cyberguard/cyber-saathi">
-              <button className="btn-mono">
-                <Sparkles className="w-3.5 h-3.5" />
-                Chat with AI
-              </button>
-            </Link>
+          <div className="hidden md:inline-flex items-center gap-2 px-3 py-1.5" style={{ border: "1px solid var(--line2)" }}>
+            <span className="w-1.5 h-1.5 rounded-full pulse-soft" style={{ background: "#22c55e" }} />
+            <span className="font-mono-syne" style={{ color: "var(--white2)" }}>Available for opportunities</span>
           </div>
 
           <button
-            className="md:hidden p-2 rounded-full transition-colors"
-            style={{ color: "var(--sp-charcoal)" }}
+            className="md:hidden p-2"
+            style={{ color: "var(--white)" }}
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? "Close menu" : "Open menu"}
           >
@@ -77,26 +76,19 @@ const Navbar = () => {
         </div>
 
         {isOpen && (
-          <div className="md:hidden pt-6 pb-2 cinematic-in">
+          <div className="md:hidden pt-6 pb-2">
             <div className="flex flex-col gap-5">
-              {isHomePage &&
-                navLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    className="text-base"
-                    style={{ color: "var(--sp-charcoal)", fontFamily: "Inter, sans-serif" }}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {link.name}
-                  </a>
-                ))}
-              <Link to="/cyberguard/cyber-saathi" onClick={() => setIsOpen(false)}>
-                <button className="btn-mono w-full justify-center">
-                  <Sparkles className="w-3.5 h-3.5" />
-                  Chat with AI
-                </button>
-              </Link>
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="font-mono-syne"
+                  style={{ color: "var(--white)" }}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.name}
+                </a>
+              ))}
             </div>
           </div>
         )}

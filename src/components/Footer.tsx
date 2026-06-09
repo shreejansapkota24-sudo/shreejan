@@ -4,6 +4,7 @@ const navLinks = [
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#portfolio" },
+  { name: "Opportunities", href: "#services" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -27,14 +28,14 @@ const Footer = () => {
           style={{ borderTop: "1px solid var(--line)" }}
         >
           <p className="text-[12px]" style={{ color: "var(--white3)" }}>
-            © 2025 Shreejan Sapkota · Built with curiosity from Kathmandu
+            © 2025 Shreejan Sapkota · Cybersecurity Student · Kathmandu, Nepal
           </p>
           <a
             href="#home"
-            className="inline-flex items-center gap-2 font-mono-syne transition-colors duration-300 hover:text-[var(--accent)]"
-            style={{ color: "var(--white2)" }}
+            className="inline-flex items-center gap-2 font-mono-syne transition-all duration-300 hover:text-[var(--accent)] hover:border-[var(--accent)] px-3 py-2"
+            style={{ color: "var(--white2)", border: "1px solid var(--line2)" }}
           >
-            <ArrowUp className="w-3.5 h-3.5" />
+            <ArrowUp className="w-3.5 h-3.5 transition-transform duration-300 group-hover:-translate-y-1" />
             Back to top
           </a>
         </div>

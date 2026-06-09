@@ -1,18 +1,32 @@
 const highlights = [
-  "Building technical foundations in programming and databases",
-  "Practicing modern web development with React and Tailwind",
-  "Exploring Data Science as a long-term career path",
-  "Strengthening analytical and problem-solving skills through projects",
+  "Practicing ethical hacking, CTFs, and offensive security techniques",
+  "Studying network security, OWASP Top 10, and web application vulnerabilities",
+  "Building secure full-stack apps with React, TypeScript, and Supabase",
+  "Exploring AI applied to defensive security and IOC analysis",
 ];
 
-const facts: { label: string; value: string; span?: string }[] = [
+const facts = [
   { label: "Name", value: "Shreejan Sapkota" },
-  { label: "Role", value: "CS Student" },
+  { label: "Role", value: "Cybersecurity Student" },
   { label: "Location", value: "Kathmandu, NP" },
-  { label: "Education", value: "BCS (Hons)" },
-  { label: "College", value: "IIMS College" },
-  { label: "Graduation", value: "Expected 2029" },
-  { label: "Focus", value: "Data Science · Web Development · AI", span: "col-span-2" },
+  { label: "Status", value: "Available" },
+  { label: "Focus", value: "Cybersecurity · Ethical Hacking · Full Stack", span: "col-span-2" },
+];
+
+const education = [
+  {
+    degree: "BCS (Hons)",
+    institution: "IIMS College, Kathmandu",
+    years: "2025 — 2029",
+    status: "In Progress",
+    active: true,
+  },
+  {
+    degree: "Higher Secondary Education",
+    institution: "Science Stream",
+    years: "Completed",
+    status: "Completed",
+  },
 ];
 
 const About = () => {
@@ -22,37 +36,36 @@ const About = () => {
         <span className="eyebrow fade-up">— About</span>
 
         <h2 className="mt-6 fade-up delay-1 leading-[0.95]" style={{ fontSize: "clamp(44px,7vw,96px)" }}>
-          <span className="block">BUILDING A PATH INTO</span>
+          <span className="block">A JOURNEY INTO</span>
           <span
             className="block"
             style={{
               fontFamily: 'Georgia, "Playfair Display", serif',
-              fontStyle: "italic",
-              fontWeight: 400,
-              textTransform: "lowercase",
-              color: "transparent",
-              WebkitTextStroke: "1px var(--white2)",
+              fontStyle: "italic", fontWeight: 400, textTransform: "lowercase",
+              color: "transparent", WebkitTextStroke: "1px var(--white2)",
             }}
           >
-            data &amp; software.
+            cybersecurity.
           </span>
         </h2>
 
         <div className="mt-20 grid lg:grid-cols-12 gap-20">
           <div className="lg:col-span-7 space-y-6">
             <p className="fade-up text-[15px] leading-[1.9]" style={{ color: "var(--white2)" }}>
-              I'm Shreejan Sapkota, a Computer Science student at IIMS College in Kathmandu, currently
-              working through my BCS (Hons) — expected to graduate in 2029. My focus is on building strong
-              fundamentals in programming, databases, and modern web development.
+              I'm Shreejan Sapkota, a cybersecurity-focused Computer Science student at IIMS College in
+              Kathmandu, currently working through my BCS (Hons) — expected to graduate in 2029. I'm drawn
+              to the security side of software: how systems break, how they get defended, and how to build
+              them so they don't break in the first place.
             </p>
             <p className="fade-up delay-1 text-[15px] leading-[1.9]" style={{ color: "var(--white2)" }}>
-              I gravitate toward problems that mix logic, data, and design. I've been steadily building
-              full-stack projects with React and TypeScript, and I'm sharpening my Python and SQL toward a
-              long-term path in Data Science and applied AI.
+              My focus is on ethical hacking, network and web application security, the OWASP Top 10, and
+              hands-on CTF challenges. Alongside that, I build full-stack tools with React, TypeScript, and
+              Supabase, so I can study attacks and defenses from both sides of the codebase.
             </p>
             <p className="fade-up delay-2 text-[15px] leading-[1.9]" style={{ color: "var(--white2)" }}>
-              Outside of class I explore cybersecurity, write tools that scratch my own itch, and try to ship
-              things end-to-end — not just demos. I'm always open to learning from people further ahead.
+              Outside of class I run my own labs, ship security tooling, and explore how AI can be applied to
+              defensive security and IOC analysis. I'm open to internships and collaborations where I can
+              keep learning by doing real work.
             </p>
 
             <ul className="mt-8 space-y-3">
@@ -71,7 +84,7 @@ const About = () => {
             </ul>
           </div>
 
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-5 space-y-6">
             <div className="grid grid-cols-2 gap-3">
               {facts.map((f, i) => (
                 <div
@@ -82,6 +95,33 @@ const About = () => {
                   <p className="font-display" style={{ fontSize: 18, color: "var(--white)" }}>{f.value}</p>
                 </div>
               ))}
+            </div>
+
+            <div className="fade-up delay-2 p-7 sp-card">
+              <p className="font-mono-syne mb-5" style={{ color: "var(--accent)" }}>— Education</p>
+              <div className="space-y-5">
+                {education.map((e) => (
+                  <div key={e.degree} className="pl-4" style={{ borderLeft: `2px solid ${e.active ? "var(--accent)" : "var(--line2)"}` }}>
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <p className="font-display" style={{ fontSize: 16, color: "var(--white)" }}>{e.degree}</p>
+                        <p className="text-[13px] mt-1" style={{ color: "var(--white2)" }}>{e.institution}</p>
+                        <p className="font-mono-syne mt-1" style={{ color: "var(--white3)" }}>{e.years}</p>
+                      </div>
+                      <span
+                        className="font-mono-syne px-2 py-1 whitespace-nowrap"
+                        style={{
+                          border: `1px solid ${e.active ? "var(--accent)" : "var(--line2)"}`,
+                          color: e.active ? "var(--accent)" : "var(--white2)",
+                          fontSize: 9,
+                        }}
+                      >
+                        {e.status}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
