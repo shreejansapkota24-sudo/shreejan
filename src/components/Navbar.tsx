@@ -6,6 +6,7 @@ const navLinks = [
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#portfolio" },
+  { name: "WorldCup Hub", href: "/worldcup" },
   { name: "Opportunities", href: "#services" },
   { name: "Contact", href: "#contact" },
 ];

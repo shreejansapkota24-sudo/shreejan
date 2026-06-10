@@ -328,3 +328,65 @@
 .nav-link-underline:hover { color: var(--accent); }
 .arctic-noise, .scanline-overlay, .cinematic-ease, .hover-lift, .cinematic-in, .reveal-up, .clip-reveal { }
 .aurora-blob { display: none !important; }
+
+/* ============================================
+   WORLDCUP HUB THEME (scoped to .wc-theme)
+   ============================================ */
+.wc-theme { font-family: 'Inter', system-ui, sans-serif; color: #F9FAFB; }
+.wc-theme h1, .wc-theme h2, .wc-theme h3, .wc-theme h4 {
+  font-family: 'Bebas Neue', 'Inter', sans-serif;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-weight: 400;
+  color: #F9FAFB;
+}
+.wc-theme .wc-display {
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+.wc-theme .tabular-nums { font-variant-numeric: tabular-nums; font-family: 'JetBrains Mono', monospace; }
+.wc-theme ::selection { background: #F5A623; color: #0A0E1A; }
+
+.wc-theme .wc-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #F5A623;
+}
+
+.wc-theme .wc-btn-primary {
+  display: inline-flex; align-items: center; gap: .55rem;
+  background: linear-gradient(135deg, #F5A623, #FFD700);
+  color: #0A0E1A;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  transition: all .3s cubic-bezier(0.22,1,0.36,1);
+  box-shadow: 0 6px 20px rgba(245,166,35,0.35);
+}
+.wc-theme .wc-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(245,166,35,0.5); }
+
+.wc-theme .wc-btn-ghost {
+  display: inline-flex; align-items: center; gap: .55rem;
+  background: transparent;
+  color: #F9FAFB;
+  padding: 12px 24px;
+  border-radius: 10px;
+  border: 1px solid rgba(245,166,35,0.35);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: all .3s cubic-bezier(0.22,1,0.36,1);
+}
+.wc-theme .wc-btn-ghost:hover { border-color: #F5A623; color: #F5A623; transform: translateY(-2px); }
+
+/* Disable site custom cursor inside WorldCup theme — sports app feels better with native */
+.wc-theme, .wc-theme a, .wc-theme button, .wc-theme input { cursor: auto !important; }
