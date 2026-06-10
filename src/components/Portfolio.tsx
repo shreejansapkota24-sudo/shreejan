@@ -30,26 +30,27 @@ const projects: Project[] = [
   },
   {
     num: "03",
-    title: "More Coming Soon",
-    type: "Ongoing experiments",
-    tags: ["WIP", "Research"],
-    muted: true,
+    title: "WorldCup Hub",
+    type: "Live Sports Analytics Dashboard",
+    ai: true,
+    tags: ["React", "Framer Motion", "Recharts", "Live Data"],
+    href: "/worldcup",
   },
 ];
 
 const Row = ({ p }: { p: Project }) => {
   const content = (
     <div
-      className={`group fade-up grid grid-cols-[60px_1fr_40px] items-center gap-6 py-10 px-6 md:px-6 transition-all duration-500 ${
+      className={`group fade-up grid grid-cols-[60px_1fr_40px] items-center gap-6 py-10 px-6 md:px-6 transition-all duration-500 overflow-hidden ${
         p.muted ? "opacity-60" : "hover:px-10"
       }`}
-      style={{ borderTop: "1px solid var(--line)" }}
+      style={{ borderTop: "1px solid var(--line)", wordBreak: "break-word", overflowWrap: "break-word" }}
     >
       <span className="font-mono-syne" style={{ color: "var(--white3)" }}>{p.num}</span>
-      <div>
+      <div className="min-w-0">
         <h3
           className="font-display transition-all duration-500 group-hover:text-[var(--accent)]"
-          style={{ fontSize: "clamp(28px,4vw,52px)", letterSpacing: "-0.04em" }}
+          style={{ fontSize: "clamp(28px,4vw,52px)", letterSpacing: "-0.04em", wordBreak: "break-word", whiteSpace: "normal" }}
         >
           {p.title.toUpperCase()}
         </h3>
