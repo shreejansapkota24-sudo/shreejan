@@ -1,16 +1,16 @@
 const highlights = [
-  "Practicing ethical hacking, CTFs, and offensive security techniques",
-  "Studying network security, OWASP Top 10, and web application vulnerabilities",
-  "Building secure full-stack apps with React, TypeScript, and Supabase",
-  "Exploring AI applied to defensive security and IOC analysis",
+  "Studying machine learning, deep learning, and applied data analysis",
+  "Building and evaluating models with Python, NumPy, pandas, and scikit-learn",
+  "Shipping AI-powered full-stack apps with React, TypeScript, and Supabase",
+  "Working with LLMs, prompt engineering, and retrieval-augmented systems",
 ];
 
 const facts = [
   { label: "Name", value: "Shreejan Sapkota" },
-  { label: "Role", value: "Cybersecurity Student" },
+  { label: "Role", value: "AI Student" },
   { label: "Location", value: "Kathmandu, NP" },
   { label: "Status", value: "Available" },
-  { label: "Focus", value: "Cybersecurity · Ethical Hacking · Full Stack", span: "col-span-2" },
+  { label: "Focus", value: "Artificial Intelligence · Machine Learning · Full Stack", span: "col-span-2" },
 ];
 
 const education = [
@@ -45,26 +45,26 @@ const About = () => {
               color: "transparent", WebkitTextStroke: "1px var(--white2)",
             }}
           >
-            cybersecurity.
+            artificial intelligence.
           </span>
         </h2>
 
         <div className="mt-20 grid lg:grid-cols-12 gap-20">
           <div className="lg:col-span-7 space-y-6">
             <p className="fade-up text-[15px] leading-[1.9]" style={{ color: "var(--white2)" }}>
-              I'm Shreejan Sapkota, a cybersecurity-focused Computer Science student at IIMS College in
-              Kathmandu, currently working through my BCS (Hons) — expected to graduate in 2029. I'm drawn
-              to the security side of software: how systems break, how they get defended, and how to build
-              them so they don't break in the first place.
+              I'm Shreejan Sapkota, an AI-focused Computer Science student at IIMS College in Kathmandu,
+              currently working through my BCS (Hons) — expected to graduate in 2029. I'm drawn to how
+              machines learn: how models are trained, evaluated, and turned into products people actually
+              use.
             </p>
             <p className="fade-up delay-1 text-[15px] leading-[1.9]" style={{ color: "var(--white2)" }}>
-              My focus is on ethical hacking, network and web application security, the OWASP Top 10, and
-              hands-on CTF challenges. Alongside that, I build full-stack tools with React, TypeScript, and
-              Supabase, so I can study attacks and defenses from both sides of the codebase.
+              My focus is on machine learning, deep learning, data analysis, and large language models.
+              Alongside that, I build full-stack applications with React, TypeScript, and Supabase, so I can
+              take an idea from dataset and model all the way to a working interface.
             </p>
             <p className="fade-up delay-2 text-[15px] leading-[1.9]" style={{ color: "var(--white2)" }}>
-              Outside of class I run my own labs, ship security tooling, and explore how AI can be applied to
-              defensive security and IOC analysis. I'm open to internships and collaborations where I can
+              Outside of class I run my own experiments, ship AI-powered tools, and explore how intelligent
+              systems can solve practical problems. I'm open to internships and collaborations where I can
               keep learning by doing real work.
             </p>
 
