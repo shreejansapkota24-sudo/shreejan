@@ -41,11 +41,23 @@ const projects: Project[] = [
 const Row = ({ p }: { p: Project }) => {
   const content = (
     <div
-      className={`group fade-up grid grid-cols-[60px_1fr_40px] items-center gap-6 py-10 px-6 md:px-6 transition-all duration-500 overflow-hidden ${
+      className={`group fade-up relative grid grid-cols-[60px_1fr_40px] items-center gap-6 py-10 px-6 md:px-6 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] overflow-hidden ${
         p.muted ? "opacity-60" : "hover:px-10"
       }`}
       style={{ borderTop: "1px solid var(--line)", wordBreak: "break-word", overflowWrap: "break-word" }}
     >
+      {/* smooth sweep background on hover */}
+      <span
+        aria-hidden
+        className="absolute inset-0 origin-left scale-x-0 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100"
+        style={{ background: "linear-gradient(90deg, rgba(139,123,249,0.10), transparent 70%)" }}
+      />
+      <span
+        aria-hidden
+        className="absolute left-0 top-0 h-full w-[2px] origin-top scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100"
+        style={{ background: "var(--accent)" }}
+      />
+
       <span className="font-mono-syne" style={{ color: "var(--white3)" }}>{p.num}</span>
       <div className="min-w-0">
         <h3
