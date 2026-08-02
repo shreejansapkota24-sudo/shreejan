@@ -16,8 +16,8 @@
     --white: #f0ede8;
     --white2: #a8a5a0;
     --white3: #555250;
-    --accent: #e8d5a3;
-    --accent2: #c8622a;
+    --accent: #8b7bf9;
+    --accent2: #22d3ee;
     --red: #ff4d2e;
 
     /* shadcn tokens mapped to dark palette */
@@ -146,7 +146,7 @@
     border-color: var(--accent);
     color: var(--bg);
     transform: translateY(-3px);
-    box-shadow: 0 14px 30px -10px rgba(232,213,163,0.4);
+    box-shadow: 0 14px 30px -10px rgba(139,123,249,0.4);
   }
   .btn-ghost {
     display: inline-flex;
@@ -209,8 +209,8 @@
   .stag:hover {
     border-color: var(--accent);
     transform: translateY(-4px) scale(1.06);
-    background: rgba(232,213,163,0.06);
-    box-shadow: 0 10px 24px -10px rgba(232,213,163,0.35);
+    background: rgba(139,123,249,0.06);
+    box-shadow: 0 10px 24px -10px rgba(139,123,249,0.35);
   }
 
   /* Marquee */
@@ -280,7 +280,7 @@
 }
 .cursor-ring {
   width: 32px; height: 32px;
-  border: 1px solid rgba(232,213,163,0.35);
+  border: 1px solid rgba(139,123,249,0.35);
   transition: width 0.25s cubic-bezier(0.22,1,0.36,1),
               height 0.25s cubic-bezier(0.22,1,0.36,1),
               border-color 0.3s ease;

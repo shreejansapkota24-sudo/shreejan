@@ -43,7 +43,7 @@ const Services = () => {
               style={{ background: "var(--bg2)", border: "1px solid var(--line)" }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = "var(--bg3)";
-                e.currentTarget.style.boxShadow = "0 0 0 1px rgba(232,213,163,0.35)";
+                e.currentTarget.style.boxShadow = "0 0 0 1px rgba(139,123,249,0.35)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.background = "var(--bg2)";

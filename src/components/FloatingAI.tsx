@@ -94,7 +94,7 @@ const FloatingAI = () => {
           borderRadius: "50%",
           background: "radial-gradient(circle at 30% 30%, #1a1a1a, #0a0a0a)",
           border: "1px solid var(--line2)",
-          boxShadow: "0 12px 32px -8px rgba(232,213,163,0.25)",
+          boxShadow: "0 12px 32px -8px rgba(139,123,249,0.25)",
         }}
       >
         <span
