@@ -58,8 +58,8 @@ const Row = ({ p }: { p: Project }) => {
         style={{ background: "var(--accent)" }}
       />
 
-      <span className="font-mono-syne" style={{ color: "var(--white3)" }}>{p.num}</span>
-      <div className="min-w-0">
+      <span className="font-mono-syne relative transition-all duration-500 group-hover:text-[var(--accent)] group-hover:translate-x-1" style={{ color: "var(--white3)" }}>{p.num}</span>
+      <div className="min-w-0 relative transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-2">
         <h3
           className="font-display transition-all duration-500 group-hover:text-[var(--accent)]"
           style={{ fontSize: "clamp(28px,4vw,52px)", letterSpacing: "-0.04em", wordBreak: "break-word", whiteSpace: "normal" }}
