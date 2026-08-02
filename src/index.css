@@ -265,31 +265,20 @@
   }
 }
 
-/* Custom cursor */
-.cursor-dot, .cursor-ring {
+/* Simple cursor dot */
+.cursor-dot {
   position: fixed; top: 0; left: 0;
   pointer-events: none;
   z-index: 99999;
   border-radius: 50%;
-  transform: translate(-50%, -50%);
-  will-change: transform, width, height, opacity;
-}
-.cursor-dot {
-  width: 8px; height: 8px;
+  width: 10px; height: 10px;
   background: var(--accent);
-  transition: width 0.2s ease, height 0.2s ease;
+  transform: translate(-50%, -50%);
+  will-change: transform;
 }
-.cursor-ring {
-  width: 32px; height: 32px;
-  border: 1px solid rgba(139,123,249,0.35);
-  transition: width 0.25s cubic-bezier(0.22,1,0.36,1),
-              height 0.25s cubic-bezier(0.22,1,0.36,1),
-              border-color 0.3s ease;
-}
-.cursor-ring.hovering { width: 52px; height: 52px; border-color: var(--accent); }
-.cursor-dot.hovering { width: 4px; height: 4px; }
 
-@media (hover: none) { .cursor-dot, .cursor-ring { display: none; } }
+@media (hover: none) { .cursor-dot { display: none; } }
+
 
 /* Scroll progress */
 .scroll-progress {
