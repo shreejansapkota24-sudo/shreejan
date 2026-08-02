@@ -16,8 +16,6 @@
     --white: #f0ede8;
     --white2: #a8a5a0;
     --white3: #555250;
-    --accent: #8b7bf9;
-    --accent2: #22d3ee;
     --red: #ff4d2e;
 
     /* shadcn tokens mapped to dark palette */
@@ -27,29 +25,32 @@
     --card-foreground: 40 14% 92%;
     --popover: 0 0% 7%;
     --popover-foreground: 40 14% 92%;
-    --primary: 41 56% 78%;
+    --primary: 248 91% 73%;
     --primary-foreground: 0 0% 4%;
     --secondary: 0 0% 10%;
     --secondary-foreground: 40 14% 92%;
     --muted: 0 0% 10%;
     --muted-foreground: 40 4% 65%;
-    --accent: 41 56% 78%;
+    --accent: 248 91% 73%;
     --accent-foreground: 0 0% 4%;
     --destructive: 11 100% 59%;
     --destructive-foreground: 0 0% 100%;
     --border: 0 0% 16%;
     --input: 0 0% 16%;
-    --ring: 41 56% 78%;
+    --ring: 248 91% 73%;
     --radius: 0.25rem;
 
     --sidebar-background: 0 0% 4%;
     --sidebar-foreground: 40 14% 92%;
-    --sidebar-primary: 41 56% 78%;
+    --sidebar-primary: 248 91% 73%;
     --sidebar-primary-foreground: 0 0% 4%;
     --sidebar-accent: 0 0% 10%;
     --sidebar-accent-foreground: 40 14% 92%;
     --sidebar-border: 0 0% 16%;
-    --sidebar-ring: 41 56% 78%;
+    /* raw hex accents used across components (declared last so var(--accent) is a color) */
+    --sidebar-ring: 248 91% 73%;
+    --accent: #8b7bf9;
+    --accent2: #22d3ee;
   }
 
   * { border-color: hsl(var(--border)); }
