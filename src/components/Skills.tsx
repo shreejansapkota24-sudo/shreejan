@@ -119,7 +119,7 @@ const Skills = () => {
                     ) : s.lucide ? (
                       <s.lucide size={14} className="text-[var(--accent)]" />
                     ) : (
-                      <Code2 size={12} className="text-[var(--white3)]" />
+                      <Sparkles size={12} className="text-[var(--white3)]" />
                     )}
                     {s.name}
                   </span>
