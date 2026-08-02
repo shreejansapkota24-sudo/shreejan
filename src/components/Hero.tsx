@@ -5,7 +5,7 @@ const Hero = () => {
       className="relative min-h-screen flex flex-col justify-center px-6 md:px-16 pt-32 pb-16"
     >
       <div className="max-w-[1320px] mx-auto w-full relative">
-        <span className="eyebrow fade-up">Cybersecurity Student · Kathmandu, Nepal</span>
+        <span className="eyebrow fade-up">AI &amp; Computer Science Student · Kathmandu, Nepal</span>
 
         <h1 className="mt-8 leading-[0.92]" style={{ fontSize: "clamp(56px, 10vw, 160px)" }}>
           <span className="block fade-up delay-1" style={{ animation: "hero-slide-left 1s cubic-bezier(0.22,1,0.36,1) both", animationDelay: "0.2s" }}>SHREEJAN</span>
@@ -16,8 +16,8 @@ const Hero = () => {
           <div className="md:col-span-7">
             <p className="fade-up delay-3 max-w-xl text-[15px] leading-[1.9]" style={{ color: "var(--white2)" }}>
               Pursuing <span style={{ color: "var(--white)" }}>BCS (Hons) at IIMS College</span> with a focus on{" "}
-              <span style={{ color: "var(--accent)" }}>cybersecurity</span>, ethical hacking, and building secure
-              systems end-to-end. I learn by breaking, fixing, and shipping real tools.
+              <span style={{ color: "var(--accent)" }}>artificial intelligence</span>, machine learning, and building
+              intelligent, production-ready software. I learn by training, testing, and shipping real models and tools.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3 fade-up delay-4">

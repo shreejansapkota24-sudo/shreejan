@@ -143,7 +143,7 @@ const InquiryForm = () => {
                 e.currentTarget.style.background = "var(--accent)";
                 e.currentTarget.style.borderColor = "var(--accent)";
                 e.currentTarget.style.transform = "translateY(-4px)";
-                e.currentTarget.style.boxShadow = "0 14px 30px -10px rgba(232,213,163,0.4)";
+                e.currentTarget.style.boxShadow = "0 14px 30px -10px rgba(139,123,249,0.4)";
               }
             }}
             onMouseLeave={(e) => {

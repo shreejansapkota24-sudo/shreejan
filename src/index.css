@@ -16,8 +16,6 @@
     --white: #f0ede8;
     --white2: #a8a5a0;
     --white3: #555250;
-    --accent: #e8d5a3;
-    --accent2: #c8622a;
     --red: #ff4d2e;
 
     /* shadcn tokens mapped to dark palette */
@@ -27,29 +25,32 @@
     --card-foreground: 40 14% 92%;
     --popover: 0 0% 7%;
     --popover-foreground: 40 14% 92%;
-    --primary: 41 56% 78%;
+    --primary: 248 91% 73%;
     --primary-foreground: 0 0% 4%;
     --secondary: 0 0% 10%;
     --secondary-foreground: 40 14% 92%;
     --muted: 0 0% 10%;
     --muted-foreground: 40 4% 65%;
-    --accent: 41 56% 78%;
+    --accent: 248 91% 73%;
     --accent-foreground: 0 0% 4%;
     --destructive: 11 100% 59%;
     --destructive-foreground: 0 0% 100%;
     --border: 0 0% 16%;
     --input: 0 0% 16%;
-    --ring: 41 56% 78%;
+    --ring: 248 91% 73%;
     --radius: 0.25rem;
 
     --sidebar-background: 0 0% 4%;
     --sidebar-foreground: 40 14% 92%;
-    --sidebar-primary: 41 56% 78%;
+    --sidebar-primary: 248 91% 73%;
     --sidebar-primary-foreground: 0 0% 4%;
     --sidebar-accent: 0 0% 10%;
     --sidebar-accent-foreground: 40 14% 92%;
     --sidebar-border: 0 0% 16%;
-    --sidebar-ring: 41 56% 78%;
+    /* raw hex accents used across components (declared last so var(--accent) is a color) */
+    --sidebar-ring: 248 91% 73%;
+    --accent: #8b7bf9;
+    --accent2: #22d3ee;
   }
 
   * { border-color: hsl(var(--border)); }
@@ -146,7 +147,7 @@
     border-color: var(--accent);
     color: var(--bg);
     transform: translateY(-3px);
-    box-shadow: 0 14px 30px -10px rgba(232,213,163,0.4);
+    box-shadow: 0 14px 30px -10px rgba(139,123,249,0.4);
   }
   .btn-ghost {
     display: inline-flex;
@@ -209,8 +210,8 @@
   .stag:hover {
     border-color: var(--accent);
     transform: translateY(-4px) scale(1.06);
-    background: rgba(232,213,163,0.06);
-    box-shadow: 0 10px 24px -10px rgba(232,213,163,0.35);
+    background: rgba(139,123,249,0.06);
+    box-shadow: 0 10px 24px -10px rgba(139,123,249,0.35);
   }
 
   /* Marquee */
@@ -264,31 +265,20 @@
   }
 }
 
-/* Custom cursor */
-.cursor-dot, .cursor-ring {
+/* Simple cursor dot */
+.cursor-dot {
   position: fixed; top: 0; left: 0;
   pointer-events: none;
   z-index: 99999;
   border-radius: 50%;
-  transform: translate(-50%, -50%);
-  will-change: transform, width, height, opacity;
-}
-.cursor-dot {
-  width: 8px; height: 8px;
+  width: 10px; height: 10px;
   background: var(--accent);
-  transition: width 0.2s ease, height 0.2s ease;
+  transform: translate(-50%, -50%);
+  will-change: transform;
 }
-.cursor-ring {
-  width: 32px; height: 32px;
-  border: 1px solid rgba(232,213,163,0.35);
-  transition: width 0.25s cubic-bezier(0.22,1,0.36,1),
-              height 0.25s cubic-bezier(0.22,1,0.36,1),
-              border-color 0.3s ease;
-}
-.cursor-ring.hovering { width: 52px; height: 52px; border-color: var(--accent); }
-.cursor-dot.hovering { width: 4px; height: 4px; }
 
-@media (hover: none) { .cursor-dot, .cursor-ring { display: none; } }
+@media (hover: none) { .cursor-dot { display: none; } }
+
 
 /* Scroll progress */
 .scroll-progress {

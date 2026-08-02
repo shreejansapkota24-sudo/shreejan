@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { X, Send, Shield } from "lucide-react";
+import { X, Send, Sparkles } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 
 type Msg = { role: "user" | "assistant"; content: string };
@@ -17,7 +17,7 @@ const FloatingAI = () => {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Msg[]>([
-    { role: "assistant", content: "Hi — I'm **Cyber Saathi**, Shreejan's AI assistant. Ask me about his cybersecurity work, projects, or how to get in touch." },
+    { role: "assistant", content: "Hi — I'm **AI Saathi**, Shreejan's AI assistant. Ask me about his AI and machine learning work, projects, or how to get in touch." },
   ]);
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -86,7 +86,7 @@ const FloatingAI = () => {
       {/* Bubble */}
       <button
         onClick={() => setOpen((o) => !o)}
-        aria-label={open ? "Close Cyber Saathi" : "Open Cyber Saathi"}
+        aria-label={open ? "Close AI Saathi" : "Open AI Saathi"}
         className="group fixed z-[999] flex items-center justify-center transition-transform duration-300 hover:scale-105"
         style={{
           bottom: 32, right: 32,
@@ -94,7 +94,7 @@ const FloatingAI = () => {
           borderRadius: "50%",
           background: "radial-gradient(circle at 30% 30%, #1a1a1a, #0a0a0a)",
           border: "1px solid var(--line2)",
-          boxShadow: "0 12px 32px -8px rgba(232,213,163,0.25)",
+          boxShadow: "0 12px 32px -8px rgba(139,123,249,0.25)",
         }}
       >
         <span
@@ -109,7 +109,7 @@ const FloatingAI = () => {
         {open ? (
           <X className="w-5 h-5" style={{ color: "var(--accent)" }} />
         ) : (
-          <Shield className="w-5 h-5 pulse-soft" style={{ color: "var(--accent)" }} />
+          <Sparkles className="w-5 h-5 pulse-soft" style={{ color: "var(--accent)" }} />
         )}
 
         {!open && (
@@ -117,7 +117,7 @@ const FloatingAI = () => {
             className="absolute right-[70px] top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity font-mono-syne whitespace-nowrap px-3 py-1.5"
             style={{ background: "var(--bg2)", border: "1px solid var(--line2)", color: "var(--accent)" }}
           >
-            Cyber Saathi
+            AI Saathi
           </span>
         )}
       </button>
@@ -141,8 +141,8 @@ const FloatingAI = () => {
           <div className="flex items-center justify-between px-5 py-4" style={{ borderBottom: "1px solid var(--line)" }}>
             <div className="flex items-center gap-3">
               <span className="w-2 h-2 rounded-full pulse-soft" style={{ background: "#22c55e" }} />
-              <Shield className="w-3.5 h-3.5" style={{ color: "var(--accent)" }} />
-              <span className="font-mono-syne" style={{ color: "var(--accent)" }}>Cyber Saathi</span>
+              <Sparkles className="w-3.5 h-3.5" style={{ color: "var(--accent)" }} />
+              <span className="font-mono-syne" style={{ color: "var(--accent)" }}>AI Saathi</span>
             </div>
             <button onClick={() => setOpen(false)} aria-label="Close">
               <X className="w-4 h-4" style={{ color: "var(--white2)" }} />

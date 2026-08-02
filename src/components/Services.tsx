@@ -2,17 +2,17 @@ const items = [
   {
     num: "01",
     title: "Internships",
-    body: "Open to cybersecurity, SOC, blue team, red team, and full-stack development internships where I can learn from senior engineers and contribute meaningfully.",
+    body: "Open to AI, machine learning, data, and full-stack development internships where I can learn from senior engineers and contribute meaningfully.",
   },
   {
     num: "02",
     title: "Collaborations",
-    body: "Interested in security research projects, CTF teams, and student collaborations that push my technical boundaries across offense and defense.",
+    body: "Interested in applied AI research projects, hackathon teams, and student collaborations that push my technical boundaries across modelling and product.",
   },
   {
     num: "03",
     title: "Open Source",
-    body: "Happy to contribute to security tooling, defensive frameworks, and beginner-friendly open-source projects across the stack.",
+    body: "Happy to contribute to ML tooling, data pipelines, and beginner-friendly open-source projects across the stack.",
   },
 ];
 
@@ -43,7 +43,7 @@ const Services = () => {
               style={{ background: "var(--bg2)", border: "1px solid var(--line)" }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = "var(--bg3)";
-                e.currentTarget.style.boxShadow = "0 0 0 1px rgba(232,213,163,0.35)";
+                e.currentTarget.style.boxShadow = "0 0 0 1px rgba(139,123,249,0.35)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.background = "var(--bg2)";
