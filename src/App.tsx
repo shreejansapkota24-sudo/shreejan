@@ -4,7 +4,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
-import SiteGate from "@/components/SiteGate";
 import CustomCursor from "@/components/CustomCursor";
 import ScrollProgress from "@/components/ScrollProgress";
 import Index from "./pages/Index";
@@ -39,8 +38,7 @@ const App = () => (
         <Sonner />
         <CustomCursor />
         <ScrollProgress />
-        <SiteGate>
-          <BrowserRouter>
+        <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/matrix" element={<Matrix />} />
@@ -66,8 +64,7 @@ const App = () => (
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
-          </BrowserRouter>
-        </SiteGate>
+        </BrowserRouter>
       </TooltipProvider>
     </AuthProvider>
   </QueryClientProvider>
