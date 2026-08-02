@@ -1,4 +1,4 @@
-import { Shield, ShieldAlert, Flag, Brain, Sparkles, Network, Code2, Search, type LucideIcon } from "lucide-react";
+import { Brain, Sparkles, Network, Eye, MessageSquare, LineChart, Database, Bot, Sigma, type LucideIcon } from "lucide-react";
 
 type Skill = { name: string; icon?: string; lucide?: LucideIcon };
 
@@ -9,30 +9,51 @@ const categories: { name: string; items: Skill[] }[] = [
       { name: "Python", icon: "devicon-python-plain colored" },
       { name: "Java", icon: "devicon-java-plain colored" },
       { name: "JavaScript", icon: "devicon-javascript-plain colored" },
+      { name: "TypeScript", icon: "devicon-typescript-plain colored" },
       { name: "C", icon: "devicon-c-plain" },
-      { name: "C++", icon: "devicon-cplusplus-plain colored" },
-      { name: "Bash", icon: "devicon-bash-plain" },
+      { name: "SQL", icon: "devicon-mysql-plain colored" },
     ],
   },
   {
-    name: "Cybersecurity",
+    name: "AI & Machine Learning",
     items: [
-      { name: "Ethical Hacking", lucide: Shield },
-      { name: "Network Security", lucide: Network },
-      { name: "Web App Security", lucide: ShieldAlert },
-      { name: "OWASP Top 10", lucide: Shield },
-      { name: "CTF Challenges", lucide: Flag },
-      { name: "Threat Analysis", lucide: Search },
+      { name: "Machine Learning", lucide: Brain },
+      { name: "Deep Learning", lucide: Network },
+      { name: "Neural Networks", lucide: Network },
+      { name: "Computer Vision", lucide: Eye },
+      { name: "NLP", lucide: MessageSquare },
+      { name: "Model Evaluation", lucide: LineChart },
     ],
   },
   {
-    name: "Security Tools",
+    name: "ML Libraries",
     items: [
-      { name: "Linux / Kali", icon: "devicon-linux-plain" },
-      { name: "Wireshark", lucide: Network },
-      { name: "Nmap", lucide: Search },
-      { name: "Burp Suite", lucide: ShieldAlert },
-      { name: "Metasploit", lucide: Shield },
+      { name: "NumPy", icon: "devicon-numpy-original colored" },
+      { name: "pandas", icon: "devicon-pandas-original" },
+      { name: "scikit-learn", lucide: Brain },
+      { name: "TensorFlow", icon: "devicon-tensorflow-original colored" },
+      { name: "PyTorch", icon: "devicon-pytorch-original colored" },
+      { name: "Matplotlib", icon: "devicon-matplotlib-plain colored" },
+    ],
+  },
+  {
+    name: "LLMs & Generative AI",
+    items: [
+      { name: "OpenAI API", lucide: Sparkles },
+      { name: "Prompt Engineering", lucide: Brain },
+      { name: "RAG Pipelines", lucide: Database },
+      { name: "Embeddings", lucide: Sparkles },
+      { name: "AI Agents", lucide: Bot },
+    ],
+  },
+  {
+    name: "Data & Analytics",
+    items: [
+      { name: "Data Analysis", lucide: LineChart },
+      { name: "Data Cleaning", lucide: Database },
+      { name: "Jupyter", icon: "devicon-jupyter-plain colored" },
+      { name: "Visualization", lucide: LineChart },
+      { name: "Statistics", lucide: Sigma },
     ],
   },
   {
@@ -46,32 +67,14 @@ const categories: { name: string; items: Skill[] }[] = [
     ],
   },
   {
-    name: "Backend & DB",
+    name: "Backend & Tools",
     items: [
       { name: "Node.js", icon: "devicon-nodejs-plain colored" },
-      { name: "Express", icon: "devicon-express-original" },
-      { name: "MySQL", icon: "devicon-mysql-plain colored" },
       { name: "PostgreSQL", icon: "devicon-postgresql-plain colored" },
       { name: "MongoDB", icon: "devicon-mongodb-plain colored" },
-    ],
-  },
-  {
-    name: "Tools & DevOps",
-    items: [
       { name: "Git", icon: "devicon-git-plain colored" },
-      { name: "GitHub", icon: "devicon-github-original" },
       { name: "Docker", icon: "devicon-docker-plain colored" },
-      { name: "VS Code", icon: "devicon-vscode-plain colored" },
-      { name: "REST APIs", lucide: Network },
-    ],
-  },
-  {
-    name: "AI & Research",
-    items: [
-      { name: "OpenAI API", lucide: Sparkles },
-      { name: "Prompt Engineering", lucide: Brain },
-      { name: "IOC Analysis", lucide: Search },
-      { name: "Applied AI", lucide: Sparkles },
+      { name: "Linux", icon: "devicon-linux-plain" },
     ],
   },
 ];
@@ -82,7 +85,7 @@ const Skills = () => {
       <div className="max-w-[1320px] mx-auto">
         <span className="eyebrow fade-up">— Skills</span>
         <h2 className="mt-6 fade-up delay-1 leading-[0.95]" style={{ fontSize: "clamp(44px,7vw,96px)" }}>
-          <span className="block">A SECURITY-FIRST</span>
+          <span className="block">AN AI-FIRST</span>
           <span
             className="block"
             style={{
