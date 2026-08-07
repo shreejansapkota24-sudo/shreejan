@@ -39,17 +39,9 @@ const Services = () => {
           {items.map((it, i) => (
             <article
               key={it.num}
-              className={`fade-up delay-${i + 1} group p-10 transition-all duration-500 hover:-translate-y-2`}
-              style={{ background: "var(--bg2)", border: "1px solid var(--line)" }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "var(--bg3)";
-                e.currentTarget.style.boxShadow = "0 0 0 1px rgba(139,123,249,0.35)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "var(--bg2)";
-                e.currentTarget.style.boxShadow = "none";
-              }}
+              className={`fade-up delay-${i + 1} group sp-card p-10`}
             >
+
               <span className="font-mono-syne block mb-6" style={{ color: "var(--white3)" }}>{it.num} —</span>
               <h3 className="font-display text-2xl md:text-3xl transition-colors duration-300 group-hover:text-[var(--accent)]">
                 {it.title}
