@@ -81,7 +81,7 @@ const Row = ({ p }: { p: Project }) => {
                   background: "var(--bg3)",
                   border: "1px solid var(--line)",
                   color: "var(--white2)",
-                  fontFamily: "Syne Mono, monospace",
+                  fontFamily: "JetBrains Mono, monospace",
                   letterSpacing: "0.08em",
                 }}
               >

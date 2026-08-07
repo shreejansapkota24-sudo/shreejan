@@ -184,7 +184,7 @@ const FloatingAI = () => {
                     key={s}
                     onClick={() => send(s)}
                     className="text-[11px] px-3 py-1.5 transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
-                    style={{ background: "var(--bg2)", border: "1px solid var(--line)", color: "var(--white2)", fontFamily: "Syne Mono, monospace", letterSpacing: "0.08em" }}
+                    style={{ background: "var(--bg2)", border: "1px solid var(--line)", color: "var(--white2)", fontFamily: "JetBrains Mono, monospace", letterSpacing: "0.08em" }}
                   >
                     {s}
                   </button>
