@@ -14,7 +14,7 @@ const Marquee = () => {
     <div
       className="marquee-wrap overflow-hidden py-7"
       style={{
-        background: "var(--bg2)",
+        background: "linear-gradient(90deg, var(--bg2), rgba(139,123,249,0.05), var(--bg2))",
         borderTop: "1px solid var(--line)",
         borderBottom: "1px solid var(--line)",
       }}

@@ -40,9 +40,9 @@ const About = () => {
           <span
             className="block"
             style={{
-              fontFamily: 'Georgia, "Playfair Display", serif',
-              fontStyle: "italic", fontWeight: 400, textTransform: "lowercase",
-              color: "transparent", WebkitTextStroke: "1px var(--white2)",
+              fontWeight: 300, textTransform: "lowercase",
+              background: "var(--gradient-text)", WebkitBackgroundClip: "text",
+              backgroundClip: "text", color: "transparent",
             }}
           >
             artificial intelligence.

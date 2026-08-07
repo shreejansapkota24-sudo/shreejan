@@ -29,15 +29,22 @@ const Navbar = () => {
   return (
     <nav
       className="fixed left-0 right-0 z-50 transition-all duration-500"
-      style={{
-        top: 0,
-        background: scrolled ? "rgba(10,10,10,0.75)" : "transparent",
-        backdropFilter: scrolled ? "blur(16px) saturate(180%)" : "none",
-        WebkitBackdropFilter: scrolled ? "blur(16px) saturate(180%)" : "none",
-        borderBottom: scrolled ? "1px solid var(--line)" : "1px solid transparent",
-      }}
+      style={{ top: scrolled ? 12 : 0 }}
     >
-      <div className="max-w-[1320px] mx-auto px-6 md:px-16 py-4">
+      <div
+        className="mx-auto px-6 md:px-8 transition-all duration-500"
+        style={{
+          maxWidth: scrolled ? 1180 : 1320,
+          paddingTop: scrolled ? 12 : 20,
+          paddingBottom: scrolled ? 12 : 20,
+          borderRadius: scrolled ? 999 : 0,
+          background: scrolled ? "rgba(13,13,21,0.72)" : "transparent",
+          backdropFilter: scrolled ? "blur(18px) saturate(180%)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(18px) saturate(180%)" : "none",
+          border: scrolled ? "1px solid var(--glass-line)" : "1px solid transparent",
+          boxShadow: scrolled ? "var(--shadow-soft)" : "none",
+        }}
+      >
         <div className="flex items-center justify-between">
           <a
             href="#home"
@@ -61,7 +68,7 @@ const Navbar = () => {
             ))}
           </div>
 
-          <div className="hidden md:inline-flex items-center gap-2 px-3 py-1.5" style={{ border: "1px solid var(--line2)" }}>
+          <div className="hidden md:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full" style={{ border: "1px solid var(--glass-line)", background: "var(--glass)" }}>
             <span className="w-1.5 h-1.5 rounded-full pulse-soft" style={{ background: "#22c55e" }} />
             <span className="font-mono-syne" style={{ color: "var(--white2)" }}>Available for opportunities</span>
           </div>

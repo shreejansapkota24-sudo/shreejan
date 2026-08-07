@@ -64,12 +64,13 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        display: ['"Playfair Display"', "serif"],
-        serif: ['"Playfair Display"', "serif"],
-        cyber: ['"Inter"', "sans-serif"],
-        sans: ['"Inter"', "system-ui", "sans-serif"],
+        display: ['"Sora"', "sans-serif"],
+        serif: ['"Sora"', "sans-serif"],
+        cyber: ['"Sora"', "sans-serif"],
+        sans: ['"Plus Jakarta Sans"', "system-ui", "sans-serif"],
         mono: ['"JetBrains Mono"', "monospace"],
       },
+
       keyframes: {
         "accordion-down": {
           from: {

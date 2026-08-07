@@ -89,9 +89,9 @@ const Skills = () => {
           <span
             className="block"
             style={{
-              fontFamily: 'Georgia, serif', fontStyle: "italic", fontWeight: 400,
-              textTransform: "lowercase", color: "transparent",
-              WebkitTextStroke: "1px var(--white2)",
+              fontWeight: 300, textTransform: "lowercase",
+              background: "var(--gradient-text)",
+              WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent",
             }}
           >
             toolkit.
@@ -102,7 +102,7 @@ const Skills = () => {
           {categories.map((c, idx) => (
             <div
               key={c.name}
-              className="fade-up group grid md:grid-cols-[220px_1fr] gap-6 py-8 transition-all duration-300 hover:pl-2"
+              className={`${idx % 2 === 0 ? "reveal-left" : "reveal-right"} group grid md:grid-cols-[220px_1fr] gap-6 py-8 transition-all duration-500 hover:pl-3`}
               style={{ borderTop: idx === 0 ? "1px solid var(--line)" : undefined, borderBottom: "1px solid var(--line)" }}
             >
               <h3
