@@ -74,10 +74,11 @@
     background: var(--bg);
     color: var(--white);
     font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
-    font-weight: 350;
+    font-weight: 400;
     font-size: 15px;
     line-height: 1.8;
-    letter-spacing: -0.005em;
+    letter-spacing: 0;
+    word-spacing: 0.04em;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
@@ -279,7 +280,7 @@
     -webkit-backdrop-filter: blur(8px);
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 13px;
-    font-weight: 450;
+    font-weight: 500;
     transition: all 0.35s var(--ease);
   }
   .stag:hover {
