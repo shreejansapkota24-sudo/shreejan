@@ -1,16 +1,20 @@
 import { useEffect } from "react";
 
+const SELECTOR = ".fade-up, .reveal-left, .reveal-right, .reveal-scale";
+
 /**
- * Adds .visible to every .fade-up element when it enters the viewport.
- * Idempotent — safe to mount multiple times.
+ * Reveals elements on scroll (fade-up / slide / scale variants).
+ * Re-scans the DOM via MutationObserver so lazily rendered sections animate too.
  */
 export function useReveal() {
   useEffect(() => {
-    const els = Array.from(document.querySelectorAll<HTMLElement>(".fade-up"));
+    const seen = new WeakSet<Element>();
+
     if (!("IntersectionObserver" in window)) {
-      els.forEach((el) => el.classList.add("visible"));
+      document.querySelectorAll(SELECTOR).forEach((el) => el.classList.add("visible"));
       return;
     }
+
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -20,18 +24,27 @@ export function useReveal() {
           }
         });
       },
-      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.08, rootMargin: "0px 0px -60px 0px" }
     );
-    els.forEach((el) => io.observe(el));
 
-    // Auto-reveal anything already in viewport at mount (e.g. hero)
-    requestAnimationFrame(() => {
-      els.forEach((el) => {
+    const scan = () => {
+      document.querySelectorAll<HTMLElement>(SELECTOR).forEach((el) => {
+        if (seen.has(el)) return;
+        seen.add(el);
         const r = el.getBoundingClientRect();
         if (r.top < window.innerHeight * 0.95) el.classList.add("visible");
+        else io.observe(el);
       });
-    });
+    };
 
-    return () => io.disconnect();
+    requestAnimationFrame(scan);
+
+    const mo = new MutationObserver(() => requestAnimationFrame(scan));
+    mo.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      io.disconnect();
+      mo.disconnect();
+    };
   }, []);
 }
