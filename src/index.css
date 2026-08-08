@@ -486,3 +486,61 @@
 
 /* Disable site custom cursor inside WorldCup theme — sports app feels better with native */
 .wc-theme, .wc-theme a, .wc-theme button, .wc-theme input { cursor: auto !important; }
+
+/* =====================================================
+   Ambient motion + floating AI objects
+   ===================================================== */
+@keyframes ambient-drift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(-1.5%, 1.2%, 0) scale(1.04); }
+  100% { transform: translate3d(1.6%, -1.4%, 0) scale(1.02); }
+}
+
+@keyframes float-rise {
+  0%   { transform: translate3d(0, 14vh, 0) scale(0.85) rotate(-8deg); opacity: 0; }
+  12%  { opacity: 0.55; }
+  50%  { transform: translate3d(3vw, -6vh, 0) scale(1.05) rotate(6deg); opacity: 0.75; }
+  88%  { opacity: 0.4; }
+  100% { transform: translate3d(-2vw, -22vh, 0) scale(0.9) rotate(-4deg); opacity: 0; }
+}
+
+@keyframes orb-float {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(2.5vw, -4vh, 0) scale(1.1); }
+  100% { transform: translate3d(-2vw, 3vh, 0) scale(0.96); }
+}
+
+.ai-field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.ai-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(46px);
+  opacity: 0.5;
+  animation: orb-float linear infinite alternate;
+}
+
+.ai-glyph {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  border: 1px solid var(--glass-line);
+  background: var(--glass);
+  backdrop-filter: blur(6px);
+  color: var(--accent-soft);
+  animation: float-rise linear infinite;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-orb, .ai-glyph, body::before { animation: none !important; }
+  .ai-glyph { opacity: 0.35; }
+}
