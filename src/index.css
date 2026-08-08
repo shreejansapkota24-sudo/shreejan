@@ -9,15 +9,16 @@
 
 @layer base {
   :root {
-    --bg: #07070c;
-    --bg2: #0d0d15;
-    --bg3: #13131f;
-    --line: #1b1b27;
-    --line2: #2a2a3a;
-    --white: #f2f1f7;
-    --white2: #a3a2b4;
-    --white3: #5d5c72;
-    --red: #ff4d6a;
+    --bg: #0b1020;
+    --bg2: #101731;
+    --bg3: #161e3d;
+    --line: #1e2748;
+    --line2: #2d3a63;
+    --white: #eef1fb;
+    --white2: #a6afd0;
+    --white3: #5f6b96;
+    --red: #ff5d78;
+
 
     /* shadcn tokens */
     --background: 240 26% 4%;
