@@ -1,4 +1,5 @@
 import { ArrowUp, Mail } from "lucide-react";
+import { openExternal } from "@/lib/openExternal";
 
 const navLinks = [
   { name: "About", href: "#about" },
