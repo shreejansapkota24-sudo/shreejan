@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import { Bot, Trash2, Zap, AlertTriangle, Instagram, ArrowLeft, Mail, Linkedin, Github, Clock } from 'lucide-react';
+import { openExternal } from "@/lib/openExternal";
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
@@ -151,10 +152,10 @@ export default function CyberSaathiPage() {
                     Contact me directly · Available 9:00 AM – 7:00 PM (NPT). Outside these hours I'll get back to you the next day.
                   </p>
                   <div className="flex flex-wrap gap-2 pt-1">
-                    <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="btn-ghost-mono text-[10px]">
+                    <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" onClick={(e) => openExternal(e, INSTAGRAM_URL)} className="btn-ghost-mono text-[10px]">
                       <Instagram className="w-3.5 h-3.5" /> Instagram
                     </a>
-                    <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="btn-ghost-mono text-[10px]">
+                    <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" onClick={(e) => openExternal(e, LINKEDIN_URL)} className="btn-ghost-mono text-[10px]">
                       <Linkedin className="w-3.5 h-3.5" /> LinkedIn
                     </a>
                     <a href={EMAIL_URL} className="btn-mono text-[10px]" style={{ background: '#FFFFFF', color: '#0A0A0A', borderColor: '#FFFFFF' }}>
@@ -263,10 +264,10 @@ export default function CyberSaathiPage() {
             </div>
 
             <div className="mt-5 grid grid-cols-2 gap-2">
-              <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="btn-ghost-mono justify-center">
+              <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" onClick={(e) => openExternal(e, INSTAGRAM_URL)} className="btn-ghost-mono justify-center">
                 <Instagram className="w-3.5 h-3.5" /> Instagram
               </a>
-              <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="btn-ghost-mono justify-center">
+              <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" onClick={(e) => openExternal(e, LINKEDIN_URL)} className="btn-ghost-mono justify-center">
                 <Linkedin className="w-3.5 h-3.5" /> LinkedIn
               </a>
               <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="btn-ghost-mono justify-center">
