@@ -498,9 +498,9 @@
 
 @keyframes float-rise {
   0%   { transform: translate3d(0, 14vh, 0) scale(0.85) rotate(-8deg); opacity: 0; }
-  12%  { opacity: 0.55; }
-  50%  { transform: translate3d(3vw, -6vh, 0) scale(1.05) rotate(6deg); opacity: 0.75; }
-  88%  { opacity: 0.4; }
+  12%  { opacity: 0.32; }
+  50%  { transform: translate3d(3vw, -6vh, 0) scale(1.05) rotate(6deg); opacity: 0.42; }
+  88%  { opacity: 0.22; }
   100% { transform: translate3d(-2vw, -22vh, 0) scale(0.9) rotate(-4deg); opacity: 0; }
 }
 
