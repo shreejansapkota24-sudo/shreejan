@@ -1,4 +1,5 @@
 import { ArrowUpRight, Mail } from "lucide-react";
+import { openExternal } from "@/lib/openExternal";
 
 const socials = [
   { name: "GitHub", icon: "devicon-github-original", href: "https://github.com/shreejansapkota24-sudo" },
@@ -81,6 +82,7 @@ const Contact = () => {
                 href={s.href}
                 target={s.href.startsWith("http") ? "_blank" : undefined}
                 rel="noopener noreferrer"
+                onClick={(e) => openExternal(e, s.href)}
                 aria-label={s.name}
                 className="fade-up group flex items-center justify-between px-5 py-5 transition-all duration-300 hover:translate-x-1"
                 style={{ borderBottom: "1px solid var(--line)", boxShadow: "inset 0 0 0 var(--accent)" }}
