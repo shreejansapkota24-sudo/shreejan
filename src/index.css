@@ -21,35 +21,36 @@
 
 
     /* shadcn tokens */
-    --background: 240 26% 4%;
-    --foreground: 252 17% 95%;
-    --card: 243 24% 7%;
-    --card-foreground: 252 17% 95%;
-    --popover: 243 24% 7%;
-    --popover-foreground: 252 17% 95%;
+    --background: 227 48% 8%;
+    --foreground: 226 60% 96%;
+    --card: 228 51% 13%;
+    --card-foreground: 226 60% 96%;
+    --popover: 228 51% 13%;
+    --popover-foreground: 226 60% 96%;
     --primary: 248 91% 73%;
-    --primary-foreground: 240 26% 4%;
-    --secondary: 243 22% 11%;
-    --secondary-foreground: 252 17% 95%;
-    --muted: 243 22% 11%;
-    --muted-foreground: 249 9% 67%;
+    --primary-foreground: 227 48% 8%;
+    --secondary: 228 47% 17%;
+    --secondary-foreground: 226 60% 96%;
+    --muted: 228 47% 17%;
+    --muted-foreground: 226 25% 73%;
     --accent: 248 91% 73%;
-    --accent-foreground: 240 26% 4%;
-    --destructive: 349 100% 65%;
+    --accent-foreground: 227 48% 8%;
+    --destructive: 349 100% 68%;
     --destructive-foreground: 0 0% 100%;
-    --border: 244 18% 16%;
-    --input: 244 18% 16%;
+    --border: 228 40% 20%;
+    --input: 228 40% 20%;
     --ring: 248 91% 73%;
     --radius: 0.75rem;
 
-    --sidebar-background: 240 26% 4%;
-    --sidebar-foreground: 252 17% 95%;
+    --sidebar-background: 227 48% 8%;
+    --sidebar-foreground: 226 60% 96%;
     --sidebar-primary: 248 91% 73%;
-    --sidebar-primary-foreground: 240 26% 4%;
-    --sidebar-accent: 243 22% 11%;
-    --sidebar-accent-foreground: 252 17% 95%;
-    --sidebar-border: 244 18% 16%;
+    --sidebar-primary-foreground: 227 48% 8%;
+    --sidebar-accent: 228 47% 17%;
+    --sidebar-accent-foreground: 226 60% 96%;
+    --sidebar-border: 228 40% 20%;
     --sidebar-ring: 248 91% 73%;
+
 
     /* raw accents (declared last so var(--accent) resolves to a color) */
     --accent: #8b7bf9;
