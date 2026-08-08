@@ -544,3 +544,16 @@
   .ai-orb, .ai-glyph, body::before { animation: none !important; }
   .ai-glyph { opacity: 0.35; }
 }
+
+/* Keep page content above the ambient AI layer */
+main > section,
+main > div:not(.ai-field),
+main > footer,
+main > header,
+main > nav { position: relative; z-index: 1; }
+
+/* Smoother global transitions */
+a, button, .sp-card, .glass, [class*="card"] {
+  transition-timing-function: var(--ease);
+  transition-duration: 480ms;
+}
