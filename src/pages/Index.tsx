@@ -12,6 +12,7 @@ import InquiryForm from "@/components/InquiryForm";
 import Footer from "@/components/Footer";
 import SideDotNav from "@/components/SideDotNav";
 import FloatingAI from "@/components/FloatingAI";
+import AIField from "@/components/AIField";
 import { useReveal } from "@/hooks/useReveal";
 
 const Index = () => {
@@ -19,6 +20,7 @@ const Index = () => {
   useEffect(() => { document.documentElement.style.background = "var(--bg)"; }, []);
   return (
     <main className="relative" style={{ background: "var(--bg)" }}>
+      <AIField />
       <Navbar />
       <SideDotNav />
       <Hero />
