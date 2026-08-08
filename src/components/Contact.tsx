@@ -1,4 +1,5 @@
 import { ArrowUpRight, Mail } from "lucide-react";
+import { openExternal } from "@/lib/openExternal";
 
 const socials = [
   { name: "GitHub", icon: "devicon-github-original", href: "https://github.com/shreejansapkota24-sudo" },
