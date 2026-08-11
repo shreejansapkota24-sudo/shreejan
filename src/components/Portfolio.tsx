@@ -1,6 +1,10 @@
 import { useState } from "react";
-import { ArrowUpRight, Wrench, X } from "lucide-react";
+import { ArrowUpRight, Wrench, X, Linkedin } from "lucide-react";
 import { Link } from "react-router-dom";
+import { openExternal } from "@/lib/openExternal";
+
+const LINKEDIN_URL = "https://www.linkedin.com/in/shreejan-sapkota-0449b023b/";
+
 
 type Project = {
   num: string;
