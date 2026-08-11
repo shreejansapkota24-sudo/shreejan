@@ -1,85 +1,8 @@
-import { useEffect, useRef, useState } from "react";
-import { X, Send, Sparkles } from "lucide-react";
-import ReactMarkdown from "react-markdown";
-
-type Msg = { role: "user" | "assistant"; content: string };
-
-const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/cyber-saathi`;
-const PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
-
-const SUGGESTED = [
-  "Who is Shreejan?",
-  "What projects has he built?",
-  "What's his tech stack?",
-];
+import { useState } from "react";
+import { X, Sparkles, Wrench } from "lucide-react";
 
 const FloatingAI = () => {
   const [open, setOpen] = useState(false);
-  const [input, setInput] = useState("");
-  const [messages, setMessages] = useState<Msg[]>([
-    { role: "assistant", content: "Hi — I'm **AI Saathi**, Shreejan's AI assistant. Ask me about his AI and machine learning work, projects, or how to get in touch." },
-  ]);
-  const [loading, setLoading] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
-  }, [messages, loading]);
-
-  const send = async (text: string) => {
-    const q = text.trim();
-    if (!q || loading) return;
-    setInput("");
-    const next: Msg[] = [...messages, { role: "user", content: q }];
-    setMessages(next);
-    setLoading(true);
-
-    try {
-      const res = await fetch(CHAT_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Authorization: `Bearer ${PUBLISHABLE_KEY}` },
-        body: JSON.stringify({ messages: next }),
-      });
-      if (!res.ok || !res.body) throw new Error(`HTTP ${res.status}`);
-
-      const reader = res.body.getReader();
-      const decoder = new TextDecoder();
-      let buf = "";
-      let acc = "";
-      setMessages((m) => [...m, { role: "assistant", content: "" }]);
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        buf += decoder.decode(value, { stream: true });
-        let nl: number;
-        while ((nl = buf.indexOf("\n")) !== -1) {
-          let line = buf.slice(0, nl);
-          buf = buf.slice(nl + 1);
-          if (line.endsWith("\r")) line = line.slice(0, -1);
-          if (!line.startsWith("data: ")) continue;
-          const jsonStr = line.slice(6).trim();
-          if (jsonStr === "[DONE]") continue;
-          try {
-            const p = JSON.parse(jsonStr);
-            const delta = p.choices?.[0]?.delta?.content as string | undefined;
-            if (delta) {
-              acc += delta;
-              setMessages((m) => {
-                const copy = m.slice();
-                copy[copy.length - 1] = { role: "assistant", content: acc };
-                return copy;
-              });
-            }
-          } catch { buf = line + "\n" + buf; break; }
-        }
-      }
-    } catch {
-      setMessages((m) => [...m, { role: "assistant", content: "Sorry — I couldn't reach the AI service. Please try again in a moment." }]);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <>
@@ -122,25 +45,24 @@ const FloatingAI = () => {
         )}
       </button>
 
-      {/* Panel */}
+      {/* Development notice panel */}
       {open && (
         <div
           className="fixed z-[998] flex flex-col"
           style={{
             bottom: 100, right: 32,
             width: "min(360px, calc(100vw - 32px))",
-            height: "min(520px, calc(100vh - 140px))",
             background: "var(--bg)",
             border: "1px solid var(--line2)",
             boxShadow: "0 24px 60px -12px rgba(0,0,0,0.6)",
             animation: "fade-up 0.3s cubic-bezier(0.22,1,0.36,1)",
           }}
           role="dialog"
-          aria-label="AI assistant"
+          aria-label="AI Saathi status"
         >
           <div className="flex items-center justify-between px-5 py-4" style={{ borderBottom: "1px solid var(--line)" }}>
             <div className="flex items-center gap-3">
-              <span className="w-2 h-2 rounded-full pulse-soft" style={{ background: "#22c55e" }} />
+              <span className="w-2 h-2 rounded-full pulse-soft" style={{ background: "var(--accent)" }} />
               <Sparkles className="w-3.5 h-3.5" style={{ color: "var(--accent)" }} />
               <span className="font-mono-syne" style={{ color: "var(--accent)" }}>AI Saathi</span>
             </div>
@@ -149,73 +71,34 @@ const FloatingAI = () => {
             </button>
           </div>
 
-          <div ref={scrollRef} className="flex-1 overflow-y-auto px-5 py-4 space-y-4">
-            {messages.map((m, i) => (
-              <div
-                key={i}
-                className="text-[13.5px] leading-[1.65] px-4 py-3 max-w-[88%]"
-                style={{
-                  background: m.role === "user" ? "var(--bg3)" : "transparent",
-                  border: m.role === "user" ? "1px solid var(--line)" : "none",
-                  color: m.role === "user" ? "var(--white)" : "var(--white)",
-                  marginLeft: m.role === "user" ? "auto" : 0,
-                }}
-              >
-                {m.role === "assistant" ? (
-                  <div className="prose prose-invert prose-sm max-w-none [&_p]:my-1 [&_code]:text-[var(--accent)]">
-                    <ReactMarkdown>{m.content || "…"}</ReactMarkdown>
-                  </div>
-                ) : (
-                  m.content
-                )}
-              </div>
-            ))}
-            {loading && messages[messages.length - 1]?.role === "user" && (
-              <div className="flex items-center gap-1.5 px-4 py-3">
-                <span className="w-1.5 h-1.5 rounded-full dot-1" style={{ background: "var(--accent)" }} />
-                <span className="w-1.5 h-1.5 rounded-full dot-2" style={{ background: "var(--accent)" }} />
-                <span className="w-1.5 h-1.5 rounded-full dot-3" style={{ background: "var(--accent)" }} />
-              </div>
-            )}
-            {messages.length === 1 && !loading && (
-              <div className="flex flex-wrap gap-2 pt-2">
-                {SUGGESTED.map((s) => (
-                  <button
-                    key={s}
-                    onClick={() => send(s)}
-                    className="text-[11px] px-3 py-1.5 transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
-                    style={{ background: "var(--bg2)", border: "1px solid var(--line)", color: "var(--white2)", fontFamily: "JetBrains Mono, monospace", letterSpacing: "0.08em" }}
-                  >
-                    {s}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
-          <form
-            onSubmit={(e) => { e.preventDefault(); send(input); }}
-            className="flex items-center gap-2 px-4 py-3"
-            style={{ borderTop: "1px solid var(--line)" }}
-          >
-            <input
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask anything…"
-              disabled={loading}
-              className="flex-1 bg-transparent outline-none text-[14px] py-2"
-              style={{ color: "var(--white)" }}
-            />
-            <button
-              type="submit"
-              disabled={loading || !input.trim()}
-              aria-label="Send"
-              className="w-9 h-9 flex items-center justify-center transition-all hover:bg-[var(--accent)] disabled:opacity-40"
-              style={{ background: "var(--bg3)", border: "1px solid var(--line2)", color: "var(--accent)" }}
+          <div className="px-6 py-8 text-center">
+            <div
+              className="mx-auto mb-5 flex items-center justify-center"
+              style={{ width: 52, height: 52, borderRadius: "50%", background: "var(--bg3)", border: "1px solid var(--line2)" }}
             >
-              <Send className="w-3.5 h-3.5" />
+              <Wrench className="w-5 h-5" style={{ color: "var(--accent)" }} />
+            </div>
+            <p
+              className="font-mono-syne text-[11px] mb-3"
+              style={{ color: "var(--accent)", letterSpacing: "0.18em" }}
+            >
+              IN DEVELOPMENT
+            </p>
+            <h3 className="font-display text-[22px] leading-tight mb-3" style={{ letterSpacing: "-0.02em" }}>
+              AI Saathi is being upgraded
+            </h3>
+            <p className="text-[13.5px] leading-[1.7]" style={{ color: "var(--white2)" }}>
+              I'm making some changes to the AI model and its knowledge base. AI Saathi will be live on the
+              portfolio again soon — thanks for your patience.
+            </p>
+            <button
+              onClick={() => setOpen(false)}
+              className="mt-6 px-5 py-2.5 text-[12px] transition-colors hover:bg-[var(--accent)] hover:text-[var(--bg)]"
+              style={{ background: "var(--bg2)", border: "1px solid var(--line2)", color: "var(--accent)", fontFamily: "JetBrains Mono, monospace", letterSpacing: "0.1em" }}
+            >
+              GOT IT
             </button>
-          </form>
+          </div>
         </div>
       )}
     </>
