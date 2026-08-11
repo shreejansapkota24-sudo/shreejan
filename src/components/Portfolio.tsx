@@ -1,4 +1,5 @@
-import { ArrowUpRight } from "lucide-react";
+import { useState } from "react";
+import { ArrowUpRight, Wrench, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
 type Project = {
@@ -9,6 +10,7 @@ type Project = {
   tags: string[];
   href?: string;
   muted?: boolean;
+  dev?: boolean;
 };
 
 const projects: Project[] = [
@@ -26,19 +28,11 @@ const projects: Project[] = [
     type: "AI Defensive Analyst",
     ai: true,
     tags: ["AI / LLM", "IOC Extraction", "Risk Scoring"],
-    href: "/cyberguard/cyber-saathi",
-  },
-  {
-    num: "03",
-    title: "WorldCup Hub",
-    type: "Live Sports Analytics Dashboard",
-    ai: true,
-    tags: ["React", "Framer Motion", "Recharts", "Live Data"],
-    href: "/worldcup",
+    dev: true,
   },
 ];
 
-const Row = ({ p }: { p: Project }) => {
+const Row = ({ p, onDev }: { p: Project; onDev: (p: Project) => void }) => {
   const content = (
     <div
       className={`group fade-up relative grid grid-cols-[60px_1fr_40px] items-center gap-6 py-10 px-6 md:px-6 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] overflow-hidden ${
@@ -71,6 +65,21 @@ const Row = ({ p }: { p: Project }) => {
             {p.ai && <span className="mr-2">⚡ AI</span>}
             {p.type}
           </span>
+          {p.dev && (
+            <span
+              className="text-[10px] px-2.5 py-1 inline-flex items-center gap-1.5"
+              style={{
+                background: "var(--glass)",
+                border: "1px solid var(--accent)",
+                borderRadius: 999,
+                color: "var(--accent)",
+                fontFamily: "JetBrains Mono, monospace",
+                letterSpacing: "0.14em",
+              }}
+            >
+              <Wrench className="w-3 h-3" /> IN DEVELOPMENT
+            </span>
+          )}
           <span style={{ color: "var(--white3)" }}>·</span>
           <div className="flex flex-wrap gap-1.5">
             {p.tags.map((t) => (
@@ -101,6 +110,14 @@ const Row = ({ p }: { p: Project }) => {
     </div>
   );
 
+  if (p.dev) {
+    return (
+      <button type="button" onClick={() => onDev(p)} className="block w-full text-left">
+        {content}
+      </button>
+    );
+  }
+
   if (p.href && !p.muted) {
     return p.href.startsWith("/") ? (
       <Link to={p.href}>{content}</Link>
@@ -112,6 +129,8 @@ const Row = ({ p }: { p: Project }) => {
 };
 
 const Portfolio = () => {
+  const [devProject, setDevProject] = useState<Project | null>(null);
+
   return (
     <section id="portfolio" className="px-6 md:px-16 py-28 md:py-36">
       <div className="max-w-[1320px] mx-auto">
@@ -132,10 +151,66 @@ const Portfolio = () => {
 
         <div className="mt-16" style={{ borderBottom: "1px solid var(--line)" }}>
           {projects.map((p) => (
-            <Row key={p.num} p={p} />
+            <Row key={p.num} p={p} onDev={setDevProject} />
           ))}
         </div>
       </div>
+
+      {/* In-development popup */}
+      {devProject && (
+        <div
+          className="fixed inset-0 z-[1000] flex items-center justify-center px-6"
+          style={{ background: "rgba(5,8,20,0.72)", backdropFilter: "blur(8px)" }}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${devProject.title} status`}
+          onClick={() => setDevProject(null)}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-[440px] px-8 py-10 text-center"
+            style={{
+              background: "var(--bg)",
+              border: "1px solid var(--line2)",
+              boxShadow: "0 30px 80px -20px rgba(0,0,0,0.7)",
+              animation: "fade-up 0.35s cubic-bezier(0.22,1,0.36,1)",
+            }}
+          >
+            <button
+              onClick={() => setDevProject(null)}
+              aria-label="Close"
+              className="absolute top-4 right-4"
+            >
+              <X className="w-4 h-4" style={{ color: "var(--white2)" }} />
+            </button>
+
+            <div
+              className="mx-auto mb-6 flex items-center justify-center"
+              style={{ width: 58, height: 58, borderRadius: "50%", background: "var(--bg3)", border: "1px solid var(--line2)" }}
+            >
+              <Wrench className="w-6 h-6" style={{ color: "var(--accent)" }} />
+            </div>
+
+            <p className="font-mono-syne text-[11px] mb-4" style={{ color: "var(--accent)", letterSpacing: "0.2em" }}>
+              IN DEVELOPMENT
+            </p>
+            <h3 className="font-display text-[28px] leading-tight mb-4" style={{ letterSpacing: "-0.03em" }}>
+              {devProject.title} is coming soon
+            </h3>
+            <p className="text-[14px] leading-[1.75]" style={{ color: "var(--white2)" }}>
+              This AI project is currently in its development phase while I refine the model and its analysis
+              pipeline. It will be live on the portfolio soon.
+            </p>
+            <button
+              onClick={() => setDevProject(null)}
+              className="mt-7 px-6 py-3 text-[12px] transition-colors hover:bg-[var(--accent)] hover:text-[var(--bg)]"
+              style={{ background: "var(--bg2)", border: "1px solid var(--line2)", color: "var(--accent)", fontFamily: "JetBrains Mono, monospace", letterSpacing: "0.12em" }}
+            >
+              GOT IT
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
