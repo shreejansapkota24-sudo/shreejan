@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { X, Sparkles, Wrench } from "lucide-react";
+import { X, Sparkles, Wrench, Linkedin } from "lucide-react";
+import { openExternal } from "@/lib/openExternal";
+
+const LINKEDIN_URL = "https://www.linkedin.com/in/shreejan-sapkota-0449b023b/";
+
 
 const FloatingAI = () => {
   const [open, setOpen] = useState(false);
