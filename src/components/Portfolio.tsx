@@ -1,6 +1,10 @@
 import { useState } from "react";
-import { ArrowUpRight, Wrench, X } from "lucide-react";
+import { ArrowUpRight, Wrench, X, Linkedin } from "lucide-react";
 import { Link } from "react-router-dom";
+import { openExternal } from "@/lib/openExternal";
+
+const LINKEDIN_URL = "https://www.linkedin.com/in/shreejan-sapkota-0449b023b/";
+
 
 type Project = {
   num: string;
@@ -199,15 +203,29 @@ const Portfolio = () => {
             </h3>
             <p className="text-[14px] leading-[1.75]" style={{ color: "var(--white2)" }}>
               This AI project is currently in its development phase while I refine the model and its analysis
-              pipeline. It will be live on the portfolio soon.
+              pipeline. It will be live on the portfolio soon — I'll post the update on my LinkedIn once it's
+              finished, so follow me there to stay updated.
             </p>
-            <button
-              onClick={() => setDevProject(null)}
-              className="mt-7 px-6 py-3 text-[12px] transition-colors hover:bg-[var(--accent)] hover:text-[var(--bg)]"
-              style={{ background: "var(--bg2)", border: "1px solid var(--line2)", color: "var(--accent)", fontFamily: "JetBrains Mono, monospace", letterSpacing: "0.12em" }}
-            >
-              GOT IT
-            </button>
+            <div className="mt-7 flex flex-col sm:flex-row gap-3 justify-center">
+              <a
+                href={LINKEDIN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => openExternal(e, LINKEDIN_URL)}
+                className="flex items-center justify-center gap-2 px-6 py-3 text-[12px] transition-opacity hover:opacity-90"
+                style={{ background: "var(--accent)", color: "var(--bg)", fontFamily: "JetBrains Mono, monospace", letterSpacing: "0.12em" }}
+              >
+                <Linkedin className="w-3.5 h-3.5" /> FOLLOW ON LINKEDIN
+              </a>
+              <button
+                onClick={() => setDevProject(null)}
+                className="px-6 py-3 text-[12px] transition-colors hover:border-[var(--accent)]"
+                style={{ background: "var(--bg2)", border: "1px solid var(--line2)", color: "var(--accent)", fontFamily: "JetBrains Mono, monospace", letterSpacing: "0.12em" }}
+              >
+                GOT IT
+              </button>
+            </div>
+
           </div>
         </div>
       )}

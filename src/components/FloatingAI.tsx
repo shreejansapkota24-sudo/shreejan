@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { X, Sparkles, Wrench } from "lucide-react";
+import { X, Sparkles, Wrench, Linkedin } from "lucide-react";
+import { openExternal } from "@/lib/openExternal";
+
+const LINKEDIN_URL = "https://www.linkedin.com/in/shreejan-sapkota-0449b023b/";
+
 
 const FloatingAI = () => {
   const [open, setOpen] = useState(false);
@@ -89,15 +93,29 @@ const FloatingAI = () => {
             </h3>
             <p className="text-[13.5px] leading-[1.7]" style={{ color: "var(--white2)" }}>
               I'm making some changes to the AI model and its knowledge base. AI Saathi will be live on the
-              portfolio again soon — thanks for your patience.
+              portfolio again soon. I'll post the update on my LinkedIn once it's finished — follow me there to
+              stay updated.
             </p>
-            <button
-              onClick={() => setOpen(false)}
-              className="mt-6 px-5 py-2.5 text-[12px] transition-colors hover:bg-[var(--accent)] hover:text-[var(--bg)]"
-              style={{ background: "var(--bg2)", border: "1px solid var(--line2)", color: "var(--accent)", fontFamily: "JetBrains Mono, monospace", letterSpacing: "0.1em" }}
-            >
-              GOT IT
-            </button>
+            <div className="mt-6 flex flex-col gap-2.5">
+              <a
+                href={LINKEDIN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => openExternal(e, LINKEDIN_URL)}
+                className="flex items-center justify-center gap-2 px-5 py-2.5 text-[12px] transition-colors hover:opacity-90"
+                style={{ background: "var(--accent)", color: "var(--bg)", fontFamily: "JetBrains Mono, monospace", letterSpacing: "0.1em" }}
+              >
+                <Linkedin className="w-3.5 h-3.5" /> FOLLOW ON LINKEDIN
+              </a>
+              <button
+                onClick={() => setOpen(false)}
+                className="px-5 py-2.5 text-[12px] transition-colors hover:border-[var(--accent)]"
+                style={{ background: "var(--bg2)", border: "1px solid var(--line2)", color: "var(--accent)", fontFamily: "JetBrains Mono, monospace", letterSpacing: "0.1em" }}
+              >
+                GOT IT
+              </button>
+            </div>
+
           </div>
         </div>
       )}
