@@ -33,7 +33,7 @@ const Glyph = ({ kind }: { kind: string }) => {
 const Contact = () => {
   return (
     <section id="contact" className="px-6 md:px-16 py-28 md:py-36">
-      <div className="max-w-[1320px] mx-auto">
+      <div className="max-w-[1100px] mx-auto">
         <span className="eyebrow fade-up">— Contact</span>
         <h2 className="mt-6 fade-up delay-1 leading-[0.95]" style={{ fontSize: "clamp(48px,9vw,128px)" }}>
           <span className="block">LET'S</span>

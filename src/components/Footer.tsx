@@ -40,7 +40,7 @@ const Glyph = ({ kind }: { kind: string }) => {
 const Footer = () => {
   return (
     <footer style={{ background: "var(--bg2)", borderTop: "1px solid var(--line)" }} className="px-6 md:px-16 py-14">
-      <div className="max-w-[1320px] mx-auto">
+      <div className="max-w-[1100px] mx-auto">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <a href="#home" className="font-display text-2xl" style={{ color: "var(--white)" }}>
             SHREEJAN<span style={{ color: "var(--accent)" }}>.</span>

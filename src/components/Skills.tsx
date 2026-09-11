@@ -82,7 +82,7 @@ const categories: { name: string; items: Skill[] }[] = [
 const Skills = () => {
   return (
     <section id="skills" className="px-6 md:px-16 py-28 md:py-36">
-      <div className="max-w-[1320px] mx-auto">
+      <div className="max-w-[1100px] mx-auto">
         <span className="eyebrow fade-up">— Skills</span>
         <h2 className="mt-6 fade-up delay-1 leading-[0.95]" style={{ fontSize: "clamp(44px,7vw,96px)" }}>
           <span className="block">AN AI-FIRST</span>
