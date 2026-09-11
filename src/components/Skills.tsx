@@ -81,45 +81,26 @@ const categories: { name: string; items: Skill[] }[] = [
 
 const Skills = () => {
   return (
-    <section id="skills" className="px-6 md:px-16 py-28 md:py-36">
-      <div className="max-w-[1320px] mx-auto">
-        <span className="eyebrow fade-up">— Skills</span>
-        <h2 className="mt-6 fade-up delay-1 leading-[0.95]" style={{ fontSize: "clamp(44px,7vw,96px)" }}>
-          <span className="block">AN AI-FIRST</span>
-          <span
-            className="block"
-            style={{
-              fontWeight: 300, textTransform: "lowercase",
-              background: "var(--gradient-text)",
-              WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent",
-            }}
-          >
-            toolkit.
-          </span>
+    <section id="skills" className="px-6 md:px-16 py-24 md:py-28" style={{ borderTop: "1px solid var(--line)" }}>
+      <div className="max-w-[1100px] mx-auto">
+        <span className="eyebrow fade-up">Skills</span>
+        <h2 className="mt-4 fade-up delay-1" style={{ fontSize: "clamp(30px,4vw,44px)" }}>
+          An AI-first toolkit
         </h2>
 
-        <div className="mt-20 divide-y" style={{ borderColor: "var(--line)" }}>
-          {categories.map((c, idx) => (
-            <div
-              key={c.name}
-              className={`${idx % 2 === 0 ? "reveal-left" : "reveal-right"} group grid md:grid-cols-[220px_1fr] gap-6 py-8 transition-all duration-500 hover:pl-3`}
-              style={{ borderTop: idx === 0 ? "1px solid var(--line)" : undefined, borderBottom: "1px solid var(--line)" }}
-            >
-              <h3
-                className="font-display text-xl transition-colors duration-300 group-hover:text-[var(--accent)]"
-                style={{ color: "var(--white)" }}
-              >
-                {c.name}
-              </h3>
-              <div className="flex flex-wrap gap-2.5">
+        <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {categories.map((c) => (
+            <div key={c.name} className="fade-up sp-card p-6">
+              <h3 className="font-mono-syne" style={{ color: "var(--white3)" }}>{c.name}</h3>
+              <div className="mt-5 flex flex-wrap gap-2">
                 {c.items.map((s) => (
                   <span key={s.name} className="stag">
                     {s.icon ? (
-                      <i className={s.icon} style={{ fontSize: 16 }} />
+                      <i className={s.icon} style={{ fontSize: 15 }} />
                     ) : s.lucide ? (
-                      <s.lucide size={14} className="text-[var(--accent)]" />
+                      <s.lucide size={14} style={{ color: "var(--white3)" }} />
                     ) : (
-                      <Sparkles size={12} className="text-[var(--white3)]" />
+                      <Sparkles size={12} style={{ color: "var(--white3)" }} />
                     )}
                     {s.name}
                   </span>

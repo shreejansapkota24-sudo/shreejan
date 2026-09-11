@@ -77,19 +77,9 @@ const InquiryForm = () => {
   return (
     <section id="inquiry" className="px-6 md:px-16 py-28 md:py-36" style={{ background: "var(--bg2)" }}>
       <div className="max-w-[720px] mx-auto">
-        <span className="eyebrow fade-up">— Inquiry</span>
-        <h2 className="mt-6 fade-up delay-1 leading-[0.95]" style={{ fontSize: "clamp(44px,7vw,96px)" }}>
-          <span className="block">DROP ME</span>
-          <span
-            className="block"
-            style={{
-              fontWeight: 300, textTransform: "lowercase",
-              background: "var(--gradient-text)", WebkitBackgroundClip: "text",
-              backgroundClip: "text", color: "transparent",
-            }}
-          >
-            a line.
-          </span>
+        <span className="eyebrow fade-up">Inquiry</span>
+        <h2 className="mt-4 fade-up delay-1" style={{ fontSize: "clamp(30px,4vw,44px)" }}>
+          Drop me a line
         </h2>
 
         <form onSubmit={onSubmit} className="mt-14 space-y-10 fade-up delay-2" noValidate>
