@@ -70,7 +70,7 @@ const InquiryForm = () => {
     background: "transparent", border: "none",
     borderBottom: `1px solid ${err[k] ? "var(--red)" : "var(--line2)"}`,
     color: "var(--white)", padding: "14px 2px", width: "100%",
-    outline: "none", fontFamily: "Inter, sans-serif", fontSize: 15, fontWeight: 300,
+    outline: "none", fontFamily: "Plus Jakarta Sans, sans-serif", fontSize: 15, fontWeight: 400,
     transition: "border-color 0.3s ease",
   });
 
@@ -124,8 +124,8 @@ const InquiryForm = () => {
             disabled={state !== "idle"}
             className="w-full py-4 font-mono-syne transition-all duration-300"
             style={{
-              background: state === "sent" ? "#22c55e" : "var(--white)",
-              color: "var(--bg)",
+              background: state === "sent" ? "var(--success)" : "var(--white)",
+              color: "var(--bg2)",
               border: "1px solid var(--white)",
             }}
             onMouseEnter={(e) => {
@@ -133,7 +133,7 @@ const InquiryForm = () => {
                 e.currentTarget.style.background = "var(--accent)";
                 e.currentTarget.style.borderColor = "var(--accent)";
                 e.currentTarget.style.transform = "translateY(-4px)";
-                e.currentTarget.style.boxShadow = "0 14px 30px -10px rgba(139,123,249,0.4)";
+                e.currentTarget.style.boxShadow = "var(--shadow-soft)";
               }
             }}
             onMouseLeave={(e) => {
