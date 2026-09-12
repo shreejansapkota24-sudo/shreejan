@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowUpRight, Wrench, X, Linkedin } from "lucide-react";
+import { ArrowUpRight, ShieldCheck, Wrench, X, Linkedin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { openExternal } from "@/lib/openExternal";
 
@@ -38,80 +38,30 @@ const projects: Project[] = [
 
 const Row = ({ p, onDev }: { p: Project; onDev: (p: Project) => void }) => {
   const content = (
-    <div
-      className={`group fade-up relative grid grid-cols-[60px_1fr_40px] items-center gap-6 py-10 px-6 md:px-6 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] overflow-hidden ${
-        p.muted ? "opacity-60" : "hover:px-10"
-      }`}
-      style={{ borderTop: "1px solid var(--line)", wordBreak: "break-word", overflowWrap: "break-word" }}
-    >
-      {/* smooth sweep background on hover */}
-      <span
-        aria-hidden
-        className="absolute inset-0 origin-left scale-x-0 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100"
-        style={{ background: "linear-gradient(90deg, rgba(139,123,249,0.10), transparent 70%)" }}
-      />
-      <span
-        aria-hidden
-        className="absolute left-0 top-0 h-full w-[2px] origin-top scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100"
-        style={{ background: "var(--accent)" }}
-      />
-
-      <span className="font-mono-syne relative transition-all duration-500 group-hover:text-[var(--accent)] group-hover:translate-x-1" style={{ color: "var(--white3)" }}>{p.num}</span>
-      <div className="min-w-0 relative transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-2">
-        <h3
-          className="font-display transition-all duration-500 group-hover:text-[var(--accent)]"
-          style={{ fontSize: "clamp(28px,4vw,52px)", letterSpacing: "-0.04em", wordBreak: "break-word", whiteSpace: "normal" }}
-        >
-          {p.title.toUpperCase()}
-        </h3>
-        <div className="mt-3 flex flex-wrap items-center gap-3">
-          <span className="font-mono-syne" style={{ color: "var(--accent)" }}>
-            {p.ai && <span className="mr-2">⚡ AI</span>}
-            {p.type}
-          </span>
-          {p.dev && (
-            <span
-              className="text-[10px] px-2.5 py-1 inline-flex items-center gap-1.5"
-              style={{
-                background: "var(--glass)",
-                border: "1px solid var(--accent)",
-                borderRadius: 999,
-                color: "var(--accent)",
-                fontFamily: "JetBrains Mono, monospace",
-                letterSpacing: "0.14em",
-              }}
-            >
-              <Wrench className="w-3 h-3" /> IN DEVELOPMENT
-            </span>
-          )}
-          <span style={{ color: "var(--white3)" }}>·</span>
-          <div className="flex flex-wrap gap-1.5">
-            {p.tags.map((t) => (
-              <span
-                key={t}
-                className="text-[11px] px-2.5 py-1"
-                style={{
-                  background: "var(--glass)",
-                  border: "1px solid var(--glass-line)",
-                  borderRadius: 999,
-                  color: "var(--white2)",
-                  fontFamily: "JetBrains Mono, monospace",
-                  letterSpacing: "0.08em",
-                }}
-              >
-                {t}
-              </span>
-            ))}
-          </div>
+    <article className="group fade-up relative flex h-full min-h-[360px] flex-col overflow-hidden p-7 md:p-8 transition-all duration-300 hover:-translate-y-1" style={{ background: "var(--bg2)", border: "1px solid var(--line2)", boxShadow: "var(--shadow-soft)" }}>
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex h-12 w-12 items-center justify-center" style={{ background: "var(--bg)", border: "1px solid var(--line)" }}>
+          {p.dev ? <Wrench className="h-5 w-5" style={{ color: "var(--accent)" }} /> : <ShieldCheck className="h-5 w-5" style={{ color: "var(--accent)" }} />}
         </div>
+        <span className="font-mono-syne" style={{ color: "var(--white3)" }}>{p.num}</span>
       </div>
-      {!p.muted && (
-        <ArrowUpRight
-          className="transition-all duration-500 group-hover:rotate-45 group-hover:text-[var(--accent)]"
-          style={{ color: "var(--white2)", width: 32, height: 32 }}
-        />
-      )}
-    </div>
+
+      <div className="mt-8 flex flex-wrap items-center gap-2">
+        {p.ai && <span className="font-mono-syne" style={{ color: "var(--accent)" }}>AI PROJECT</span>}
+        {p.dev && <span className="font-mono-syne px-2 py-1" style={{ background: "var(--bg3)", color: "var(--accent)" }}>IN DEVELOPMENT</span>}
+      </div>
+      <h3 className="mt-4 font-display text-2xl md:text-3xl transition-colors duration-300 group-hover:text-[var(--accent)]">{p.title}</h3>
+      <p className="mt-2 text-[14px]" style={{ color: "var(--white2)" }}>{p.type}</p>
+
+      <div className="mt-6 flex flex-wrap gap-2">
+        {p.tags.map((t) => <span key={t} className="stag">{t}</span>)}
+      </div>
+
+      <div className="mt-auto pt-8 inline-flex items-center gap-2 font-mono-syne" style={{ color: "var(--accent)" }}>
+        {p.dev ? "View status" : "Open project"}
+        <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+      </div>
+    </article>
   );
 
   if (p.dev) {
@@ -138,22 +88,15 @@ const Portfolio = () => {
   return (
     <section id="portfolio" className="px-6 md:px-16 py-28 md:py-36">
       <div className="max-w-[1100px] mx-auto">
-        <span className="eyebrow fade-up">— Selected Projects</span>
-        <h2 className="mt-6 fade-up delay-1 leading-[0.95]" style={{ fontSize: "clamp(44px,7vw,96px)" }}>
-          <span className="block">PRACTICAL WORK THAT</span>
-          <span
-            className="block"
-            style={{
-              fontWeight: 300, textTransform: "lowercase",
-              background: "var(--gradient-text)", WebkitBackgroundClip: "text",
-              backgroundClip: "text", color: "transparent",
-            }}
-          >
-            shows the learning.
-          </span>
-        </h2>
+        <div className="flex items-end justify-between gap-6 border-b pb-5" style={{ borderColor: "var(--line)" }}>
+          <div>
+            <span className="eyebrow fade-up">Selected Projects</span>
+            <h2 className="mt-4 fade-up delay-1" style={{ fontSize: "clamp(30px,4vw,44px)" }}>Practical work that shows the learning</h2>
+          </div>
+          <span className="hidden sm:block font-mono-syne" style={{ color: "var(--white3)" }}>01 — 02</span>
+        </div>
 
-        <div className="mt-16" style={{ borderBottom: "1px solid var(--line)" }}>
+        <div className="mt-12 grid md:grid-cols-2 gap-6">
           {projects.map((p) => (
             <Row key={p.num} p={p} onDev={setDevProject} />
           ))}
@@ -164,7 +107,7 @@ const Portfolio = () => {
       {devProject && (
         <div
           className="fixed inset-0 z-[1000] flex items-center justify-center px-6"
-          style={{ background: "rgba(5,8,20,0.72)", backdropFilter: "blur(8px)" }}
+          style={{ background: "rgba(24,48,45,0.48)", backdropFilter: "blur(8px)" }}
           role="dialog"
           aria-modal="true"
           aria-label={`${devProject.title} status`}
@@ -176,7 +119,7 @@ const Portfolio = () => {
             style={{
               background: "var(--bg)",
               border: "1px solid var(--line2)",
-              boxShadow: "0 30px 80px -20px rgba(0,0,0,0.7)",
+              boxShadow: "var(--shadow-soft)",
               animation: "fade-up 0.35s cubic-bezier(0.22,1,0.36,1)",
             }}
           >
@@ -189,8 +132,8 @@ const Portfolio = () => {
             </button>
 
             <div
-              className="mx-auto mb-6 flex items-center justify-center"
-              style={{ width: 58, height: 58, borderRadius: "50%", background: "var(--bg3)", border: "1px solid var(--line2)" }}
+                className="mx-auto mb-6 flex items-center justify-center"
+                style={{ width: 58, height: 58, background: "var(--bg3)", border: "1px solid var(--line2)" }}
             >
               <Wrench className="w-6 h-6" style={{ color: "var(--accent)" }} />
             </div>
@@ -213,7 +156,7 @@ const Portfolio = () => {
                 rel="noopener noreferrer"
                 onClick={(e) => openExternal(e, LINKEDIN_URL)}
                 className="flex items-center justify-center gap-2 px-6 py-3 text-[12px] transition-opacity hover:opacity-90"
-                style={{ background: "var(--accent)", color: "var(--bg)", fontFamily: "JetBrains Mono, monospace", letterSpacing: "0.12em" }}
+                style={{ background: "var(--accent)", color: "var(--bg2)", fontFamily: "JetBrains Mono, monospace", letterSpacing: "0.12em" }}
               >
                 <Linkedin className="w-3.5 h-3.5" /> FOLLOW ON LINKEDIN
               </a>
