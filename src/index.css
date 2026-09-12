@@ -4,42 +4,43 @@
 
 /* =====================================================
    SHREEJAN SAPKOTA — Minimal editorial personal site
-   Near-flat dark canvas · one accent · no glow, no gradients
+   Mist & Teal editorial canvas · one accent · no glow, no gradients
    Fonts: Sora (display) · Plus Jakarta Sans (body) · JetBrains Mono (labels)
    ===================================================== */
 
 @layer base {
   :root {
-    --bg: #0b0b0f;
-    --bg2: #101116;
-    --bg3: #15161c;
-    --line: #1d1f27;
-    --line2: #2a2d38;
-    --white: #f4f5f7;
-    --white2: #a1a5b0;
-    --white3: #6b7080;
-    --red: #e5484d;
+    --bg: #f3f7f6;
+    --bg2: #ffffff;
+    --bg3: #dce7e4;
+    --line: #dce7e4;
+    --line2: #b9ccc7;
+    --white: #18302d;
+    --white2: #48615d;
+    --white3: #6d817d;
+    --red: #b42318;
+    --success: #287a55;
 
     /* shadcn tokens */
-    --background: 240 12% 5%;
-    --foreground: 220 14% 96%;
-    --card: 232 12% 8%;
-    --card-foreground: 220 14% 96%;
-    --popover: 232 12% 8%;
-    --popover-foreground: 220 14% 96%;
-    --primary: 230 85% 66%;
-    --primary-foreground: 240 12% 5%;
-    --secondary: 233 12% 13%;
-    --secondary-foreground: 220 14% 96%;
-    --muted: 233 12% 13%;
-    --muted-foreground: 222 9% 66%;
-    --accent: 230 85% 66%;
-    --accent-foreground: 240 12% 5%;
+    --background: 165 20% 96%;
+    --foreground: 174 33% 14%;
+    --card: 0 0% 100%;
+    --card-foreground: 174 33% 14%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 174 33% 14%;
+    --primary: 173 78% 26%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 164 17% 88%;
+    --secondary-foreground: 174 33% 14%;
+    --muted: 164 17% 88%;
+    --muted-foreground: 169 15% 33%;
+    --accent-hsl: 173 78% 26%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 358 75% 59%;
     --destructive-foreground: 0 0% 100%;
-    --border: 231 14% 15%;
-    --input: 231 14% 15%;
-    --ring: 230 85% 66%;
+    --border: 164 17% 88%;
+    --input: 164 17% 80%;
+    --ring: 173 78% 26%;
     --radius: 0.5rem;
 
     --sidebar-background: 240 12% 5%;
@@ -52,15 +53,15 @@
     --sidebar-ring: 230 85% 66%;
 
     /* single accent (raw color, declared last) */
-    --accent: #5b7cfa;
-    --accent-soft: #8ba2ff;
-    --accent2: #5b7cfa;
-    --gradient-accent: #5b7cfa;
+    --accent: #0f766e;
+    --accent-soft: #338f86;
+    --accent2: #0f766e;
+    --gradient-accent: #0f766e;
     --gradient-text: var(--white);
-    --glass: rgba(255, 255, 255, 0.03);
-    --glass-line: rgba(255, 255, 255, 0.09);
+    --glass: #ffffff;
+    --glass-line: #dce7e4;
 
-    --shadow-soft: 0 12px 32px -20px rgba(0, 0, 0, 0.8);
+    --shadow-soft: 0 14px 36px -26px rgba(24, 48, 45, 0.38);
     --shadow-accent: none;
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
   }
@@ -92,7 +93,7 @@
     color: var(--white);
   }
 
-  ::selection { background: var(--accent); color: #ffffff; }
+  ::selection { background: var(--bg3); color: var(--white); }
 
   ::-webkit-scrollbar { width: 8px; height: 8px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
@@ -139,7 +140,7 @@
     align-items: center;
     gap: 0.5rem;
     background: var(--accent);
-    color: #ffffff;
+    color: var(--bg2);
     border: 1px solid var(--accent);
     padding: 12px 22px;
     border-radius: 8px;
@@ -150,7 +151,7 @@
     text-transform: uppercase;
     transition: background 0.25s var(--ease), border-color 0.25s var(--ease);
   }
-  .btn-primary:hover { background: #4a6cf0; border-color: #4a6cf0; }
+  .btn-primary:hover { background: var(--white); border-color: var(--white); }
 
   .btn-ghost {
     display: inline-flex;
@@ -206,7 +207,7 @@
     font-weight: 500;
     transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
   }
-  .stag:hover { border-color: var(--line2); color: var(--white); }
+  .stag:hover { border-color: var(--accent); color: var(--accent); }
 
   /* Marquee */
   @keyframes marquee {
@@ -278,8 +279,8 @@
 .font-cyber { font-family: 'Sora', sans-serif; }
 .font-mono-arctic, .font-mono-label { font-family: 'JetBrains Mono', monospace; letter-spacing: 0.16em; text-transform: uppercase; font-size: 11px; color: var(--white2); }
 .hairline { height: 1px; width: 100%; background: var(--line); }
-.btn-mono { display:inline-flex; align-items:center; gap:.5rem; background:var(--accent); color:#fff; padding:11px 20px; border-radius:8px; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; border:1px solid var(--accent); transition:background .25s var(--ease); }
-.btn-mono:hover { background:#4a6cf0; }
+.btn-mono { display:inline-flex; align-items:center; gap:.5rem; background:var(--accent); color:var(--bg2); padding:11px 20px; border-radius:8px; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; border:1px solid var(--accent); transition:background .25s var(--ease); }
+.btn-mono:hover { background:var(--white); }
 .btn-ghost-mono { display:inline-flex; align-items:center; gap:.5rem; background:transparent; color:var(--white); padding:11px 20px; border-radius:8px; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; border:1px solid var(--line2); transition:border-color .25s var(--ease); }
 .btn-ghost-mono:hover { border-color: var(--white3); }
 .sp-card {
@@ -289,7 +290,7 @@
   border-radius: 12px;
   transition: border-color .3s var(--ease), background .3s var(--ease);
 }
-.sp-card:hover { border-color: var(--line2); background: var(--bg3); }
+.sp-card:hover { border-color: var(--accent); background: var(--bg2); transform: translateY(-3px); box-shadow: var(--shadow-soft); }
 .nav-link-underline { color: var(--white2); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; transition: color .25s ease; }
 .nav-link-underline:hover { color: var(--white); }
 .arctic-noise, .scanline-overlay, .cinematic-ease, .hover-lift, .cinematic-in, .reveal-up, .clip-reveal { }

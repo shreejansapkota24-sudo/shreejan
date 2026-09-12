@@ -18,7 +18,7 @@ const items = [
 
 const Services = () => {
   return (
-    <section id="services" className="px-6 md:px-16 py-28 md:py-36">
+    <section id="services" className="px-6 md:px-16 py-28 md:py-36" style={{ background: "var(--bg3)" }}>
       <div className="max-w-[1100px] mx-auto">
         <span className="eyebrow fade-up">Opportunities</span>
         <h2 className="mt-4 fade-up delay-1" style={{ fontSize: "clamp(30px,4vw,44px)" }}>

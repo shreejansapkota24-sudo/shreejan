@@ -29,7 +29,7 @@ const Navbar = () => {
     <nav
       className="fixed top-0 left-0 right-0 z-50 transition-colors duration-300"
       style={{
-        background: scrolled ? "rgba(11,11,15,0.9)" : "transparent",
+        background: scrolled ? "rgba(243,247,246,0.94)" : "transparent",
         backdropFilter: scrolled ? "blur(10px)" : "none",
         WebkitBackdropFilter: scrolled ? "blur(10px)" : "none",
         borderBottom: `1px solid ${scrolled ? "var(--line)" : "transparent"}`,
@@ -82,7 +82,7 @@ const Navbar = () => {
       </div>
 
       {isOpen && (
-        <div className="md:hidden px-6 pb-6" style={{ background: "rgba(11,11,15,0.96)" }}>
+        <div className="md:hidden px-6 pb-6" style={{ background: "var(--bg)" }}>
           <div className="flex flex-col gap-5">
             {navLinks.map((link) => (
               <a
