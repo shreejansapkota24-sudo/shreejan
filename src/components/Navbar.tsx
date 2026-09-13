@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Moon, Sun, Menu, X } from "lucide-react";
-import { useTheme } from "next-themes";
+import { usePortfolioTheme } from "@/contexts/ThemeContext";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
@@ -15,13 +15,11 @@ const navLinks = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const { resolvedTheme, setTheme } = useTheme();
+  const { theme, toggleTheme } = usePortfolioTheme();
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
   useEffect(() => {
-    setMounted(true);
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -30,8 +28,7 @@ const Navbar = () => {
 
   if (!isHomePage) return null;
 
-  const isDark = mounted && resolvedTheme === "dark";
-  const toggleTheme = () => setTheme(isDark ? "light" : "dark");
+  const isDark = theme === "dark";
 
   return (
     <nav
