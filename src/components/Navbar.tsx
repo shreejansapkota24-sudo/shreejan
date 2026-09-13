@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Moon, Sun, Menu, X } from "lucide-react";
+import { usePortfolioTheme } from "@/contexts/ThemeContext";
+import { Button } from "@/components/ui/button";
 
 const navLinks = [
   { name: "About", href: "#about" },
@@ -13,6 +15,7 @@ const navLinks = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { theme, toggleTheme } = usePortfolioTheme();
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
@@ -25,11 +28,13 @@ const Navbar = () => {
 
   if (!isHomePage) return null;
 
+  const isDark = theme === "dark";
+
   return (
     <nav
       className="fixed top-0 left-0 right-0 z-50 transition-colors duration-300"
       style={{
-        background: scrolled ? "rgba(243,247,246,0.94)" : "transparent",
+        background: scrolled ? "var(--nav-bg)" : "transparent",
         backdropFilter: scrolled ? "blur(10px)" : "none",
         WebkitBackdropFilter: scrolled ? "blur(10px)" : "none",
         borderBottom: `1px solid ${scrolled ? "var(--line)" : "transparent"}`,
@@ -68,17 +73,42 @@ const Navbar = () => {
             <span className="w-1.5 h-1.5 rounded-full pulse-soft" style={{ background: "var(--accent)" }} />
             <span className="font-mono-syne" style={{ color: "var(--white2)" }}>Available</span>
           </span>
+          <Button
+            type="button"
+            variant="outline"
+            size="icon"
+            onClick={toggleTheme}
+            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+            title={isDark ? "Light mode" : "Dark mode"}
+            className="h-9 w-9 rounded-md border-border bg-card text-foreground hover:bg-secondary hover:text-foreground"
+          >
+            {isDark ? <Sun /> : <Moon />}
+          </Button>
           <a href="#contact" className="btn-primary">Contact</a>
         </div>
 
-        <button
-          className="md:hidden p-2"
-          style={{ color: "var(--white)" }}
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label={isOpen ? "Close menu" : "Open menu"}
-        >
-          {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <Button
+            type="button"
+            variant="outline"
+            size="icon"
+            onClick={toggleTheme}
+            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+            className="h-9 w-9 rounded-md border-border bg-card text-foreground hover:bg-secondary hover:text-foreground"
+          >
+            {isDark ? <Sun /> : <Moon />}
+          </Button>
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            className="text-foreground hover:bg-secondary hover:text-foreground"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+          >
+            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </Button>
+        </div>
       </div>
 
       {isOpen && (
