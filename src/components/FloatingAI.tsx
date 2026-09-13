@@ -14,29 +14,20 @@ const FloatingAI = () => {
       <button
         onClick={() => setOpen((o) => !o)}
         aria-label={open ? "Close AI Saathi" : "Open AI Saathi"}
-        className="group fixed z-[999] flex items-center justify-center transition-transform duration-300 hover:scale-105"
+        className="group fixed z-[999] flex items-center justify-center transition-transform duration-300 hover:-translate-y-1"
         style={{
           bottom: 32, right: 32,
           width: 56, height: 56,
           borderRadius: "50%",
-          background: "radial-gradient(circle at 30% 30%, #1a1a1a, #0a0a0a)",
+          background: "var(--accent)",
           border: "1px solid var(--line2)",
-          boxShadow: "0 12px 32px -8px rgba(139,123,249,0.25)",
+          boxShadow: "var(--shadow-soft)",
         }}
       >
-        <span
-          className="absolute inset-[-6px] rounded-full ring-spin pointer-events-none"
-          style={{
-            background: "conic-gradient(from 0deg, transparent, var(--accent), transparent 70%)",
-            mask: "radial-gradient(circle, transparent 26px, #000 27px)",
-            WebkitMask: "radial-gradient(circle, transparent 26px, #000 27px)",
-            opacity: 0.6,
-          }}
-        />
         {open ? (
-          <X className="w-5 h-5" style={{ color: "var(--accent)" }} />
+          <X className="w-5 h-5" style={{ color: "var(--accent-contrast)" }} />
         ) : (
-          <Sparkles className="w-5 h-5 pulse-soft" style={{ color: "var(--accent)" }} />
+          <Sparkles className="w-5 h-5" style={{ color: "var(--accent-contrast)" }} />
         )}
 
         {!open && (
@@ -58,7 +49,7 @@ const FloatingAI = () => {
             width: "min(360px, calc(100vw - 32px))",
             background: "var(--bg)",
             border: "1px solid var(--line2)",
-            boxShadow: "0 24px 60px -12px rgba(0,0,0,0.6)",
+             boxShadow: "var(--shadow-panel)",
             animation: "fade-up 0.3s cubic-bezier(0.22,1,0.36,1)",
           }}
           role="dialog"
@@ -103,7 +94,7 @@ const FloatingAI = () => {
                 rel="noopener noreferrer"
                 onClick={(e) => openExternal(e, LINKEDIN_URL)}
                 className="flex items-center justify-center gap-2 px-5 py-2.5 text-[12px] transition-colors hover:opacity-90"
-                style={{ background: "var(--accent)", color: "var(--bg)", fontFamily: "JetBrains Mono, monospace", letterSpacing: "0.1em" }}
+                 style={{ background: "var(--accent)", color: "var(--accent-contrast)", fontFamily: "JetBrains Mono, monospace", letterSpacing: "0.1em" }}
               >
                 <Linkedin className="w-3.5 h-3.5" /> FOLLOW ON LINKEDIN
               </a>

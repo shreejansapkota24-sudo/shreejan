@@ -28,7 +28,7 @@ const projects: Project[] = [
   },
   {
     num: "02",
-    title: "Cyber Saathi",
+    title: "AI Saathi",
     type: "AI Defensive Analyst",
     ai: true,
     tags: ["AI / LLM", "IOC Extraction", "Risk Scoring"],
@@ -107,7 +107,7 @@ const Portfolio = () => {
       {devProject && (
         <div
           className="fixed inset-0 z-[1000] flex items-center justify-center px-6"
-          style={{ background: "rgba(24,48,45,0.48)", backdropFilter: "blur(8px)" }}
+          style={{ background: "var(--overlay)", backdropFilter: "blur(8px)" }}
           role="dialog"
           aria-modal="true"
           aria-label={`${devProject.title} status`}

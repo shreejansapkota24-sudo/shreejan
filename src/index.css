@@ -60,10 +60,57 @@
     --gradient-text: var(--white);
     --glass: #ffffff;
     --glass-line: #dce7e4;
+    --nav-bg: rgba(243, 247, 246, 0.92);
+    --overlay: rgba(24, 48, 45, 0.48);
+    --accent-contrast: #ffffff;
 
     --shadow-soft: 0 14px 36px -26px rgba(24, 48, 45, 0.38);
+    --shadow-panel: 0 24px 60px -18px rgba(24, 48, 45, 0.32);
     --shadow-accent: none;
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .dark {
+    --bg: #111a1a;
+    --bg2: #162120;
+    --bg3: #1d2b29;
+    --line: #2a3b38;
+    --line2: #3a514d;
+    --white: #f1f7f5;
+    --white2: #b7c8c4;
+    --white3: #829a95;
+    --red: #ff8a80;
+    --success: #63c99c;
+
+    --background: 180 21% 8%;
+    --foreground: 160 27% 96%;
+    --card: 177 20% 11%;
+    --card-foreground: 160 27% 96%;
+    --popover: 177 20% 11%;
+    --popover-foreground: 160 27% 96%;
+    --primary: 172 70% 46%;
+    --primary-foreground: 180 21% 8%;
+    --secondary: 171 19% 14%;
+    --secondary-foreground: 160 27% 96%;
+    --muted: 171 19% 14%;
+    --muted-foreground: 168 14% 65%;
+    --accent-hsl: 172 70% 46%;
+    --accent-foreground: 180 21% 8%;
+    --border: 170 17% 20%;
+    --input: 169 17% 27%;
+    --ring: 172 70% 46%;
+
+    --accent: #31c7b5;
+    --accent-soft: #68dacd;
+    --accent2: #31c7b5;
+    --gradient-accent: #31c7b5;
+    --glass: #162120;
+    --glass-line: #2a3b38;
+    --nav-bg: rgba(17, 26, 26, 0.92);
+    --overlay: rgba(3, 10, 10, 0.72);
+    --accent-contrast: #071311;
+    --shadow-soft: 0 16px 38px -24px rgba(0, 0, 0, 0.72);
+    --shadow-panel: 0 28px 70px -18px rgba(0, 0, 0, 0.7);
   }
 
   * { border-color: hsl(var(--border)); }
@@ -82,6 +129,7 @@
     line-height: 1.75;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    transition: background-color 0.25s var(--ease), color 0.25s var(--ease);
   }
 
   main, header, footer { position: relative; z-index: 1; }
@@ -151,7 +199,7 @@
     text-transform: uppercase;
     transition: background 0.25s var(--ease), border-color 0.25s var(--ease);
   }
-  .btn-primary:hover { background: var(--white); border-color: var(--white); }
+  .btn-primary:hover { background: var(--white); border-color: var(--white); color: var(--bg2); }
 
   .btn-ghost {
     display: inline-flex;
