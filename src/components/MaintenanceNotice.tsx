@@ -13,23 +13,23 @@ const MaintenanceNotice = () => {
       aria-modal="true"
       aria-label="Site under maintenance"
     >
-      {/* faint moving sheen — very subtle */}
+      {/* faint moving sheen — barely visible over white */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 overflow-hidden"
-        style={{ opacity: 0.5 }}
+        style={{ opacity: 0.18 }}
       >
         <div
           style={{
             position: "absolute",
             top: "-50%",
-            left: "-20%",
-            width: "60%",
+            left: "-30%",
+            width: "40%",
             height: "200%",
             background:
-              "linear-gradient(90deg, transparent 0%, rgba(15,118,110,0.05) 50%, transparent 100%)",
+              "linear-gradient(90deg, transparent 0%, rgba(15,118,110,0.12) 50%, transparent 100%)",
             transform: "skewX(-18deg)",
-            animation: "sheen 7s ease-in-out infinite",
+            animation: "sheen 9s ease-in-out infinite",
           }}
         />
       </div>
