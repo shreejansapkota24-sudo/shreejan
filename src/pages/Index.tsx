@@ -27,6 +27,7 @@ const Index = () => {
       <InquiryForm />
       <Footer />
       <FloatingAI />
+      <MaintenanceNotice />
     </main>
   );
 };
