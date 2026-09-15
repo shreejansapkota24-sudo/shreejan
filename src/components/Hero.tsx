@@ -9,7 +9,7 @@ const Hero = () => {
           <span className="h-1.5 w-1.5 rounded-full pulse-soft" style={{ background: "var(--accent)" }} />
           <span className="font-mono-syne" style={{ color: "var(--accent)" }}>Available for opportunities</span>
         </div>
-        <span className="eyebrow fade-up delay-1 mt-7 block">AI &amp; Computer Science Student · Kathmandu, Nepal</span>
+        <span className="eyebrow fade-up delay-1 mt-7" style={{ display: "block" }}>AI &amp; Computer Science Student · Kathmandu, Nepal</span>
 
         <h1
           className="mt-5 fade-up delay-2 leading-[1.02] max-w-4xl"
