@@ -1,4 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Volume2, VolumeX } from "lucide-react";
+import { isSoundOn, onSoundChange, playBoom, playPop, playWhistle, setSound } from "@/lib/fireworkSound";
 
 const COLORS = ["#ffb703", "#fb8500", "#ff4d6d", "#f72585", "#4cc9f0", "#90e0ef", "#ffd166", "#06d6a0"];
 
@@ -24,6 +26,7 @@ export const Fireworks = ({ intense = false }: { intense?: boolean }) => {
     const burst = (x: number, y: number, small = false) => {
       const color = COLORS[Math.floor(Math.random() * COLORS.length)];
       const color2 = COLORS[Math.floor(Math.random() * COLORS.length)];
+      small ? playPop() : playBoom();
       const n = small ? 28 : 70 + Math.random() * 40;
       for (let i = 0; i < n; i++) {
         const a = (Math.PI * 2 * i) / n;
@@ -34,6 +37,7 @@ export const Fireworks = ({ intense = false }: { intense?: boolean }) => {
     const launch = () => {
       const x = c.width * (0.15 + Math.random() * 0.7);
       const ty = c.height * (0.12 + Math.random() * 0.3);
+      playWhistle();
       rockets.push({ x, y: c.height, vx: (Math.random() - 0.5) * 1.5, vy: -(8 + Math.random() * 3), life: 0, max: 200, color: "#ffd166", size: 2, ty, tx: x });
     };
     const cracker = () => {
@@ -90,6 +94,23 @@ const Marigold = ({ color }: { color: string }) => (
   <span aria-hidden style={{ display: "inline-block", width: 16, height: 16, borderRadius: "50%", background: `radial-gradient(circle, #fff3b0 0 18%, ${color} 22% 100%)`, boxShadow: `0 0 0 2px ${color}55`, margin: "0 -2px" }} />
 );
 
+export const SoundToggle = () => {
+  const [on, setOn] = useState(isSoundOn());
+  useEffect(() => onSoundChange(setOn), []);
+  return (
+    <button
+      onClick={() => setSound(!on)}
+      aria-pressed={on}
+      aria-label={on ? "Turn fireworks sound off" : "Turn fireworks sound on"}
+      className="fixed bottom-14 left-4 flex items-center gap-2 rounded-full px-3.5 py-2 text-[11px] font-mono-syne"
+      style={{ zIndex: 1003, background: "rgba(20,20,40,0.75)", color: "#ffd166", border: "1px solid rgba(255,209,102,0.5)", backdropFilter: "blur(6px)", letterSpacing: "0.12em" }}
+    >
+      {on ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+      SOUND {on ? "ON" : "OFF"}
+    </button>
+  );
+};
+
 /** Marigold garland + diyas + floating sparkles. Non-blocking. */
 const TiharFestive = () => {
   const flowers = Array.from({ length: 60 }, (_, i) => (i % 3 === 0 ? "#f97316" : "#fbbf24"));
@@ -109,6 +130,7 @@ const TiharFestive = () => {
         ))}
       </div>
       <Fireworks />
+      <SoundToggle />
     </>
   );
 };

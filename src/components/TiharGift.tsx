@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { Diyo, Fireworks } from "./TiharFestive";
 
-type Stage = "closed" | "idle" | "shake" | "open" | "card";
+type Stage = "closed" | "welcome" | "idle" | "shake" | "open" | "card";
 const KEY = "tihar-gift-seen";
 
 const TiharGift = () => {
@@ -11,7 +11,7 @@ const TiharGift = () => {
 
   useEffect(() => {
     if (sessionStorage.getItem(KEY)) return;
-    const t = setTimeout(() => setStage("idle"), 600);
+    const t = setTimeout(() => setStage("welcome"), 600);
     return () => clearTimeout(t);
   }, []);
 
@@ -44,10 +44,28 @@ const TiharGift = () => {
             <X className="w-5 h-5" />
           </button>
 
-          {stage !== "card" ? (
+          {stage === "welcome" ? (
+            <motion.div
+              className="relative z-[1002] w-full max-w-[560px] max-h-[86vh] overflow-y-auto rounded-2xl p-7 md:p-10 text-center"
+              style={{ background: "linear-gradient(160deg,#2a0b3a,#5b1a2a 55%,#7c2d12)", border: "2px solid #fbbf24", boxShadow: "0 0 60px rgba(251,191,36,0.4)", color: "#fff7e6" }}
+              initial={{ y: 30, opacity: 0, scale: 0.95 }} animate={{ y: 0, opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}
+            >
+              <div className="flex justify-center gap-4 mb-5"><Diyo size={34} /><Diyo size={42} /><Diyo size={34} /></div>
+              <h2 className="text-[28px] md:text-[34px] mb-3" style={{ color: "#ffd166" }}>Happy Tihar! 🪔✨</h2>
+              <p className="text-[14px] md:text-[15px] leading-[1.8]">May this festival of lights bring happiness, prosperity, good health, and endless success into your life. May your home always shine with love and positivity!</p>
+              <div className="my-6 flex items-center justify-center gap-2" aria-hidden>
+                <span className="h-px w-16" style={{ background: "#fbbf24" }} /><span style={{ color: "#fbbf24" }}>✦</span><span className="h-px w-16" style={{ background: "#fbbf24" }} />
+              </div>
+              <h3 lang="ne" className="text-[19px] md:text-[22px] mb-3 leading-snug" style={{ color: "#ffd166" }}>शुभ दीपावली तथा तिहारको हार्दिक मंगलमय शुभकामना! 🪔✨</h3>
+              <p lang="ne" className="text-[14px] md:text-[15px] leading-[1.9]">यस पावन पर्वले तपाईंको जीवनमा सुख, शान्ति, समृद्धि र सफलता ल्याओस्। तपाईं र तपाईंको परिवारको जीवन सधैँ उज्यालो र खुसीले भरिपूर्ण रहोस्।</p>
+              <button onClick={() => setStage("idle")} className="mt-8 rounded-full px-7 py-3 text-[14px] font-semibold" style={{ background: "linear-gradient(135deg,#ffd166,#fb8500)", color: "#3b1d00" }}>
+                Continue to Your Gift 🎁
+              </button>
+            </motion.div>
+          ) : stage !== "card" ? (
             <div className="relative flex flex-col items-center text-center z-[1002]">
               <p className="font-mono-syne text-[12px] mb-3" style={{ color: "#ffd166", letterSpacing: "0.25em" }}>HAPPY TIHAR · शुभ तिहार</p>
-              <h2 className="text-[26px] md:text-[38px] leading-tight mb-10 max-w-[520px]" style={{ color: "#fff" }}>A Little Tihar Surprise for You!</h2>
+              <h2 className="text-[26px] md:text-[38px] leading-tight mb-10 max-w-[520px]" style={{ color: "#fff" }}>A Special Surprise for You!</h2>
 
               <motion.div
                 className="relative" style={{ width: 170, height: 170 }}
@@ -96,7 +114,7 @@ const TiharGift = () => {
             </div>
           ) : (
             <motion.div
-              className="relative z-[1002] w-full max-w-[480px] rounded-2xl p-8 md:p-10 text-center"
+              className="relative z-[1002] w-full max-w-[520px] max-h-[88vh] overflow-y-auto rounded-2xl p-8 md:p-10 text-center"
               style={{ background: "linear-gradient(160deg,#3b0a2a,#7c2d12 60%,#92400e)", border: "2px solid #fbbf24", boxShadow: "0 0 60px rgba(251,191,36,0.45)", color: "#fff7e6" }}
               initial={{ scale: 0.3, rotateY: 90, opacity: 0 }} animate={{ scale: 1, rotateY: 0, opacity: 1 }}
               transition={{ type: "spring", stiffness: 120, damping: 14 }}
@@ -104,11 +122,16 @@ const TiharGift = () => {
               <div className="flex justify-center gap-4 mb-5">
                 <Diyo size={38} /><Diyo size={46} /><Diyo size={38} />
               </div>
-              <h2 className="text-[32px] md:text-[40px] mb-4" style={{ color: "#ffd166" }}>Happy Tihar! 🪔✨</h2>
-              <p className="text-[15px] leading-[1.8] mb-4">
-                May your life shine as brightly as the diyas, your days be filled with happiness, and your future be full of success and prosperity.
+              <p className="font-mono-syne text-[11px] mb-2" style={{ color: "#fcd34d", letterSpacing: "0.2em" }}>A LETTER FOR YOU</p>
+              <h2 className="text-[30px] md:text-[38px] mb-4" style={{ color: "#ffd166" }}>Happy Tihar! 🪔✨</h2>
+              <p className="text-[14px] md:text-[15px] leading-[1.8] mb-3">
+                May this festival of lights bring happiness, prosperity, good health, and endless success into your life. May your home always shine with love and positivity!
               </p>
-              <p className="text-[15px] leading-[1.8] mb-7 font-semibold">Wishing you and your family a wonderful Tihar!</p>
+              <div className="my-5 flex items-center justify-center gap-2" aria-hidden>
+                <span className="h-px w-14" style={{ background: "#fbbf24" }} /><span style={{ color: "#fbbf24" }}>✦</span><span className="h-px w-14" style={{ background: "#fbbf24" }} />
+              </div>
+              <p lang="ne" className="text-[17px] mb-2 leading-snug font-semibold" style={{ color: "#ffd166" }}>शुभ दीपावली तथा तिहारको हार्दिक मंगलमय शुभकामना! 🪔✨</p>
+              <p lang="ne" className="text-[14px] md:text-[15px] leading-[1.9] mb-7">यस पावन पर्वले तपाईंको जीवनमा सुख, शान्ति, समृद्धि र सफलता ल्याओस्। तपाईं र तपाईंको परिवारको जीवन सधैँ उज्यालो र खुसीले भरिपूर्ण रहोस्।</p>
               <p className="font-mono-syne text-[11px] mb-7" style={{ color: "#fcd34d", letterSpacing: "0.2em" }}>— SHREEJAN SAPKOTA</p>
               <button onClick={close} className="rounded-full px-7 py-3 text-[14px] font-semibold" style={{ background: "#ffd166", color: "#3b1d00" }}>
                 Explore Portfolio
