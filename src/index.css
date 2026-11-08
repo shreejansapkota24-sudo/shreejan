@@ -360,3 +360,10 @@
 .nav-link-underline:hover { color: var(--white); }
 .arctic-noise, .scanline-overlay, .cinematic-ease, .hover-lift, .cinematic-in, .reveal-up, .clip-reveal { }
 .aurora-blob, .ai-field { display: none !important; }
+
+/* Tihar festive */
+.diyo-flame { transform-origin: 20px 20px; animation: diyo-flicker 1.4s ease-in-out infinite; filter: drop-shadow(0 0 6px #ffb703); }
+@keyframes diyo-flicker { 0%,100% { transform: scale(1,1); opacity: 1; } 50% { transform: scale(0.85,1.12); opacity: 0.85; } }
+.tihar-spark { position: absolute; bottom: -10px; width: 5px; height: 5px; border-radius: 50%; opacity: 0; box-shadow: 0 0 8px currentColor; animation: tihar-rise 12s linear infinite; }
+@keyframes tihar-rise { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 0.7; } 100% { transform: translateY(-105vh); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .diyo-flame, .tihar-spark { animation: none; } }

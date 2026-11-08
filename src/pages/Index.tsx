@@ -9,7 +9,8 @@ import Contact from "@/components/Contact";
 import InquiryForm from "@/components/InquiryForm";
 import Footer from "@/components/Footer";
 import FloatingAI from "@/components/FloatingAI";
-import MaintenanceNotice from "@/components/MaintenanceNotice";
+import TiharFestive from "@/components/TiharFestive";
+import TiharGift from "@/components/TiharGift";
 import { useReveal } from "@/hooks/useReveal";
 
 const Index = () => {
@@ -27,7 +28,8 @@ const Index = () => {
       <InquiryForm />
       <Footer />
       <FloatingAI />
-      <MaintenanceNotice />
+      <TiharFestive />
+      <TiharGift />
     </main>
   );
 };
