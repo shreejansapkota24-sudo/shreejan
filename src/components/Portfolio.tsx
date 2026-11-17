@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { ArrowUpRight, ShieldCheck, Wrench, X, Linkedin } from "lucide-react";
+import { Sparkles, useState } from "react";
+import { Sparkles, ArrowUpRight, ShieldCheck, Wrench, X, Linkedin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { openExternal } from "@/lib/openExternal";
 
@@ -41,7 +41,7 @@ const Row = ({ p, onDev }: { p: Project; onDev: (p: Project) => void }) => {
     <article className="group fade-up relative flex h-full min-h-[360px] flex-col overflow-hidden p-7 md:p-8 transition-all duration-300 hover:-translate-y-1" style={{ background: "var(--bg2)", border: "1px solid var(--line2)", boxShadow: "var(--shadow-soft)" }}>
       <div className="flex items-start justify-between gap-4">
         <div className="flex h-12 w-12 items-center justify-center" style={{ background: "var(--bg)", border: "1px solid var(--line)" }}>
-          {p.dev ? <Wrench className="h-5 w-5" style={{ color: "var(--accent)" }} /> : <ShieldCheck className="h-5 w-5" style={{ color: "var(--accent)" }} />}
+          {p.dev ? <Sparkles className="h-5 w-5" style={{ color: "var(--accent)" }} /> : <ShieldCheck className="h-5 w-5" style={{ color: "var(--accent)" }} />}
         </div>
         <span className="font-mono-syne" style={{ color: "var(--white3)" }}>{p.num}</span>
       </div>
