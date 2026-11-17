@@ -1,6 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { X, Sparkles, Send, Square } from "lucide-react";
 import ReactMarkdown from "react-markdown";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import "katex/dist/katex.min.css";
+
+const fixMath = (s: string) => s.replace(/\\\[([\s\S]*?)\\\]/g, (_, m) => `$$${m}$$`).replace(/\\\(([\s\S]*?)\\\)/g, (_, m) => `$${m}$`);
 
 type Msg = { role: "user" | "assistant"; content: string };
 const URL_ = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/cyber-saathi`;
@@ -101,7 +106,7 @@ const FloatingAI = () => {
                   className="text-[13.5px] leading-[1.65] prose-sm max-w-[88%] [&_p]:my-1 [&_ul]:list-disc [&_ul]:pl-4 [&_ol]:list-decimal [&_ol]:pl-4 [&_a]:underline"
                   style={m.role === "user" ? { background: "var(--accent)", color: "var(--accent-contrast)", padding: "8px 12px", borderRadius: 12 } : { color: "var(--white)" }}
                 >
-                  {m.content ? <ReactMarkdown>{m.content}</ReactMarkdown> : <span style={{ color: "var(--white2)" }}>Thinking…</span>}
+                  {m.content ? <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>{fixMath(m.content)}</ReactMarkdown> : <span style={{ color: "var(--white2)" }}>Thinking…</span>}
                 </div>
               </div>
             ))}
