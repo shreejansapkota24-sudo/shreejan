@@ -1,4 +1,4 @@
-import { Sparkles, useState } from "react";
+import { useState } from "react";
 import { Sparkles, ArrowUpRight, ShieldCheck, Wrench, X, Linkedin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { openExternal } from "@/lib/openExternal";
