@@ -29,9 +29,9 @@ const projects: Project[] = [
   {
     num: "02",
     title: "AI Saathi",
-    type: "AI Defensive Analyst",
+    type: "AI Assistant · Live",
     ai: true,
-    tags: ["AI / LLM", "IOC Extraction", "Risk Scoring"],
+    tags: ["AI / LLM", "Chat", "Streaming"],
     dev: true,
   },
 ];
@@ -48,7 +48,7 @@ const Row = ({ p, onDev }: { p: Project; onDev: (p: Project) => void }) => {
 
       <div className="mt-8 flex flex-wrap items-center gap-2">
         {p.ai && <span className="font-mono-syne" style={{ color: "var(--accent)" }}>AI PROJECT</span>}
-        {p.dev && <span className="font-mono-syne px-2 py-1" style={{ background: "var(--bg3)", color: "var(--accent)" }}>IN DEVELOPMENT</span>}
+        {p.dev && <span className="font-mono-syne px-2 py-1" style={{ background: "var(--bg3)", color: "var(--accent)" }}>LIVE</span>}
       </div>
       <h3 className="mt-4 font-display text-2xl md:text-3xl transition-colors duration-300 group-hover:text-[var(--accent)]">{p.title}</h3>
       <p className="mt-2 text-[14px]" style={{ color: "var(--white2)" }}>{p.type}</p>
@@ -58,7 +58,7 @@ const Row = ({ p, onDev }: { p: Project; onDev: (p: Project) => void }) => {
       </div>
 
       <div className="mt-auto pt-8 inline-flex items-center gap-2 font-mono-syne" style={{ color: "var(--accent)" }}>
-        {p.dev ? "View status" : "Open project"}
+        {p.dev ? "Chat now" : "Open project"}
         <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
       </div>
     </article>
@@ -66,7 +66,7 @@ const Row = ({ p, onDev }: { p: Project; onDev: (p: Project) => void }) => {
 
   if (p.dev) {
     return (
-      <button type="button" onClick={() => onDev(p)} className="block w-full text-left">
+      <button type="button" onClick={() => window.dispatchEvent(new Event("open-ai-saathi"))} className="block w-full text-left">
         {content}
       </button>
     );
